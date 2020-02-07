@@ -1,0 +1,53 @@
+ <h4 id="eyecolor">MARVEL</h4><br />  
+
+  <div style="text-align:center">
+    <br />
+    <h1>
+      <em> <span class="groot"> {{ title }}</span>  </em>
+    </h1>
+    <h3 class="groot"></h3>
+    <hr>
+    <div>
+      <button class="btn btn-primary" (click)="getCharacter()"> this.grootService.getCharactersPrivate()</button>
+      <button class="btn btn-info" (click)="displayCharacters()">this.characters</button> 
+    </div> 
+    <div class="input-group input-group-sm mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="inputGroup-sizing-sm">ID</span>
+      </div>
+      <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="inputGroup-sizing-sm">Name</span>
+      </div>
+      <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="inputGroup-sizing-sm">Type</span>
+      </div>
+      <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+    </div>
+
+    <br>
+    <div>
+      <table style="width: 50%; margin-left: 25%">
+        <tr>
+          <th>Id</th>
+          <th>Name</th>
+          <th>Type</th>
+        </tr>
+        <tr *ngFor="let ch of characterList">
+          
+        </tr>
+      </table>
+
+    </div> 
+  </div>
+<!-- <button (click) = "displayAllGroot()">Get Grootedex</button> -->
+
+
+<!-- <h6 *ngFor = "let groot of grootList">{{groot.id}} {{groot.name}} {{groot.type}}</h6> -->
+
+
+<!-- <input type="number" [(ngModel)] = "id">
+    <input type="text" [(ngModel)] = "name">
+    <input type="text" [(ngModel)] = "type">
+    <button  class="btn btn-info"  (click) = "addGroot()">Add Guardian</button> -->

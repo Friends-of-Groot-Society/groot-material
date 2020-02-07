@@ -1,0 +1,34 @@
+<div class="container ">
+  <!-- <button routerLink="photos/1" class="btn btn-light">Photos</button> -->
+ <div  style="text-align:center" >
+      <h1>
+      <em>The Friends of <span class="groot"> {{ title }}</span> Society</em>
+    </h1>
+    <h3 class="groot">Guardians of the Galaxy API</h3>
+    <hr>
+ </div>
+
+
+  <div class="row">
+    <div class="col col-xs-5">
+      <img width="260" alt="Angular Logo" src="./assets/groot.jpg">
+    </div>
+
+    <div class="col col-xs-7">
+      <div class="row">
+
+        <div class="col-sm-" *ngFor="let album of albums | async">
+          <div class="card">
+            <div class="card-body"> 
+              <a routerLink="photos/{{album.id}}">{{album.id}} 👆</a><br /> 
+              <a routerLink="photos/{{album.id}}">{{album.title}} </a><br />
+              <img width="90" alt="Angular Logo" src="./assets/groot.jpg"> 
+            </div>
+          </div>
+        </div> 
+
+
+      </div> 
+    </div>
+  </div>
+</div>
