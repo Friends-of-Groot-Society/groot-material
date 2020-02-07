@@ -1,0 +1,48 @@
+ .container {
+     align-content: center;
+     margin: 10px;
+     z-index: 2;
+ }
+ 
+ .groot {
+     color: rgb(8, 175, 8);
+ }
+ 
+ h3 {
+     margin-top: 5%;
+     margin-bottom: 5%;
+ }
+ 
+ button {
+     padding: 5px 10px;
+     margin: 5px 10px;
+     float: left;
+ }
+ 
+ img {
+     padding: 10px;
+    
+     margin-left:10%;
+ }
+ 
+ .card {
+     border: none;
+     /* background-color:rgba(183, 207, 135, 0.534); */
+     margin-bottom: 3%;
+     padding: 10px;
+     min-width: 200px; /*100%;*/
+     max-width: 200px;
+ }
+ 
+ .card:hover {
+     background-color: #007bff;
+ }
+ 
+ .card:hover a {
+     color: white;
+ }
+ 
+ .card a:hover {
+     color: white;
+     text-decoration: none;
+ }

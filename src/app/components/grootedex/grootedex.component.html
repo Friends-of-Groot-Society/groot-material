@@ -1,0 +1,30 @@
+<h3>Grootologue</h3>
+
+<p>Feature under construction...</p>
+
+<button (click) = "displayAllGroot()">Get Groot News</button>
+
+<div>
+    <input type="number" [(ngModel)] = "id">
+    <input type="text" [(ngModel)] = "name">
+    <input type="text" [(ngModel)] = "type">
+    <button (click) = "addGroot()">Add Groot News</button>
+    <!-- <p *ngIf="!validInputs">{{validation}}</p> -->
+    <p>{{validateFields(id,name,type)}}</p>
+    <br>
+</div>
+
+
+<table style="width: 50%; margin-left: 25%">
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Type</th>
+    </tr>
+    <tr *ngFor = "let groot of grootList">
+        <td>{{groot.id}}</td>
+        <td>{{groot.name}}</td>
+        <td>{{groot.type}}</td>
+    </tr>
+</table>
+<h6 *ngFor = "let groot of grootList">{{groot.id}} {{groot.name}} {{groot.type}}</h6>
