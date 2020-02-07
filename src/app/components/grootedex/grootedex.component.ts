@@ -10,14 +10,14 @@ import { Observable } from 'rxjs';
 })
 export class GrootedexComponent implements OnInit {
 
-  constructor(private pokeService :GrootService) { }
+  constructor(private grootService :GrootService) { }
 
   ngOnInit() {
     this.displayAllGroot();
   }
 
   grootList :Groot[] = [];  // :Groot[] = :Array:Groot
-  allGroot :Observable<Groot[]> = this.pokeService.getAllGroot();
+  allGroot :Observable<Groot[]> = this.grootService.getAllGroot();
 
 
   id :number;
@@ -48,7 +48,7 @@ export class GrootedexComponent implements OnInit {
   addGroot() {
     this.validateInputFields();
     if(this.validInputs) {
-      this.pokeService.addGroot(new Groot(this.id, this.name, this.type)).subscribe(
+      this.grootService.addGroot(new Groot(this.id, this.name, this.type)).subscribe(
         (response) => {
           console.log(response);
           let list = this.grootList.slice();
