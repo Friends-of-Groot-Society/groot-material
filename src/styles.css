@@ -7,6 +7,22 @@
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
+input.mat-input-element {
+  padding-left:5px;
+  margin-left:5px;
+}
+input::placeholder {
+  
+  padding-left:5px;
+  margin-left:5px;
+}
+.mat-drawer-inner-container{
+  overflow:hidden;
+}
+.short-hr {
+  
+   max-width:20%; 
+}
 /*   LOGIN Form */
 
 .spacer {
@@ -16,8 +32,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .medium-list {
     margin: auto;
-    width: 400px;
-    padding: 10px;
+    width: 100%; 
   }
      
   .list-viewer-wrapper {
