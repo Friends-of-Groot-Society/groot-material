@@ -1,15 +1,15 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 
 import { GrootComponent } from './components/groot/groot.component';
 import { PhotosComponent } from './components/photos/photos.component';
-
-
+ 
 import { StarwarsComponent } from './components/starwars/starwars.component';
 import { MarvelComponent } from './components/marvel/marvel.component';
 import { AboutComponent } from './components/about/about.component';
@@ -18,6 +18,25 @@ import { ContactusComponent } from './components/contactus/contactus.component';
  
 import { GrootService } from './services/groot.service';
 import { NavComponent } from './components/layout/nav/nav.component';
+import { LoginComponent } from './components/users/login/login.component';
+import { RegisterComponent } from './components/users/register/register.component';
+
+
+import { LayoutModule } from '@angular/cdk/layout';
+import { MatInputModule } from '@angular/material/input';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSelectModule } from '@angular/material/select';
+import { MatListModule } from '@angular/material/list';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatCardModule } from '@angular/material/card';
+import { MatMenuModule } from '@angular/material/menu';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core'; 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,13 +47,31 @@ import { NavComponent } from './components/layout/nav/nav.component';
     AboutComponent,
     GrootedexComponent,
     ContactusComponent,
-    NavComponent
+    NavComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    LayoutModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatSelectModule,
+    MatListModule,
+    MatGridListModule,
+    MatCardModule,
+    MatMenuModule,
+    MatInputModule,
+    FlexLayoutModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [ 
     GrootService
