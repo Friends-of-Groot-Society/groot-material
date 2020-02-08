@@ -1,5 +1,37 @@
-<button routerLink="about" class="btn btn-light">About</button>
-<button routerLink="contact" class="btn btn-light">Contact</button>
-<button routerLink="grootedex" class="btn btn-light">Grootologue</button>
-<button routerLink="photos/1" class="btn btn-light">Photos</button>
- 
+
+ <mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="(isHandset$ | async) === false">
+    <mat-toolbar routerLink=""><img width="120" class="logo" alt="Angular Logo" src="https://friends-of-groot-society.s3.amazonaws.com/assets/grootsmall.png"></mat-toolbar>  
+    <br />
+    <br />
+    <hr>
+    <mat-nav-list> 
+      <a mat-list-item routerLink="about/">About</a>
+      <a mat-list-item routerLink="contact/">Contact</a>
+
+      <a mat-list-item routerLink="grootedex/">Guardians</a> 
+      <a mat-list-item routerLink="photos/1">Photos</a> 
+      <!-- <a mat-list-item routerLink="photos/:id">Photos</a>  -->
+        <hr>
+      <a mat-list-item routerLink="login/">Sign in</a> 
+      <a mat-list-item routerLink="register/">Register</a> 
+        
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon"><small>menu</small></mat-icon>
+      </button> 
+    </mat-toolbar>
+    <!--   groot ...   -->
+  </mat-sidenav-content>
+</mat-sidenav-container>
