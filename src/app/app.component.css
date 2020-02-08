@@ -6,7 +6,9 @@
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
   }
-  
+  .content-groot {
+      margin-left:130px;
+  }
   h1,
   h2,
   h3,
