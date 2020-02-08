@@ -1,6 +1,6 @@
 ## groot-app
 Java Application for Friends of Groot Society
-<a style="margin-left:20%;" href="http://doggywood.s3-website-us-east-1.amazonaws.com
+<a style="margin-left:20%;" href="https://friends-of-groot-society.s3-website-us-east-1.amazonaws.com
 ">
 <img width="200" src="https://friends-of-groot-society.s3.amazonaws.com/assets/grootsmall.png" title="Friends_of_Groot_Society_App" alt="Friends_of_Groot_Society_Image"></a>
 
