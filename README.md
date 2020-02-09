@@ -1,6 +1,6 @@
 ## groot-app
 Java Application for Friends of Groot Society
-<a style="margin-left:20%;" href="http://doggywood.s3-website-us-east-1.amazonaws.com
+<a style="margin-left:20%;" href="https://friends-of-groot-society.s3-website-us-east-1.amazonaws.com
 ">
 <img width="200" src="https://friends-of-groot-society.s3.amazonaws.com/assets/grootsmall.png" title="Friends_of_Groot_Society_App" alt="Friends_of_Groot_Society_Image"></a>
 
@@ -8,7 +8,7 @@ Java Application for Friends of Groot Society
 > <a style="text-decoration:none;color:black;" href="http://friends-of-groot-society.s3-website-us-east-1.amazonaws.com/grootedex">Friends_of_Groot_Society</a>
 
 > Full-Stack application that manages Groot Fan Club News and Features
- 
+
 ### Author 
 > Thomas Maestas 
 
@@ -104,13 +104,13 @@ As a system, it will notify us if the vaccination record will expire before the 
 * [Jenkins]: <https://jenkins.io/> 
 * [CodeBuild]:<https://aws.amazon.com/codebuild/> 
    
-  website: [doggywood.io](http://doggywood.s3-website-us-east-1.amazonaws.com/t)
- 
-
 #### URLS for Angular/Material:
 #### https://material.io
 #### https://angular.io 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.21. 
+
+> website: [friends-of-groot-society.io](http://friends-of-groot-society.s3-website-us-east-1.amazonaws.com/)
+ 
 
 
 ### INSTRUCITONS:  Development server
