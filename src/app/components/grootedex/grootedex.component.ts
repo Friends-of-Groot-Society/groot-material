@@ -13,7 +13,7 @@ export class GrootedexComponent implements OnInit {
   constructor(private grootService :GrootService) { }
 
   ngOnInit() {
-    this.displayAllGroot();
+    // this.displayAllGroot();
   }
 
   grootList :Groot[] = [];  // :Groot[] = :Array:Groot
