@@ -13,13 +13,8 @@ export class BookService {
 
   constructor(private http :HttpClient) { }
   getMedias() :Observable<Media[]> {
-    return this.http.get<Media[]>("http://localhost:8080/api/media/"); 
+    return this.http.get<Media[]>("http://35.173.4.147:8080/api/media/"); 
   } 
-  ///GrootApp/getGroot.do
-  getBooks() :Observable<Book[]> {
-    return this.http.get<Book[]>("http://localhost:8080/api/book/"); 
-  }
-   getGrootBooks() :Observable<Book[]> {
-    return this.http.get<Book[]>("http://localhost:8080/api/groot"); 
-  }
+ 
+ 
 }
