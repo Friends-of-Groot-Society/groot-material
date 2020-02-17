@@ -1,0 +1,5 @@
+.quote {
+    max-width:200px;
+    overflow-y:scroll;
+    max-height:50px
+}

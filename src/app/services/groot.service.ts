@@ -22,7 +22,8 @@ export class GrootService {
 
 ///GrootApp/getGroot.do
   getAllGroot() :Observable<Groot[]> {
-    return this.http.get<Groot[]>("http://localhost:8080/GrootApp/getAllGroot.do");
+    // return this.http.get<Groot[]>("http://localhost:8080/GrootApp/getAllGroot.do");
+    return this.http.get<Groot[]>("http://localhost:8080/api/groot/");
   }
 
   addGroot(poke :Groot) :Observable<Groot> {

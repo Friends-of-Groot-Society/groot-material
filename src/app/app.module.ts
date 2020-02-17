@@ -13,10 +13,9 @@ import { PhotosComponent } from './components/photos/photos.component';
 import { StarwarsComponent } from './components/starwars/starwars.component';
 import { MarvelComponent } from './components/marvel/marvel.component';
 import { AboutComponent } from './components/about/about.component';
-import { GrootedexComponent } from './components/grootedex/grootedex.component';
+import { GrootologueComponent } from './components/grootologue/grootologue.component';
 import { ContactusComponent } from './components/contactus/contactus.component';
  
-import { GrootService } from './services/groot.service';
 import { NavComponent } from './components/layout/nav/nav.component';
 import { LoginComponent } from './components/users/login/login.component';
 import { RegisterComponent } from './components/users/register/register.component';
@@ -35,8 +34,11 @@ import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core'; 
+import { MatNativeDateModule } from '@angular/material/core';
+import { BookComponent } from './components/book/book.component'; 
 
+import { BookService } from './services/book.service';
+import { GrootService } from './services/groot.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,11 +47,12 @@ import { MatNativeDateModule } from '@angular/material/core';
     StarwarsComponent,
     MarvelComponent,
     AboutComponent,
-    GrootedexComponent,
+    GrootologueComponent,
     ContactusComponent,
     NavComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    BookComponent
   ],
   imports: [
     BrowserModule,
@@ -74,6 +77,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatNativeDateModule
   ],
   providers: [ 
+    BookService,
     GrootService
   ],
   bootstrap: [AppComponent]
