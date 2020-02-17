@@ -4,11 +4,11 @@ import { GrootService } from 'src/app/services/groot.service';
 import { Observable } from 'rxjs';
 
 @Component({
-  selector: 'app-grootedex',
-  templateUrl: './grootedex.component.html',
-  styleUrls: ['./grootedex.component.css']
+  selector: 'app-grootologue',
+  templateUrl: './grootologue.component.html',
+  styleUrls: ['./grootologue.component.css']
 })
-export class GrootedexComponent implements OnInit {
+export class GrootologueComponent implements OnInit {
 
   constructor(private grootService :GrootService) { }
 
