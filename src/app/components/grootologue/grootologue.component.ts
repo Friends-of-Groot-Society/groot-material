@@ -21,6 +21,8 @@ export class GrootologueComponent implements OnInit {
 
 
   id :number;
+  author :string;
+  title :string;
   name :string;
   type :string;
 
@@ -48,7 +50,7 @@ export class GrootologueComponent implements OnInit {
   addGroot() {
     this.validateInputFields();
     if(this.validInputs) {
-      this.grootService.addGroot(new Groot(this.id, this.name, this.type)).subscribe(
+      this.grootService.addGroot(new Groot(this.id, this.author, this.title, this.name, this.type)).subscribe(
         (response) => {
           console.log(response);
           let list = this.grootList.slice();
@@ -65,10 +67,16 @@ export class GrootologueComponent implements OnInit {
 
   validateInputFields() {
     console.log(this.id);
+    console.log(this.author);
+    console.log(this.title);
     console.log(this.name);
     console.log(this.type);
 
     if(this.id == undefined ||
+       this.author == undefined ||
+       this.author == "" ||
+       this.title == undefined ||
+       this.title == "" ||
        this.name == undefined ||
        this.name == "" ||
        this.type == undefined ||
@@ -80,7 +88,7 @@ export class GrootologueComponent implements OnInit {
     }
   }
 
-  validateFields(id :number, name :string, type :string) :string {
+  validateFields(id :number,  author :string, title :string, name :string, type :string) :string {
 
     this.validateInputFields();
     if(!this.validInputs)
