@@ -7,11 +7,13 @@
 
 <div>
     <input type="number" [(ngModel)] = "id">
+    <input type="text" [(ngModel)] = "author">
+    <input type="text" [(ngModel)] = "title">
     <input type="text" [(ngModel)] = "name">
     <input type="text" [(ngModel)] = "type">
     <button (click) = "addGroot()">Add Groot News</button>
     <!-- <p *ngIf="!validInputs">{{validation}}</p> -->
-    <p>{{validateFields(id,name,type)}}</p>
+    <p>{{validateFields(id,author,title,name,type)}}</p>
     <br>
 </div>
 
@@ -19,11 +21,15 @@
 <table style="width: 50%; margin-left: 25%">
     <tr>
         <th>Id</th>
+        <td>Author</td>
+        <td>Title</td>
         <th>Name</th>
         <th>Type</th>
     </tr>
     <tr *ngFor = "let groot of grootList">
         <td>{{groot.id}}</td>
+        <td>{{groot.author}}</td>
+        <td>{{groot.title}}</td>
         <td>{{groot.name}}</td>
         <td>{{groot.type}}</td>
     </tr>
