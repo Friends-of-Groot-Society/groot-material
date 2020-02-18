@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { GrootService } from '../../services/groot.service';
+import { BookService } from '../../services/book.service';
 
 @Component({
   selector: 'app-groot',
@@ -8,14 +8,17 @@ import { GrootService } from '../../services/groot.service';
 })
 export class GrootComponent implements OnInit {
   title = 'Groot';
-  constructor(private grootService: GrootService, ) { }
+  grootBooks;
+  constructor(private bookService: BookService) {
+    
+      this.grootBooks = this.bookService.getMedias();
+   }
 
   ngOnInit() {
-  
-  }
-
-  albums = this.grootService.getAlbums();
-  getAlbums = this.grootService.getAlbums();
-
+  } 
+      // books = this.bookService.getBooks();
+      
  
+
+
 }

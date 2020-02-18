@@ -9,18 +9,16 @@
     <br />
     <hr>
     <mat-nav-list> 
-      <a mat-list-item routerLink="about/">About</a>
-      <a mat-list-item routerLink="contact/">Contact</a>
 
       <a mat-list-item routerLink="news/">News</a>
-      <a mat-list-item routerLink="grootedex/">Guardians</a> 
-      <a mat-list-item routerLink="book">Media</a> 
+      <a mat-list-item routerLink="grootedex/">Guardians</a>  
       <a mat-list-item routerLink="photos/1">Photos</a> 
-      <!-- <a mat-list-item routerLink="photos/:id">Photos</a>  -->
+      <a mat-list-item routerLink="about/">About</a>
         <hr>
       <a mat-list-item routerLink="login/">Sign in</a> 
       <a mat-list-item routerLink="register/">Register</a> 
-        
+      <!-- <a mat-list-item routerLink="photos/:id">Photos</a>  -->
+        <hr> 
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -31,7 +29,7 @@
         mat-icon-button
         (click)="drawer.toggle()"
         *ngIf="isHandset$ | async">
-        <mat-icon aria-label="Side nav toggle icon"><small>menu</small></mat-icon>
+        <mat-icon aria-label="Side nav toggle icon"> menu </mat-icon>
       </button> 
     </mat-toolbar>
     <!--   groot ...   -->

@@ -11,7 +11,7 @@ import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { NewsPageComponent } from './components/news-page/news-page.component';
 import { NewsArticleSearchComponent } from './components/news-article-search/news-article-search.component';
 import { NewsArticleResultsComponent } from './components/news-article-results/news-article-results.component';
-// import { NewsToolBarComponent } from './components/news-tool-bar/news-tool-bar.component';
+import { NewsToolBarComponent } from './components/news-tool-bar/news-tool-bar.component';
 
 // GROOT-MARVEL
 import { GrootComponent } from './components/groot/groot.component';
@@ -73,7 +73,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     NewsPageComponent,
     NewsArticleSearchComponent,
     NewsArticleResultsComponent,
-    // NewsToolBarComponent,
+    NewsToolBarComponent,
     PipeCapitalizeCategoryPipe
   ],
   imports: [

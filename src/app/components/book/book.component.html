@@ -9,24 +9,23 @@
  </div>
 
 
-  <div class="row">
-    <div class="col col-xs-5">
-      <img width="260" alt="Groot Logo" src="./assets/groot.jpg">
+  <div class="row cards">
+    <div class="col col-xs-3">
+      <img width="360" alt="Angular Logo" src="https://friends-of-groot-society.s3.amazonaws.com/assets/android-chrome-384x384.png">
     </div>
 
-    <div class="col col-xs-7">
- 
+    <div class="col col-xs-9"> 
 
    <div class="row"> 
-        <div class="col-sm-" *ngFor="let grootBook of grootBooks | async">
+        <div   *ngFor="let grootBook of grootBooks | async">
           <div class="card">
             <div class="card-body"> 
-              <a routerLink="{{grootBook.id}}">{{grootBook.id}} 👆</a><br /> 
-              <p>{{grootBook.character}} </p>
-              <p>{{grootBook.location}} </p> 
-              <p>{{grootBook.thorinsCompany}} </p>
+              <a routerLink="{{grootBook.id}}">{{grootBook.id}} 👆&nbsp;</a> 
+              <span>&nbsp;{{grootBook.character}} </span><br />
+              <span>From:&nbsp;&nbsp;&nbsp; {{grootBook.location}} </span><br />
+              <span>Company:&nbsp; {{grootBook.thorinsCompany}}  </span><br /><br />
               <p class="quote">{{grootBook.quote}} </p>  
-              <img width="90" alt="Angular Logo" src="./assets/groot.jpg"> 
+               <img width="70" alt="Groot Logo" src="https://friends-of-groot-society.s3.amazonaws.com/assets/android-chrome-192x192.png">  
               <p><small>{{grootBook.uniqueId}}</small></p> 
             </div>
           </div>

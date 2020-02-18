@@ -1,5 +1,5 @@
-
-  <mat-sidenav-container class="example-container">
+<!-- 
+  <mat-side nav-container class="example-container"> -->
  
 <div class="contain">
   <app-nav></app-nav>
@@ -8,6 +8,22 @@
  
       <router-outlet></router-outlet>  
   </div>
+   <mat-sidenav mode="side" [opened]='menuOpen'>
+        <ul>
+            <li>
+                <b>
+                    New York Times
+                </b>
+            </li>
+            <li>
+                <a routerLink='/'>Home</a>
+            </li>
+            <li>
+                <a routerLink='/search'>Search</a>
+            </li>
+        </ul>
+</mat-sidenav>
 </div> 
 
-  </mat-sidenav-container>
+     
+  <!-- </mat-sidenav-container> -->
