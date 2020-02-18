@@ -16,17 +16,18 @@ import { NewsArticleSearchComponent } from './components/news-article-search/new
 const routes: Routes = [ 
 
   { path: '', component: GrootComponent },
+  {path : 'groot/:grootId', component : BookComponent},
+
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'photos/:albumId', component: PhotosComponent },
   { path: 'news', component: NewsPageComponent },
   { path: 'search', component: NewsArticleSearchComponent },
-  
-  {path : 'about', component : AboutComponent},
-  {path : 'book', component : BookComponent},
-  {path : 'book/:bookId', component : BookComponent},
-  {path : 'contact', component : ContactusComponent},
+   
   {path : 'grootedex', component : GrootologueComponent},
+
+  {path : 'about', component : AboutComponent},
+  {path : 'contact', component : ContactusComponent},
   {path : '*', redirectTo: '', pathMatch: 'full'}
 ]; 
 @NgModule({

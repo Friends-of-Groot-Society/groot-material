@@ -26,4 +26,4 @@ export class NewsToolBarComponent implements OnInit {
   }
 
 }
-this.store.dispatch({ type: SET_MENU_STATE, payload: !this.menuOpen });
+// this.store.dispatch({ type: SET_MENU_STATE, payload: !this.menuOpen });

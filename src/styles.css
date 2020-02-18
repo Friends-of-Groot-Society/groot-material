@@ -1,12 +1,16 @@
 
 /* ANGULAR  MATERIAL */
-@import '@angular/material/prebuilt-themes/indigo-pink.css'; 
+@import '@angular/material/prebuilt-themes/indigo-pink.css';  
+ 
+body {
+  font-family: "Roboto", sans-serif;
+  margin: 0;
+}
 
-/* You can add global styles to this file, and also import other style files */
-
+.center {
+  text-align: center;
+}
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-
 .mat-toolbar.mat-primary {
  
   background:#b79e5d77;
