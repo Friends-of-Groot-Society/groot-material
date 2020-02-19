@@ -12,15 +12,23 @@ export class GrootologueComponent implements OnInit {
 
   constructor(private grootService :GrootService) { }
 
-  ngOnInit() {
+ getRandomInt(max) {
+  return Math.floor(Math.random() * Math.floor(max));
+}
+
+
+  ngOnInit() {   
     this.displayAllGroot();
   }
 
   grootList :Groot[] = [];  // :Groot[] = :Array:Groot
   allGroot :Observable<Groot[]> = this.grootService.getAllGroot();
 
-
-  id :number;
+  randomX : number= 1234;
+  // id :number = 99;
+  
+  randomIsbn: number = 789;
+  isbn = 'e4e8d3e0-3914-4458-bebf-49289477';
   author :string;
   title :string;
   name :string;
@@ -50,7 +58,13 @@ export class GrootologueComponent implements OnInit {
   addGroot() {
     this.validateInputFields();
     if(this.validInputs) {
-      this.grootService.addGroot(new Groot(this.id, this.author, this.title, this.name, this.type)).subscribe(
+       
+      this.randomX++;
+      this.randomX = this.getRandomInt(this.randomX);
+      this.isbn = this.isbn + this.randomX;
+      console.log("randomIsbn"+ this.isbn);
+
+      this.grootService.addGroot(new Groot( this.isbn, this.author, this.title, this.name, this.type)).subscribe(
         (response) => {
           console.log(response);
           let list = this.grootList.slice();
@@ -66,13 +80,14 @@ export class GrootologueComponent implements OnInit {
   }
 
   validateInputFields() {
-    console.log(this.id);
+    // console.log(this.id);
+    // console.log(this.isbn);
     console.log(this.author);
     console.log(this.title);
     console.log(this.name);
     console.log(this.type);
 
-    if(this.id == undefined ||
+    if(  
        this.author == undefined ||
        this.author == "" ||
        this.title == undefined ||
@@ -88,7 +103,7 @@ export class GrootologueComponent implements OnInit {
     }
   }
 
-  validateFields(id :number,  author :string, title :string, name :string, type :string) :string {
+  validateFields( author :string, title :string, name :string, type :string) :string {
 
     this.validateInputFields();
     if(!this.validInputs)

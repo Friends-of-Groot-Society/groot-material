@@ -1,17 +1,19 @@
 export class Groot {
-
-    id :number;
+    id? :number;
+    isbn? : string;
     author:string;
     title:string;
     name :string;
     type :string;
 
-    constructor(id :number, author :string, title :string, name :string, type :string) {
-        this.id = id;
+    constructor(isbn: string, author :string, title :string, name :string, type :string) {
+        // this.id = id;
+        this.isbn = isbn;
         this.author = author;
         this.title = title;
         this.name = name;
-        this.type = type;
+        this.type = type; 
+
     }
 
 }
