@@ -1,5 +1,10 @@
 .quote {
-    max-width:200px;
-    overflow-y:scroll;
-    max-height:50px
+    max-width:200px; 
+    min-height:80px
+}
+.card-body {
+    min-height:300px;
+} 
+.cards {
+  margin-left:0px;
 }

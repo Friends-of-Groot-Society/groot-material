@@ -1,37 +1,47 @@
 <br />
-<h3>Grootologue</h3>
+<h3 class="groot-title">Grootologue</h3>
 <!-- <app-book> -->
 <hr> 
-
-<button (click) = "displayAllGroot()">Get Groot News</button>
-
-<div>
-    <input type="number" [(ngModel)] = "id">
-    <input type="text" [(ngModel)] = "author">
-    <input type="text" [(ngModel)] = "title">
-    <input type="text" [(ngModel)] = "name">
-    <input type="text" [(ngModel)] = "type">
-    <button (click) = "addGroot()">Add Groot News</button>
+ 
+<div> 
+    <!-- <input type="number" [(ngModel)] = "id"> -->
+    <!-- <label>isbn</label>
+    <input type="text" [(ngModel)] = "isbn"> -->
+    
+    <label class="add" >Author</label>
+    <input type="text" id="author" [(ngModel)] = "author"><br />
+    
+    <label  class="add">Title</label>
+    <input type="text" id="title" [(ngModel)] = "title"><br />
+    
+    <label class="add">Publisher</label>
+    <input type="text" id="name" [(ngModel)] = "name"><br />
+  
+    <label  class="add">Type</label>
+    <input type="text" id="type" [(ngModel)] = "type">
     <!-- <p *ngIf="!validInputs">{{validation}}</p> -->
-    <p>{{validateFields(id,author,title,name,type)}}</p>
-    <br>
+    <p>{{validateFields(author,title,name,type)}}</p>  
+    
+    <button class="button-add"   (click) = "addGroot()">Add Groot Entries</button><br />
 </div>
-
-
-<table style="width: 50%; margin-left: 25%">
+<hr>
+<button  class="button-update" (click) = "displayAllGroot()">Update Groot News</button>
+<br /><br />
+<table  class="groot-table">
     <tr>
-        <th>Id</th>
-        <td>Author</td>
-        <td>Title</td>
-        <th>Name</th>
+        <!-- <th>Id</th> -->
+        <th>Author</th>
+        <th class="title">Title</th>
+        <th>Publisher</th>
         <th>Type</th>
     </tr>
-    <tr *ngFor = "let groot of grootList">
-        <td>{{groot.id}}</td>
-        <td>{{groot.author}}</td>
+    <tr *ngFor = "let groot of grootList"> 
+        <!-- <td>{{groot.id}}</td> -->
+        <td >{{groot.author}}</td>
         <td>{{groot.title}}</td>
-        <td>{{groot.name}}</td>
+        <td  class="publisher">{{groot.name}}</td>
         <td>{{groot.type}}</td>
+      
     </tr>
 </table>
-<h6 *ngFor = "let groot of grootList">{{groot.id}} {{groot.name}} {{groot.type}}</h6>
+<!-- <h6 *ngFor = "let groot of grootList">{{groot.id}} {{groot.name}} {{groot.type}}</h6> -->

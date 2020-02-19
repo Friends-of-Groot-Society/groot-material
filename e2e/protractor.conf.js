@@ -8,19 +8,30 @@ const { SpecReporter } = require('jasmine-spec-reporter');
  * @type { import("protractor").Config }
  */
 exports.config = {
-  allScriptsTimeout: 11000,
+  allScriptsTimeout: 6000,
   specs: [
-    './src/**/*.e2e-spec.ts'
+    './src/*.e2e-spec.ts',
+    './src/page-object.js',
+    './src/pages/register.spec.ts',
+    './src/**/*.spec.ts'
   ],
   capabilities: {
-    browserName: 'chrome'
+    browserName: 'chrome',
+    // chromeOptions: {
+    //   args: ["--headless", "--disable-gpu"]
+    // }
+    //  user: 'tester@perfectomobile.com',
+    // password: 'password',
+    // platformName: 'Android'
   },
+    // seleniumAddress: 'https://cloudName.perfectomobile.com/nexperience/perfectomobile/wd/hub', 
+  seleniumAddress: 'http://localhost:4444/wd/hub',
   directConnect: true,
   baseUrl: 'http://localhost:4200/',
-  framework: 'jasmine',
+  framework: 'jasmine', 
   jasmineNodeOpts: {
     showColors: true,
-    defaultTimeoutInterval: 30000,
+    defaultTimeoutInterval: 20000,
     print: function() {}
   },
   onPrepare() {

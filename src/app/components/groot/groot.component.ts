@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { GrootService } from '../../services/groot.service';
+import { BookService } from '../../services/book.service';
 
 @Component({
   selector: 'app-groot',
@@ -7,15 +7,23 @@ import { GrootService } from '../../services/groot.service';
   styleUrls: ['./groot.component.css']
 })
 export class GrootComponent implements OnInit {
-  title = 'Groot';
-  constructor(private grootService: GrootService, ) { }
+  title:string = 'Groot';
+
+  grootImage:string = 'https://friends-of-groot-society.s3.amazonaws.com/assets/android-chrome-384x384.png';
+
+  grootSmallImage:string = 'https://friends-of-groot-society.s3.amazonaws.com/assets/android-chrome-192x192.png';
+  
+  grootBooks;
+  constructor(private bookService: BookService) {
+    
+      this.grootBooks = this.bookService.getMedias();
+   }
 
   ngOnInit() {
-  
-  }
-
-  albums = this.grootService.getAlbums();
-  getAlbums = this.grootService.getAlbums();
-
+  } 
+      // books = this.bookService.getBooks();
+      
  
+
+
 }

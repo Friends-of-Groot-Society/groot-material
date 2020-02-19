@@ -4,24 +4,30 @@ import { GrootComponent } from './components/groot/groot.component';
 import { BookComponent } from './components/book/book.component';
 import { PhotosComponent } from './components/photos/photos.component';
 
-import { AboutComponent } from './components/about/about.component';
-import { ContactusComponent } from './components/contactus/contactus.component';
+import { AboutComponent } from './components/layout/about/about.component';
+import { ContactusComponent } from './components/layout/contactus/contactus.component';
 import { GrootologueComponent } from './components/grootologue/grootologue.component';
 import { LoginComponent } from './components/users/login/login.component';
 import { RegisterComponent } from './components/users/register/register.component';
-const routes: Routes = [
+ 
+import { NewsPageComponent } from './components/news-page/news-page.component';
+import { NewsArticleSearchComponent } from './components/news-article-search/news-article-search.component';
 
+const routes: Routes = [ 
 
   { path: '', component: GrootComponent },
+  {path : 'groot/:grootId', component : BookComponent},
+
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'photos/:albumId', component: PhotosComponent },
-  
-  {path : 'about', component : AboutComponent},
-  {path : 'book', component : BookComponent},
-  {path : 'book/:bookId', component : BookComponent},
-  {path : 'contact', component : ContactusComponent},
+  { path: 'news', component: NewsPageComponent },
+  { path: 'search', component: NewsArticleSearchComponent },
+   
   {path : 'grootedex', component : GrootologueComponent},
+
+  {path : 'about', component : AboutComponent},
+  {path : 'contact', component : ContactusComponent},
   {path : '*', redirectTo: '', pathMatch: 'full'}
 ]; 
 @NgModule({
