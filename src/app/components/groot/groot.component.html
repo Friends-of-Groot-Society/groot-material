@@ -4,7 +4,7 @@
       <h2>
       <em>The Friends of <span class="groot"> {{ title }}</span> Society</em>
     </h2>
-    <h3 class="groot">Guardians of the Galaxy API</h3> <img width="210" id="groot" alt="Groot Logo" src="https://friends-of-groot-society.s3.amazonaws.com/assets/android-chrome-384x384.png">
+    <h3 class="groot">Guardians of the Galaxy API</h3> <img width="210" id="groot" alt="Groot Logo" [src]="grootImage">
    
     <hr>
  </div> 
@@ -19,7 +19,7 @@
               <span>From:&nbsp;&nbsp;&nbsp; {{grootBook.location}} </span><br />
               <span>Company:&nbsp; {{grootBook.thorinsCompany}}  </span><br /><br />
               <p class="quote">{{grootBook.quote}} </p>  
-               <img width="70" alt="Groot Logo" src="https://friends-of-groot-society.s3.amazonaws.com/assets/android-chrome-192x192.png">  
+               <img width="70" alt="Groot Small Logo" [src]="grootSmallImage">  
               <p><small>{{grootBook.uniqueId}}</small></p> 
             </div>
           </div>  

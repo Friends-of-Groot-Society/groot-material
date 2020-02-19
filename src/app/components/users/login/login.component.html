@@ -6,7 +6,7 @@
 
     <div class="medium-list">
         <div class="list-viewer-wrapper">
-  <div class="list-header-title"><h3>Sign In</h3></div>
+  <div class="list-header-title"><h3 class="page-title">Sign In</h3></div>
 
             <form [formGroup]="loginForm" (ngSubmit)="loginForm.valid && onLoginSubmit()" novalidate>
                 <div class="form-container">
@@ -23,8 +23,9 @@
                         </mat-icon>
                     </mat-form-field>
 
-                    <button mat-button type="submit" class="mat-raised-button mat-primary"
+                    <button mat-button type="submit" class="mat-raised-button mat-primary login"
                         [disabled]="!loginForm.valid">Login</button>
+
                     <button mat-button routerLink="/register" class="divider">Register</button>
                 </div>
             </form>
