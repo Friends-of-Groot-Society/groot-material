@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http'
 import { Observable } from 'rxjs';
-import { Greeting } from '../../models/Greeting';
+import { Greeting } from '../../../models/Greeting';
 
 
 @Component({

@@ -1,0 +1,17 @@
+.groot-table {
+     width:90%;
+     margin-right: 10%;
+}
+.title {
+    min-width:230px;
+}
+.publisher {
+    font-style:italic;
+    min-width:140px;
+}
+div label.add   {
+    min-width:80px;
+}
+button.button-add, button.button-update {
+    min-width: 120px;
+}

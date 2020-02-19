@@ -1,28 +1,47 @@
+import { AppComponent } from './app.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
+import { TitleCasePipe } from '@angular/common';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 
-import { AppComponent } from './app.component';
+// NEWS
+import { NewsPageComponent } from './components/news-page/news-page.component';
+import { NewsArticleSearchComponent } from './components/news-article-search/news-article-search.component';
+import { NewsArticleResultsComponent } from './components/news-article-results/news-article-results.component';
+import { NewsToolBarComponent } from './components/news-tool-bar/news-tool-bar.component';
 
+// GROOT-MARVEL
 import { GrootComponent } from './components/groot/groot.component';
-import { PhotosComponent } from './components/photos/photos.component';
- 
+import { PhotosComponent } from './components/photos/photos.component'; 
 import { StarwarsComponent } from './components/starwars/starwars.component';
 import { MarvelComponent } from './components/marvel/marvel.component';
-import { AboutComponent } from './components/about/about.component';
+import { BookComponent } from './components/book/book.component'; 
 import { GrootologueComponent } from './components/grootologue/grootologue.component';
-import { ContactusComponent } from './components/contactus/contactus.component';
- 
+
+// LAYOUT
 import { NavComponent } from './components/layout/nav/nav.component';
+import { ContactusComponent } from './components/layout/contactus/contactus.component';
+import { AboutComponent } from './components/layout/about/about.component';
 import { LoginComponent } from './components/users/login/login.component';
 import { RegisterComponent } from './components/users/register/register.component';
+
+// SERVICES
+import { BookService } from './services/book.service';
+import { GrootService } from './services/groot.service';
+import { NewsService } from './services/news.service';
+import { PipeCapitalizeCategoryPipe } from './utility/pipe-capitalize-category.pipe';
+
+// STORE
+import { StoreModule } from '@ngrx/store';
+import {  reducers} from './reducers'; //, metaReducers 
 
 
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field'; 
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -33,12 +52,10 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatDatepickerModule } from '@angular/material/datepicker'; 
+// import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { MatNativeDateModule } from '@angular/material/core';
-import { BookComponent } from './components/book/book.component'; 
 
-import { BookService } from './services/book.service';
-import { GrootService } from './services/groot.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,12 +69,17 @@ import { GrootService } from './services/groot.service';
     NavComponent,
     LoginComponent,
     RegisterComponent,
-    BookComponent
+    BookComponent,
+    NewsPageComponent,
+    NewsArticleSearchComponent,
+    NewsArticleResultsComponent,
+    NewsToolBarComponent,
+    PipeCapitalizeCategoryPipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule,
+    HttpClientModule, 
     FormsModule,
     LayoutModule,
     ReactiveFormsModule,
@@ -74,11 +96,22 @@ import { GrootService } from './services/groot.service';
     MatInputModule,
     FlexLayoutModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    StoreModule.forRoot(reducers
+    //  ,{
+    //   metaReducers,
+    //   runtimeChecks: {
+    //     strictStateImmutability: true,
+    //     strictActionImmutability: true
+    //   }
+    // }
+    )
   ],
   providers: [ 
     BookService,
-    GrootService
+    GrootService,
+    NewsService,
+    TitleCasePipe
   ],
   bootstrap: [AppComponent]
 })

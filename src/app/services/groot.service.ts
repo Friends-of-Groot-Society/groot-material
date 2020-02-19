@@ -24,11 +24,14 @@ export class GrootService {
   getAllGroot() :Observable<Groot[]> {
     // return this.http.get<Groot[]>("http://localhost:8080/GrootApp/getAllGroot.do");
     return this.http.get<Groot[]>("http://35.173.4.147:8080/api/groot/");
+    // return this.http.get<Groot[]>("http://localhost:8080/api/groot/");
   }
 
-  addGroot(poke :Groot) :Observable<Groot> { 
+  addGroot(g :Groot) :Observable<Groot> { 
     // return this.http.post<Groot>("http://localhost:8080/GrootApp/addGroot.do", poke, {headers: this.headers});
-    return this.http.post<Groot>("http://35.173.4.147:8080/api/groot", poke, {headers: this.headers});
+    
+    return this.http.post<Groot>("http://35.173.4.147:8080/api/groot", g, {headers: this.headers});
+    // return this.http.post<Groot>("http://localhost:8080/api/groot", g, {headers: this.headers});
   }
   // addCharacter(char :Character) :Observable<Character> {
   //   return this.http.post<Character>("http://localhost:8080/GrootApp/addCharacters.do", char, {headers: this.headers});
