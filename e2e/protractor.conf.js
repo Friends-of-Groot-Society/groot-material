@@ -8,7 +8,7 @@ const { SpecReporter } = require('jasmine-spec-reporter');
  * @type { import("protractor").Config }
  */
 exports.config = {
-  allScriptsTimeout: 4000,
+  allScriptsTimeout: 6000,
   specs: [
     './src/*.e2e-spec.ts',
     './src/page-object.js',
@@ -17,6 +17,9 @@ exports.config = {
   ],
   capabilities: {
     browserName: 'chrome',
+    // chromeOptions: {
+    //   args: ["--headless", "--disable-gpu"]
+    // }
     //  user: 'tester@perfectomobile.com',
     // password: 'password',
     // platformName: 'Android'
