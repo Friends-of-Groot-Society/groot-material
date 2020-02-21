@@ -13,8 +13,6 @@ import { Greeting } from '../models/Greeting';
   providedIn: 'root'
 })
 
-
-
 export class GrootService {
   private headers = new HttpHeaders({ 'Content-Type': 'application/json' });
  

@@ -1,13 +1,19 @@
 export class Media {
 
     id: number;
-    isbn: string;
-    title: string;
-
-    constructor(id: number, isbn: string, title: string) {
+    uniqueId: string;
+    character: string;
+    location: string;
+    thorinsCompany: string;
+    quote: string;
+    
+    constructor(id: number, uniqueId: string, character: string, location: string, thorinsCompany: string, quote: string) {
         this.id = id;
-        this.isbn = isbn;
-        this.title = title;
+        this.uniqueId = uniqueId;
+        this.character = character;
+        this.location = location;
+        this.thorinsCompany = thorinsCompany;
+        this.quote = quote;
     }
 
 }
