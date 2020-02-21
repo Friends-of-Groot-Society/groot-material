@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from '../../services/user.service';
+import { User } from '../../models/User'; 
 
 @Component({
   selector: 'app-users',
@@ -6,10 +8,29 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./users.component.css']
 })
 export class UsersComponent implements OnInit {
+  
 
-  constructor() { }
+  ngOnInit(): void { 
+    // throw new Error("Method not implemented.");
+  }
 
-  ngOnInit() {
+  public id: number;
+
+  public user: User;
+
+  public users: User[];
+
+  constructor(private userService: UserService) {
+    // on page load first piece of data
+     this.userService.getUser(1).subscribe(user => this.user = user);
+  }
+
+  public getUser() {
+    this.userService.getUser(this.id).subscribe(user => this.user = user);
+  }
+
+  public getAllUsers() {
+    this.userService.getAllUsers().subscribe(users => this.users = users);
   }
 
 }

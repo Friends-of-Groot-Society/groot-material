@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 import { Character } from '../models/Character';
 import { Groot } from '../models/Groot';
 import { Greeting } from '../models/Greeting';
+import { environment } from  '../../environments/environment';
+
 
 // @Injectable is a decorator that marks a class as a target for
 // dependency injection. The class needs to have the HttpClient
@@ -15,22 +17,26 @@ import { Greeting } from '../models/Greeting';
 
 
 export class LoginService {
+  
+  baseUrl:string;
+
   private headers = new HttpHeaders({ 'Content-Type': 'application/json' });
  
-  constructor(private http :HttpClient) { }
+  constructor(private http :HttpClient) {
+
+    this.baseUrl = environment.baseUrl;
+ }
 
 ///GrootApp/getGroot.do
   getAllGroot() :Observable<Groot[]> {
     // return this.http.get<Groot[]>("http://localhost:8080/GrootApp/getAllGroot.do");
-    return this.http.get<Groot[]>("http://35.173.4.147:8080/api/groot/");
-    // return this.http.get<Groot[]>("http://localhost:8080/api/groot/");
+    return this.http.get<Groot[]>(`http://${this.baseUrl}:8080/api/groot/`); 
   }
 
   addGroot(poke :Groot) :Observable<Groot> { 
     // return this.http.post<Groot>("http://localhost:8080/GrootApp/addGroot.do", poke, {headers: this.headers});
     
-    return this.http.post<Groot>("http://35.173.4.147:8080/api/groot", poke, {headers: this.headers});
-    // return this.http.post<Groot>("http://localhost:8080/api/groot", poke, {headers: this.headers});
+    return this.http.post<Groot>(`http://${this.baseUrl}:8080/api/groot`, poke, {headers: this.headers}); 
   }
   // addCharacter(char :Character) :Observable<Character> {
   //   return this.http.post<Character>("http://localhost:8080/GrootApp/addCharacters.do", char, {headers: this.headers});
@@ -56,9 +62,7 @@ export class LoginService {
   }
 
   getPhotos(albumId) {
-    return this.http.get(`https://jsonplaceholder.typicode.com/photos?albumId=${albumId}`);
-    // return this.http.get(`https://jsonplaceholder.typicode.com/photos?albumId=${albumId}`);
-
+    return this.http.get(`https://jsonplaceholder.typicode.com/photos?albumId=${albumId}`);  
   }
 
   getAlbums = function () {
