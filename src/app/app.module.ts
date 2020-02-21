@@ -55,6 +55,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatDatepickerModule } from '@angular/material/datepicker'; 
 // import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { MatNativeDateModule } from '@angular/material/core';
+import { UsersComponent } from './components/users/users.component';
 
 @NgModule({
   declarations: [
@@ -74,7 +75,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     NewsArticleSearchComponent,
     NewsArticleResultsComponent,
     NewsToolBarComponent,
-    PipeCapitalizeCategoryPipe
+    PipeCapitalizeCategoryPipe,
+    UsersComponent
   ],
   imports: [
     BrowserModule,
