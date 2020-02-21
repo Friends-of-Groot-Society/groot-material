@@ -10,6 +10,7 @@ import { GrootologueComponent } from './components/grootologue/grootologue.compo
 import { LoginComponent } from './components/users/login/login.component';
 import { RegisterComponent } from './components/users/register/register.component';
  
+import { UsersComponent } from './components/users/users.component';
 import { NewsPageComponent } from './components/news-page/news-page.component';
 import { NewsArticleSearchComponent } from './components/news-article-search/news-article-search.component';
 
@@ -20,6 +21,7 @@ const routes: Routes = [
 
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'members', component: UsersComponent },
   { path: 'photos/:albumId', component: PhotosComponent },
   { path: 'news', component: NewsPageComponent },
   { path: 'search', component: NewsArticleSearchComponent },

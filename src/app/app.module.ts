@@ -7,6 +7,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { TitleCasePipe } from '@angular/common';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 
+// PRODUCTION URL
+// import { environment } from '../environments/environment.prod';
+
+// DEVELOPMENT URL
+import { environment } from '../environments/environment';
+
 // NEWS
 import { NewsPageComponent } from './components/news-page/news-page.component';
 import { NewsArticleSearchComponent } from './components/news-article-search/news-article-search.component';
