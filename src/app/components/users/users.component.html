@@ -1,1 +1,33 @@
-<p>users works!</p>
+<div class="users">
+    <h3>Friends of Groot</h3>
+    <input type="number" [(ngModel)]="id" placeholder="User ID">&nbsp;
+    <button type="button" (click)="getUser()">Find member</button><hr>
+
+    <button  type="button" (click)="getAllUsers()">Show all members</button><hr>
+
+    <div *ngIf="user">
+        Member's Name <strong>{{user.getFullName()}}</strong>, with these narratives:
+        <ul>
+            <li *ngFor="let media of user.media">
+               Character <strong>{{media.character}}</strong>, located at: <strong>{{media.location}}</strong> within company, <br />and Quotation: <em>{{ media.getQuote() }}</em>.
+            </li>
+        </ul>
+    </div>
+
+    <div *ngIf="users">
+        <hr>
+        <ul>
+            <li *ngFor="let user of users;">
+                {{user.getFullName()}} is member type {{user.groupType}} and has {{user.media.length}} media.
+            </li>
+        </ul>
+    </div>
+      <div *ngIf="media">
+        <hr>
+        <ul>
+            <li *ngFor="let medium of media;">
+                {{user.getFullName()}} is member type {{user.groupType}} and has {{user.media.length}} media.
+            </li>
+        </ul>
+    </div>
+    </div>

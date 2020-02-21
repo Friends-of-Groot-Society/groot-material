@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 
+const port = 8080; // 3000;
 /////////// USERS
 const users = [
   {
@@ -10,16 +11,15 @@ const users = [
     memberSince: "02-04-2020",
     groupType: "Admin",
     media: [
-      [
-        {
-          "id": 13,
-          "uniqueId": "a5535656-0011-42a0-a1cd-9628118acdfc",
-          "character": "Radagast",
-          "location": "Gondolin",
-          "thorinsCompany": "Bombur",
-          "quote": "May the wind under your wings bear you where the sun sails and the moon walks."
-        }
-      ]
+     
+      {
+        "id": 12,
+        "uniqueId": "8bf37760-93fd-4f1b-b02c-473d319621ab",
+        "character": "Ori",
+        "location": "Mount Gram",
+        "thorinsCompany": "Bifur",
+        "quote": "Where did you go to, if I may ask?' said Thorin to Gandalf as they rode along.  To look ahead,' said he.  And what brought you back in the nick of time?' Looking behind,' said he."
+      } 
     ],
   },
   {
@@ -102,11 +102,12 @@ app.use(function (req, res, next) {
   next();
 });
 
+////////  users //////////////////////////////////////////////////////////////////
 app.get("/api/users", (req, res) => {
   return res.json(users);
 });
 
-app.get("/api/user/:id", (req, res) => {
+app.get("/api/users/:id", (req, res) => {
   // To prevent the ID "0" we'll simply subtract by one. This way we can query for id = 2 which will serve us 1, etc. 
   const idx = req.params.id - 1;
 
@@ -120,7 +121,7 @@ app.get("/api/user/:id", (req, res) => {
 ////////// groot ////////////////////////////////////////////////////////////////////
 
 app.get("/api/groot", (req, res) => {
-  return res.json(users);
+  return res.json(groot);
 });
 
 app.get("/api/groot/:id", (req, res) => {
@@ -137,7 +138,7 @@ app.get("/api/groot/:id", (req, res) => {
 ////////// media ////////////////////////////////////////////////////////////////////
 
 app.get("/api/media", (req, res) => {
-  return res.json(users);
+  return res.json(media);
 });
 
 app.get("/api/media/:id", (req, res) => {
@@ -150,7 +151,7 @@ app.get("/api/media/:id", (req, res) => {
 
   return res.json(media[idx]);
 });
-
-app.listen(3000, () => {
-  console.log("Server running on port 3000");
+////////////////////////////////////////////
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`);
 });

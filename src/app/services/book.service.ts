@@ -3,18 +3,26 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Book } from '../models/Book';
 import { Media } from '../models/Media';
+import { environment } from  '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BookService {
+  
+  baseUrl:string;
+
   private headers = new HttpHeaders({ 'Content-Type': 'application/json' });
  
 
-  constructor(private http :HttpClient) { }
+  constructor(private http :HttpClient) { 
+
+    this.baseUrl = environment.baseUrl;
+
+    }
+    
   getMedias() :Observable<Media[]> {
-    return this.http.get<Media[]>("http://35.173.4.147:8080/api/media/"); 
-  // return this.http.get<Media[]>("http://localhost:8080/api/media/"); 
+    return this.http.get<Media[]>(`http://${this.baseUrl}:8080/api/media/`);  
   } 
  
  
