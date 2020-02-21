@@ -15,8 +15,18 @@ Java Application for Friends of Groot Society
 ### Application Overview
 The mission of the app is to organize and persist Groot Fan Club News and Guardians-of-the-Galaxy Events
 
-#### Purposes
-The mission of the app is to organize and persist Groot Fan Club News and Guardians-of-the-Galaxy Events
+### Remote Production Server
+Oracle 11SE, Hosted by AWS RDS with endpoint:
+
+### Remote Development Server
+H2 Database, Hosted by AWS EC2 using Groot-Data endpoint: http://35.173.4.147:8080/api/groot
+
+### Local Development Server
+Node.js and Express application hosted at localhost endpoint: http://localhost:8080/api/groot
+ > Instructions: 
+`sh
+node server/express
+`
 
 ### Technologies 
 | Fx | Tools | URLS |
