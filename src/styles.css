@@ -6,7 +6,9 @@ body {
   font-family: "Roboto", sans-serif;
   margin: 0;
 }
-
+li {
+  list-style-type: none;
+}
 .center {
   text-align: center;
 }
