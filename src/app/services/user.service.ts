@@ -12,24 +12,29 @@ export class UserService {
 
   baseUrl:string;
 
-  constructor(private httpService: HttpClient) { 
+  constructor(private httpService: HttpClient ) { 
 
     this.baseUrl = environment.baseUrl;
-
-
- }
-
+   
+ } 
+ 
   public getUser(id: number): Observable<User> {
-    return this.httpService.get<User>(`http://${this.baseUrl}:8080/api/users/${id}`).pipe(
-      map(data => new User().deserialize(data)),
-      catchError(() => throwError('Oops! Member not found ...'))
-    );
+    return this.httpService.get<User>(`http://${this.baseUrl}:8080/api/users/${id}`);
   }
-
-  public getAllUsers(): Observable<User[]> {
-    return this.httpService.get<User[]>(`http://${this.baseUrl}:8080/api/users`).pipe(
-      map(data => data.map(data => new User().deserialize(data)))
-    );
+  // public getUser(id: number): Observable<User> {
+  //   return this.httpService.get<User>(`http://${this.baseUrl}:8080/api/users/${id}`).pipe(
+  //     map(data => new User().deserialize(data)),
+  //     catchError(() => throwError('Oops! Member not found ...'))
+  //   );
+  // }
+ public getAllUsers(): Observable<User[]> {
+    return this.httpService.get<User[]>(`http://${this.baseUrl}:8080/api/users`);
   }
+   
+  // public getAllUsers(): Observable<User[]> {
+  //   return this.httpService.get<User[]>(`http://${this.baseUrl}:8080/api/users`).pipe(
+  //     map(data => data.map(data => new User().deserialize(data)))
+  //   );
+  // }
 
 }
