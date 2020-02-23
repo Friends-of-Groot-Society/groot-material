@@ -18,7 +18,14 @@ export class UserService {
    
  } 
  
-  public getUser(id: number): Observable<User> {
+    register(user: User) {
+        return this.httpService.post(`${this.baseUrl}:8080/api/users`, user);
+    }
+
+    delete(id: number) {
+        return this.httpService.delete(`${this.baseUrl}:8080/api/users/${id}`);
+    }
+    getUser(id: number): Observable<User> {
     return this.httpService.get<User>(`http://${this.baseUrl}:8080/api/users/${id}`);
   }
   // public getUser(id: number): Observable<User> {
@@ -27,7 +34,7 @@ export class UserService {
   //     catchError(() => throwError('Oops! Member not found ...'))
   //   );
   // }
- public getAllUsers(): Observable<User[]> {
+   getAllUsers(): Observable<User[]> {
     return this.httpService.get<User[]>(`http://${this.baseUrl}:8080/api/users`);
   }
    
