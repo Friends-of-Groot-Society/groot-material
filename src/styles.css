@@ -70,3 +70,13 @@ input::placeholder {
   .divider {
     margin-top: 10px !important; 
   }
+
+  /* LOGIN & REGISTER */
+
+  .containment {
+    max-width:80%;
+    margin:0 auto;
+  }
+  .middle {
+   text-align:center;
+  }

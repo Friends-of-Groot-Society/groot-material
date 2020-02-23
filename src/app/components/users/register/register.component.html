@@ -1,78 +1,47 @@
 <br />
-   <h3 >Friends of Groot Society</h3>
-   <hr>  
- 
- <div fxLayout="column" fxLayoutAlign="space-evenly center">
- 
-<div class="medium-list">
-  <div class="list-viewer-wrapper">
-    <div class="list-header-title"><h3 class="page-title">Register</h3></div>
- 
-    <form [formGroup]="registerForm" (ngSubmit)="registerForm.valid && onRegisterSubmit()" novalidate>
-      <div class="form-container">
-        <mat-form-field>
-          <input id="fname"
-                 matInput
-                 formControlName="fname"
-                 [(ngModel)]="user.fname"
-                 placeholder="Enter your name" />
-        </mat-form-field>
+<h3>Friends of Groot Society</h3>
+<hr>
 
-        <mat-form-field>
-            <input id="email"
-                   matInput
-                   formControlName="email"
-                   [(ngModel)]="user.email"
-                   placeholder="Enter your email" />
-          </mat-form-field>
+<div class="containment" fxLayout="column" fxLayoutAlign="space-evenly center">
 
-        <mat-form-field>
-            <input id="password"
-                   matInput
-                   formControlName="password"
-                   [(ngModel)]="user.password"
-                   placeholder="Enter your password"
-                   [type]="hide ? 'password':'text'" />
-              <mat-icon matSuffix (click)="hide = !hide">
-                <!-- ng-class="hide ? 'fas fa-eye' : 'far fa-eye-slash' " 
-                {{hide ? 'visibility' : 'visibility_off'}}  -->
-              </mat-icon>
-          </mat-form-field>
-
-          <button mat-button type="submit" 
-                  class="mat-raised-button mat-primary register" 
-                  [disabled]="!registerForm.valid">Register</button>
-        
+  <div class="medium-list">
+    <div class="list-viewer-wrapper">
+      <div class="list-header-title">
+        <h3 class="page-title middle">Register</h3>
       </div>
-    </form>
+
+      <form [formGroup]="registerForm" (ngSubmit)="registerForm.valid && onRegisterSubmit()" novalidate>
+        <div class="form-container">
+          <mat-form-field>
+            <input id="fName" matInput formControlName="fName" [(ngModel)]="user.fName"
+              placeholder="&nbsp;&nbsp;First Name" class="form-control"
+              [ngClass]="{ 'is-invalid': submitted && f.fName.errors }" />
+          </mat-form-field>
+
+          <mat-form-field>
+            <input id="lName" matInput formControlName="lName" [(ngModel)]="user.lName" class="form-control"
+              placeholder="&nbsp;&nbsp;Last Name" />
+          </mat-form-field>
+          <mat-form-field>
+            <input id="email" matInput formControlName="email" [(ngModel)]="user.email" class="form-control"
+              placeholder="&nbsp;&nbsp;Email" />
+          </mat-form-field>
+
+          <mat-form-field>
+            <input id="password" matInput formControlName="password" [(ngModel)]="user.password" class="form-control"
+              placeholder="&nbsp;&nbsp;Password" [type]="hide ? 'password':'text'" />
+            <mat-icon matSuffix (click)="hide = !hide">
+              <!-- ng-class="hide ? 'fas fa-eye' : 'far fa-eye-slash' " 
+                {{hide ? 'visibility' : 'visibility_off'}}  -->
+            </mat-icon>
+          </mat-form-field>
+
+          <button mat-button type="submit" class="mat-raised-button mat-primary   register"
+            [disabled]="!registerForm.valid">Register</button>
+          <a routerLink="/" class="btn btn-link"><small>Cancel</small></a>
+          <button mat-button routerLink="/login" class="btn btn-link"><small>Already registered?</small></button>
+        </div>
+      </form>
+    </div>
   </div>
-</div>
  
-
-    <!-- <form [formGroup]="registerForm" (ngSubmit)="registerForm.valid" class="normal-form child-1">
-<div class="form-container">
-     
-        <mat-form-field class="example-full-width">
-            <input id="fname" matInput FormControlName="fname" placeholder="Name" type="text" [(ngModel)]="user.fname">
-        </mat-form-field>
-        <br />
-
-        <mat-form-field class="example-full-width">
-            <input id="email" matInput FormControlName="email" placeholder="Name" type="text" [(ngModel)]="user.email">
-        </mat-form-field>
-        <br />
-
-        <mat-form-field class="example-full-width">
-            <input id="password" matInput FormControlName="password" placeholder="Name" type="text"
-                [(ngModel)]="user.password">
-        </mat-form-field>
-        <br />
-
-
-        <button type="submit" mat-raised-button color="primary">Register</button>
-        <button mat-raised-button routerLink="/login" class="divider"  >Login</button>
-
-</div>
-    </form> -->
-
-<!-- </div> -->
