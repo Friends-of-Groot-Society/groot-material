@@ -12,6 +12,9 @@ export class UsersComponent implements OnInit {
 
   ngOnInit(): void { 
     // throw new Error("Method not implemented.");
+
+    //  this.userService.getUser(22).subscribe(user => this.user = user);
+    this.getAllUsers();
   }
 
   public id: number;
@@ -22,9 +25,8 @@ export class UsersComponent implements OnInit {
 
   constructor(private userService: UserService) {
     // on page load first piece of data
-     this.userService.getUser(1).subscribe(user => this.user = user);
   }
-
+ 
   public getUser() {
     this.userService.getUser(this.id).subscribe(user => this.user = user);
   }

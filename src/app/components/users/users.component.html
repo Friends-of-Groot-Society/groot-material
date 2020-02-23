@@ -1,33 +1,52 @@
 <div class="users">
     <h3>Friends of Groot</h3>
     <input type="number" [(ngModel)]="id" placeholder="User ID">&nbsp;
-    <button type="button" (click)="getUser()">Find member</button><hr>
+    <button type="button" (click)="getUser()">Show member Details</button>
+    <hr>
 
-    <button  type="button" (click)="getAllUsers()">Show all members</button><hr>
+    <button type="button" (click)="getAllUsers()">Show all members</button>
+    <hr>
 
     <div *ngIf="user">
-        Member's Name <strong>{{user.getFullName()}}</strong>, with these narratives:
-        <ul>
-            <li *ngFor="let media of user.media">
-               Character <strong>{{media.character}}</strong>, located at: <strong>{{media.location}}</strong> within company, <br />and Quotation: <em>{{ media.getQuote() }}</em>.
-            </li>
-        </ul>
+        <!-- Member's Name <strong>{{user.getName()}}</strong>, with these narratives: -->
+     Member's Name <strong>{{user.fName}} {{user.lName}}  </strong>, with these narratives: 
+      
+        <div *ngIf="user.media">
+            Character <strong>{{user.media.character}}</strong>, located at: <strong>{{user.media.location}}</strong> within
+            company, <br />and personal Quotation:  <em>{{ user.media.quote }}</em>. 
+        </div>
+        <!-- <div *ngIf="user.media">
+            Character <strong>{{user.media.character}}</strong>, located at: <strong>{{user.media.location}}</strong> within
+            company, <br />and Quotation: <em>{{ user.media.getQuote() }}</em>.
+        </div> -->
+        
+        <!-- <div *ngIf="user.media">
+            <ul>
+                <li *ngFor="let media of user.media">
+                    Character <strong>{{media.character}}</strong>, located at: <strong>{{media.location}}</strong>
+                    within company, <br />and Quotation: <em>{{ media.getQuote() }}</em>.
+                </li>
+            </ul>
+        </div> -->
+
     </div>
 
     <div *ngIf="users">
         <hr>
         <ul>
             <li *ngFor="let user of users;">
-                {{user.getFullName()}} is member type {{user.groupType}} and has {{user.media.length}} media.
+             <strong>{{user.id }}: </strong> <u>&nbsp;{{user.fName}} {{user.lName}}</u> is member of: <u>{{user.groupType}}</u>
             </li>
+            <hr>
         </ul>
     </div>
-      <div *ngIf="media">
+    <!-- <div *ngIf="media">
         <hr>
         <ul>
             <li *ngFor="let medium of media;">
                 {{user.getFullName()}} is member type {{user.groupType}} and has {{user.media.length}} media.
             </li>
         </ul>
-    </div>
-    </div>
+    </div> -->
+    
+</div>

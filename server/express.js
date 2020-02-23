@@ -10,8 +10,7 @@ const users = [
     email: "thomasm1.maestas@gmail.com",
     memberSince: "02-04-2020",
     groupType: "Admin",
-    media: [
-     
+    media: [ 
       {
         "id": 12,
         "uniqueId": "8bf37760-93fd-4f1b-b02c-473d319621ab",
