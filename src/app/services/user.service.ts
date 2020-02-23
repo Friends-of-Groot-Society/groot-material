@@ -12,24 +12,36 @@ export class UserService {
 
   baseUrl:string;
 
-  constructor(private httpService: HttpClient) { 
+  constructor(private httpService: HttpClient ) { 
 
     this.baseUrl = environment.baseUrl;
+   
+ } 
+ 
+    register(user: User) {
+        return this.httpService.post(`${this.baseUrl}:8080/api/users`, user);
+    }
 
-
- }
-
-  public getUser(id: number): Observable<User> {
-    return this.httpService.get<User>(`http://${this.baseUrl}:8080/api/users/${id}`).pipe(
-      map(data => new User().deserialize(data)),
-      catchError(() => throwError('Oops! Member not found ...'))
-    );
+    delete(id: number) {
+        return this.httpService.delete(`${this.baseUrl}:8080/api/users/${id}`);
+    }
+    getUser(id: number): Observable<User> {
+    return this.httpService.get<User>(`http://${this.baseUrl}:8080/api/users/${id}`);
   }
-
-  public getAllUsers(): Observable<User[]> {
-    return this.httpService.get<User[]>(`http://${this.baseUrl}:8080/api/users`).pipe(
-      map(data => data.map(data => new User().deserialize(data)))
-    );
+  // public getUser(id: number): Observable<User> {
+  //   return this.httpService.get<User>(`http://${this.baseUrl}:8080/api/users/${id}`).pipe(
+  //     map(data => new User().deserialize(data)),
+  //     catchError(() => throwError('Oops! Member not found ...'))
+  //   );
+  // }
+   getAllUsers(): Observable<User[]> {
+    return this.httpService.get<User[]>(`http://${this.baseUrl}:8080/api/users`);
   }
+   
+  // public getAllUsers(): Observable<User[]> {
+  //   return this.httpService.get<User[]>(`http://${this.baseUrl}:8080/api/users`).pipe(
+  //     map(data => data.map(data => new User().deserialize(data)))
+  //   );
+  // }
 
 }

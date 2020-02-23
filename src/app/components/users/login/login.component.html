@@ -1,32 +1,31 @@
 <br />
    <h3>Friends of Groot Society</h3>
    <hr>
-<div fxLayout="column" fxLayoutAlign="space-evenly center">
+<div fxLayout="column" class="containment"  fxLayoutAlign="space-evenly center">
     
 
     <div class="medium-list">
         <div class="list-viewer-wrapper">
-  <div class="list-header-title"><h3 class="page-title">Sign In</h3></div>
+  <div class="list-header-title"><h3 class="page-title middle">Sign In</h3></div>
 
             <form [formGroup]="loginForm" (ngSubmit)="loginForm.valid && onLoginSubmit()" novalidate>
                 <div class="form-container">
                     <mat-form-field>
-                        <input id="email" matInput formControlName="email" [(ngModel)]="user.email"
-                            placeholder="Enter your email" />
+                        <input id="email" matInput formControlName="email" [(ngModel)]="user.email" class="form-control"
+                            placeholder="&nbsp;&nbsp;Email" />
                     </mat-form-field>
 
                     <mat-form-field>
                         <input id="password" matInput formControlName="password" [(ngModel)]="user.password"
-                            placeholder="Enter your password" [type]="hide ? 'password':'text'" />
+                            class="form-control" placeholder="&nbsp;&nbsp;Password" [type]="hide ? 'password':'text'" />
                         <mat-icon matSuffix (click)="hide = !hide">
                             <!-- {{hide ? 'visibility' : 'visibility_off'}} -->
                         </mat-icon>
                     </mat-form-field>
 
                     <button mat-button type="submit" class="mat-raised-button mat-primary login"
-                        [disabled]="!loginForm.valid">Login</button>
-
-                    <button mat-button routerLink="/register" class="divider">Register</button>
+                        [disabled]="!loginForm.valid">Login</button>  
+          <a routerLink="/" class="btn btn-link">Cancel</a>
                 </div>
             </form>
         </div>

@@ -13,7 +13,7 @@ import { RegisterComponent } from './components/users/register/register.componen
 import { UsersComponent } from './components/users/users.component';
 import { NewsPageComponent } from './components/news-page/news-page.component';
 import { NewsArticleSearchComponent } from './components/news-article-search/news-article-search.component';
-
+ 
 const routes: Routes = [ 
 
   { path: '', component: GrootComponent },
