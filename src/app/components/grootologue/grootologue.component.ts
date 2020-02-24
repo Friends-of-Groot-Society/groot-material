@@ -45,6 +45,7 @@ export class GrootologueComponent implements OnInit {
       //receives information because the call is successful.
       (response) => {
         this.grootList = response;
+        this.grootList.reverse();
         console.log(this.grootList);
       },
       //function to execute when the Observabler receives
@@ -70,6 +71,7 @@ export class GrootologueComponent implements OnInit {
           let list = this.grootList.slice();
           list.push(response);
           this.grootList = list;
+          location.reload(true);
         },
         (response) => {
           console.log("Failed to add Groot");
@@ -82,10 +84,10 @@ export class GrootologueComponent implements OnInit {
   validateInputFields() {
     // console.log(this.id);
     // console.log(this.isbn);
-    console.log(this.author);
-    console.log(this.title);
-    console.log(this.name);
-    console.log(this.type);
+    // console.log(this.author);
+    // console.log(this.title);
+    // console.log(this.name);
+    // console.log(this.type);
 
     if(  
        this.author == undefined ||

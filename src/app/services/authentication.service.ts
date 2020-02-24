@@ -34,28 +34,34 @@ export class AuthenticationService {
     return this.currentUserSubject.value;
   }
 
-   
-
-
-  public getMemberAuth(email: string, password: string): Observable<User> {
+  getMemberAuth(email: string, password: string): Observable<User> {
     console.log(email + ' ' + password)
-    return this.http.get<User>(`${this.baseUrl}/${email}`);
+    return this.http.get<User>(`${this.baseUrl}:8080/api/users/${email}`);
   }
- 
-    login(username, password) {
-        return this.http.post<any>(`http://${this.baseUrl}:8080/api/users/authenticate`, { username, password })
-            .pipe(map(user => {
-                // store user details and jwt token in local storage to keep user logged in between page refreshes
-                localStorage.setItem('currentUser', JSON.stringify(user));
-                this.currentUserSubject.next(user);
-                return user;
-            }));
-    }
+  login(email, password) {
+    return this.http.post<any>(`${this.baseUrl}:8080/api/users/authenticate`, { email, password })
+      .pipe(map(user => {
+        // store user details and jwt token in local storage to keep user logged in between page refreshes
+        localStorage.setItem('currentUser', JSON.stringify(user));
+        this.currentUserSubject.next(user);
+        return user;
+      }));
+  }
 
-    logout() {
-        // remove user from local storage and set current user to null
-        localStorage.removeItem('currentUser');
-        this.currentUserSubject.next(null);
-    }
+  loginEmail(email, password) {
+    return this.http.post<any>(`${this.baseUrl}:8080/api/users/authenticate/${email}`, { email})
+      .pipe(map(user => {
+        // store user details and jwt token in local storage to keep user logged in between page refreshes
+        localStorage.setItem('currentUser', JSON.stringify(user));
+        this.currentUserSubject.next(user);
+        return user;
+      }));
+  }
+
+  logout() {
+    // remove user from local storage and set current user to null
+    localStorage.removeItem('currentUser');
+    this.currentUserSubject.next(null);
+  }
 
 }

@@ -28,9 +28,9 @@ export class RegisterComponent implements OnInit {
     private alertService: AlertService
   ) {
     // redirect to home if already logged in
-    if (this.authenticationService.currentUserValue) {
-      this.router.navigate(['/']);
-    }
+    // if (this.authenticationService.currentUserValue) {
+    //   this.router.navigate(['/']);
+    // }
   }
 
 
@@ -38,12 +38,7 @@ export class RegisterComponent implements OnInit {
     this.title = "REGISTER";
 
     this.registerForm = this.formBuilder.group({
-      'fName': [this.user.fName, [
-        Validators.required
-      ]],
-      'lName': [this.user.lName, [
-        Validators.required
-      ]],
+     
       'email': [this.user.email, [
         Validators.required,
         Validators.email
@@ -51,19 +46,24 @@ export class RegisterComponent implements OnInit {
       'password': [this.user.password, [
         Validators.required,
         Validators.minLength(4),
-        Validators.maxLength(30)
-
+        Validators.maxLength(30) 
+      ]],
+       'fName': [this.user.fName, [
+        Validators.required
+      ]],
+      'lName': [this.user.lName, [
+        Validators.required
       ]]
     });
-  }
-  // convenience getter for easy access to form fields
+  } 
+  
   get f() { return this.registerForm.controls; }
 
   onRegisterSubmit() {
     this.submitted = true;
     this.alertService.clear();
 
-    alert(this.user.fName + ' ' + this.user.lName + ' ' + this.user.email + ' ' + this.user.password);
+    console.log(this.user.fName + ' ' + this.user.lName + ' ' + this.user.email  );
     this.loading = true;
     this.userService.register(this.registerForm.value)
       .pipe(first())

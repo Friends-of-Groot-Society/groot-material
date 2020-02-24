@@ -19,14 +19,14 @@ export class UserService {
  } 
  
     register(user: User) {
-        return this.httpService.post(`${this.baseUrl}:8080/api/users`, user);
+        return this.httpService.post(`${this.baseUrl}:8080/api/users/register`, user);
     }
 
     delete(id: number) {
         return this.httpService.delete(`${this.baseUrl}:8080/api/users/${id}`);
     }
     getUser(id: number): Observable<User> {
-    return this.httpService.get<User>(`http://${this.baseUrl}:8080/api/users/${id}`);
+    return this.httpService.get<User>(`${this.baseUrl}:8080/api/users/${id}`);
   }
   // public getUser(id: number): Observable<User> {
   //   return this.httpService.get<User>(`http://${this.baseUrl}:8080/api/users/${id}`).pipe(
@@ -35,7 +35,7 @@ export class UserService {
   //   );
   // }
    getAllUsers(): Observable<User[]> {
-    return this.httpService.get<User[]>(`http://${this.baseUrl}:8080/api/users`);
+    return this.httpService.get<User[]>(`${this.baseUrl}:8080/api/users`);
   }
    
   // public getAllUsers(): Observable<User[]> {
