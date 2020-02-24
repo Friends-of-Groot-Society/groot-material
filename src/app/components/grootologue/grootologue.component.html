@@ -3,7 +3,7 @@
 <!-- <app-book> -->
 <hr> 
  
-<div> 
+<div  *ngIf="grootList" > 
     <!-- <input type="number" [(ngModel)] = "id"> -->
     <!-- <label>isbn</label>
     <input type="text" [(ngModel)] = "isbn"> -->
@@ -19,15 +19,15 @@
   
     <label  class="add">Type</label>
     <input type="text" id="type" [(ngModel)] = "type">
-    <!-- <p *ngIf="!validInputs">{{validation}}</p> -->
-    <p>{{validateFields(author,title,name,type)}}</p>  
+    <!-- <p *ngIf="!validInputs">{{validation}}</p>  -->
+      <p>{{validateFields(author,title,name,type)}}</p>  
     
     <button class="button-add"   (click) = "addGroot()">Add Groot Entries</button><br />
 </div>
 <hr>
 <button  class="button-update" (click) = "displayAllGroot()">Update Groot News</button>
 <br /><br />
-<table  class="groot-table">
+<table *ngIf="grootList" class="groot-table">
     <tr>
         <!-- <th>Id</th> -->
         <th>Author</th>

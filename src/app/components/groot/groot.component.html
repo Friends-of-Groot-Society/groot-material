@@ -8,8 +8,17 @@
    
     <hr>
  </div> 
-     
-
+     <hr>
+     <!-- <h3>Welcome {{currentUser.fName}}!</h3>  -->
+<h5>Registered users:</h5>
+<ul>
+    <li *ngFor="let user of users">
+        {{user.email}} ({{user.fName}} {{user.lName}})
+        - <a (click)="deleteUser(user.id)" class="text-danger">Delete</a>
+    </li>
+</ul>
+<hr>
+<h5>Collections</h5>
   <div class="row cards">   
         <div   *ngFor="let grootBook of grootBooks | async">
           <div class="card">

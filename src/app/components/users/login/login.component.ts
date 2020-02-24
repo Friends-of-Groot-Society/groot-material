@@ -30,9 +30,9 @@ export class LoginComponent implements OnInit {
     private alertService: AlertService
   ) {
     // redirect to home if already logged in
-    if (this.authenticationService.currentUserValue) {
-      this.router.navigate(['/']);
-    }
+    // if (this.authenticationService.currentUserValue) {
+    //   this.router.navigate(['/']);
+    // }
   }
 
 
@@ -55,16 +55,17 @@ export class LoginComponent implements OnInit {
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
   // convenience getter for easy access to form fields
-  get f() { return this.loginForm.controls; }
+  get fromInput() { return this.loginForm.controls; }
 
-  onLoginSubmit() {
-    alert(this.user.email + ' ' + this.user.password);
+  onLoginSubmit() { 
     this.submitted = true;
+    console.log(this.fromInput.email.value);
+    console.log(this.fromInput.password.value);
 
     // reset alerts on submit
     this.alertService.clear();
     this.loading = true;
-    this.authenticationService.login(this.f.username.value, this.f.password.value)
+    this.authenticationService.getMemberAuth(this.fromInput.email.value, this.fromInput.password.value)
       .pipe(first())
       .subscribe(
         data => {

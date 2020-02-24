@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { BookService } from '../../services/book.service';
+import { first } from 'rxjs/operators';
+
+import { User } from '../../models/User';
+import { UserService, AuthenticationService } from '../../services';
 
 @Component({
   selector: 'app-groot',
@@ -7,23 +11,40 @@ import { BookService } from '../../services/book.service';
   styleUrls: ['./groot.component.css']
 })
 export class GrootComponent implements OnInit {
-  title:string = 'Groot';
+  currentUser: User;
+  users = [];
 
-  grootImage:string = 'https://friends-of-groot-society.s3.amazonaws.com/assets/android-chrome-384x384.png';
+  title: string = 'Groot';
 
-  grootSmallImage:string = 'https://friends-of-groot-society.s3.amazonaws.com/assets/android-chrome-192x192.png';
-  
+  grootImage: string = 'https://friends-of-groot-society.s3.amazonaws.com/assets/android-chrome-384x384.png';
+
+  grootSmallImage: string = 'https://friends-of-groot-society.s3.amazonaws.com/assets/android-chrome-192x192.png';
+
   grootBooks;
-  constructor(private bookService: BookService) {
-    
-      this.grootBooks = this.bookService.getMedias();
-   }
+  constructor(
+    private bookService: BookService,
+    private authenticationService: AuthenticationService,
+    private userService: UserService
+  ) {
+    this.currentUser = this.authenticationService.currentUserValue;
+    this.grootBooks = this.bookService.getMedias();
+  }
 
   ngOnInit() {
-  } 
-      // books = this.bookService.getBooks();
-      
- 
+    this.loadAllUsers();
+  }
+  // books = this.bookService.getBooks(); 
+  deleteUser(id: number) {
+    this.userService.delete(id)
+      .pipe(first())
+      .subscribe(() => this.loadAllUsers());
+  }
+
+  private loadAllUsers() {
+    this.userService.getAllUsers()
+      .pipe(first())
+      .subscribe(users => this.users = users);
+  }
 
 
 }
