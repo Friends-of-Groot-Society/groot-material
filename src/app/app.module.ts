@@ -3,14 +3,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { JwtInterceptor, ErrorInterceptor } from './helpers';
 import { TitleCasePipe } from '@angular/common';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
-
-// PRODUCTION URL
-// import { environment } from '../environments/environment.prod';
-
-// DEVELOPMENT URL
+  
+// DEVELOPMENT/PROD URL (replace file in angular.json) 
 import { environment } from '../environments/environment';
 
 // NEWS
@@ -62,6 +60,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 // import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { MatNativeDateModule } from '@angular/material/core';
 import { UsersComponent } from './components/users/users.component';
+import { AlertComponent } from './utility/alert.component';
 
 @NgModule({
   declarations: [
@@ -82,7 +81,8 @@ import { UsersComponent } from './components/users/users.component';
     NewsArticleResultsComponent,
     NewsToolBarComponent,
     PipeCapitalizeCategoryPipe,
-    UsersComponent
+    UsersComponent,
+    AlertComponent,
   ],
   imports: [
     BrowserModule,
@@ -119,7 +119,9 @@ import { UsersComponent } from './components/users/users.component';
     BookService,
     GrootService,
     NewsService,
-    TitleCasePipe
+    TitleCasePipe,
+     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+        { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
   bootstrap: [AppComponent]
 })

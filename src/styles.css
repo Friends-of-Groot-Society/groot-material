@@ -9,6 +9,9 @@ body {
 li {
   list-style-type: none;
 }
+a {
+    cursor: pointer;
+}
 .center {
   text-align: center;
 }
@@ -38,7 +41,9 @@ input::placeholder {
    max-width:20%; 
 }
 /*   LOGIN Form */
-
+#password {
+    width:96%;
+}
 .spacer {
     flex-grow: 1;
 }
