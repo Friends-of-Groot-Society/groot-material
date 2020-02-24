@@ -1,16 +1,17 @@
 import { Deserializable } from './deserializable';
-import { Media } from './Media'; 
+import { Media } from './Media';
 
-export class User  { //
-    public id?: number;
-    public email: string;
-    public password: string;
-    public fName: string;
-    public lName: string;
-    public memberSince?: string;
-    public groupType?: string;
+export class User { //
+    id?: number;
+    tokenId?: string;
+    email: string;
+    password: string;
+    fName: string;
+    lName: string;
+    memberSince?: string;
+    groupType?: string;
     // public media?: Media[];
-    public media?: Media;
+    media?: Media;
 
 
     // deserialize(input: any): this {
@@ -23,11 +24,11 @@ export class User  { //
     //     // }  
     //     return this;
     //     // throw new Error("Method not implemented.");
-        
+
     // }
 
     getFullName() {
-            return this.fName + ' '  + this.lName;
-        }
- 
+        return this.fName + ' ' + this.lName;
+    }
+
 }
