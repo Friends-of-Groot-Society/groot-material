@@ -10,14 +10,26 @@
  </div> 
      <hr>
      <!-- <h3>Welcome {{currentUser.fName}}!</h3>  -->
-<h5>Registered users:</h5>
+<h5>Registered users</h5>
 <ul>
     <li *ngFor="let user of users">
-        {{user.email}} ({{user.fName}} {{user.lName}})
+        <a (click)="getThisUser(user.id)"><strong>Details #{{user.id }}: </strong></a>   {{user.email}} ({{user.fName}} {{user.lName}})
         - <a (click)="deleteUser(user.id)" class="text-danger">Delete</a>
     </li>
 </ul>
+    <div *ngIf="user">
+  <h5>Member Narratives</h5>
+        <!-- Member's Name <strong>{{user.getName()}}</strong>, with these narratives: -->
+     #{{user.id }}: Member's Name <strong>{{user.fName}} {{user.lName}}  </strong>, has these narratives: 
+      <hr>
+        <div *ngIf="user.media">
+            Character <strong>{{user.media.character}}</strong>, located at: <strong>{{user.media.location}}</strong> within
+            company, <br />and personal Quotation:  <em>{{ user.media.quote }}</em>. 
+        </div>
+    </div>
 <hr>
+
+
 <h5>Collections</h5>
   <div class="row cards">   
         <div   *ngFor="let grootBook of grootBooks | async">

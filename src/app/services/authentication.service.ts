@@ -36,10 +36,10 @@ export class AuthenticationService {
 
   getMemberAuth(email: string, password: string): Observable<User> {
     console.log(email + ' ' + password)
-    return this.http.get<User>(`${this.baseUrl}:8080/api/users/${email}`);
+    return this.http.get<User>(`${this.baseUrl}/api/users/${email}`);
   }
   login(email, password) {
-    return this.http.post<any>(`${this.baseUrl}:8080/api/users/authenticate`, { email, password })
+    return this.http.post<any>(`${this.baseUrl}/api/users/authenticate`, { email, password })
       .pipe(map(user => {
         // store user details and jwt token in local storage to keep user logged in between page refreshes
         localStorage.setItem('currentUser', JSON.stringify(user));
@@ -49,7 +49,7 @@ export class AuthenticationService {
   }
 
   loginEmail(email, password) {
-    return this.http.post<any>(`${this.baseUrl}:8080/api/users/authenticate/${email}`, { email})
+    return this.http.post<any>(`${this.baseUrl}/api/users/authenticate/${email}`, { email})
       .pipe(map(user => {
         // store user details and jwt token in local storage to keep user logged in between page refreshes
         localStorage.setItem('currentUser', JSON.stringify(user));
