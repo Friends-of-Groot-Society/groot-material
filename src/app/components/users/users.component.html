@@ -9,8 +9,8 @@
 
     <div *ngIf="user">
         <!-- Member's Name <strong>{{user.getName()}}</strong>, with these narratives: -->
-     Member's Name <strong>{{user.fName}} {{user.lName}}  </strong>, with these narratives: 
-      
+     #{{user.id }}: Member's Name <strong>{{user.fName}} {{user.lName}}  </strong>, has these narratives: 
+      <hr>
         <div *ngIf="user.media">
             Character <strong>{{user.media.character}}</strong>, located at: <strong>{{user.media.location}}</strong> within
             company, <br />and personal Quotation:  <em>{{ user.media.quote }}</em>. 
@@ -35,9 +35,9 @@
         <hr>
         <ul>
             <li *ngFor="let user of users;">
-             <strong>{{user.id }}: </strong> <u>&nbsp;{{user.fName}} {{user.lName}}</u> is member of: <u>{{user.groupType}}</u>
-            </li>
-            <hr>
+             <a (click)="getThisUser(user.id)"><strong>Details #{{user.id }}: </strong></a> <em>&nbsp;{{user.fName}} {{user.lName}}</em> <strong> is member of: </strong> <em>{{user.groupType}}</em>
+                <hr>
+            </li> 
         </ul>
     </div>
     <!-- <div *ngIf="media">

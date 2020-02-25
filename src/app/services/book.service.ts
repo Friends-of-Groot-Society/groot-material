@@ -22,7 +22,7 @@ export class BookService {
     }
     
   getMedias() :Observable<Media[]> {
-    return this.http.get<Media[]>(`${this.baseUrl}:8080/api/media/`);  
+    return this.http.get<Media[]>(`${this.baseUrl}/api/media/`);  
   } 
  
  

@@ -12,6 +12,8 @@ import { UserService, AuthenticationService } from '../../services';
 })
 export class GrootComponent implements OnInit {
   currentUser: User;
+  id: number; 
+  user: User;
   users = [];
 
   title: string = 'Groot';
@@ -33,6 +35,9 @@ export class GrootComponent implements OnInit {
   ngOnInit() {
     this.loadAllUsers();
   }
+   public getThisUser(id: number) {
+   this.userService.getUser(id).subscribe(user=>this.user = user);
+ }
   // books = this.bookService.getBooks(); 
   deleteUser(id: number) {
     this.userService.delete(id)
