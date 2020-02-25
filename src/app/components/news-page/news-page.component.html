@@ -38,7 +38,7 @@
             <mat-card-subtitle>
                 <mat-list role="list">
                     <mat-list-item>Published Date: {{r.published_date | date: 'full' }}</mat-list-item>
-                    <mat-list-item><a href='{{r.url}}'>Link</a></mat-list-item>
+                    <mat-list-item><a href='{{r.url}}' target="_blank">Link</a></mat-list-item>
                     <mat-list-item *ngIf='r.byline'>{{ r.byline }}</mat-list-item>
                 </mat-list>
             </mat-card-subtitle>
