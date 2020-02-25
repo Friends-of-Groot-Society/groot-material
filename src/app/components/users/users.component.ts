@@ -17,16 +17,19 @@ export class UsersComponent implements OnInit {
     this.getAllUsers();
   }
 
-  public id: number;
+ id: number;
 
-  public user: User;
+ user: User;
 
-  public users: User[];
+ users: User[];
 
   constructor(private userService: UserService) {
     // on page load first piece of data
   }
  
+ public getThisUser(id: number) {
+   this.userService.getUser(id).subscribe(user=>this.user = user);
+ }
   public getUser() {
     this.userService.getUser(this.id).subscribe(user => this.user = user);
   }

@@ -38,12 +38,10 @@ export class AboutComponent implements OnInit {
     );
 
 
-  }
-
+  } 
   getGreeting(): Promise<Greeting> {
 
-    let promise: Promise<Greeting> = this.http.get<Greeting>("https://api.myjson.com/bins/1cxyyj").toPromise();
-
+    let promise: Promise<Greeting> = this.http.get<Greeting>("https://api.myjson.com/bins/15mn7g").toPromise(); 
 
     return promise;
   }
