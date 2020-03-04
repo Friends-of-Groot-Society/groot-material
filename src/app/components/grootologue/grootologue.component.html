@@ -25,7 +25,20 @@
     <button class="button-add"   (click) = "addGroot()">Add Groot Entries</button><br />
 </div>
 <hr>
-<button  class="button-update" (click) = "displayAllGroot()">Update Groot News</button>
+<button  class="button-update" (click) = "displayAllGroot()">Update Entries</button>
+<hr>
+        <div class="form-group">
+          <label for="genreFilter">Filter by Genre</label>
+          <select class="form-control" id="genreFilter" [(ngModel)]="genreFilter">
+            <option value="Essay">Essay</option>
+            <option value="Metafiction">Metafiction</option>
+            <option value="Classic">Classic</option>
+            <option value="Western">Western</option>
+            <option value="Horror">Horror</option>
+          </select>
+          <br />
+<button  class="button-update" (click)="filterByDBGroot()">Filter</button>
+        </div>
 <br /><br />
 <table *ngIf="grootList" class="groot-table">
     <tr>
