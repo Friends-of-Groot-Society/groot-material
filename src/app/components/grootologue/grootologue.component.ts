@@ -10,33 +10,64 @@ import { Observable } from 'rxjs';
 })
 export class GrootologueComponent implements OnInit {
 
-  constructor(private grootService :GrootService) { }
+  constructor(private grootService: GrootService) { }
 
- getRandomInt(max) {
-  return Math.floor(Math.random() * Math.floor(max));
-}
-
-
-  ngOnInit() {   
-    this.displayAllGroot();
+  getRandomInt(max) {
+    return Math.floor(Math.random() * Math.floor(max));
   }
 
-  grootList :Groot[] = [];  // :Groot[] = :Array:Groot
-  allGroot :Observable<Groot[]> = this.grootService.getAllGroot();
 
-  randomX : number= 1234;
+  ngOnInit() {
+    this.displayAllGroot();
+  }
+  genreFilter: string;
+  grootList: Groot[] = [];  // :Groot[] = :Array:Groot
+  allGroot: Observable<Groot[]> = this.grootService.getAllGroot();
+ 
+  genres = [];
+  g:Groot[]  = [];
+  // filteredGroots: Observable<Groot> = this.grootService.getFilteredGroot(this.genreFilter);
+
+  // filteredGroots: Groot[] = [];
+
+  randomX: number = 1234;
   // id :number = 99;
-  
+
   randomIsbn: number = 789;
   isbn = 'e4e8d3e0-3914-4458-bebf-49289477';
-  author :string;
-  title :string;
-  name :string;
-  type :string;
+  author: string;
+  title: string;
+  name: string;
+  type: string;
 
-  validInputs :boolean = false;
-  validation :string = "All 3 fields are required";
+  validInputs: boolean = false;
+  validation: string = "All 3 fields are required";
 
+  filterByDBGroot() {
+    console.log(this.genreFilter);
+      
+    this.grootService.getFilteredGroot(this.genreFilter).subscribe(
+       data  => { 
+         console.log(data); 
+        console.log("genres "+ this.genres);
+        console.log(this.grootList);
+        
+      },
+      (data) => {
+        return "no response, no groot?"
+      }
+    );
+  }
+  // getNotes(id :number) {
+  //   this.noteService.getNotesByApptId(id).subscribe(
+  //     res => {
+  //       this.notes = res;
+  //     },
+  //     res => {
+  //       console.log("failed to get notes");
+  //     }
+  //   );
+  // }
 
   displayAllGroot() {
 
@@ -58,14 +89,14 @@ export class GrootologueComponent implements OnInit {
 
   addGroot() {
     this.validateInputFields();
-    if(this.validInputs) {
-       
+    if (this.validInputs) {
+
       this.randomX++;
       this.randomX = this.getRandomInt(this.randomX);
       this.isbn = this.isbn + this.randomX;
-      console.log("randomIsbn"+ this.isbn);
+      console.log("randomIsbn" + this.isbn);
 
-      this.grootService.addGroot(new Groot( this.isbn, this.author, this.title, this.name, this.type)).subscribe(
+      this.grootService.addGroot(new Groot(this.isbn, this.author, this.title, this.name, this.type)).subscribe(
         (response) => {
           console.log(response);
           let list = this.grootList.slice();
@@ -89,15 +120,15 @@ export class GrootologueComponent implements OnInit {
     // console.log(this.name);
     // console.log(this.type);
 
-    if(  
-       this.author == undefined ||
-       this.author == "" ||
-       this.title == undefined ||
-       this.title == "" ||
-       this.name == undefined ||
-       this.name == "" ||
-       this.type == undefined ||
-       this.type == "") {
+    if (
+      this.author == undefined ||
+      this.author == "" ||
+      this.title == undefined ||
+      this.title == "" ||
+      this.name == undefined ||
+      this.name == "" ||
+      this.type == undefined ||
+      this.type == "") {
       this.validInputs = false;
     }
     else {
@@ -105,10 +136,10 @@ export class GrootologueComponent implements OnInit {
     }
   }
 
-  validateFields( author :string, title :string, name :string, type :string) :string {
+  validateFields(author: string, title: string, name: string, type: string): string {
 
     this.validateInputFields();
-    if(!this.validInputs)
+    if (!this.validInputs)
       return this.validation;
     else {
       return "";
