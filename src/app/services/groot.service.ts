@@ -25,6 +25,10 @@ export class GrootService {
     this.baseUrl = environment.baseUrl;
 
    }
+   
+getFilteredGroot(genre: String):  Observable<Groot> {
+  return this.http.get<Groot>(`${this.baseUrl}/api/groot/type/${genre}`);  
+}
 
 ///GrootApp/getGroot.do
   getAllGroot() :Observable<Groot[]> {

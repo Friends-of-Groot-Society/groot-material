@@ -26,7 +26,7 @@ const routes: Routes = [
   { path: 'news', component: NewsPageComponent },
   { path: 'search', component: NewsArticleSearchComponent },
    
-  {path : 'grootedex', component : GrootologueComponent},
+  {path : 'grootologue', component : GrootologueComponent},
 
   {path : 'about', component : AboutComponent},
   {path : 'contact', component : ContactusComponent},
