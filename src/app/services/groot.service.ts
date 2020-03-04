@@ -26,8 +26,8 @@ export class GrootService {
 
    }
    
-getFilteredGroot(genre: String):  Observable<Groot> {
-  return this.http.get<Groot>(`${this.baseUrl}/api/groot/type/${genre}`);  
+getFilteredGroot(genre: String):  Observable<Groot[]> {
+  return this.http.get<Groot[]>(`${this.baseUrl}/api/groot/type/${genre}`);  
 }
 
 ///GrootApp/getGroot.do
