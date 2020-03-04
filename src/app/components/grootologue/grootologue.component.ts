@@ -25,7 +25,7 @@ export class GrootologueComponent implements OnInit {
   allGroot: Observable<Groot[]> = this.grootService.getAllGroot();
  
   genres = [];
-  g:Groot[]  = [];
+  // g:Groot[]  = [];
   // filteredGroots: Observable<Groot> = this.grootService.getFilteredGroot(this.genreFilter);
 
   // filteredGroots: Groot[] = [];
@@ -44,12 +44,10 @@ export class GrootologueComponent implements OnInit {
   validation: string = "All 3 fields are required";
 
   filterByDBGroot() {
-    console.log(this.genreFilter);
-      
+   
     this.grootService.getFilteredGroot(this.genreFilter).subscribe(
-       data  => { 
-         console.log(data); 
-        console.log("genres "+ this.genres);
+       data  => {  
+        this.grootList = data; 
         console.log(this.grootList);
         
       },
@@ -58,16 +56,7 @@ export class GrootologueComponent implements OnInit {
       }
     );
   }
-  // getNotes(id :number) {
-  //   this.noteService.getNotesByApptId(id).subscribe(
-  //     res => {
-  //       this.notes = res;
-  //     },
-  //     res => {
-  //       console.log("failed to get notes");
-  //     }
-  //   );
-  // }
+ 
 
   displayAllGroot() {
 
