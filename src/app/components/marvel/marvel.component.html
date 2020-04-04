@@ -3,13 +3,13 @@
   <div style="text-align:center">
     <br />
     <h1>
-      <em> <span class="groot"> {{ title }}</span>  </em>
+      <em> <span class="marvel"> {{ title }}</span>  </em>
     </h1>
-    <h3 class="groot"></h3>
+    <h3 class="marvel"></h3>
     <hr>
     <div>
-      <button class="btn btn-primary" (click)="getCharacter()"> this.grootService.getCharactersPrivate()</button>
-      <button class="btn btn-info" (click)="displayCharacters()">this.characters</button> 
+      <button class="btn btn-primary" (click)="getCharacter()"> this.marvelService.getCharactersPrivate()</button>
+      <button class="btn btn-info" (click)="displayAllCharacters()">this.characters</button> 
     </div> 
     <div class="input-group input-group-sm mb-3">
       <div class="input-group-prepend">
@@ -32,11 +32,17 @@
         <tr>
           <th>Id</th>
           <th>Name</th>
-          <th>Type</th>
+          <th>Description</th>
+          <th>thumbnail</th>
+          <th>urls</th>
         </tr>
         <tr *ngFor="let ch of characterList">
-          
-        </tr>
+          <td>{{ ch.id }}</td>
+          <td>{{ ch.name }}</td>
+         <td>{{ ch.description }}</td>
+   <td>{{ ch.thumbnail }}</td>
+   <td>{{ ch.urls }}</td>
+       </tr>
       </table>
 
     </div> 
@@ -44,7 +50,7 @@
 <!-- <button (click) = "displayAllGroot()">Get Grootedex</button> -->
 
 
-<!-- <h6 *ngFor = "let groot of grootList">{{groot.id}} {{groot.name}} {{groot.type}}</h6> -->
+<!-- <h6 *ngFor = "let marvel of marvelList">{{marvel.id}} {{marvel.name}} {{marvel.type}}</h6> -->
 
 
 <!-- <input type="number" [(ngModel)] = "id">
