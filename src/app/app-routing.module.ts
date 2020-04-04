@@ -5,6 +5,7 @@ import { BookComponent } from './components/book/book.component';
 import { PhotosComponent } from './components/photos/photos.component';
 
 import { AboutComponent } from './components/layout/about/about.component';
+import { MarvelComponent } from './components/marvel/marvel.component';
 import { ContactusComponent } from './components/layout/contactus/contactus.component';
 import { GrootologueComponent } from './components/grootologue/grootologue.component';
 import { LoginComponent } from './components/users/login/login.component';
@@ -17,6 +18,8 @@ import { NewsArticleSearchComponent } from './components/news-article-search/new
 const routes: Routes = [ 
 
   { path: '', component: GrootComponent },
+  { path: 'marvel', component: MarvelComponent },
+  { path: 'marvel/:guardiansId', component: MarvelComponent },
   {path : 'groot/:grootId', component : BookComponent},
 
   { path: 'login', component: LoginComponent },
