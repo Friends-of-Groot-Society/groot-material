@@ -17,15 +17,16 @@ import { environment } from '../../environments/environment';
 export class MarvelService {
 
   baseUrl: string;
-  public_key: string;
-  hash: string;
+  marvel_Key: string;
+   
+  marvelHash: string = 'AB967B3F3F478EDC1B44816D9BDCBEBA';
   private headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 
   constructor(private http: HttpClient) {
 
     this.baseUrl = environment.baseUrl;
-    this.public_key = environment.marvelKey;
-    this.hash = environment.marvelHash;
+    this.marvel_Key = environment.marvelKey;
+    // this.hash = environment.marvelHash;
   }
 
   // addCharacter(char :Character) :Observable<Character> {
@@ -35,7 +36,9 @@ export class MarvelService {
   // getGroot= function() {
   //   console.log(this.title);
   // }
-  ts: any = Math.floor(Date.now() / 1000);
+  // ts: any = Math.floor(Date.now() / 1000);
+  ts: number = 1;
+  sts: string = "1";
   // new Date().getTime() 
   // new Date().valueOf()
   // NASA
@@ -45,7 +48,7 @@ export class MarvelService {
   /*  char.name;   char.height;   char.eye_color; */
 
   getCharacters = function () {
-    return this.http.get(`http://gateway.marvel.com/v1/public/characters?apikey=${this.public_key}&ts=${this.ts}&hash=${this.hash}`);
+    return this.http.get(`http://gateway.marvel.com/v1/public/characters?ts=${this.sts}&apikey=${this.marvel_Key}&hash=${this.marvelHash}`);              
   }
 
   getPhotos(albumId) {

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Character } from '../../models/Character';
-import { GrootService } from '../../services/groot.service'; 
+import { MarvelService } from '../../services/marvel.service'; 
 import { Observable } from 'rxjs';
 
 @Component({
@@ -10,21 +10,21 @@ import { Observable } from 'rxjs';
 })
 export class MarvelComponent implements OnInit {
   title = 'Guardians of the Galaxy API';
-  constructor(private grootService: GrootService, ) { }
+  constructor(private marvelService: MarvelService, ) { }
 
   ngOnInit() {
       // this.displayAllCharacters();
   }
     characterList: Character[] = [];  // :Groot[] = :Array:Groot
-  allCharacters: Observable<Character[]> = this.grootService.getCharacters();
+  allCharacters: Observable<Character[]> = this.marvelService.getCharacters();
 
   getCharacter() {
-    console.log(this.grootService.getCharacters());
+    console.log(this.marvelService.getCharacters());
   }
-  displayCharacters() {
-    console.log(this.displayAllCharacters());
-  }
-  characters = this.grootService.getCharacters();
+  // displayCharacters() {
+  //   console.log(this.displayAllCharacters());
+  // }
+  characters = this.marvelService.getCharacters();
 
   id: number;
   name: string;
@@ -32,8 +32,6 @@ export class MarvelComponent implements OnInit {
 
   displayAllCharacters() {
     this.allCharacters.subscribe(
-      //function to execute when the Observable
-      //receives information because the call is successful.
       (response) => {
         this.characterList = response;
         console.log(this.characterList);

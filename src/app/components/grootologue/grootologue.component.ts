@@ -16,50 +16,26 @@ export class GrootologueComponent implements OnInit {
     return Math.floor(Math.random() * Math.floor(max));
   }
 
-
   ngOnInit() {
     this.displayAllGroot();
   }
+
   genreFilter: string;
-  grootList: Groot[] = [];  // :Groot[] = :Array:Groot
+  grootList: Groot[] = [];  
   allGroot: Observable<Groot[]> = this.grootService.getAllGroot();
  
-  genres = [];
-  // g:Groot[]  = [];
-  // filteredGroots: Observable<Groot> = this.grootService.getFilteredGroot(this.genreFilter);
-
-  // filteredGroots: Groot[] = [];
-
-  randomX: number = 1234;
-  // id :number = 99;
-
-  randomIsbn: number = 789;
-  isbn = 'e4e8d3e0-3914-4458-bebf-49289477';
-  author: string;
-  title: string;
-  name: string;
-  type: string;
+  randomIsbn: number = 6789;
+  isbn = 'e4e8d3e0-3914-4458-bebf-4928947';
+  
+  author: string = "";
+  title: string= "";
+  name: string= "";
+  type: string= "";
 
   validInputs: boolean = false;
-  validation: string = "All 3 fields are required";
-
-  filterByDBGroot() {
-   
-    this.grootService.getFilteredGroot(this.genreFilter).subscribe(
-       data  => {  
-        this.grootList = data; 
-        console.log(this.grootList);
-        
-      },
-      (data) => {
-        return "no response, no groot?"
-      }
-    );
-  }
+  validation: string = "All 4 fields are required";
  
-
-  displayAllGroot() {
-
+  displayAllGroot() { 
     this.allGroot.subscribe(
       //function to execute when the Observable
       //receives information because the call is successful.
@@ -76,14 +52,29 @@ export class GrootologueComponent implements OnInit {
     );
   }
 
+  // Filter by Genre function
+  // Overwrites default list
+  filterByDBGroot() {
+    this.grootService.getFilteredGroot(this.genreFilter).subscribe(
+       data  => {  
+        this.grootList = data; 
+        console.log(this.grootList); 
+      },
+      (data) => {
+        return "no response, no groot?"
+      }
+    );
+  } 
+
+
   addGroot() {
     this.validateInputFields();
     if (this.validInputs) {
-
-      this.randomX++;
-      this.randomX = this.getRandomInt(this.randomX);
-      this.isbn = this.isbn + this.randomX;
-      console.log("randomIsbn" + this.isbn);
+      
+      // Generate randomized last 4 digits for mock data
+      this.randomIsbn = this.getRandomInt(this.randomIsbn);
+      this.isbn = this.isbn + this.randomIsbn;
+      console.log("randomized: " + this.isbn);
 
       this.grootService.addGroot(new Groot(this.isbn, this.author, this.title, this.name, this.type)).subscribe(
         (response) => {
@@ -101,13 +92,7 @@ export class GrootologueComponent implements OnInit {
     }
   }
 
-  validateInputFields() {
-    // console.log(this.id);
-    // console.log(this.isbn);
-    // console.log(this.author);
-    // console.log(this.title);
-    // console.log(this.name);
-    // console.log(this.type);
+  validateInputFields() { 
 
     if (
       this.author == undefined ||
