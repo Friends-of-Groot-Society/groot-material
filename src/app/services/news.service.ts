@@ -11,7 +11,7 @@ export class NewsService {
 
   search(data) {
     let params: HttpParams = new HttpParams();
-    params = params.set('api-key', environment.apiKey);
+    params = params.set('api-key', environment.apiKeyNYT);
     if (data.q !== undefined) {
       params = params.set('q', data.q);
     }
@@ -30,7 +30,7 @@ export class NewsService {
   }
   getArticles(section:string = 'home') {
     let params: HttpParams = new HttpParams();
-    params = params.set('api-key', environment.apiKey);
+    params = params.set('api-key', environment.apiKeyNYT);
 
   return this.http.get(`${environment.apiUrl}/topstories/v2/${section}.json`, {params });
   }
