@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BookService } from '../../services/book.service';
-import { first } from 'rxjs/operators';
-
+import { first } from 'rxjs/operators'; 
 import { User } from '../../models/User';
 import { UserService, AuthenticationService } from '../../services';
 

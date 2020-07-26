@@ -30,9 +30,9 @@ export class LoginComponent implements OnInit {
     private alertService: AlertService
   ) {
     // redirect to home if already logged in
-    // if (this.authenticationService.currentUserValue) {
-    //   this.router.navigate(['/']);
-    // }
+    if (this.authenticationService.currentUserValue) {
+      this.router.navigate(['/']);
+    }
   }
 
 
@@ -59,16 +59,19 @@ export class LoginComponent implements OnInit {
 
   onLoginSubmit() { 
     this.submitted = true;
-    console.log(this.fromInput.email.value);
-    console.log(this.fromInput.password.value);
+    // console.log(this.fromInput.email.value);
+    // console.log(this.fromInput.password.value);
 
     // reset alerts on submit
     this.alertService.clear();
     this.loading = true;
+    // this.authenticationService.login(this.fromInput.email.value, this.fromInput.password.value);
+
     this.authenticationService.getMemberAuth(this.fromInput.email.value, this.fromInput.password.value)
       .pipe(first())
       .subscribe(
-        data => {
+        data => { 
+
           this.router.navigate([this.returnUrl]);
         },
         error => {

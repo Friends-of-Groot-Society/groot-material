@@ -12,7 +12,7 @@
      <!-- <h3>Welcome {{currentUser.fName}}!</h3>  -->
 <h5>Registered users</h5>
 <ul>
-    <li *ngFor="let user of users">
+    <li *ngFor="let user of users ">
         <a (click)="getThisUser(user.id)"><strong>Details #{{user.id }}: </strong></a>   {{user.email}} ({{user.fName}} {{user.lName}})
         - <a (click)="deleteUser(user.id)" class="text-danger">Delete</a>
     </li>
