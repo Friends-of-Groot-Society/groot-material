@@ -63,8 +63,9 @@ export class RegisterComponent implements OnInit {
     this.submitted = true;
     this.alertService.clear();
 
-    console.log(this.user.fName + ' ' + this.user.lName + ' ' + this.user.email  );
+    console.log("submitted: "+this.user.fName + ' ' + this.user.lName + ' ' + this.user.email  );
     this.loading = true;
+    console.log("registerForm.value "+ this.registerForm.value);
     this.userService.register(this.registerForm.value)
       .pipe(first())
       .subscribe(
