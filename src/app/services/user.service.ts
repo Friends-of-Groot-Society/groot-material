@@ -19,6 +19,7 @@ export class UserService {
  } 
  
     register(user: User) {
+      console.log("user "+`${this.baseUrl}/api/users/register`, user);
         return this.httpService.post(`${this.baseUrl}/api/users/register`, user);
     }
 
