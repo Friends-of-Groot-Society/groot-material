@@ -60,7 +60,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 // import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { MatNativeDateModule } from '@angular/material/core';
 import { UsersComponent } from './components/users/users.component';
-import { AlertComponent } from './utility/alert.component';
+import { AlertComponent } from './utility/alert.component'; 
 
 @NgModule({
   declarations: [
@@ -82,7 +82,7 @@ import { AlertComponent } from './utility/alert.component';
     NewsToolBarComponent,
     PipeCapitalizeCategoryPipe,
     UsersComponent,
-    AlertComponent,
+    AlertComponent 
   ],
   imports: [
     BrowserModule,

@@ -31,13 +31,15 @@ export class AuthenticationService {
 
 
   public get currentUserValue(): User {
+    console.log(this.currentUserSubject.value)
     return this.currentUserSubject.value;
   }
 
   getMemberAuth(email: string, password: string): Observable<User> {
-    console.log(email + ' ' + password)
-    return this.http.get<User>(`${this.baseUrl}/api/users/${email}`);
+    console.log("member "+ email + " Successfully logged in")
+    return this.http.get<User>(`${this.baseUrl}/api/users/email/${email}`);
   }
+  
   login(email, password) {
     return this.http.post<any>(`${this.baseUrl}/api/users/authenticate`, { email, password })
       .pipe(map(user => {
