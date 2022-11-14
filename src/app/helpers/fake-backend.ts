@@ -4,7 +4,7 @@ import { Observable, of, throwError } from 'rxjs';
 import { delay, mergeMap, materialize, dematerialize } from 'rxjs/operators';
 
 // array in local storage for registered users
-let users = JSON.parse(localStorage.getItem('users')) || [];
+let users = JSON.parse(localStorage.getItem('users') || '{}') || [];
 
 @Injectable()
 export class FakeBackendInterceptor implements HttpInterceptor {
@@ -39,7 +39,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
 
         function authenticate() {
             const { email, password } = body;
-            const user = users.find(x => x.email === email && x.password === password);
+            const user = users.find((x: { email: any; password: any; }) => x.email === email && x.password === password);
             if (!user) return error('Username email or password is incorrect');
             return ok({
                 id: user.id,
@@ -53,11 +53,11 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         function register() {
             const user = body
 
-            if (users.find(x => x.email === user.email)) {
+            if (users.find((x: { email: any; }) => x.email === user.email)) {
                 return error('Username email "' + user.email + '" is already registered')
             }
 
-            user.id = users.length ? Math.max(...users.map(x => x.id)) + 1 : 1;
+            user.id = users.length ? Math.max(...users.map((x: { id: any; }) => x.id)) + 1 : 1;
             users.push(user);
             localStorage.setItem('users', JSON.stringify(users));
 
@@ -72,23 +72,23 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         function deleteUser() {
             if (!isLoggedIn()) return unauthorized();
 
-            users = users.filter(x => x.id !== idFromUrl());
+            users = users.filter((x: { id: number; }) => x.id !== idFromUrl());
             localStorage.setItem('users', JSON.stringify(users));
             return ok();
         }
 
         // helper functions
 
-        function ok(body?) {
+        function ok(body?: { id: any; email: any; fName: any; lName: any; tokenId: string; } | undefined) {
             return of(new HttpResponse({ status: 200, body }))
         }
 
-        function error(message) {
-            return throwError({ error: { message } });
+        function error(message: string) {
+            return throwError(() => { error: { message } });
         }
 
         function unauthorized() {
-            return throwError({ status: 401, error: { message: 'Unauthorised' } });
+            return throwError(()  => { error: { onmessage } });
         }
 
         function isLoggedIn() {

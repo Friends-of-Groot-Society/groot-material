@@ -8,7 +8,7 @@ import { SET_MENU_STATE } from '../../reducers/menu-reducer';
   styleUrls: ['./news-tool-bar.component.css']
 })
 export class NewsToolBarComponent implements OnInit {
-  menuOpen: boolean;
+  menuOpen: boolean = false;
 
   constructor( private store: Store<any> ) { 
     // SENDS state of the menu to rest of the app

@@ -16,11 +16,11 @@ export class LoginComponent implements OnInit {
 
   title: string = "";
   user: LoginModel = new LoginModel();
-  loginForm: FormGroup;
+  loginForm!: FormGroup;
   hide = true;
   loading = false;
   submitted = false;
-  returnUrl: string;
+  returnUrl!: string;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -67,7 +67,7 @@ export class LoginComponent implements OnInit {
     this.loading = true;
     // this.authenticationService.login(this.fromInput.email.value, this.fromInput.password.value);
 
-    this.authenticationService.getMemberAuth(this.fromInput.email.value, this.fromInput.password.value)
+    this.authenticationService.getMemberAuth(this.fromInput['email'].value, this.fromInput['password'].value)
       .pipe(first())
       .subscribe(
         data => { 

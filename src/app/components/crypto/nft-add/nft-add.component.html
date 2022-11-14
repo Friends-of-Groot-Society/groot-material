@@ -1,0 +1,56 @@
+<h3>Add NFT</h3>
+<section>
+  <form fxLayout="column" fxLayoutAlign="center center" (ngSubmit)="onAddNft(f)" #f="ngForm">
+    <mat-form-field appearance="outline">
+      <mat-label>name</mat-label>
+      <input matInput type="text" name="nftName"  ngModel placeholder="NFT" required />
+    </mat-form-field  >
+    <mat-form-field appearance="outline">
+      <mat-label>description</mat-label>
+      <input matInput type="text" name="description"  ngModel placeholder="description" />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>image</mat-label>
+      <input matInput type="text" name="image" ngModel placeholder="image" />
+    </mat-form-field> 
+    <mat-form-field appearance="outline">
+      <mat-label>price</mat-label>
+      <input matInput type="text" name="price" ngModel placeholder="price" />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>quantity</mat-label>
+      <input matInput type="text" name="quantity" ngModel placeholder="quantity" />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>category</mat-label>
+      <input matInput type="text" name="owner" ngModel placeholder="owner" />
+    </mat-form-field> 
+    <button mat-raised-button mat-icon-button   color="accent" type="submit">
+      <mat-icon>add</mat-icon>
+    </button>
+    </form>
+</section>
+<section>
+  <div fxLayout="column" fxLayoutAlign="center center"> 
+  <app-nft (nftClicked)="onDeleteNft(nft)" *ngFor="let nft of nfts" [nftName]="nft"></app-nft>
+  </div>
+</section>
+<section>
+    <div>
+        <code>
+            image: 'https://s3.amazonaws.com/tmm.net/img/blueColorTriomphe.jpg',
+            image: 'https://s3.amazonaws.com/tmm.net/img/blueColorTriomphe.jpg',
+            image: 'https://s3.amazonaws.com/tmm.net/img/blueColorTriomphe.jpg',
+            image: 'https://s3.amazonaws.com/tmm.net/img/blueColorTriomphe.jpg',
+        </code>
+    </div>
+</section>
+  <!-- <app-nft *ngFor="let nft of nfts" [nft]="nft"></app-nft> -->
+  
+    <!-- <div *ngFor="let nft of nfts">
+        <p>{{nft.name}}</p>
+        <p>{{nft.description}}</p>
+        <p>{{nft.image}}</p>
+        <p>{{nft.price}}</p>
+        <p>{{nft.owner}}</p>
+    </div> -->

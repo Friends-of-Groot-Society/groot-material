@@ -12,7 +12,7 @@ export class GrootologueComponent implements OnInit {
 
   constructor(private grootService: GrootService) { }
 
-  getRandomInt(max) {
+  getRandomInt(max: number) {
     return Math.floor(Math.random() * Math.floor(max));
   }
 
@@ -20,7 +20,7 @@ export class GrootologueComponent implements OnInit {
     this.displayAllGroot();
   }
 
-  genreFilter: string;
+  genreFilter: any;
   grootList: Groot[] = [];  
   allGroot: Observable<Groot[]> = this.grootService.getAllGroot();
  
@@ -36,7 +36,7 @@ export class GrootologueComponent implements OnInit {
   validation: string = "All 4 fields are required";
  
   displayAllGroot() { 
-    this.allGroot.subscribe(
+    this.allGroot.subscribe(   
       //function to execute when the Observable
       //receives information because the call is successful.
       (response) => {
@@ -82,7 +82,7 @@ export class GrootologueComponent implements OnInit {
           let list = this.grootList.slice();
           list.push(response);
           this.grootList = list;
-          location.reload(true);
+          location.reload(); //  location.reload(true);
         },
         (response) => {
           console.log("Failed to add Groot");

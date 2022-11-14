@@ -16,7 +16,7 @@ export class MarvelComponent implements OnInit {
       // this.displayAllCharacters();
   }
     characterList: Character[] = [];  // :Groot[] = :Array:Groot
-  allCharacters: Observable<Character[]> = this.marvelService.getCharacters();
+  allCharacters: Observable<Character[]> |any = this.marvelService.getCharacters();
 
   getCharacter() {
     console.log(this.marvelService.getCharacters());
@@ -26,19 +26,19 @@ export class MarvelComponent implements OnInit {
   // }
   characters = this.marvelService.getCharacters();
 
-  id: number;
-  name: string;
-  type: string;
+  id!: number;
+  name!: string;
+  type!: string;
 
   displayAllCharacters() {
     this.allCharacters.subscribe(
-      (response) => {
+      (response: Character[]) => {
         this.characterList = response;
         console.log(this.characterList);
       },
       //function to execute when the Observabler receives
       //incorrect/faulty information -> call is unsuccessful.
-      (response) => {
+      (response: any) => {
         return "Sorry it failed";
       }
     );

@@ -15,7 +15,7 @@ export class RegisterComponent implements OnInit {
 
   title: string = "";
   user: RegisterModel = new RegisterModel();
-  registerForm: FormGroup;
+  registerForm!: FormGroup;
   hide = true;
   loading = false;
   submitted = false;

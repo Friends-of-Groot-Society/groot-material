@@ -49,8 +49,8 @@ getFilteredGroot(genre: String):  Observable<Groot[]> {
   //   console.log(this.title);
   // }
 
-  public_key: '5fbd9e22b0c348faa25fd3d07bee8248';
-  hash: 'dce73dc128d232d3a6c22decdf3b5f272bbc5178';
+  public_key:string = '5fbd9e22b0c348faa25fd3d07bee8248';
+  hash: string ='dce73dc128d232d3a6c22decdf3b5f272bbc5178';
   ts: any = Math.floor(Date.now() / 1000);
   // new Date().getTime() 
   // new Date().valueOf()
@@ -60,22 +60,22 @@ getFilteredGroot(genre: String):  Observable<Groot[]> {
 //  xhttp.open("GET", "https://swapi.co/api/people/" + randomNum + "/?format=json", true);
 /*  char.name;   char.height;   char.eye_color; */
  
-  getCharacters = function () {
+  getCharacters =  () => {
     return this.http.get(`http://gateway.marvel.com/v1/public/characters?apikey=${this.public_key}&ts=${this.ts}&hash=${this.hash}`);
   }
 
-  getPhotos(albumId) {
+  getPhotos(albumId: any) {
     return this.http.get(`https://jsonplaceholder.typicode.com/photos?albumId=${albumId}`);
     // return this.http.get(`https://jsonplaceholder.typicode.com/photos?albumId=${albumId}`);
 
   }
 
-  getAlbums = function () {
+  getAlbums =  () => {
     return this.http.get('https://jsonplaceholder.typicode.com/albums');
     // return this.http.get('https://swapi.co/api/people');
   }
   
-  getStarWars = function () { 
+  getStarWars = () => {
     return this.http.get('https://swapi.co/api/people/1/?format=json');
   }
 }
