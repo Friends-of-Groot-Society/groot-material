@@ -6,7 +6,7 @@ describe('RegisterComponent', () => {
   let component: RegisterComponent;
   let fixture: ComponentFixture<RegisterComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForSync(() => {
     TestBed.configureTestingModule({
       declarations: [ RegisterComponent ]
     })
@@ -23,3 +23,7 @@ describe('RegisterComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+function waitForSync(arg0: () => void): jasmine.ImplementationCallback {
+  throw new Error('Function not implemented.');
+}
+

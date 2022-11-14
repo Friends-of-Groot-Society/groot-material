@@ -130,6 +130,22 @@ npm install -g json-server
 json-server info.json --watch
 
  
+
+
+///////////// package.json
+    // "@types/jasminewd2": "~2.0.3",
+    // "@types/node": "^12.11.1",
+    // "codelyzer": "^5.1.2",
+
+    "jasmine-spec-reporter": "~4.2.1",
+    "protractor": "~5.4.0",
+    "ts-node": "~7.0.0",
+    "tslint": "~5.15.0",
+    "typescript": "~3.8.3"
+
+    "karma-coverage-istanbul-reporter": "~2.0.1",
+
+
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ## Code scaffolding
