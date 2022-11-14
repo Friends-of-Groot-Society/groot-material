@@ -17,35 +17,29 @@ export class AboutComponent implements OnInit {
     this.greeting();
 
   }
- 
+   info:string = "";
   greeting() {
-    // let result: Promise<any> = this.http.get<any>("https://api.myjson.com/bins/1cxyyj").toPromise();
+    let result: Promise<any> = this.http.get<any>("https://z3noflrq9b.execute-api.us-east-1.amazonaws.com/dev/posts").toPromise();
 
-    // result.then(
-    //   (res) =>{
-    //     document.getElementById("info").innerHTML = res.greeting;
-    //     console.log(res);
-    //   }
-    // );
-
-    this.getGreeting().then(
-      (res) => {
-        document.getElementById("info").innerHTML = res.greeting;
+    result.then(
+      (res) =>{
+      
         console.log(res);
-      }, (rej) => {
-        console.log(rej);
       }
     );
 
+    // this.getGreeting().then(
+    //   (res) => {
+    //     document.getElementById("info").innerHTML = res.greeting;
+    //     console.log(res);
+    //   }, (res) => {
+    //     console.log(rej);
+    //   }
+    // );
+
 
   } 
-  getGreeting(): Promise<Greeting> {
-
-    let promise: Promise<Greeting> = this.http.get<Greeting>("https://api.myjson.com/bins/15mn7g").toPromise(); 
-
-    return promise;
-  }
-
+ 
 
 
 }

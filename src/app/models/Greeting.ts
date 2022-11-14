@@ -1,8 +1,8 @@
 
 export class Greeting{
 
-    greeting;
-    name;
+    greeting!: any; //string;
+    name: any;
 
 constructor(){
 

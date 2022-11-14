@@ -11,9 +11,9 @@ import { UserService, AuthenticationService } from '../../services';
 })
 export class GrootComponent implements OnInit {
   currentUser: User;
-  id: number; 
-  user: User;
-  users = [];
+  id!: number; 
+  user!: User;
+  users:any = [];
 
   title: string = 'Groot';
 

@@ -1,13 +1,12 @@
-import { Deserializable } from './deserializable';
 import { Media } from './Media';
 
 export class User { //
-    id?: number;
+    id?: string;
     tokenId?: string;
-    email: string;
-    password: string;
-    fName: string;
-    lName: string;
+    email!: string;
+    password!: string;
+    fName!: string;
+    lName!: string;
     memberSince?: string;
     groupType?: string;
     // public media?: Media[];

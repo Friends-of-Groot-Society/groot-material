@@ -1,15 +1,35 @@
-<!-- 
-  <mat-side nav-container class="example-container"> -->
+   <!-- <mat-sidenav-container>  
  
-<div class="contain">
-  <app-nav></app-nav>
-  <!-- <app-tool-bar></app-tool-bar> -->
-  <div id='content' class="content-groot">
  
-      <router-outlet></router-outlet>  
-  </div>
-   
-</div> 
+      <app-nav></app-nav>
+    </mat-sidenav>
+        <div class="contain">
+      <img width="275" class="logo" alt="Angular Logo" src="https://s3.amazonaws.com/friendsofgroot.com/assets/grootr.png">
+      <mat-sidenav-content>
+    
+      <div id='content' class="content-groot">
+           <router-outlet></router-outlet>  
+           <img width="275" class="logo" alt="Angular Logo" src="https://s3.amazonaws.com/friendsofgroot.com/assets/groot.png">
+      </div>
 
-     
-  <!-- </mat-sidenav-container> -->
+      <app-footer></app-footer> 
+    </mat-sidenav-content> 
+  -->
+
+    <mat-sidenav-container>
+      <mat-sidenav #sidenav role="navigation">
+        <app-sidenav-list (closeSidenav)="sidenav.close()"></app-sidenav-list>
+      </mat-sidenav>
+
+      <mat-sidenav-content>
+ 
+        <app-menu (sidenavToggle)="sidenav.toggle()"></app-menu>
+        <main> 
+          <h2 id="app-title">Friends of Groot Society</h2>
+               <router-outlet></router-outlet>  
+           <img width="275" class="logo" alt="Angular Logo" src="https://s3.amazonaws.com/friendsofgroot.com/assets/grootr.png">
+ 
+        </main>
+       <app-footer></app-footer>
+      </mat-sidenav-content>
+    </mat-sidenav-container>

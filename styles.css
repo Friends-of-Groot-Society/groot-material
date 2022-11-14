@@ -1,0 +1,87 @@
+
+/* ANGULAR  MATERIAL */
+@import '@angular/material/prebuilt-themes/indigo-pink.css';  
+ 
+body {
+  font-family: "Roboto", sans-serif;
+  margin: 0;
+}
+li {
+  list-style-type: none;
+}
+a {
+    cursor: pointer;
+}
+.center {
+  text-align: center;
+}
+html, body { height: 100%; }
+.mat-toolbar.mat-primary {
+ 
+  background:#b79e5d77;
+}
+.mat-drawer-inner-container {
+  background:#b79e5d33;
+
+}
+input.mat-input-element {
+  padding-left:5px;
+  margin-left:5px;
+}
+input::placeholder {
+  
+  padding-left:5px;
+  margin-left:5px;
+}
+.mat-drawer-inner-container{
+  overflow:hidden;
+}
+.short-hr {
+
+   max-width:20%; 
+}
+/*   LOGIN Form */
+#password {
+    width:96%;
+}
+.spacer {
+    flex-grow: 1;
+}
+
+
+.medium-list {
+    margin: auto;
+    width: 100%; 
+  }
+     
+  .list-viewer-wrapper {
+    border: 1px solid rgba(0, 0, 0, .03);
+    box-shadow: 0 2px 2px rgba(0, 0, 0, .24), 0 0 2px rgba(0, 0, 0, .12);
+    margin: 4px;
+  }
+  
+  .list-header-title {
+    color: rgba(0, 0, 0, .54);
+    background: rgba(0, 0, 0, .03);
+    padding: 8px 20px;
+    font-weight: bold;
+  }
+  
+  .form-container {
+    display: flex;
+    flex-direction: column;
+  }
+ 
+  .divider {
+    margin-top: 10px !important; 
+  }
+
+  /* LOGIN & REGISTER */
+
+  .containment {
+    max-width:80%;
+    margin:0 auto;
+  }
+  .middle {
+   text-align:center;
+  }
