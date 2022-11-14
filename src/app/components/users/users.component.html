@@ -35,7 +35,8 @@
         <hr>
         <ul>
             <li *ngFor="let user of users;">
-             <a (click)="getThisUser(user.id)"><strong>Details #{{user.id }}: </strong></a> <em>&nbsp;{{user.fName}} {{user.lName}}</em> <strong> is member of: </strong> <em>{{user.groupType}}</em>
+                <!-- ### user.id => this.id -->
+             <a (click)="getThisUser(this.id)"><strong>Details #{{user.id }}: </strong></a> <em>&nbsp;{{user.fName}} {{user.lName}}</em> <strong> is member of: </strong> <em>{{user.groupType}}</em>
                 <hr>
             </li> 
         </ul>

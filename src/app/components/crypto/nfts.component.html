@@ -1,13 +1,10 @@
-<h3>nfts</h3>
-<form (ngSubmit)="onAddNft(f)" #f="ngForm">
-  <input type="text" name="nftName" ngModel><br />
-  <input type="text" name="description" ngModel><br />
-  <input type="text" name="image" ngModel><br />
-  <input type="text" name="price" ngModel><br />
-  <input type="text" name="owner" ngModel><br />
-  <button type="submit">Add NFT</button>
-  </form>
-  <app-nft (nftClicked)="onDeleteNft(nft)" *ngFor="let nft of nfts" [nftName]="nft"></app-nft>
+
+
+<section>
+  <div fxLayout="column" fxLayoutAlign="center center"> 
+  <app-nft   *ngFor="let nft of nfts" [nftName]="nft"></app-nft>
+  </div>
+</section> 
   <!-- <app-nft *ngFor="let nft of nfts" [nft]="nft"></app-nft> -->
   
     <!-- <div *ngFor="let nft of nfts">

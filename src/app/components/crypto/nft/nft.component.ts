@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
-import { NftsService } from '../nfts.service';
+import { NftsService } from '../../../services/nfts.service';
 
 @Component({
   selector: 'app-nft',
@@ -10,12 +10,14 @@ import { NftsService } from '../nfts.service';
 
 export class NftComponent implements OnInit { 
   @Input() nftName: string = 'OneNFT';
+  @Input() description: string = 'Please enter a description';
+  @Input() image: string = 'assets/grootr.png';
   @Output() nftDeleted = new EventEmitter();
   
   nft: any = {
-    name: 'OneNFT',
+    nftName: 'TwoNFT',
     description: 'This is the first NFT',
-    image: 'https://s3.amazonaws.com/tmm.net/img/blueColorTriomphe.jpg',
+    image: 'assets/groot.png',
     price: 0.01,
     owner: '0x0f0c0000f0',
     contract: '0x00000000',
@@ -53,9 +55,10 @@ export class NftComponent implements OnInit {
   constructor(private nftsService: NftsService) { }
 
   ngOnInit(): void {
-    this.nft.name = this.nftName;
-    this.nft.description = 'This is the first NFT';
-    this.nft.image = 'https://s3.amazonaws.com/tmm.net/img/blueColorTriomphe.jpg';
+    this.nft.nftName = this.nftName;
+    this.nft = this.nft;
+    // this.nft.description = this.description  ;
+    // this.nft.image = this.image;
   }
   onClicked() {
     // this.nftDeleted.emit(this.name);

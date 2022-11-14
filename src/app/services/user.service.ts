@@ -23,10 +23,10 @@ export class UserService {
         return this.httpService.post(`${this.baseUrl}/api/users/register`, user);
     }
 
-    delete(id: number) {
+    delete(id: string) {
         return this.httpService.delete(`${this.baseUrl}/api/users/${id}`);
     }
-    getUser(id: number): Observable<User> {
+    getUser(id: string): Observable<User> {
     return this.httpService.get<User>(`${this.baseUrl}/api/users/${id}`);
   }
   // public getUser(id: number): Observable<User> {
