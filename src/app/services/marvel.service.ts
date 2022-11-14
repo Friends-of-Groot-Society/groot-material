@@ -47,22 +47,22 @@ export class MarvelService {
   //  xhttp.open("GET", "https://swapi.co/api/people/" + randomNum + "/?format=json", true);
   /*  char.name;   char.height;   char.eye_color; */
 
-  getCharacters = function () {
+  getCharacters =  () => {
     return this.http.get(`http://gateway.marvel.com/v1/public/characters?ts=${this.sts}&apikey=${this.marvel_Key}&hash=${this.marvelHash}`);              
   }
 
-  getPhotos(albumId) {
+  getPhotos(albumId: any) {
     return this.http.get(`https://jsonplaceholder.typicode.com/photos?albumId=${albumId}`);
     // return this.http.get(`https://jsonplaceholder.typicode.com/photos?albumId=${albumId}`);
 
   }
 
-  getAlbums = function () {
+  getAlbums =  () => {
     return this.http.get('https://jsonplaceholder.typicode.com/albums');
     // return this.http.get('https://swapi.co/api/people');
   }
 
-  getStarWars = function () {
+  getStarWars =  () => {
     return this.http.get('https://swapi.co/api/people/1/?format=json');
   }
 

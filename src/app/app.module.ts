@@ -4,43 +4,43 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { JwtInterceptor, ErrorInterceptor } from './helpers';
-import { TitleCasePipe } from '@angular/common';
+// import { JwtInterceptor, ErrorInterceptor } from './helpers';
+// import { TitleCasePipe } from '@angular/common';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
   
 // DEVELOPMENT/PROD URL (replace file in angular.json) 
 import { environment } from '../environments/environment';
 
 // NEWS
-import { NewsPageComponent } from './components/news-page/news-page.component';
-import { NewsArticleSearchComponent } from './components/news-article-search/news-article-search.component';
-import { NewsArticleResultsComponent } from './components/news-article-results/news-article-results.component';
-import { NewsToolBarComponent } from './components/news-tool-bar/news-tool-bar.component';
+// import { NewsPageComponent } from './components/news-page/news-page.component';
+// import { NewsArticleSearchComponent } from './components/news-article-search/news-article-search.component';
+// import { NewsArticleResultsComponent } from './components/news-article-results/news-article-results.component';
+// import { NewsToolBarComponent } from './components/news-tool-bar/news-tool-bar.component';
 
 // GROOT-MARVEL
-import { GrootComponent } from './components/groot/groot.component';
-import { PhotosComponent } from './components/photos/photos.component'; 
+// import { GrootComponent } from './components/groot/groot.component';
+// import { PhotosComponent } from './components/photos/photos.component'; 
 import { StarwarsComponent } from './components/starwars/starwars.component';
 import { MarvelComponent } from './components/marvel/marvel.component';
 import { BookComponent } from './components/book/book.component'; 
-import { GrootologueComponent } from './components/grootologue/grootologue.component';
+// import { GrootologueComponent } from './components/grootologue/grootologue.component';
 
 // LAYOUT
 import { NavComponent } from './components/layout/nav/nav.component';
 import { ContactusComponent } from './components/layout/contactus/contactus.component';
 import { AboutComponent } from './components/layout/about/about.component';
-import { LoginComponent } from './components/users/login/login.component';
-import { RegisterComponent } from './components/users/register/register.component';
+// import { LoginComponent } from './components/users/login/login.component';
+// import { RegisterComponent } from './components/users/register/register.component';
 
 // SERVICES
 import { BookService } from './services/book.service';
 import { GrootService } from './services/groot.service';
-import { NewsService } from './services/news.service';
-import { PipeCapitalizeCategoryPipe } from './utility/pipe-capitalize-category.pipe';
+// import { NewsService } from './services/news.service';
+// import { PipeCapitalizeCategoryPipe } from './utility/pipe-capitalize-category.pipe';
 
 // STORE
-import { StoreModule } from '@ngrx/store';
-import {  reducers} from './reducers'; //, metaReducers 
+// import { StoreModule } from '@ngrx/store';
+// import {  reducers} from './reducers'; //, metaReducers 
 
 
 import { LayoutModule } from '@angular/cdk/layout';
@@ -59,30 +59,34 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatDatepickerModule } from '@angular/material/datepicker'; 
 // import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { MatNativeDateModule } from '@angular/material/core';
-import { UsersComponent } from './components/users/users.component';
-import { AlertComponent } from './utility/alert.component'; 
+// import { UsersComponent } from './components/users/users.component';
+import { AlertComponent } from './utility/alert.component';
+import { NftsComponent } from './components/crypto/nfts.component';
+import { NftComponent } from './components/crypto/nft/nft.component'; 
 
 @NgModule({
   declarations: [
     AppComponent,
-    GrootComponent,
-    PhotosComponent,
+    // GrootComponent,
+    // PhotosComponent,
     StarwarsComponent,
     MarvelComponent,
     AboutComponent,
-    GrootologueComponent,
+    // GrootologueComponent,
     ContactusComponent,
     NavComponent,
-    LoginComponent,
-    RegisterComponent,
+    // LoginComponent,
+    // RegisterComponent,
     BookComponent,
-    NewsPageComponent,
-    NewsArticleSearchComponent,
-    NewsArticleResultsComponent,
-    NewsToolBarComponent,
-    PipeCapitalizeCategoryPipe,
-    UsersComponent,
-    AlertComponent 
+    // NewsPageComponent,
+    // NewsArticleSearchComponent,
+    // NewsArticleResultsComponent,
+    // NewsToolBarComponent,
+    // PipeCapitalizeCategoryPipe,
+    // UsersComponent,
+    AlertComponent,
+    NftsComponent,
+    NftComponent 
   ],
   imports: [
     BrowserModule,
@@ -105,23 +109,23 @@ import { AlertComponent } from './utility/alert.component';
     FlexLayoutModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    StoreModule.forRoot(reducers
-    //  ,{
-    //   metaReducers,
-    //   runtimeChecks: {
-    //     strictStateImmutability: true,
-    //     strictActionImmutability: true
-    //   }
-    // }
-    )
+    // StoreModule.forRoot(reducers
+              //  ,{
+              //   metaReducers,
+              //   runtimeChecks: {
+              //     strictStateImmutability: true,
+              //     strictActionImmutability: true
+              //   }
+    //           }
+    // )
   ],
   providers: [ 
     BookService,
     GrootService,
-    NewsService,
-    TitleCasePipe,
-     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-        { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    // NewsService,
+    // TitleCasePipe,
+    //  { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+        // { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
   bootstrap: [AppComponent]
 })

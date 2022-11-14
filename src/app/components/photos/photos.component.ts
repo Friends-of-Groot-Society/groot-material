@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core'; 
 import { GrootService } from '../../services/groot.service';
 import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
 @Component({
   selector: 'app-photos',
   templateUrl: './photos.component.html',
@@ -8,15 +9,15 @@ import { ActivatedRoute } from '@angular/router';
 })
 
 export class PhotosComponent implements OnInit {
-  photos;
-  albumId;
+  photos: Observable<Object> | undefined;
+  albumId: any;
   constructor(
     private grootService: GrootService,
     private route: ActivatedRoute,
   ) { }
 
   ngOnInit() {
-    this.albumId = this.route.snapshot.params.albumId;
+    this.albumId = this.route.snapshot.params['albumId'];
     this.photos = this.grootService.getPhotos(this.albumId);
   }
 
