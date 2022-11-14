@@ -1,0 +1,18 @@
+<div class="menu">
+  <mat-toolbar color="primary">
+    <mat-toolbar class="logo-box" routerLink="/">
+      <img class="logo" alt="DailyTech Logo" src="assets/groot.png" />
+    </mat-toolbar>
+    <div fxHide.gt-xs>
+      <button mat-icon-button (click)="onToggleSidenav()">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </div> 
+    <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs id="menu-list">
+      <a mat-list-item routerLink="/add-nft" class="nav-link daily-tech monoton">add NFT</a>
+      <a mat-list-item routerLink="/about" class="nav-link daily-tech monoton">about</a>
+      <!-- <a mat-list-item routerLink="/blogs" class="nav-link daily-tech monoton">BLOG</a> -->
+      <!-- <a mat-list-item routerLink="/news" class="nav-link daily-tech monoton">NEWS</a>  -->
+    </div>
+  </mat-toolbar>
+</div>

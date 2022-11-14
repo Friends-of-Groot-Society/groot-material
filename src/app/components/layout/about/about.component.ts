@@ -17,7 +17,7 @@ export class AboutComponent implements OnInit {
     this.greeting();
 
   }
-   info:string = "Information";
+   info:string = "";
   greeting() {
     let result: Promise<any> = this.http.get<any>("https://z3noflrq9b.execute-api.us-east-1.amazonaws.com/dev/posts").toPromise();
 

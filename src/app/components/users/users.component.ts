@@ -14,10 +14,10 @@ export class UsersComponent implements OnInit {
     // throw new Error("Method not implemented.");
 
     //  this.userService.getUser(22).subscribe(user => this.user = user);
-    this.getAllUsers();
+    this.getAllUsers(); 
   }
 
- id!: number;
+ id!: string;
 
  user: User = new User;
 
@@ -27,7 +27,7 @@ export class UsersComponent implements OnInit {
     // on page load first piece of data
   }
  
- public getThisUser(id: number) {
+ public getThisUser(id: string) {
    this.userService.getUser(id).subscribe(user=>this.user = user);
  }
   public getUser() {

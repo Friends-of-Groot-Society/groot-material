@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { NftsService } from './nfts.service';
+import { NftsService } from '../../services/nfts.service';
 
 @Component({
   selector: 'app-nfts',
@@ -12,7 +12,7 @@ export class NftsComponent implements OnInit, OnDestroy {
    
   nftName: string = 'OneNFT';
   isDisabled: boolean = true;
-  nfts: any[] = ['NFT1', 'NFT2', 'NFT3'];
+  nfts!: any[]; 
   private nftSubscription: Subscription = new Subscription;
   
   constructor(
@@ -30,17 +30,7 @@ export class NftsComponent implements OnInit, OnDestroy {
         this.nfts = this.nftsService.getNfts();
       });
     }
-  
-  onAddNft(form: { valid: any; value: { nftName: string; }; }) {
-    //this.nfts.push(this.name);
-    if(form.valid) {
-      this.nftsService.addNft(form.value.nftName);
-    }
-  }
-  onDeleteNft(nftName: string) {
-    this.nfts = this.nfts.filter(nft => { return nft !== nftName; });
-    // this.nfts = this.nftsService.deleteNft(nftName);
-  }
+   
   ngOnDestroy(): void {
     this.nftSubscription.unsubscribe();
   }

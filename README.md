@@ -132,7 +132,7 @@ json-server info.json --watch
  
 
 
-///////////// package.json
+///////////// missing package.json
     // "@types/jasminewd2": "~2.0.3",
     // "@types/node": "^12.11.1",
     // "codelyzer": "^5.1.2",
