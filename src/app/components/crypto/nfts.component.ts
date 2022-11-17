@@ -10,24 +10,26 @@ import { NftsService } from '../../services/nfts.service';
 
 export class NftsComponent implements OnInit, OnDestroy {
    
-  nftName: string = 'OneNFT';
+  name: string = 'OneNFT';
+  
+        
+  nftMetadata: any;
   isDisabled: boolean = true;
-  nfts!: any[]; 
+  nfts: any[] = [   ];
   private nftSubscription: Subscription = new Subscription;
   
   constructor(
     private nftsService: NftsService
   ) { 
-    setTimeout(() => {
-      // this.name = 'TwoNFT';
+    setTimeout(() => { 
       this.isDisabled = false;
       }, 3000); 
   }
   
     ngOnInit(): void {
-      this.nfts = this.nftsService.getNfts();
+      this.nfts = this.nftsService.collectNfts();
       this.nftSubscription = this.nftsService.nftsUpdated.subscribe(() => {
-        this.nfts = this.nftsService.getNfts();
+        this.nfts = this.nftsService.collectNfts();
       });
     }
    

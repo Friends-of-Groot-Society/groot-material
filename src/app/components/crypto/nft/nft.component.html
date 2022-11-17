@@ -4,14 +4,11 @@
 
     
     <div  fxLayout="column" fxLayoutAlign="center center"  fxLayoutGap="10px">
-        <h3 class="child">{{nft.nftName}}</h3>
-        <img src="{{nft.image}}"  class="child" alt="nft image"> 
-        </div>
-    
-        <div fxLayout="column" fxLayoutAlign="center center"  fxLayoutGap="10px">
-            <p class="child">{{nft.description}}</p>
-            <p class="child">Price: {{nft.price}}</p>
-            <p class="child">Owner: {{nft.owner}}</p>
+        <h5 class="child">{{ firstName}}</h5>
+        <img src="{{this.firstImage}}" class="img-fluid" alt="nft image" /> 
+        <h5 class="child">{{ secondName}}</h5>
+        <img src="{{this.secondImage}}"  class="img-fluid" alt="nft image" /> 
+         
         </div>
 
 </div>

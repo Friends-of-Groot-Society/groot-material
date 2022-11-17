@@ -13,7 +13,7 @@ import { environment } from '../environments/environment';
 
 // GROOT-MARVEL
 // import { GrootComponent } from './components/groot/groot.component';
-// import { PhotosComponent } from './components/photos/photos.component'; 
+import { PhotosComponent } from './components/photos/photos.component'; 
 import { StarwarsComponent } from './components/starwars/starwars.component';
 import { MarvelComponent } from './components/marvel/marvel.component';
 import { BookComponent } from './components/book/book.component'; 
@@ -42,7 +42,7 @@ import { NftAddComponent } from './components/crypto/nft-add/nft-add.component';
   declarations: [
     AppComponent,
     // GrootComponent,
-    // PhotosComponent,
+    PhotosComponent,
     StarwarsComponent,
     MarvelComponent,
     AboutComponent,
