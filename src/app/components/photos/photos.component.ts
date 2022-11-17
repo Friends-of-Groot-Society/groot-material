@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core'; 
+import { Component, OnInit, OnDestroy } from '@angular/core'; 
 import { GrootService } from '../../services/groot.service';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 @Component({
   selector: 'app-photos',
   templateUrl: './photos.component.html',
@@ -9,8 +9,10 @@ import { Observable } from 'rxjs';
 })
 
 export class PhotosComponent implements OnInit {
-  photos: Observable<Object> | undefined;
-  albumId: any;
+  // photos!: Observable<Object>;
+  photos: any; //Subscription | undefined;
+  private  photo:any;
+      albumId: any = '0';
   constructor(
     private grootService: GrootService,
     private route: ActivatedRoute,
@@ -18,7 +20,20 @@ export class PhotosComponent implements OnInit {
 
   ngOnInit() {
     this.albumId = this.route.snapshot.params['albumId'];
-    this.photos = this.grootService.getPhotos(this.albumId);
-  }
+    // this.photos = this.grootService.getPhotos(this.albumId);
+    this.route.paramMap.subscribe(params => {
+      this.albumId = params.get('albumId');
+    this.grootService.getPhotos(this.albumId)
+      .subscribe(data => {
+        this.photos = data;
+      });
+    });
+      
+  // OnDestroy() {
+  //   if (this.photos) {
+  //     this.photos.unsubscribe();
+  //   }
+  // }
 
+  }
 }

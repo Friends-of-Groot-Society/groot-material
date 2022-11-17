@@ -5,8 +5,8 @@
    <hr>
    <h4>Page {{albumId}}</h4>
    <hr class="short-hr" />
-  <div class="row">
-    <div class="col-md-3 photo" *ngFor="let photo of photos | async">
+  <div class="row" *ngIf="photos"> 
+    <div class="col-md-3 photo" *ngFor="let photo of photos">
       <img src={{photo.url}} class="img-fluid" />
     </div>
   </div>
