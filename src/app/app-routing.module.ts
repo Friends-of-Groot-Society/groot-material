@@ -28,7 +28,7 @@ const routes: Routes = [
   // {path : 'groot/:grootId', component : BookComponent},
  
   // { path: 'members', component: UsersComponent },
-  { path: 'photos/:albumId', component: PhotosComponent }, 
+  { path: 'tiles/:albumId', component: PhotosComponent }, 
   // { path: 'search', component: NewsArticleSearchComponent },
    
   // {path : 'grootologue', component : GrootologueComponent},

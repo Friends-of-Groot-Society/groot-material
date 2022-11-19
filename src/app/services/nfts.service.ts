@@ -26,6 +26,7 @@ export class NftsService {
   nfts: any = [];
   image: string = "";
   name: string = "";
+  description: string = "";
   
   nftsUpdated = new Subject<any[]>();
   key:string = '';
@@ -50,7 +51,7 @@ export class NftsService {
 
         this.nfts = data.nfts;
         console.log(this.nfts); 
- 
+ console.log(this.nfts[0])
         this.nftsUpdated.next([...this.nfts]);
       }
       })
@@ -78,6 +79,14 @@ export class NftsService {
   getSecondNftName() {
     this.name = this.nfts[1].metadata.name;
     return this.name
+  }
+  getFirstNftDesc() {
+    this.description = this.nfts[0].metadata.description;
+    return this.description
+  }
+  getSecondNftDesc() {
+    this.description = this.nfts[1].metadata.description;
+    return this.description
   }
   getTokens() {
     return [...this.tokens];
