@@ -7,6 +7,7 @@ import { Observable, throwError } from "rxjs";
 // import { EvmChain } from '@moralisweb3/evm-utils'
 
 import { Subject } from 'rxjs';
+import { compileDeclareNgModuleFromMetadata } from '@angular/compiler';
 
 @Injectable({
   providedIn: 'root'
@@ -21,13 +22,12 @@ export class NftsService {
   // chainGoerli = EvmChain.GOERLI;
 
   chain: string = 'eth';
-  nftItem: any;
+  nftData: any;
   tokens: any = [];
   nfts: any = [];
   image: string = "";
   name: string = "";
-  description: string = "";
-
+  description: string = ""; 
   nftsUpdated = new Subject<any[]>();
   key: string = '';
   constructor(
@@ -37,22 +37,13 @@ export class NftsService {
     this.key = this.keyService.getMoralisKey();
     // this.connectNfts();
   }
-
+ 
   collectNfts() {
 
-    this.http.get(`${environment.nft_url}`)
+    this.http.get(`${environment.nft_url}/nft`)
       .subscribe((data: any) => {
-        if (data != undefined) {
-          this.nftItem = data;
-          console.log(data);
-
-          this.tokens = data.tokens;
-          console.log(this.tokens);
-          console.log(this.tokens.length);
-
-          this.nfts = data.nfts;
-          console.log(this.nfts);
-          console.log(this.nfts[0])
+        if (data != undefined) {  
+          this.nfts = data.nfts; 
           this.nftsUpdated.next([...this.nfts]);
         }
       })
@@ -60,15 +51,15 @@ export class NftsService {
   }
 
   replaceNfts(chain: string, address: string) {
-    this.http.get(`${environment.nft_url}/${chain}/${address}`)
+    this.http.get(`${environment.nft_url}/nft/${chain}/${address}`)
       .subscribe((data: any) => {
         if (data != undefined) {
-          this.nftItem = data;
-          console.log(data);
+          this.nftData = data;
+          console.log("this.nftData")
+          console.log(this.nftData);
 
           this.tokens = data.tokens;
-          console.log(this.tokens);
-          console.log(this.tokens.length);
+
 
           this.nfts = data.nfts;
           console.log(this.nfts);
@@ -76,40 +67,16 @@ export class NftsService {
           this.nftsUpdated.next([...this.nfts]);
         }
       })
+      return this.nfts;
   }
-
+ 
   addNft(nftName: string) {
     // this.nfts.push(...this.nfts);
     // this.nftsUpdated.next(this.nfts);
     this.nfts.push(nftName);
     this.nftsUpdated.next([...this.nfts]);
   }
-
-  getFirstNftImage() {
-    this.image = this.nfts[0].metadata.image;
-    return this.image
-  }
-  getSecondNftImage() {
-    this.image = this.nfts[1].metadata.image;
-    return this.image
-  }
-
-  getFirstNftName() {
-    this.name = this.nfts[0].metadata.name;
-    return this.name
-  }
-  getSecondNftName() {
-    this.name = this.nfts[1].metadata.name;
-    return this.name
-  }
-  getFirstNftDesc() {
-    this.description = this.nfts[0].metadata.description;
-    return this.description
-  }
-  getSecondNftDesc() {
-    this.description = this.nfts[1].metadata.description;
-    return this.description
-  }
+ 
   getTokens() {
     return [...this.tokens];
   }
