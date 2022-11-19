@@ -9,7 +9,7 @@ export class NewsService {
 
   constructor(    private http: HttpClient   ) { }
 
-  search(data) {
+  search(data:any) {
     let params: HttpParams = new HttpParams();
     params = params.set('api-key', environment.apiKeyNYT);
     if (data.q !== undefined) {

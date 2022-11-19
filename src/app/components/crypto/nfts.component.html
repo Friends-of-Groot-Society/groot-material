@@ -1,16 +1,5 @@
-
-
-<section>
-  <div fxLayout="column" fxLayoutAlign="center center"> 
-  <app-nft   *ngFor="let nft of nfts" [nftName]="nft"></app-nft>
-  </div>
-</section> 
-  <!-- <app-nft *ngFor="let nft of nfts" [nft]="nft"></app-nft> -->
-  
-    <!-- <div *ngFor="let nft of nfts">
-        <p>{{nft.name}}</p>
-        <p>{{nft.description}}</p>
-        <p>{{nft.image}}</p>
-        <p>{{nft.price}}</p>
-        <p>{{nft.owner}}</p>
-    </div> -->
+<section> 
+    <div fxLayout="row" fxLayoutAlign="center center" *ngIf="nfts">
+      <app-nft *ngFor="let nft of nfts" [nft]="nft"></app-nft>
+    </div> 
+</section>

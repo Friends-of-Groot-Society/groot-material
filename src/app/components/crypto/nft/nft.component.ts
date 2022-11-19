@@ -9,12 +9,43 @@ import { NftsService } from '../../../services/nfts.service';
 })
 
 export class NftComponent implements OnInit { 
-  @Input() nftName: string = 'OneNFT';
-  @Input() description: string = 'Please enter a description';
+  @Input() nft: any;
+  @Input() name: string = 'OneNFT';
+  @Input() description:any
   @Input() image: string = 'assets/grootr.png';
   @Output() nftDeleted = new EventEmitter();
-  
-  nft: any = {
+   
+  // firstImage:string = '';
+  // secondImage:string = '';
+  // firstName:string = '';
+  // secondName:string = '';
+  // getFirstNftDesc: string = '';
+  // getSecondNftDesc: string = '';
+
+  // nft: any = {
+  //   name: 'TwoNFT',
+  //   amount: 1,
+  //   metadata: [],
+  // }
+
+  constructor(private nftsService: NftsService) { }
+
+  ngOnInit(): void {
+    // this.nft.name = this.name;
+    // this.nft = this.nft;
+    // this.nft.description = this.description  ;
+    // this.firstImage = this.nftsService.getFirstNftImage()
+    // this.secondImage = this.nftsService.getSecondNftImage()
+    // this.firstName = this.nftsService.getFirstNftName()
+    // this.secondName = this.nftsService.getSecondNftName()
+    // this.getFirstNftDesc = this.nftsService.getFirstNftDesc()
+    // this.getSecondNftDesc = this.nftsService.getSecondNftDesc()
+    }
+  onClicked() {
+    // this.nftDeleted.emit(this.name);
+    this.nftsService.deleteNft(this.name);
+  }
+  nftData: any = {
     nftName: 'TwoNFT',
     description: 'This is the first NFT',
     image: 'assets/groot.png',
@@ -50,18 +81,4 @@ export class NftComponent implements OnInit {
     isForExchangeOut: false,
     isForBarterOut: false,
   };
- 
-
-  constructor(private nftsService: NftsService) { }
-
-  ngOnInit(): void {
-    this.nft.nftName = this.nftName;
-    this.nft = this.nft;
-    // this.nft.description = this.description  ;
-    // this.nft.image = this.image;
-  }
-  onClicked() {
-    // this.nftDeleted.emit(this.name);
-    this.nftsService.deleteNft(this.nftName);
-  }
 }
