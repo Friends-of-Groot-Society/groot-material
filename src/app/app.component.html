@@ -1,21 +1,3 @@
-   <!-- <mat-sidenav-container>  
- 
- 
-      <app-nav></app-nav>
-    </mat-sidenav>
-        <div class="contain">
-      <img width="275" class="logo" alt="Angular Logo" src="https://s3.amazonaws.com/friendsofgroot.com/assets/grootr.png">
-      <mat-sidenav-content>
-    
-      <div id='content' class="content-groot">
-           <router-outlet></router-outlet>  
-           <img width="275" class="logo" alt="Angular Logo" src="https://s3.amazonaws.com/friendsofgroot.com/assets/groot.png">
-      </div>
-
-      <app-footer></app-footer> 
-    </mat-sidenav-content> 
-  -->
-
     <mat-sidenav-container>
       <mat-sidenav #sidenav role="navigation">
         <app-sidenav-list (closeSidenav)="sidenav.close()"></app-sidenav-list>
@@ -25,10 +7,16 @@
  
         <app-menu (sidenavToggle)="sidenav.toggle()"></app-menu>
         <main> 
-          <h2 id="app-title">i3-earth</h2>
+          <h2 id="app-title">nft_tracker</h2>
+          <br />
                <router-outlet></router-outlet>  
-           <img width="275" class="logo" alt="Angular Logo" src="https://s3.amazonaws.com/friendsofgroot.com/assets/i3earth_t.png">
+             <div fxLayout="row" fxLayoutAlign="center center"> 
+              <img width="275" class="logo" alt="Angular Logo" src="https://s3.amazonaws.com/friendsofgroot.com/assets/grootr.png">
  
+               <img width="275" class="logo" alt="Angular Logo" src="https://s3.amazonaws.com/friendsofgroot.com/assets/groot.png">
+     
+ 
+            </div>
         </main>
        <app-footer></app-footer>
       </mat-sidenav-content>
