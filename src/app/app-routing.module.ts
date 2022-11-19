@@ -5,7 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { NftsComponent } from './components/crypto/nfts.component';
 import { NftAddComponent } from './components/crypto/nft-add/nft-add.component'; 
 import { BookComponent } from './components/book/book.component';
-// import { PhotosComponent } from './components/photos/photos.component';
+import { PhotosComponent } from './components/photos/photos.component';
 
 import { AboutComponent } from './components/layout/about/about.component';
 import { MarvelComponent } from './components/marvel/marvel.component';
@@ -28,11 +28,11 @@ const routes: Routes = [
   // {path : 'groot/:grootId', component : BookComponent},
  
   // { path: 'members', component: UsersComponent },
-  // { path: 'photos/:albumId', component: PhotosComponent }, 
+  { path: 'tiles/:albumId', component: PhotosComponent }, 
   // { path: 'search', component: NewsArticleSearchComponent },
    
   // {path : 'grootologue', component : GrootologueComponent},
-  {path : '*', redirectTo: '', pathMatch: 'full'},
+  // {path : '*', redirectTo: '', pathMatch: 'full'},
 
 ]; 
 @NgModule({

@@ -2,10 +2,10 @@
 <section>
   <form fxLayout="column" fxLayoutAlign="center center" (ngSubmit)="onAddNft(f)" #f="ngForm">
     <mat-form-field appearance="outline">
-      <mat-label>name</mat-label>
-      <input matInput type="text" name="nftName"  ngModel placeholder="NFT" required />
+      <mat-label>Ethereum Address</mat-label>
+      <input matInput type="text" name="nftAddress"  ngModel placeholder="NFT" required />
     </mat-form-field  >
-    <mat-form-field appearance="outline">
+    <!-- <mat-form-field appearance="outline">
       <mat-label>description</mat-label>
       <input matInput type="text" name="description"  ngModel placeholder="description" />
     </mat-form-field>
@@ -24,7 +24,7 @@
     <mat-form-field appearance="outline">
       <mat-label>category</mat-label>
       <input matInput type="text" name="owner" ngModel placeholder="owner" />
-    </mat-form-field> 
+    </mat-form-field>  -->
     <button mat-raised-button mat-icon-button   color="accent" type="submit">
       <mat-icon>add</mat-icon>
     </button>
@@ -32,7 +32,7 @@
 </section>
 <section>
   <div fxLayout="column" fxLayoutAlign="center center"> 
-  <app-nft (nftClicked)="onDeleteNft(nft)" *ngFor="let nft of nfts" [nftName]="nft"></app-nft>
+  <app-nft (nftClicked)="onDeleteNft(nft)" *ngFor="let nft of nfts" ></app-nft>
   </div>
 </section>
 <section>

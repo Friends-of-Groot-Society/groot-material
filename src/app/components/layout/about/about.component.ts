@@ -26,17 +26,7 @@ export class AboutComponent implements OnInit {
       
         console.log(res);
       }
-    );
-
-    // this.getGreeting().then(
-    //   (res) => {
-    //     document.getElementById("info").innerHTML = res.greeting;
-    //     console.log(res);
-    //   }, (res) => {
-    //     console.log(rej);
-    //   }
-    // );
-
+    ); 
 
   } 
  
