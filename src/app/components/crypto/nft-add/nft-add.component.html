@@ -1,30 +1,34 @@
 <h3>Add NFT</h3>
 <section>
-  <form fxLayout="column" fxLayoutAlign="center center" (ngSubmit)="onAddNft(f)" #f="ngForm">
-    <mat-form-field appearance="outline">
-      <mat-label>Ethereum Address</mat-label>
-      <input matInput type="text" name="nftAddress"  ngModel placeholder="NFT" required />
-    </mat-form-field  >
-    <!-- <mat-form-field appearance="outline">
-      <mat-label>description</mat-label>
-      <input matInput type="text" name="description"  ngModel placeholder="description" />
-    </mat-form-field>
-    <mat-form-field appearance="outline">
-      <mat-label>image</mat-label>
-      <input matInput type="text" name="image" ngModel placeholder="image" />
-    </mat-form-field> 
-    <mat-form-field appearance="outline">
-      <mat-label>price</mat-label>
-      <input matInput type="text" name="price" ngModel placeholder="price" />
-    </mat-form-field>
-    <mat-form-field appearance="outline">
-      <mat-label>quantity</mat-label>
-      <input matInput type="text" name="quantity" ngModel placeholder="quantity" />
-    </mat-form-field>
-    <mat-form-field appearance="outline">
-      <mat-label>category</mat-label>
-      <input matInput type="text" name="owner" ngModel placeholder="owner" />
-    </mat-form-field>  -->
+  <form fxLayout="column" fxLayoutAlign="center center" (ngSubmit)="replaceNft(f)" #f="ngForm">
+  <div fxLayout="row"  fxLayoutAlign=" center center">
+    <div fxLayout="column"  fxLayoutAlign=" center center" style="width:220px;" >
+      <mat-form-field  style="min-width:375px" appearance="outline">
+        <mat-label >Ethereum Address</mat-label>
+        <input matInput type="text" name="nftAddress" ngModel placeholder="NFT" minlength="42" required />
+      </mat-form-field  > 
+   
+    </div>
+    <div fxLayout="column" fxLayoutAlign=" end  " >
+      <button mat-raised-button [matMenuTriggerFor]="menu" style="min-width:100px;min-height:50px;transform:translate(80px,-10px);" aria-label="Chain menu">
+        <span >Chain</span>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>
+          <mat-icon>Ethereum</mat-icon>
+          <span>Ethereum</span>
+        </button>
+        <button mat-menu-item >
+          <mat-icon>Polygon</mat-icon>
+          <span>Polygon</span>
+        </button>
+        <button mat-menu-item disabled>
+          <mat-icon>Bitcoin</mat-icon>
+          <span>Bitcoin</span>
+        </button>
+      </mat-menu>
+    </div>
+  </div>
     <button mat-raised-button mat-icon-button   color="accent" type="submit">
       <mat-icon>add</mat-icon>
     </button>
@@ -32,25 +36,9 @@
 </section>
 <section>
   <div fxLayout="column" fxLayoutAlign="center center"> 
-  <app-nft (nftClicked)="onDeleteNft(nft)" *ngFor="let nft of nfts" ></app-nft>
+  <app-nft (nftClicked)="onDeleteNft(nft)" *ngFor="let nft of nfts" [nft]="nft"></app-nft>
   </div>
 </section>
 <section>
-    <div>
-        <code>
-            image: 'https://s3.amazonaws.com/tmm.net/img/blueColorTriomphe.jpg',
-            image: 'https://s3.amazonaws.com/tmm.net/img/blueColorTriomphe.jpg',
-            image: 'https://s3.amazonaws.com/tmm.net/img/blueColorTriomphe.jpg',
-            image: 'https://s3.amazonaws.com/tmm.net/img/blueColorTriomphe.jpg',
-        </code>
-    </div>
-</section>
-  <!-- <app-nft *ngFor="let nft of nfts" [nft]="nft"></app-nft> -->
-  
-    <!-- <div *ngFor="let nft of nfts">
-        <p>{{nft.name}}</p>
-        <p>{{nft.description}}</p>
-        <p>{{nft.image}}</p>
-        <p>{{nft.price}}</p>
-        <p>{{nft.owner}}</p>
-    </div> -->
+   
+</section> 
