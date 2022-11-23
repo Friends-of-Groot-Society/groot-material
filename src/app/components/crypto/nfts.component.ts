@@ -12,7 +12,7 @@ import { NftsService } from '../../services/nfts.service';
 export class NftsComponent implements OnInit, OnDestroy { 
   nfts: any[] = []; 
   private nftSubscription: Subscription = new Subscription; 
-
+  private blogSubscription: Subscription = new Subscription;
 
   constructor(
     private nftsService: NftsService
@@ -25,6 +25,9 @@ export class NftsComponent implements OnInit, OnDestroy {
       this.nfts = this.nftsService.collectNfts(); 
     });
     
+    this.nftSubscription = this.nftsService.nftsUpdated.subscribe(() => {
+      this.nfts = this.nftsService.collectNfts(); 
+    });
  
   }
 
