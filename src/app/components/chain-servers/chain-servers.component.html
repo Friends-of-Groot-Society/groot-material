@@ -1,0 +1,21 @@
+<div class="container">
+  <section fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="25px">
+
+    <div class="row">
+      <div fxLayout="column" fxLayoutAlign="end end">
+        <app-chain (serverCreated)="onServerAdded($event)" (bpCreated)="onBlueprintAdded($event)"></app-chain>
+
+        <button mat-raised-button color="primary" class="server-button" (click)="onChangeFirst()">Change Polygon
+          Element</button>
+        <button mat-raised-button color="primary" class="server-button" (click)="onDestroyFirst()">Destroy Polygon
+          Component</button>
+        <app-server *ngFor="let server of servers" [srvElement]="server" [name]="server.name">
+          <p #contentParagraph>
+            <strong *ngIf="server.type === 'server'" style="color: red">{{ server.content }}</strong>
+            <em *ngIf="server.type === 'blueprint'">{{ server.content }}</em>
+          </p>
+        </app-server>
+      </div>
+    </div>
+  </section>
+</div>

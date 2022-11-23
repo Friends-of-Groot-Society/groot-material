@@ -36,7 +36,11 @@ import { UsersComponent } from './components/users/users.component';
 import { AlertComponent } from './utility/alert.component';
 import { NftsComponent } from './components/crypto/nfts.component';
 import { NftComponent } from './components/crypto/nft/nft.component';
-import { NftAddComponent } from './components/crypto/nft-add/nft-add.component'; 
+import { NftAddComponent } from './components/crypto/nft-add/nft-add.component';
+import { ChainServersComponent } from './components/chain-servers/chain-servers.component';
+import { ChainComponent } from './components/chain-servers/chain/chain.component';
+import { ServerComponent } from './components/chain-servers/server/server.component'; 
+import { MatFormField } from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
@@ -44,6 +48,7 @@ import { NftAddComponent } from './components/crypto/nft-add/nft-add.component';
     // GrootComponent,
     PhotosComponent,
     StarwarsComponent,
+    // MatFormField,
     MarvelComponent,
     AboutComponent,
     // GrootologueComponent,
@@ -56,10 +61,14 @@ import { NftAddComponent } from './components/crypto/nft-add/nft-add.component';
     AlertComponent,
     NftsComponent,
     NftComponent,
-    NftAddComponent 
+    NftAddComponent,
+    ChainServersComponent,
+    ChainComponent,
+    ServerComponent 
   ],
   imports: [
     MaterialModule,
+    // MatFormField,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule, 
