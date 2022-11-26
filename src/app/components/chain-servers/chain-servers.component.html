@@ -11,8 +11,9 @@
           Component</button>
         <app-server *ngFor="let server of servers" [srvElement]="server" [name]="server.name">
           <p #contentParagraph>
-            <strong *ngIf="server.type === 'server'" style="color: red">{{ server.content }}</strong>
-            <em *ngIf="server.type === 'blueprint'">{{ server.content }}</em>
+            <strong *ngIf="server.type === 'server Polygon'"
+            [ngStyle]="{color: server.type === 'server Polygon'?'red':'blue'}">{{ server.content }}</strong>
+            <em *ngIf="server.type === 'blueprint Polygon'">{{ server.content }}</em>
           </p>
         </app-server>
       </div>

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { KeyService } from './auth/key.service';
 import { HttpHeaders, HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { environment } from "src/environments/environment";
-import { Observable, throwError } from "rxjs";
+import { catchError, Observable, throwError } from "rxjs";
 // import Moralis from 'moralis'.default();
 // import { EvmChain } from '@moralisweb3/evm-utils'
 
@@ -38,36 +38,15 @@ export class NftsService {
     // this.connectNfts();
   }
  
-  collectNfts() {
+  collectNfts():Observable<any>  { 
+   return  this.http.get(`${environment.nft_url}/nft`)    
+   .pipe(catchError(this.handleError)); 
 
-    this.http.get(`${environment.nft_url}/nft`)
-      .subscribe((data: any) => {
-        if (data != undefined) {  
-          this.nfts = data.nfts; 
-          this.nftsUpdated.next([...this.nfts]);
-        }
-      })
-    return this.nfts;
   }
 
-  replaceNfts(chain: string, address: string) {
-    this.http.get(`${environment.nft_url}/nft/${chain}/${address}`)
-      .subscribe((data: any) => {
-        if (data != undefined) {
-          this.nftData = data;
-          console.log("this.nftData")
-          console.log(this.nftData);
-
-          this.tokens = data.tokens;
-
-
-          this.nfts = data.nfts;
-          console.log(this.nfts);
-          console.log(this.nfts[0])
-          this.nftsUpdated.next([...this.nfts]);
-        }
-      })
-      return this.nfts;
+  replaceNfts(chain: string, address: string):Observable<any> {
+    return this.http.get(`${environment.nft_url}/nft/${chain}/${address}`)
+    .pipe(catchError(this.handleError)); 
   }
  
   addNft(nftName: string) {
@@ -80,16 +59,24 @@ export class NftsService {
   getTokens() {
     return [...this.tokens];
   }
-  getNfts() {
-    return [...this.nfts];
-  }
+ 
   deleteNft(nftName: string) {
     this.nfts = this.nfts.filter((nft: string) => {
       return nft !== nftName;
     });
     this.nftsUpdated.next(this.nfts);
   }
-
+  private handleError(error: HttpErrorResponse): Observable<never> {
+    if (error.error instanceof ErrorEvent) { 
+      console.error('An error occurred:', error.error.message);
+    } else { 
+      console.error(
+        `Backend returned code ${error.status}, ` + `body was: ${error.error}`
+      );
+    }
+    // returns an observable with a user-facing error message
+    return throwError(() => new Error('Something bad happened; please try again later.'));
+  }
   // Chain and its wrapper token address data
   networkData = [
     {
