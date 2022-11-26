@@ -1,15 +1,52 @@
 
 <br />
 <h3>About The Society</h3>
-<hr >
-<p  >{{info}}</p>
-
+<hr > 
+ 
 <div class="about container">
-  <p>This website is designed for the web3 experimentation and development, intended for fellow Groot fans in an web3 development environment. 
-  Find news, events, photos, and other Groot-related features in the groot society database. Please
-    feel free to Contact the Society for News and Updates! <br />
-   
-</p> 
+
+  <div class="row">
+    <div class="col-md-6"> 
+      <mat-tab-group>
+        <mat-tab label="About">
+          <p>{{about}}</p>
+          <div [innerHTML]="web3$  |  async "></div>
+        </mat-tab>
+        <mat-tab label="Mission">
+          <p>{{mission}}</p>
+        </mat-tab>
+        <mat-tab label="Vision">
+          <p>{{vision}}</p>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+    <div class="col-md-6">
+      <h3>Our Team</h3>
+      <hr >
+      <div class="row">
+        <div class="col-md-6">
+          <div class="card">
+            <img src="https://i.imgur.com/1ZQ3Z0M.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card">
+            <img src="https://i.imgur.com/1ZQ3Z0M.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 <p> Questions, Comments, Complaints? Contact <a href="mailto:tmaestas@armchairbitcoinist.com">Groot Society Moderator</a></p>
 <br />
 <app-contactus class="footer"></app-contactus>  
