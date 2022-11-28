@@ -10,7 +10,7 @@ import { NftsService } from '../../../services/nfts.service';
 
 export class NftComponent implements OnInit { 
   @Input('inputNft') nft: any;  
- 
+ @Input() nftData: any;
   @Output() nftDeleted = new EventEmitter();
   viewNft() {} 
     constructor(private nftsService: NftsService) { }
@@ -22,7 +22,7 @@ export class NftComponent implements OnInit {
     // this.nftDeleted.emit(this.name);
     this.nftsService.deleteNft(this.nft.name);
   }
-  nftData: any = {
+  newNftData: any = {
     nftName: 'TwoNFT',
     description: 'This is the first NFT',
     image: 'assets/groot.png',

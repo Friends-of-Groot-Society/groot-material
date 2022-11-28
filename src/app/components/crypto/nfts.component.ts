@@ -15,26 +15,32 @@ export class NftsComponent implements OnInit, OnDestroy {
   tokens: any = [];
   nftsUpdated = new Subject<any[]>();
   private nftSubscription: Subscription = new Subscription; 
- 
-
+  
   constructor(
     private nftsService: NftsService
   ) {
     this.nfts = this.loadNfts();
+    this.nftData = this.showChainData();
   }
 
   ngOnInit(): void { 
 
 
+    // this.nftSubscription = this.nftsService.chainDataUpdated.subscribe(() => {
+    //   this.nfts = this.nftsService.collectNfts(); 
+    // });
+         
     this.nftSubscription = this.nftsService.nftsUpdated.subscribe(() => {
       this.nfts = this.nftsService.collectNfts(); 
-    });
-    
-    this.nftSubscription = this.nftsService.nftsUpdated.subscribe(() => {
-      this.nfts = this.nftsService.collectNfts(); 
+      this.nftData = this.showChainData();
     });
  
   }
+showChainData( ) {
+return this.nftData;
+console.log("chain",this.nftData);
+}
+
   loadNfts() {
     this.nfts = this.nftsService.collectNfts()  
     .subscribe((data: any) => {
@@ -47,7 +53,7 @@ export class NftsComponent implements OnInit, OnDestroy {
 
        this.nfts = data.nfts;
        console.log(this.nfts);
-       console.log(this.nfts[0])
+       console.log(this.nfts[0]); 
        this.nftsUpdated.next([...this.nfts]);
      }
    }); }

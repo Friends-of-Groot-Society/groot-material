@@ -14,6 +14,9 @@ import { compileDeclareNgModuleFromMetadata } from '@angular/compiler';
 })
 
 export class NftsService {
+  collectChainData(): any {
+    throw new Error('Method not implemented.');
+  }
   // chainEth = EvmChain.ETHEREUM;
   // chainBsc= EvmChain.BSC;
   // chainPolygon = EvmChain.POLYGON;
@@ -25,17 +28,17 @@ export class NftsService {
   nftData: any;
   tokens: any = [];
   nfts: any = [];
-  image: string = "";
-  name: string = "";
-  description: string = ""; 
+ 
   nftsUpdated = new Subject<any[]>();
+  chainDataUpdated = new Subject<any>();
+
   key: string = '';
   constructor(
     private http: HttpClient,
     private keyService: KeyService
   ) {
     this.key = this.keyService.getMoralisKey();
-    // this.connectNfts();
+    
   }
  
   collectNfts():Observable<any>  { 

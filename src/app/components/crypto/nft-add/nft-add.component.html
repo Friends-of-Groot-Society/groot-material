@@ -36,7 +36,11 @@
 </section>
 <section>
   <div fxLayout="column" fxLayoutAlign="center center"> 
-  <app-nft (nftClicked)="onDeleteNft(nft)" *ngFor="let nft of nfts" [inputNft]="nft"></app-nft>
+  <app-nft (nftClicked)="onDeleteNft(nft)" 
+  *ngFor="let nft of nfts" 
+  [inputNft]="nft"
+  [nftData]="nftData"
+  ></app-nft>
   </div>
 </section>
 <section>
