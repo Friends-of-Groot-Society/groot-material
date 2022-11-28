@@ -6,6 +6,8 @@ import { NftsComponent } from './components/crypto/nfts.component';
 import { NftAddComponent } from './components/crypto/nft-add/nft-add.component'; 
 import { BookComponent } from './components/book/book.component';
 import { PhotosComponent } from './components/photos/photos.component';
+import { ChainServersComponent } from './components/chain-servers/chain-servers.component';
+import { ChainComponent } from './components/chain-servers/chain/chain.component';
 
 import { AboutComponent } from './components/layout/about/about.component';
 import { MarvelComponent } from './components/marvel/marvel.component';
@@ -23,12 +25,14 @@ const routes: Routes = [
   { path: 'add-nft', component: NftAddComponent },
   {path : 'about', component : AboutComponent},
   {path : 'contact', component : ContactusComponent},
+  {path: 'servers', component: ChainServersComponent},
   // { path: 'marvel', component: MarvelComponent },
   // { path: 'marvel/:guardiansId', component: MarvelComponent },
   // {path : 'groot/:grootId', component : BookComponent},
  
   // { path: 'members', component: UsersComponent },
-  { path: 'tiles/:albumId', component: PhotosComponent }, 
+  { path: 'tiles', component: PhotosComponent }, 
+  // { path: 'tiles/:albumId', component: PhotosComponent }, 
   // { path: 'search', component: NewsArticleSearchComponent },
    
   // {path : 'grootologue', component : GrootologueComponent},

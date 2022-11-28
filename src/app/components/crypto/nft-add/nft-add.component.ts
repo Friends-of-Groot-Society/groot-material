@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatMenuTrigger } from '@angular/material/menu';
  
-import { Subscription } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
 import { NftsService } from '../../../services/nfts.service';
 
 @Component({
@@ -13,19 +13,32 @@ import { NftsService } from '../../../services/nfts.service';
 export class NftAddComponent implements OnInit, OnDestroy {
   @ViewChild(MatMenuTrigger) trigger!: MatMenuTrigger;
 
-  nftAddress: string = "";
+  // 
+
   chain: string = 'eth'; // default chain
-  nfts: any[] = [   ];
+  nftData: any;
+  tokens: any = [];
+  nfts: any 
+  image: string = "";
+  name: string = "";
+  description: string = ""; 
+  nftsUpdated = new Subject<any[]>();
+  key: string = ''; 
+  nftAddress: string = "";
+ 
+ 
   private nftSubscription: Subscription = new Subscription;
   
   constructor(
     private nftsService: NftsService
-  ) {     }
+  ) {  
+    this.nfts = this.loadNfts()
+     }
   
     ngOnInit(): void {
-      this.nfts = this.nftsService.getNfts();
+
       this.nftSubscription = this.nftsService.nftsUpdated.subscribe(() => {
-        this.nfts = this.nftsService.getNfts();
+        this.nfts = this.nftsService.collectNfts();
       });
     }
   
@@ -33,11 +46,27 @@ export class NftAddComponent implements OnInit, OnDestroy {
       this.trigger.openMenu();
     }
 
-    replaceNft(form: { valid: any; value: { chain: string, nftAddress: string; }; }) {
+    formReplaceNft(form: { valid: any; value: { chain: string, nftAddress: string; }; }) {
     
       if(form.valid) {
-        this.nftsService.replaceNfts(this.chain, form.value.nftAddress);
+        this.nftsService.replaceNfts(this.chain, form.value.nftAddress)
+        .subscribe((data: any) => {
+          if (data != undefined) {
+            this.nftData = data;
+            console.log("this.nftData")
+            console.log(this.nftData);
+  
+            this.tokens = data.tokens; 
+  
+            this.nfts = data.nfts;
+            console.log(this.nfts);
+            console.log(this.nfts[0])
+            this.nftsUpdated.next([...this.nfts]);
+          }
+        })
+        return this.nfts;
       }
+
     }
 
   onAddNft(form: { valid: any; value: { nftAddress: string; }; }) {
@@ -46,8 +75,25 @@ export class NftAddComponent implements OnInit, OnDestroy {
       this.nftsService.addNft(form.value.nftAddress);
     }
   }
+  loadNfts() {
+    this.nfts = this.nftsService.collectNfts() 
+    .subscribe((data: any) => {
+      if (data != undefined) {
+        this.nftData = data;
+        console.log("this.nftData")
+        console.log(this.nftData);
+
+        this.tokens = data.tokens; 
+
+        this.nfts = data.nfts;
+        console.log(this.nfts);
+        console.log(this.nfts[0])
+        this.nftsUpdated.next([...this.nfts]);
+      }
+    }); 
+  }
   onDeleteNft(nftAddress: string) {
-    this.nfts = this.nfts.filter(nft => { return nft !== nftAddress; });
+    this.nfts = this.nfts.filter((nft: string) => { return nft != nftAddress; });
     // this.nfts = this.nftsService.deleteNft(nftName);
   }
   ngOnDestroy(): void {

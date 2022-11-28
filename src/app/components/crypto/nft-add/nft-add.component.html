@@ -1,6 +1,6 @@
 <h3>Add NFT</h3>
 <section>
-  <form fxLayout="column" fxLayoutAlign="center center" (ngSubmit)="replaceNft(f)" #f="ngForm">
+  <form fxLayout="column" fxLayoutAlign="center center" (ngSubmit)="formReplaceNft(f)" #f="ngForm">
   <div fxLayout="row"  fxLayoutAlign=" center center">
     <div fxLayout="column"  fxLayoutAlign=" center center" style="width:220px;" >
       <mat-form-field  style="min-width:375px" appearance="outline">
@@ -36,7 +36,11 @@
 </section>
 <section>
   <div fxLayout="column" fxLayoutAlign="center center"> 
-  <app-nft (nftClicked)="onDeleteNft(nft)" *ngFor="let nft of nfts" [inputNft]="nft"></app-nft>
+  <app-nft (nftClicked)="onDeleteNft(nft)" 
+  *ngFor="let nft of nfts" 
+  [inputNft]="nft"
+  [nftData]="nftData"
+  ></app-nft>
   </div>
 </section>
 <section>
