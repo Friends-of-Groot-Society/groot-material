@@ -25,7 +25,7 @@ export class NftAddComponent implements OnInit, OnDestroy {
   nftsUpdated = new Subject<any[]>();
   key: string = ''; 
   nftAddress: string = "";
-
+ 
  
   private nftSubscription: Subscription = new Subscription;
   

@@ -41,6 +41,7 @@ import { ChainServersComponent } from './components/chain-servers/chain-servers.
 import { ChainComponent } from './components/chain-servers/chain/chain.component';
 import { ServerComponent } from './components/chain-servers/server/server.component'; 
 import { MatFormField } from '@angular/material/form-field';
+import { ChaindataComponent } from './components/crypto/chaindata/chaindata.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import { MatFormField } from '@angular/material/form-field';
     NftAddComponent,
     ChainServersComponent,
     ChainComponent,
-    ServerComponent 
+    ServerComponent,
+    ChaindataComponent 
   ],
   imports: [
     MaterialModule,
