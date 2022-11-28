@@ -66,8 +66,7 @@ getFilteredGroot(genre: String):  Observable<Groot[]> {
 
   getPhotos(albumId: any) {
     return this.http.get(`https://jsonplaceholder.typicode.com/photos?albumId=${albumId}`);
-    // return this.http.get(`https://jsonplaceholder.typicode.com/photos?albumId=${albumId}`);
-
+   
   }
 
   getAlbums =  () => {

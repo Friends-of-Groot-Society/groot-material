@@ -1,12 +1,15 @@
-.contain {
-    background-color: #b79e5d15;
-}
+ 
 
 #content {
     padding: 20px;
     min-height: 100vh;
 }
-
+mat-sidenav-container {
+    background-image:url('/assets/bluechip60.png');
+    // background-color: #7c78ca4c;
+ 
+}
+ 
 ul {
     list-style-type: none;
     margin: 0;
@@ -85,6 +88,7 @@ p {
     // max-width: 960px;
     flex-direction: column;
     align-items: center;
+    background-color: steelblue;
 }
 
 svg.material-icons {

@@ -12,6 +12,9 @@ li {
 a {
     cursor: pointer;
 }
+.centerSpinner {
+  margin:10% auto;
+}
 .center {
   text-align: center;
 }
