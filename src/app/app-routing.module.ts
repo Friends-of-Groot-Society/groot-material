@@ -36,7 +36,7 @@ const routes: Routes = [
   // { path: 'search', component: NewsArticleSearchComponent },
    
   // {path : 'grootologue', component : GrootologueComponent},
-  // {path : '*', redirectTo: '', pathMatch: 'full'},
+  {path : '*', redirectTo: '', pathMatch: 'full'},
 
 ]; 
 @NgModule({

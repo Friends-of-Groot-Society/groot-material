@@ -1,32 +1,41 @@
- 
 <mat-nav-list>
-  <div class="logo-box">
+  <div class="logo-box" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
     <a routerLink="/" (click)="onClose()">
       <img class="logo" alt="Groot Logo" src="assets/groot.png" />
     </a>
   </div>
-  <hr>  
-  <a mat-list-item routerLink="/add-nft" (click)="onClose()">
-    <mat-icon>token</mat-icon>
-    <span class="nav-caption daily-tech monoton">NFT</span>
-  </a>
-
-  <a mat-list-item routerLink="/about" (click)="onClose()">
-    <mat-icon>house</mat-icon>
-    <span class="nav-caption daily-tech monoton">ABOUT</span>
-  </a>
-
-  <a mat-list-item routerLink="/server" (click)="onClose()">
-    <mat-icon>server</mat-icon>
-    <span class="nav-caption daily-tech monoton">SERVER</span>
-  </a>
-  
-  <a mat-list-item routerLink="/tiles" (click)="onClose()">
-    <mat-icon>tiles</mat-icon> 
-    <span class="nav-caption daily-tech monoton">TILES</span>
-  </a>
   <hr>
-<!-- 
+  <ul>
+    <li routerLinkActive="active">
+      <a mat-list-item routerLink="/add-nft" (click)="onClose()">
+        <mat-icon>token</mat-icon>
+        <span class="nav-caption daily-tech monoton">NFT</span>
+      </a>
+    </li>
+    <li routerLinkActive="active">
+      <a mat-list-item routerLink="/about" (click)="onClose()">
+        <mat-icon>house</mat-icon>
+        <span class="nav-caption daily-tech monoton">ABOUT</span>
+      </a>
+
+    </li>
+    <li routerLinkActive="active">
+      <a mat-list-item routerLink="/server" (click)="onClose()">
+        <mat-icon>computer</mat-icon>
+        <span class="nav-caption daily-tech monoton">SERVER</span>
+      </a>
+
+    </li>
+    <li routerLinkActive="active">
+      <a mat-list-item routerLink="/tiles" (click)="onClose()">
+        <mat-icon>box</mat-icon>
+        <span class="nav-caption daily-tech monoton">TILES</span>
+      </a> 
+    </li>
+  </ul>
+
+  <hr>
+  <!-- 
   <a mat-list-item routerLink="/blogs" (click)="onClose()">
     <mat-icon>book</mat-icon>
     <span class="nav-caption daily-tech monoton">Blog</span>
@@ -43,8 +52,8 @@
   <!-- <a mat-list-item  id="guardians" routerLink="grootologue/">Guardians</a> -->
 
 
-  <a mat-list-item  id="photos" routerLink="tiles/1">Tiles</a> 
+  <a mat-list-item id="photos" routerLink="tiles/1">Tiles</a>
   <!-- <a mat-list-item routerLink="photos/:id">Photos</a>  -->
 
 
-</mat-nav-list> 
+</mat-nav-list>
