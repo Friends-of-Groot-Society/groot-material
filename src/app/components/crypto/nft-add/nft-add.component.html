@@ -3,31 +3,24 @@
   <form fxLayout="column" fxLayoutAlign="center center" (ngSubmit)="formReplaceNft(f)" #f="ngForm">
   <div fxLayout="row"  fxLayoutAlign=" center center">
     <div fxLayout="column"  fxLayoutAlign=" center center" style="width:220px;" >
+       
+<mat-form-field class="   address select full-width" appearance="fill">
+ 
+    <mat-label>Select Chain</mat-label>
+  <mat-select ngModel name="chain" required>
+    <mat-option *ngFor="let c of chains$ | async" [value]="c.id">{{c.name}}</mat-option>
+    <!-- <mat-option value="matic">Polygon</mat-option>
+    <mat-option value="bnc">Binance</mat-option> -->
+  </mat-select>
+ 
+</mat-form-field>
       <mat-form-field  style="min-width:375px" appearance="outline">
         <mat-label >Ethereum Address</mat-label>
         <input matInput type="text" name="nftAddress" ngModel placeholder="NFT" minlength="42" required />
       </mat-form-field  > 
    
     </div>
-    <div fxLayout="column" fxLayoutAlign=" end  " >
-      <button mat-raised-button [matMenuTriggerFor]="menu" style="min-width:100px;min-height:50px;transform:translate(80px,-10px);" aria-label="Chain menu">
-        <span >Chain</span>
-      </button>
-      <mat-menu #menu="matMenu">
-        <button mat-menu-item>
-          <mat-icon>Ethereum</mat-icon>
-          <span>Ethereum</span>
-        </button>
-        <button mat-menu-item >
-          <mat-icon>Polygon</mat-icon>
-          <span>Polygon</span>
-        </button>
-        <button mat-menu-item disabled>
-          <mat-icon>Bitcoin</mat-icon>
-          <span>Bitcoin</span>
-        </button>
-      </mat-menu>
-    </div>
+ 
   </div>
     <button mat-raised-button mat-icon-button   color="accent" type="submit">
       <mat-icon>add</mat-icon>

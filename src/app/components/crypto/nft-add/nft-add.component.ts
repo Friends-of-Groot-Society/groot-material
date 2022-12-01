@@ -1,19 +1,22 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatMenuTrigger } from '@angular/material/menu';
  
-import { Subject, Subscription } from 'rxjs';
+import { Observable, Subject, Subscription } from 'rxjs';
 import { NftsService } from '../../../services/nfts.service';
+import { Store } from '@ngrx/store';
+
+import { Chain } from '../../../models/Chain';
+import * as fromChains from '../../../reducers/chain.reducer';
 
 @Component({
   selector: 'app-nft-add',
   templateUrl: './nft-add.component.html',
   styleUrls: ['./nft-add.component.scss']
-})
-
+}) 
 export class NftAddComponent implements OnInit, OnDestroy {
   @ViewChild(MatMenuTrigger) trigger!: MatMenuTrigger;
 
-  // 
+  chains$!: Observable<Chain[]>;
 
   chain: string = 'eth'; // default chain
   nftData: any;
@@ -30,12 +33,14 @@ export class NftAddComponent implements OnInit, OnDestroy {
   private nftSubscription: Subscription = new Subscription;
   
   constructor(
-    private nftsService: NftsService
+    private nftsService: NftsService,
+    private store: Store<fromChains.State>
   ) {  
     this.nfts = this.loadNfts()
      }
   
     ngOnInit(): void {
+      this.chains$ = this.store.select(fromChains.getAvailableChains)
 
       this.nftSubscription = this.nftsService.nftsUpdated.subscribe(() => {
         this.nfts = this.nftsService.collectNfts();
