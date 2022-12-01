@@ -7,7 +7,7 @@ import {MatButtonModule} from '@angular/material/button';
   styleUrls: ['./chain-servers.component.scss']
 })
 export class ChainServersComponent implements OnInit {
-  servers = [{type: 'server Polygon', name: 'Testserver Polygon', content: 'Just a Polygon test!'}];
+  servers = [{type: 'polygon', name: 'polygon Name', content: 'Just a Polygon test!'}];
  
   constructor() { }
 
@@ -16,7 +16,7 @@ export class ChainServersComponent implements OnInit {
 
   onServerAdded(serverData: {serverName: string, serverContent: string}) {
     this.servers.push({
-      type: 'server Polygon',
+      type: 'polygon',
       name: serverData.serverName,
       content: serverData.serverContent
     });
