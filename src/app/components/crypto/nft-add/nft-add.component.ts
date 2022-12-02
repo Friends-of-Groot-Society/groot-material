@@ -40,12 +40,14 @@ export class NftAddComponent implements OnInit, OnDestroy {
      }
   
     ngOnInit(): void {
-      this.chains$ = this.store.select(fromChains.getAvailableChains)
+      // this.chains$ = this.store.select(fromChains.getAvailableChains)
+ 
 
       this.nftSubscription = this.nftsService.nftsUpdated.subscribe(() => {
         this.nfts = this.nftsService.collectNfts();
       });
     }
+  
   
     menuMethod() {
       this.trigger.openMenu();
