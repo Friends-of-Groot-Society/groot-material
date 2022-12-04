@@ -12,7 +12,7 @@ var __assign = (this && this.__assign) || function () {
 };
 exports.__esModule = true;
 exports.saveChain = void 0;
-var db_data_1 = require("./db-data");
+var db_data_1 = require("../db-data");
 var timers_1 = require("timers");
 function saveChain(req, res) {
     var id = req.params["id"], changes = req.body;
@@ -20,6 +20,6 @@ function saveChain(req, res) {
     db_data_1.CHAINS[id] = __assign(__assign({}, db_data_1.CHAINS[id]), changes);
     (0, timers_1.setTimeout)(function () {
         res.status(200).json(db_data_1.CHAINS[id]);
-    }, 2000);
+    }, 1000); // SPINNER TODO THEN REMOVE
 }
 exports.saveChain = saveChain;

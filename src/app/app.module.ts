@@ -4,9 +4,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'; 
-import { FormsModule, ReactiveFormsModule  } from '@angular/forms';  
-import { LayoutModule } from '@angular/cdk/layout';
-import { FlexLayoutModule } from '@angular/flex-layout';
 // DEVELOPMENT/PROD URL (replace file in angular.json) 
 import { environment } from '../environments/environment';
  
@@ -76,12 +73,8 @@ import { reducers } from './reducers/app.reducer';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule, 
-    FormsModule,
-    LayoutModule,
-    ReactiveFormsModule,
     BrowserAnimationsModule,
     StoreModule.forRoot( reducers ),
-    FlexLayoutModule, 
   ],
   providers: [ 
     BookService,

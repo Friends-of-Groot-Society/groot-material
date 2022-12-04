@@ -1,5 +1,5 @@
 import {Request, Response} from 'express';
-import {CHAINS} from "./db-data";
+import {CHAINS} from "../db-data";
 import {setTimeout} from 'timers';
 
 
@@ -20,7 +20,7 @@ export function saveChain(req: Request, res: Response) {
 
         res.status(200).json(CHAINS[id]);
 
-    }, 2000);
+    }, 1000);  // SPINNER TODO THEN REMOVE
 
 
 
