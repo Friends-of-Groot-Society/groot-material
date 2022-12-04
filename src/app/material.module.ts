@@ -23,6 +23,9 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import { FormsModule, ReactiveFormsModule  } from '@angular/forms';  
+import { LayoutModule } from '@angular/cdk/layout';
+import { FlexLayoutModule } from '@angular/flex-layout';
  
 
 @NgModule({
@@ -51,6 +54,10 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     MatTooltipModule,
     MatTableModule,
     MatToolbarModule,
+    FormsModule,
+    LayoutModule,
+    ReactiveFormsModule,
+    FlexLayoutModule, 
   ],
   exports: [
     MatButtonModule,
@@ -74,6 +81,10 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     MatTableModule,
     MatTooltipModule,
     MatToolbarModule,
+    FormsModule,
+    LayoutModule,
+    ReactiveFormsModule,
+    FlexLayoutModule, 
     ]
   })
   export class MaterialModule { }
