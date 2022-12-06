@@ -27,7 +27,7 @@ export class NftAddComponent implements OnInit, OnDestroy {
   description: string = ""; 
   nftsUpdated = new Subject<any[]>();
   key: string = ''; 
-  nftAddress: string = "";
+  nftAddress: string = "";4707
  
  
   private nftSubscription: Subscription = new Subscription;
@@ -41,8 +41,7 @@ export class NftAddComponent implements OnInit, OnDestroy {
   
     ngOnInit(): void {
       // this.chains$ = this.store.select(fromChains.getAvailableChains)
- 
-
+    
       this.nftSubscription = this.nftsService.nftsUpdated.subscribe(() => {
         this.nfts = this.nftsService.collectNfts();
       });

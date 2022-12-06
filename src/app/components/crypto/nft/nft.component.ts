@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Chain } from 'src/app/models/Chain';
 
 import { NftsService } from '../../../services/nfts.service';
 
@@ -10,7 +11,11 @@ import { NftsService } from '../../../services/nfts.service';
 
 export class NftComponent implements OnInit { 
   @Input('inputNft') nft: any;  
- @Input() nftData: any;
+  @Input() nftData: any;
+
+  @Input()
+  chains: Chain[];
+
   @Output() nftDeleted = new EventEmitter();
   viewNft() {} 
     constructor(private nftsService: NftsService) { }

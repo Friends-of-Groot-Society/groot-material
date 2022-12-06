@@ -25,8 +25,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';  
 import { LayoutModule } from '@angular/cdk/layout';
-import { FlexLayoutModule } from '@angular/flex-layout';
- 
+import { FlexLayoutModule } from '@angular/flex-layout'; 
 
 @NgModule({
   declarations: [],
