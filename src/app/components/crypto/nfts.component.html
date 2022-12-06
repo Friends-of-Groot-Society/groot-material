@@ -1,10 +1,23 @@
+
+<section> 
+  <div fxLayout="row" fxLayoutAlign="center center" *ngIf="nfts">
+    <app-chaindata   [nftData]="nftData"></app-chaindata>
+    <div><mat-form-field class="   address select full-width" appearance="fill">
+ 
+      <mat-label>Select Chain</mat-label>
+    <mat-select ngModel name="chain" required>
+      <mat-option *ngFor="let c of chains$ | async" [value]="c.id">{{c.name}}</mat-option>
+      <!-- <mat-option value="matic">Polygon</mat-option>
+      <mat-option value="bnc">Binance</mat-option> -->
+    </mat-select>
+   
+  </mat-form-field>
+</div>
+  </div> 
+
+</section>
 <section> 
     <div fxLayout="row" fxLayoutAlign="center center" *ngIf="nfts">
       <app-nft *ngFor="let nft of nfts" [inputNft]="nft" [nftData]="nftData"></app-nft>
     </div> 
-</section>
-<section> 
-  <div fxLayout="row" fxLayoutAlign="center center" *ngIf="nfts">
-    <app-chaindata   [nftData]="nftData"></app-chaindata>
-  </div> 
 </section>

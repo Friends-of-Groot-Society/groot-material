@@ -1,7 +1,10 @@
+ 
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subject, Subscription } from 'rxjs';
+import { Observable, Subject, Subscription } from 'rxjs';
 import { NftsService } from '../../services/nfts.service';
 
+import { Chain } from '../../models/Chain';
+import { Store } from 'src/app/utility/store.service';
 @Component({
   selector: 'app-nfts',
   templateUrl: './nfts.component.html',
@@ -10,6 +13,10 @@ import { NftsService } from '../../services/nfts.service';
 })
 
 export class NftsComponent implements OnInit, OnDestroy { 
+  
+  chain: string = 'eth'; // default chain
+  chains$!: Observable<Chain[]>;
+
   nfts: any  ; 
   nftData: any;
   tokens: any = [];
@@ -17,14 +24,16 @@ export class NftsComponent implements OnInit, OnDestroy {
   private nftSubscription: Subscription = new Subscription; 
   
   constructor(
-    private nftsService: NftsService
+    private nftsService: NftsService,
+    private store: Store
   ) {
     this.nfts = this.loadNfts();
     this.nftData = this.showChainData();
   }
 
   ngOnInit(): void { 
-
+   this.chains$ = this.store.selectAllChains();
+   console.log("init",this.chains$)
 
     // this.nftSubscription = this.nftsService.chainDataUpdated.subscribe(() => {
     //   this.nfts = this.nftsService.collectNfts(); 
@@ -40,7 +49,11 @@ showChainData( ) {
 return this.nftData;
 console.log("chain",this.nftData);
 }
-
+  loadChains(): Observable<Chain[]> {
+    this.chains$ = this.store.selectAllChains();
+    console.log("loadchains")
+    return this.chains$
+  }
   loadNfts() {
     this.nfts = this.nftsService.collectNfts()  
     .subscribe((data: any) => {
