@@ -17,8 +17,19 @@ app.use(function (req, res, next) {
 const PORT = 8887
 
 const API_KEY =  process.env.MORALIS_API_KEY;
+let chain = process.env.DEFAULT_CHAIN || 'eth'
+
 const addressDEFAULT =  process.env.DEFAULT_ADDRESS;
 const chainETH = EvmChain.ETHEREUM
+const chainROPSTEIN = EvmChain.ROPSTEIN
+const chainRINKEBY = EvmChain.RINKEBY
+const chainPOLYGON = EvmChain.POLYGON
+const chainMUMBAI = EvmChain.MUMBAI
+const chainBSC = EvmChain.BSC
+const chainBSC_TEST = EvmChain.BSC_TESTNET
+const chainAVA = EvmChain.AVALANCHE
+
+
 
 async function getData(address, chain) {
     // GET NATIVE BAL
@@ -65,6 +76,50 @@ try {
     res.json({error: error.message })
 }
 })
+
+app.post("/nft", async(req, res) => { 
+    const address = req.body.address;
+
+    if(!address || address.length !== 42) {
+        res.status(400);
+        res.json({error: "Invalid address" });
+    }; 
+    if(!chain || chain.length < 3) {
+        res.status(400);
+        res.json({error: "Invalid chain" });
+    }; 
+    switch (req.body.chain.toLowerCase()) {
+        case "eth":
+            chain = chainETH; break;
+        case "ropstein":
+            chain = chainROPSTEIN; break;
+        case "rinkeby":
+            chain = chainRINKEBY; break;
+        case "polygon":
+            chain = chainPOLYGON; break;
+        case "mumbai":
+            chain = chainMUMBAI; break;
+        case "bsc":
+            chain = chainBSC; break;
+        case "bsctest":
+            chain = chainBSC_TEST; break;        
+        case "ava":
+            chain = chainAVA; break;   
+        default:
+            res.status(400);
+            res.json({error: "chain not supported" })                    
+    }
+        
+    try {
+        const data  = await getData(address, chain);
+        res.status(200)
+        res.json(data)
+    } catch (error) {
+        console.log(error);
+        res.status(500)
+        res.json({error: error.message })
+    }
+    })
 app.post("/nft/eth", async(req, res) => { 
     const address = req.body.address;
     if(!address || address.length !== 42) {
@@ -91,7 +146,7 @@ app.get("/nft/eth/:address", async(req, res) => {
     }; 
     // multi-chain support later TODO
     const chain = chainETH;
-    try {
+    try {p
         const data  = await getData(address, chain);
         res.status(200)
         res.json(data)
