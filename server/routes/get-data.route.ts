@@ -1,9 +1,9 @@
 
 
 import {Request, Response} from 'express'; 
-import {USERS } from "../db-data";
-import {MEDIA } from "../db-data";
-import {GROOT } from "../db-data";
+import {USERS } from "../data/db-data";
+import {MEDIA } from "../data/db-data";
+import {GROOT } from "../data/db-data";
 
 console.log(USERS);
  
