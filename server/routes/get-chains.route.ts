@@ -1,7 +1,7 @@
 
 
 import {Request, Response} from 'express'; 
-import {CHAINS } from "../db-data";
+import {CHAINS } from "../data/db-data";
 
 
  
