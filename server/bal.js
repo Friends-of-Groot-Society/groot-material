@@ -2,7 +2,7 @@
 const express = require("express")
 const cors = require('cors')
 const bodyParser = require('body-parser')
-const Moralis = require("moralis").default
+const Moralis = require("moralis").default 
 const { EvmChain } = require("@moralisweb3/evm-utils")
 
 const app = express()
