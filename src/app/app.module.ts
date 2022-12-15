@@ -31,13 +31,13 @@ import { MaterialModule } from './material.module';
 
 // import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { UsersComponent } from './components/users/users.component';
+import { ChainServersComponent } from './components/chain-servers/chain-servers.component';
+import { ChainComponent } from './components/chain-servers/chain/chain.component';
+import { ServerComponent } from './components/chain-servers/server/server.component'; 
 import { AlertComponent } from './utility/alert.component';
 import { NftsComponent } from './components/crypto/nfts.component';
 import { NftComponent } from './components/crypto/nft/nft.component';
 import { NftAddComponent } from './components/crypto/nft-add/nft-add.component';
-import { ChainServersComponent } from './components/chain-servers/chain-servers.component';
-import { ChainComponent } from './components/chain-servers/chain/chain.component';
-import { ServerComponent } from './components/chain-servers/server/server.component'; 
 import { ChaindataComponent } from './components/crypto/chaindata/chaindata.component';
 import { reducers } from './reducers/app.reducer';
 
@@ -58,12 +58,12 @@ import { reducers } from './reducers/app.reducer';
     BookComponent, 
     UsersComponent,
     AlertComponent,
-    NftsComponent,
-    NftComponent,
-    NftAddComponent,
     ChainServersComponent,
     ChainComponent,
     ServerComponent,
+    NftsComponent,
+    NftComponent,
+    NftAddComponent,
     ChaindataComponent 
   ],
   imports: [
