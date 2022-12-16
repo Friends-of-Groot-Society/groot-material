@@ -1,3 +1,39 @@
+function web3() {
+  const Web3 = require('web3');
+  const web3 = new Web3('http://localhost:8545');
+  return web3;
+}
+async function walletConnect() {
+  // await Moralis.authenticate({provider: "walletconnect"});
+  const provider = await Moralis.Web3.enable();
+  const web3 = new Web3(provider);
+  return web3;
+}
+async function metaMask() {
+  // await Moralis.authenticate();
+  if (window.web3) {
+    window.web3 = new Web3(window.web3.currentProvider);
+    window.ethereum.enable();
+  } else if(window.ethereum) {
+   await window.ethereum.request({ method: 'eth_requestAccounts' });
+   window.web3  = new Web3(window.ethereum);
+  } else {
+    console.log("Metamask not installed")
+}
+}
+async function getBalance() {
+  const balance = await Moralis.Web3API.account.getNativeBalance();
+  const balances = await Moralis.Web3API.account.getTokenbalances();
+  const balancesNft = await Moralis.Web3API.account.getNFTs();
+  console.log(balance);
+  console.log(balances);
+  console.log(balancesNft);
+}
+  const web3 = await walletConnect();
+  const accounts = await web3.eth.getAccounts();
+  const balance = await web3.eth.getBalance(accounts[0]);
+  console.log(balance);
+}
 function onSubmit(e) {
   e.preventDefault();
 
