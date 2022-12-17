@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../../services/user.service';
+import { UserService } from './user.service';
 import { User } from '../../models/User'; 
 
 @Component({
@@ -14,34 +14,43 @@ export class UsersComponent implements OnInit {
     // throw new Error("Method not implemented.");
 
     //  this.userService.getUser(22).subscribe(user => this.user = user);
-    this.getAllUsers(); 
+    this.users = this.loadUsers(); 
   }
 
  id!: string;
-
+chains: any
  user: User = new User;
 
- users: User[] = [];
+ users:any;
 
   constructor(private userService: UserService) {
     // on page load first piece of data
+    this.loadUser("0");
+ this.loadUsers();
   }
  
- public getThisUser(id: string) {
-   this.userService.getUser(id).subscribe(user=>this.user = user);
- }
-  public getUser() {
-    this.userService.getUser(this.id).subscribe((user) => { 
-  
+  public loadUser(id:string) {
+    this.userService.getUser(id).subscribe((user) => {  
       this.user = user
     });
   }
 
-  public getAllUsers() {
-    this.userService.getAllUsers().subscribe((users) => { 
-      console.log(users);
-      this.users = users
+  public loadUsers() {
+   this.users =  this.userService.getAllUsers()
+    .subscribe((data: any) => {
+      if (data != undefined) {
+        this.users = data;
+        console.log("this.users")
+        console.log(this.users);
+    
+ 
+        // this.usersUpdated.next([...this.users]);
+      }
     });
+    // .subscribe((users) => { 
+    //   console.log(users);
+    //   this.users = users
+    // });
   }
 
 }

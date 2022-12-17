@@ -4,7 +4,7 @@ import { MatMenuTrigger } from '@angular/material/menu';
 import { Observable, Subject, Subscription , of} from 'rxjs';
 import { NftsService } from '../nfts.service';
 import { Store } from '@ngrx/store';
-
+import { MORALIS_CHAINS } from '../../../utility/constants';
 import { Chain } from '../../../models/Chain';
 import * as fromChains from '../../../reducers/chain.reducer';
 
@@ -18,7 +18,7 @@ export class NftAddComponent implements OnInit {
   chain: string = 'eth'; // default chain
   nftData: any;
   tokens: any = [];
-  nfts: any 
+  nfts: any;
   image: string = "";
   name: string = "";
   description: string = ""; 
@@ -33,14 +33,7 @@ export class NftAddComponent implements OnInit {
     private nftsService: NftsService,
     // private store: Store<fromChains.State>
   ) {   
-    this.chains$ = of([
-      {id:"1",name:"ethereum",description:"Ethereum Mainnet",type:"Mainnet"},
-      {id:"4",name:"rinkeby",description:"Ethereum Rinkeby",type:"Testnet"},
-      {id:"137",name:"polygon",description:"Polygon Mainnet",type:"Mainnet"},
-      {id:"80001",name:"mumbai",description:"Polygon Mumbai",type:"Testnet"},
-      {id:"56",name:"bsc",description:"BNB Mainnet",type:"Mainnet"},
-      {id:"97",name:"bsc testnet",description:"BNB Chain Testnet",type:"Testnet"},     
-      {id:"43114",name:"avalanche",description:"Avalanche C-Chain",type:"Mainnet"}])
+    this.chains$ = of(MORALIS_CHAINS)
      }
   
     ngOnInit(): void {
@@ -54,9 +47,7 @@ export class NftAddComponent implements OnInit {
       this.nftsService.replacePostNfts(form.value.chain, form.value.nftAddress) 
         return this.nftData;
       } 
-    }
-
- 
+    } 
   // onAddNft(form: { valid: any; value: { nftAddress: string; }; }) {
   //   //this.nfts.push(this.name);
   //   if(form.valid) {

@@ -7,6 +7,7 @@ import { catchError, Observable, throwError } from "rxjs";
 // import { EvmChain } from '@moralisweb3/evm-utils'
 
 import { Subject } from 'rxjs';
+import { LoaderService } from '../layout/loader/loader.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,12 +17,7 @@ export class NftsService {
   collectChainData(): any {
     throw new Error('Method not implemented.');
   }
-  // chainEth = EvmChain.ETHEREUM;
-  // chainBsc= EvmChain.BSC;
-  // chainPolygon = EvmChain.POLYGON;
-  // chainAvalance  = EvmChain.AVALANCHE;
-  // chainMumbai = EvmChain.MUMBAI; 
-  // chainGoerli = EvmChain.GOERLI;
+ 
 
   chain: string = 'ethereum';
   nftData: any;
@@ -34,7 +30,8 @@ export class NftsService {
   key: string = '';
   constructor(
     private http: HttpClient,
-    private keyService: KeyService
+    private keyService: KeyService,
+    private loaderService: LoaderService
   ) {
     this.key = this.keyService.getMoralisKey();
 
@@ -63,6 +60,7 @@ export class NftsService {
         console.log(this.nftData);
         this.chainDataUpdated.next(this.nftData);
       });
+    
     return this.nftData;
   }
   replacePostNfts(chain: string, address: string) {

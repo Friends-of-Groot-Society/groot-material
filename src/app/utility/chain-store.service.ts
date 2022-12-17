@@ -1,35 +1,56 @@
 import {Injectable} from '@angular/core';
-import {BehaviorSubject, from, Observable, Subject, timer} from 'rxjs';
+import {BehaviorSubject, from, Observable, Subject, throwError, timer} from 'rxjs';
  
-import {delayWhen, filter, map,  shareReplay, tap, withLatestFrom} from 'rxjs/operators';
-import {createHttpObservable} from './observable';  
+import {catchError, delayWhen, filter, map,  shareReplay, tap, withLatestFrom} from 'rxjs/operators';
+// import {createHttpObservable} from './observable';  
 import { Chain } from '../models/Chain';
 import { environment } from 'src/environments/environment';
+import { HttpClient } from '@angular/common/http';
+import { LoaderService } from '../components/layout/loader/loader.service';
 @Injectable({
     providedIn: 'root'
 })
 
 
-export class Store {
+export class ChainStore {
 
     private subjectChain = new BehaviorSubject<Chain[]>([]);
 
     chains$: Observable<Chain[]> = this.subjectChain.asObservable();
 
-
-    init() {
-        const baseUrl = environment.local_url; 
-        const http$ = createHttpObservable(`${baseUrl}/chains`);
-        console.log(this.chains$.subscribe())
-        http$
+    constructor(
+        private httpClient: HttpClient,
+        private loaderService: LoaderService,
+        
+    ) {
+      
+        this.getAllChains();
+    }   
+    // init() {
+    //     const baseUrl = environment.local_url; 
+    //     const http$ = createHttpObservable(`${baseUrl}/chains`);
+    //     console.log(this.chains$.subscribe())
+    //     http$
+    //         .pipe(
+    //             tap(() => console.log('HTTP request executed')),
+    //             map(res => Object.values(res['data']))
+    //         )
+    //         .subscribe(
+    //             chains => this.subjectChain.next(chains)
+    //         );
+    // } 
+    getAllChains() {
+        const loadChains$ = this.httpClient.get(`${environment.local_url}/chains`)
             .pipe(
-                tap(() => console.log('HTTP request executed')),
-                map(res => Object.values(res['data']))
+                map(res =>  res['data']),
+                catchError(err => {
+                    return throwError(() => 'error in source. Details: ' + err);
+                } ),
+                tap(chains => this.subjectChain.next(chains)),
             )
-            .subscribe(
-                chains => this.subjectChain.next(chains)
-            );
+            // this.loaderService.showLoaderUntilCompleted(loadChains$).subscribe();
     }
+
     selectAllChains() {
         console.log("chainsSelct")
         console.log(this.chains$.subscribe())

@@ -10,7 +10,7 @@ export class User { //
     memberSince?: string;
     groupType?: string;
     // public media?: Media[];
-    media?: Media;
+    addresses?: any[];
 
 
     // deserialize(input: any): this {
