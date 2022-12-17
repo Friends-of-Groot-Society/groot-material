@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Chain } from 'src/app/models/Chain';
 
-import { NftsService } from '../../../services/nfts.service';
+import { NftsService } from '../nfts.service';
 
 @Component({
   selector: 'app-nft',
@@ -26,7 +26,7 @@ export class NftComponent implements OnInit {
   onClicked() {
     // this.nftDeleted.emit(this.name);
     this.nftsService.deleteNft(this.nft.name);
-  }
+  } 
   newNftData: any = {
     nftName: 'TwoNFT',
     description: 'This is the first NFT',

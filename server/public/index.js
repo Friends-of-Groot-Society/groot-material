@@ -1,3 +1,5 @@
+
+
 function web3() {
   const Web3 = require('web3');
   const web3 = new Web3('http://localhost:8545');
@@ -5,8 +7,13 @@ function web3() {
 }
 async function walletConnect() {
   // await Moralis.authenticate({provider: "walletconnect"});
+
+  const web3 = await walletConnect();
+  // const web3 = new Web3(provider);
+  const accounts = await web3.eth.getAccounts();
+  const balance = await web3.eth.getBalance(accounts[0]);
+  console.log(balance); 
   const provider = await Moralis.Web3.enable();
-  const web3 = new Web3(provider);
   return web3;
 }
 async function metaMask() {
@@ -29,11 +36,7 @@ async function getBalance() {
   console.log(balances);
   console.log(balancesNft);
 }
-  const web3 = await walletConnect();
-  const accounts = await web3.eth.getAccounts();
-  const balance = await web3.eth.getBalance(accounts[0]);
-  console.log(balance);
-}
+
 function onSubmit(e) {
   e.preventDefault();
 

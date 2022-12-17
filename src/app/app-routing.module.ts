@@ -8,6 +8,7 @@ import { BookComponent } from './components/book/book.component';
 import { PhotosComponent } from './components/photos/photos.component';
 import { ChainServersComponent } from './components/chain-servers/chain-servers.component';
 import { ChainComponent } from './components/chain-servers/chain/chain.component';
+import { MaterialModule } from './material.module';
 
 import { AboutComponent } from './components/layout/about/about.component';
 import { MarvelComponent } from './components/marvel/marvel.component';
@@ -21,8 +22,8 @@ import { UsersComponent } from './components/users/users.component';
 const routes: Routes = [ 
 
   // { path: '', component: GrootComponent },
-  { path: '', component: NftsComponent },
-  { path: 'add-nft', component: NftAddComponent },
+  { path: '', component: NftsComponent }, 
+  {path : 'nfts', component : NftsComponent},
   {path : 'about', component : AboutComponent},
   {path : 'contact', component : ContactusComponent},
   {path: 'servers', component: ChainServersComponent},
@@ -30,7 +31,7 @@ const routes: Routes = [
   // { path: 'marvel/:guardiansId', component: MarvelComponent },
   // {path : 'groot/:grootId', component : BookComponent},
  
-  // { path: 'members', component: UsersComponent },
+  { path: 'users', component: UsersComponent },
   { path: 'tiles', component: PhotosComponent }, 
   // { path: 'tiles/:albumId', component: PhotosComponent }, 
   // { path: 'search', component: NewsArticleSearchComponent },
@@ -41,7 +42,9 @@ const routes: Routes = [
 ]; 
 @NgModule({
   imports: [RouterModule.forRoot(routes),
-    CommonModule],
+    CommonModule,
+    MaterialModule
+  ],
   exports: [RouterModule], 
   declarations: []
 })

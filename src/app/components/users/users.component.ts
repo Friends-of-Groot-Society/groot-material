@@ -31,11 +31,17 @@ export class UsersComponent implements OnInit {
    this.userService.getUser(id).subscribe(user=>this.user = user);
  }
   public getUser() {
-    this.userService.getUser(this.id).subscribe(user => this.user = user);
+    this.userService.getUser(this.id).subscribe((user) => { 
+  
+      this.user = user
+    });
   }
 
   public getAllUsers() {
-    this.userService.getAllUsers().subscribe(users => this.users = users);
+    this.userService.getAllUsers().subscribe((users) => { 
+      console.log(users);
+      this.users = users
+    });
   }
 
 }

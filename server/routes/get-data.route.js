@@ -1,12 +1,12 @@
 "use strict";
 exports.__esModule = true;
-exports.getGroot = exports.getMedia = exports.getUserById = exports.getUsers = void 0;
+exports.getNfts = exports.getMedia = exports.getUserById = exports.getUsers = void 0;
 var db_data_1 = require("../data/db-data");
 var db_data_2 = require("../data/db-data");
 var db_data_3 = require("../data/db-data");
 console.log(db_data_1.USERS);
 function getUsers(req, res) {
-    res.status(200).json({ payload: Object.values(db_data_1.USERS) });
+    res.status(200).json({ data: Object.values(db_data_1.USERS) });
 }
 exports.getUsers = getUsers;
 function getUserById(req, res) {
@@ -23,10 +23,10 @@ function getUserById(req, res) {
 }
 exports.getUserById = getUserById;
 function getMedia(req, res) {
-    res.status(200).json({ payload: Object.values(db_data_2.MEDIA) });
+    res.status(200).json({ data: Object.values(db_data_2.MEDIA) });
 }
 exports.getMedia = getMedia;
-function getGroot(req, res) {
-    res.status(200).json({ payload: Object.values(db_data_3.GROOT) });
+function getNfts(req, res) {
+    res.status(200).json({ data: Object.values(db_data_3.NFTS) });
 }
-exports.getGroot = getGroot;
+exports.getNfts = getNfts;

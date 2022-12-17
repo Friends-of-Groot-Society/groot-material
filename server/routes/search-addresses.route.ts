@@ -8,7 +8,7 @@ import {setTimeout} from "timers";
 
 export function getAllAddresses(req: Request, res:Response) { 
 
-    res.status(200).json({payload:Object.values(ADDRESSES)});
+    res.status(200).json({data:Object.values(ADDRESSES)});
 }
 export function searchAddressesByCategory(req: Request, res: Response) {
 

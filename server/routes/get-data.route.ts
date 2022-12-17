@@ -2,13 +2,13 @@
 
 import {Request, Response} from 'express'; 
 import {USERS } from "../data/db-data";
-import {MEDIA } from "../data/db-data";
-import {GROOT } from "../data/db-data";
+import {MEDIA } from "../data/db-data"; 
+import {NFTS } from "../data/db-data"; 
 
 console.log(USERS);
- 
+  
 export function getUsers(req: Request, res: Response) {
-         res.status(200).json({payload: Object.values(USERS)}); 
+         res.status(200).json({data: Object.values(USERS)});  
 }
 
 export function getUserById(req: Request, res: Response) {
@@ -29,8 +29,8 @@ export function getUserById(req: Request, res: Response) {
 } 
 
 export function getMedia(req: Request, res: Response) {  
-    res.status(200).json({payload: Object.values(MEDIA)});  
+    res.status(200).json({data: Object.values(MEDIA)});  
 }
-export function getGroot(req: Request, res: Response) {  
-    res.status(200).json({payload: Object.values(GROOT)});  
+export function getNfts(req: Request, res: Response) {  
+    res.status(200).json({data: Object.values(NFTS)});  
 }

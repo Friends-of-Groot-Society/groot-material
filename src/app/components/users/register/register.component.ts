@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RegisterModel } from '../../../models/register';
-import { FormGroup, FormBuilder, Validators, } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { FormGroup, FormBuilder,  FormControl, FormArray, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { first } from 'rxjs/operators';
 
@@ -15,7 +16,7 @@ export class RegisterComponent implements OnInit {
 
   title: string = "";
   user: RegisterModel = new RegisterModel();
-  registerForm!: FormGroup;
+  registerForm: FormGroup;
   hide = true;
   loading = false;
   submitted = false;

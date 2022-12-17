@@ -8,14 +8,12 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { environment } from '../environments/environment';
  
 
-// GROOT-MARVEL
-// import { GrootComponent } from './components/groot/groot.component';
+// GROOT-MARVEL 
 import { PhotosComponent } from './components/photos/photos.component'; 
 import { StarwarsComponent } from './components/starwars/starwars.component';
 import { MarvelComponent } from './components/marvel/marvel.component';
 import { BookComponent } from './components/book/book.component'; 
-// import { GrootologueComponent } from './components/grootologue/grootologue.component';
-
+  
 // SERVICES
 import { BookService } from './services/book.service';
 import { GrootService } from './services/groot.service'; 
@@ -49,8 +47,7 @@ import { reducers } from './reducers/app.reducer';
     StarwarsComponent,
     // MatFormField,
     MarvelComponent,
-    AboutComponent,
-    // GrootologueComponent,
+    AboutComponent, 
     SidenavListComponent,
     MenuComponent,
     ContactusComponent, 

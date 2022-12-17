@@ -4,7 +4,7 @@ exports.searchAddressesByCategory = exports.getAllAddresses = void 0;
 var db_data_1 = require("../data/db-data");
 var timers_1 = require("timers");
 function getAllAddresses(req, res) {
-    res.status(200).json({ payload: Object.values(db_data_1.ADDRESSES) });
+    res.status(200).json({ data: Object.values(db_data_1.ADDRESSES) });
 }
 exports.getAllAddresses = getAllAddresses;
 function searchAddressesByCategory(req, res) {

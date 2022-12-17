@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatMenuTrigger } from '@angular/material/menu';
  
-import { Observable, Subject, Subscription } from 'rxjs';
-import { NftsService } from '../../../services/nfts.service';
+import { Observable, Subject, Subscription , of} from 'rxjs';
+import { NftsService } from '../nfts.service';
 import { Store } from '@ngrx/store';
 
 import { Chain } from '../../../models/Chain';
@@ -13,11 +13,8 @@ import * as fromChains from '../../../reducers/chain.reducer';
   templateUrl: './nft-add.component.html',
   styleUrls: ['./nft-add.component.scss']
 }) 
-export class NftAddComponent implements OnInit, OnDestroy {
-  @ViewChild(MatMenuTrigger) trigger!: MatMenuTrigger;
-
-  chains$!: Observable<Chain[]>;
-
+export class NftAddComponent implements OnInit { 
+  chains$!: Observable<Chain[]>;   
   chain: string = 'eth'; // default chain
   nftData: any;
   tokens: any = [];
@@ -25,85 +22,53 @@ export class NftAddComponent implements OnInit, OnDestroy {
   image: string = "";
   name: string = "";
   description: string = ""; 
+  nftDataUpdated = new Subject<any>();
   nftsUpdated = new Subject<any[]>();
   key: string = ''; 
-  nftAddress: string = ""; 
+  nftAddress: string = "";  
  
- 
-  private nftSubscription: Subscription = new Subscription;
+  // private nftSubscription: Subscription = new Subscription;
   
   constructor(
     private nftsService: NftsService,
-    private store: Store<fromChains.State>
-  ) {  
-    this.nfts = this.loadNfts()
+    // private store: Store<fromChains.State>
+  ) {   
+    this.chains$ = of([
+      {id:"1",name:"ethereum",description:"Ethereum Mainnet",type:"Mainnet"},
+      {id:"4",name:"rinkeby",description:"Ethereum Rinkeby",type:"Testnet"},
+      {id:"137",name:"polygon",description:"Polygon Mainnet",type:"Mainnet"},
+      {id:"80001",name:"mumbai",description:"Polygon Mumbai",type:"Testnet"},
+      {id:"56",name:"bsc",description:"BNB Mainnet",type:"Mainnet"},
+      {id:"97",name:"bsc testnet",description:"BNB Chain Testnet",type:"Testnet"},     
+      {id:"43114",name:"avalanche",description:"Avalanche C-Chain",type:"Mainnet"}])
      }
   
     ngOnInit(): void {
       // this.chains$ = this.store.select(fromChains.getAvailableChains)
     
-      this.nftSubscription = this.nftsService.nftsUpdated.subscribe(() => {
-        this.nfts = this.nftsService.collectNfts();
-      });
     }
-  
-  
-    menuMethod() {
-      this.trigger.openMenu();
-    }
-
-    formReplaceNft(form: { valid: any; value: { chain: string, nftAddress: string; }; }) {
-    
+   
+    formReplaceNft(form: { valid: any; value: { chain: string, nftAddress: string; }; }) { 
+      console.log(form.value.chain, form.value.nftAddress);
       if(form.valid) {
-        this.nftsService.replaceNfts(this.chain, form.value.nftAddress)
-        .subscribe((data: any) => {
-          if (data != undefined) {
-            this.nftData = data;
-            console.log("this.nftData")
-            console.log(this.nftData);
-  
-            this.tokens = data.tokens; 
-  
-            this.nfts = data.nfts;
-            console.log(this.nfts);
-            console.log(this.nfts[0])
-            this.nftsUpdated.next([...this.nfts]);
-          }
-        })
-        return this.nfts;
-      }
-
+      this.nftsService.replacePostNfts(form.value.chain, form.value.nftAddress) 
+        return this.nftData;
+      } 
     }
 
-  onAddNft(form: { valid: any; value: { nftAddress: string; }; }) {
-    //this.nfts.push(this.name);
-    if(form.valid) {
-      this.nftsService.addNft(form.value.nftAddress);
-    }
-  }
-  loadNfts() {
-    this.nfts = this.nftsService.collectNfts() 
-    .subscribe((data: any) => {
-      if (data != undefined) {
-        this.nftData = data;
-        console.log("this.nftData")
-        console.log(this.nftData);
-
-        this.tokens = data.tokens; 
-
-        this.nfts = data.nfts;
-        console.log(this.nfts);
-        console.log(this.nfts[0])
-        this.nftsUpdated.next([...this.nfts]);
-      }
-    }); 
-  }
-  onDeleteNft(nftAddress: string) {
-    this.nfts = this.nfts.filter((nft: string) => { return nft != nftAddress; });
-    // this.nfts = this.nftsService.deleteNft(nftName);
-  }
-  ngOnDestroy(): void {
-    this.nftSubscription.unsubscribe();
-  }
+ 
+  // onAddNft(form: { valid: any; value: { nftAddress: string; }; }) {
+  //   //this.nfts.push(this.name);
+  //   if(form.valid) {
+  //     this.nftsService.addNft(form.value.nftAddress);
+  //   }
+  // }
+  // onDeleteNft(nftAddress: string) {
+  //   this.nfts = this.nfts.filter((nft: string) => { return nft != nftAddress; });
+  //   // this.nfts = this.nftsService.deleteNft(nftName);
+  // }
+  // ngOnDestroy(): void {
+  //   this.nftSubscription.unsubscribe();
+  // }
 
 }

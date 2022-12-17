@@ -10,7 +10,8 @@
         <h3 class="page-title middle">Register</h3>
       </div>
 
-      <form [formGroup]="registerForm" (ngSubmit)="registerForm.valid && onRegisterSubmit()" novalidate>
+      <form [formGroup]="registerForm" (ngSubmit)="registerForm.valid && onRegisterSubmit()" >
+        <!-- novalidate -->
         <div class="form-container">
           <mat-form-field>
             <input id="fName" matInput formControlName="fName" placeholder="&nbsp;&nbsp;First Name" class="form-control"

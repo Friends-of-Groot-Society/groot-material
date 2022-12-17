@@ -31,7 +31,7 @@ app.route('/api/chains/:id').put(save_chain_route_1.saveChain);
 app.route('/api/users').get(get_data_route_1.getUsers);
 app.route('/api/users/:id').get(get_data_route_1.getUserById);
 app.route('/api/media').get(get_data_route_1.getMedia);
-app.route('/api/groot').get(get_data_route_1.getGroot);
+app.route('/api/nft').get(get_data_route_1.getNfts);
 /// open-ai stuff
 app.use('/openai', require('./routes/openai.route'));
 // app.route('/api/openai').post(getOpenai);

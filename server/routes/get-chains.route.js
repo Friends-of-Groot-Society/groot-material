@@ -3,7 +3,7 @@ exports.__esModule = true;
 exports.getChainById = exports.getAllChains = void 0;
 var db_data_1 = require("../data/db-data");
 function getAllChains(req, res) {
-    res.status(200).json({ payload: Object.values(db_data_1.CHAINS) });
+    res.status(200).json({ data: Object.values(db_data_1.CHAINS) });
 }
 exports.getAllChains = getAllChains;
 function getChainById(req, res) {

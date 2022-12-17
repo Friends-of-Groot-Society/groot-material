@@ -10,24 +10,24 @@ import { environment } from  '../../environments/environment';
 })
 export class UserService {
 
-  baseUrl:string;
+  local_url:string;
 
   constructor(private httpService: HttpClient ) { 
 
-    this.baseUrl = environment.baseUrl;
+    this.local_url = environment.local_url;
    
  } 
  
     register(user: User) {
-      console.log("user "+`${this.baseUrl}/api/users/register`, user);
-        return this.httpService.post(`${this.baseUrl}/api/users/register`, user);
+      console.log("user "+`${this.local_url}/api/users/register`, user);
+        return this.httpService.post(`${this.local_url}/api/users/register`, user);
     }
 
     delete(id: string) {
-        return this.httpService.delete(`${this.baseUrl}/api/users/${id}`);
+        return this.httpService.delete(`${this.local_url}/api/users/${id}`);
     }
     getUser(id: string): Observable<User> {
-    return this.httpService.get<User>(`${this.baseUrl}/api/users/${id}`);
+    return this.httpService.get<User>(`${this.local_url}/api/users/${id}`);
   }
   // public getUser(id: number): Observable<User> {
   //   return this.httpService.get<User>(`http://${this.baseUrl}/api/users/${id}`).pipe(
@@ -36,7 +36,9 @@ export class UserService {
   //   );
   // }
    getAllUsers(): Observable<User[]> {
-    return this.httpService.get<User[]>(`${this.baseUrl}/api/users`);
+    return this.httpService.get<User[]>(`${this.local_url}/api/users`).pipe(
+      map(data => data["data"])
+    );
   }
    
   // public getAllUsers(): Observable<User[]> {

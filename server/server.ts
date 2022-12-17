@@ -10,7 +10,7 @@ import {
     // searchAddressesByCategory
 } from "./routes/search-addresses.route";
 import {saveChain} from './routes/save-chain.route';
-import {getUsers, getUserById,getMedia,getGroot} from './routes/get-data.route';
+import {getUsers, getUserById, getMedia, getNfts} from './routes/get-data.route';
 // import  {getOpenai} from './routes/openai.route';
 import * as cors from 'cors';
 
@@ -40,7 +40,7 @@ app.route('/api/chains/:id').put(saveChain);
 app.route('/api/users').get(getUsers);
 app.route('/api/users/:id').get(getUserById); 
 app.route('/api/media').get(getMedia); 
-app.route('/api/groot').get(getGroot);
+app.route('/api/nft').get(getNfts);
 
 
 /// open-ai stuff
