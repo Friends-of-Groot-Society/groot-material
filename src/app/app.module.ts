@@ -38,6 +38,9 @@ import { NftComponent } from './components/crypto/nft/nft.component';
 import { NftAddComponent } from './components/crypto/nft-add/nft-add.component';
 import { ChaindataComponent } from './components/crypto/chaindata/chaindata.component';
 import { reducers } from './reducers/app.reducer';
+import { LoaderService } from './components/layout/loader/loader.service';
+import { LoaderComponent } from './components/layout/loader/loader.component';
+import { HomeComponent } from './components/layout/home.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +64,9 @@ import { reducers } from './reducers/app.reducer';
     NftsComponent,
     NftComponent,
     NftAddComponent,
-    ChaindataComponent 
+    ChaindataComponent,
+    LoaderComponent,
+    HomeComponent 
   ],
   imports: [
     MaterialModule,
@@ -74,6 +79,7 @@ import { reducers } from './reducers/app.reducer';
   providers: [ 
     BookService,
     GrootService, 
+    LoaderService
   ],
   bootstrap: [AppComponent]
 })

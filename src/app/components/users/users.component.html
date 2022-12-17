@@ -1,53 +1,35 @@
 <div class="users">
     <h3>Friends of Groot</h3>
     <input type="number" [(ngModel)]="id" placeholder="User ID">&nbsp;
-    <button type="button" (click)="getUser()">Show member Details</button>
+    <button type="button" (click)="loadUser(id)">Show member Details</button>
     <hr>
 
-    <button type="button" (click)="getAllUsers()">Show all members</button>
+    <button type="button" (click)="loadUsers()">Show all members</button>
     <hr>
 
     <div *ngIf="user">
         <!-- Member's Name <strong>{{user.getName()}}</strong>, with these narratives: -->
-     #{{user.id }}: Member's Name <strong>{{user.fName}} {{user.lName}}  </strong>, has these narratives: 
-      <hr>
-        <div *ngIf="user.media">
-            Character <strong>{{user.media.character}}</strong>, located at: <strong>{{user.media.location}}</strong> within
-            company, <br />and personal Quotation:  <em>{{ user.media.quote }}</em>. 
-        </div>
-        <!-- <div *ngIf="user.media">
-            Character <strong>{{user.media.character}}</strong>, located at: <strong>{{user.media.location}}</strong> within
-            company, <br />and Quotation: <em>{{ user.media.getQuote() }}</em>.
-        </div> -->
-        
-        <!-- <div *ngIf="user.media">
-            <ul>
-                <li *ngFor="let media of user.media">
-                    Character <strong>{{media.character}}</strong>, located at: <strong>{{media.location}}</strong>
-                    within company, <br />and Quotation: <em>{{ media.getQuote() }}</em>.
-                </li>
-            </ul>
-        </div> -->
-
+     #{{user.id }}: Member's Name <strong>{{user.fName}} {{user.lName}}  </strong>  <br /> 
+        <span *ngIf="user.addresses">
+            Number of addresses: <strong>{{user.addresses.length}}</strong> 
+            - located at: <strong>{{user.addresses[0].address}}</strong> <em>{{user.addresses[0].chain }}</em>.  
+        </span>
     </div>
-
+      <hr> 
+        <div *ngFor="let add of user.addresses">
+            Character <strong>{{add.address}}</strong>, located at: <strong>{{add.chain}}</strong> <em>{{add.chainId }}</em>. 
+         </div>
+ 
     <div *ngIf="users">
         <hr>
         <ul>
             <li *ngFor="let user of users;">
                 <!-- ### user.id => this.id -->
-             <a (click)="getThisUser(this.id)"><strong>Details #{{user.id }}: </strong></a> <em>&nbsp;{{user.fName}} {{user.lName}}</em> <strong> is member of: </strong> <em>{{user.groupType}}</em>
+             <a (click)="loadUser(this.id)"><strong>Details #{{user.id }}: </strong></a> <em>&nbsp;{{user.fName}} {{user.lName}}</em> <strong> is member of: </strong> <em>{{user.groupType}}</em>
                 <hr>
             </li> 
         </ul>
     </div>
-    <!-- <div *ngIf="media">
-        <hr>
-        <ul>
-            <li *ngFor="let medium of media;">
-                {{user.getFullName()}} is member type {{user.groupType}} and has {{user.media.length}} media.
-            </li>
-        </ul>
-    </div> -->
+    
     
 </div>

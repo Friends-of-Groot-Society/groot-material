@@ -153,23 +153,27 @@ export const USERS = [
     email: "walter.white@gmail.com",
     memberSince: "02-04-2020",
     groupType: "Premium",
-    media: [
+    addresses: [
       {
-        "id": 11,
-        "uniqueId": "f4f8b2f4-b714-49cc-9aed-4d918ae32ee6",
-        "character": "The Great Goblin",
-        "location": "Bree",
-        "thorinsCompany": "Bofur",
-        "quote": "There is nothing like looking, if you want to find something. You certainly usually find something, if you look, but it is not always quite the something you were after."
-      },
-      {
-        "id": 12,
-        "uniqueId": "8bf37760-93fd-4f1b-b02c-473d319621ab",
-        "character": "Ori",
-        "location": "Mount Gram",
-        "thorinsCompany": "Bifur",
-        "quote": "Where did you go to, if I may ask?' said Thorin to Gandalf as they rode along.  To look ahead,' said he.  And what brought you back in the nick of time?' Looking behind,' said he."
-      }
+        id: 1,
+        description: "NFT - 0x1",
+        owner: "unknown",
+        address: "0xcfCa3FEBAceA3AbB643bA90C670D7c4E6D74b633",
+        chain: "ethereum",
+        duration: "2:55",
+        seqNo: 5,
+        chainId: 1
+    },
+    {
+        id: 4,
+        description: "NFT - 0x1",
+        owner: "unknown",
+        address: "0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
+        chain: "pulsechain",
+        duration: "2:55",
+        seqNo: 5,
+        chainId: 1
+    },
     ],
   },
 ];

@@ -9,7 +9,7 @@
       <app-chaindata [nftData]="nftData"></app-chaindata>
     </div>
   </section>
-
+<app-loader></app-loader>
   <section>
     <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="1px" *ngIf="nfts">
       <app-nft *ngFor="let nft of nftData.nfts" [inputNft]="nft" [nftData]="nftData"></app-nft>

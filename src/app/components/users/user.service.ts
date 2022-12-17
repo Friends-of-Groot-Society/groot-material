@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { User } from '../models/User';
+import { User } from '../../models/User';
 import { catchError, map } from 'rxjs/operators';
-import { environment } from  '../../environments/environment';
+import { environment } from  '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -36,6 +36,11 @@ export class UserService {
   //   );
   // }
    getAllUsers(): Observable<User[]> {
+    return this.httpService.get<User[]>(`${this.local_url}/api/users`).pipe(
+      map(data => data["data"])
+    );
+   }
+   getAllUserChains(): Observable<User[]> {
     return this.httpService.get<User[]>(`${this.local_url}/api/users`).pipe(
       map(data => data["data"])
     );

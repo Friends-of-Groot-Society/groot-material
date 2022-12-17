@@ -2,13 +2,15 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Observable, Subject, Subscription } from 'rxjs';
 import { NftsService } from './nfts.service';
+import { LoaderService } from '../../components/layout/loader/loader.service';
 
 // import { Chain } from '../../models/Chain';
-import { Store } from 'src/app/utility/store.service';
+import { ChainStore } from 'src/app/utility/chain-store.service';
 @Component({
   selector: 'app-nfts',
   templateUrl: './nfts.component.html',
-  styleUrls: ['./nfts.component.scss']
+  styleUrls: ['./nfts.component.scss'],
+  providers: [LoaderService]
   
 })
 
@@ -29,7 +31,7 @@ export class NftsComponent implements OnInit, OnDestroy {
   
   constructor(
     private nftsService: NftsService,
-    private store: Store
+    private store: ChainStore
   ) {
     this.nfts = this.loadNfts();
     this.nftData = this.showChainData();
