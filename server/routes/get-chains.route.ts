@@ -8,7 +8,7 @@ import {CHAINS } from "../data/db-data";
 export function getAllChains(req: Request, res: Response) {
  
 
-         res.status(200).json({payload:Object.values(CHAINS)});
+         res.status(200).json({data:Object.values(CHAINS)});
  
 
 }

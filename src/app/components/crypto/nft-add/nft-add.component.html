@@ -1,41 +1,33 @@
-<h3>Add NFT</h3>
+
 <section>
   <form fxLayout="column" fxLayoutAlign="center center" (ngSubmit)="formReplaceNft(f)" #f="ngForm">
-  <div fxLayout="row"  fxLayoutAlign=" center center">
-    <div fxLayout="column"  fxLayoutAlign=" center center" style="width:220px;" >
-       
-<mat-form-field class="   address select full-width" appearance="fill">
- 
-    <mat-label>Select Chain</mat-label>
-  <mat-select ngModel name="chain" required>
-    <mat-option *ngFor="let c of chains$ | async" [value]="c.id">{{c.name}}</mat-option>
-    <!-- <mat-option value="matic">Polygon</mat-option>
-    <mat-option value="bnc">Binance</mat-option> -->
-  </mat-select>
- 
-</mat-form-field>
-      <mat-form-field  style="min-width:375px" appearance="outline">
-        <mat-label >Ethereum Address</mat-label>
-        <input matInput type="text" name="nftAddress" ngModel placeholder="NFT" minlength="42" required />
-      </mat-form-field  > 
-   
+    <div fxLayout="row" fxLayoutAlign=" center center">
+      <div fxLayout="column" fxLayoutAlign=" center center" style="width:220px;">
+    
+      <div class="row"  fxFlex fxLayout="row" fxAlign="flex-center">
+        <div class="col col-6">
+          <mat-form-field class="        " > 
+            <mat-label>Select Chain</mat-label>
+            <mat-select ngModel name="chain" >
+              <mat-option *ngFor="let c of chains$ | async" [value]="c.name">{{c.name | uppercase}} | {{c.type}}</mat-option> 
+            </mat-select> 
+          </mat-form-field>
+        </div>
+
+        <div class="col col-6" id="button">
+          <button mat-raised-button mat-icon-button color="accent" type="submit">
+            <mat-icon>add</mat-icon>
+          </button>
+        </div>
+      </div>
+
+        <mat-form-field style="min-width:375px" appearance="outline">
+          <mat-label>Ethereum Address</mat-label>
+          <input matInput type="text" name="nftAddress" ngModel placeholder="NFT" minlength="42" required />
+        </mat-form-field>
+
+      </div> 
     </div>
- 
-  </div>
-    <button mat-raised-button mat-icon-button   color="accent" type="submit">
-      <mat-icon>add</mat-icon>
-    </button>
-    </form>
-</section>
-<section>
-  <div fxLayout="column" fxLayoutAlign="center center"> 
-  <app-nft (nftClicked)="onDeleteNft(nft)" 
-  *ngFor="let nft of nfts" 
-  [inputNft]="nft"
-  [nftData]="nftData"
-  ></app-nft>
-  </div>
-</section>
-<section>
    
-</section> 
+  </form>
+</section>

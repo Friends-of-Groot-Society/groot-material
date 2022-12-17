@@ -24,7 +24,7 @@ export class Store {
         http$
             .pipe(
                 tap(() => console.log('HTTP request executed')),
-                map(res => Object.values(res['payload']))
+                map(res => Object.values(res['data']))
             )
             .subscribe(
                 chains => this.subjectChain.next(chains)

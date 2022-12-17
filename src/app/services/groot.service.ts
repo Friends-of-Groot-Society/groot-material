@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Character } from '../models/Character';
-import { Groot } from '../models/Groot';
+import { Character } from '../models/Character'; 
 import { Greeting } from '../models/Greeting';
 import { environment } from  '../../environments/environment';
 
@@ -25,22 +24,7 @@ export class GrootService {
     this.baseUrl = environment.baseUrl;
 
    }
-   
-getFilteredGroot(genre: String):  Observable<Groot[]> {
-  return this.http.get<Groot[]>(`${this.baseUrl}/api/groot/type/${genre}`);  
-}
-
-///GrootApp/getGroot.do
-  getAllGroot() :Observable<Groot[]> {
-    // return this.http.get<Groot[]>("http://localhost:8080/GrootApp/getAllGroot.do");
-    return this.http.get<Groot[]>(`${this.baseUrl}/api/groot`); 
-  }
-
-  addGroot(g :Groot) :Observable<Groot> { 
-    // return this.http.post<Groot>("http://localhost:8080/GrootApp/addGroot.do", poke, {headers: this.headers}); 
-    return this.http.post<Groot>(`${this.baseUrl}/api/groot`, g, {headers: this.headers});
-    // return this.http.post<Groot>("http://localhost:8090/api/groot", g, {headers: this.headers});
-  }
+      
   // addCharacter(char :Character) :Observable<Character> {
   //   return this.http.post<Character>("http://localhost:8080/GrootApp/addCharacters.do", char, {headers: this.headers});
   // }

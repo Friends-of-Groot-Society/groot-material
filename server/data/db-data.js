@@ -1,6 +1,6 @@
 "use strict";
 exports.__esModule = true;
-exports.findAddressesForChain = exports.findChainById = exports.GROOT = exports.MEDIA = exports.USERS = exports.ADDRESSES = exports.CHAINS = void 0;
+exports.findAddressesForChain = exports.findChainById = exports.MEDIA = exports.USERS = exports.ADDRESSES = exports.NFTS = exports.CHAINS = void 0;
 exports.CHAINS = {
     0: {
         id: 0,
@@ -62,6 +62,37 @@ exports.CHAINS = {
         addressesCount: 3
     }
 };
+exports.NFTS = {
+    "0x900bE021E38B8d08435A03c05657C8cFA837cAeF": {
+        native: "0.03435",
+        tokens: [
+            "12.0 USDC",
+            "55.0 HEX",
+            "2.00265064 MATIC"
+        ],
+        nfts: [
+            {
+                name: "One day,Ujuuna killed in explosion, and his reincarnation is decided at generative.",
+                amount: 1,
+                metadata: {
+                    name: "Ten Uju Gene #08380",
+                    description: "ある日、イケハヤさんと対談し、未来にワクワクしながら布団に入るうじゅうな……。  \n    \n  （明日からも頑張ろう……）  \n    \n  そう思った矢先、爆死し、転生してしまううじゅうな。  \n    \n  念願の転生は思っていたのとは、なんか違うようで……。  \n    \n  その転生先はあなたの目で見届けてほしい。",
+                    image: "https://storage.googleapis.com/uju-explosion/images/8380.png",
+                    attributes: [
+                        {
+                            value: "Tegaki",
+                            trait_type: "Base"
+                        },
+                        {
+                            value: "Tegaki",
+                            trait_type: "Base"
+                        }
+                    ]
+                }
+            }
+        ]
+    }
+};
 exports.ADDRESSES = {
     0: {
         id: 0,
@@ -82,36 +113,6 @@ exports.ADDRESSES = {
         duration: "2:55",
         seqNo: 5,
         chainId: 1
-    },
-    2: {
-        id: 2,
-        description: "NFT - 0x1",
-        owner: "unknown",
-        address: "0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
-        chain: "binance",
-        duration: "2:55",
-        seqNo: 5,
-        chainId: 2
-    },
-    3: {
-        id: 3,
-        descriptio: "NFT - 0x1",
-        owner: "unknown",
-        address: "0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
-        chain: "solana",
-        duration: "2:55",
-        seqNo: 5,
-        chainId: 3
-    },
-    4: {
-        id: 4,
-        description: "NFT - 0x1",
-        owner: "unknown",
-        address: "0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
-        chain: "pulsechain",
-        duration: "2:55",
-        seqNo: 5,
-        chainId: 4
     }
 };
 /////////// USERS
@@ -122,15 +123,27 @@ exports.USERS = [
         email: "thomasm1.maestas@gmail.com",
         memberSince: "02-04-2020",
         groupType: "Admin",
-        media: [
+        addresses: [
             {
-                "id": 12,
-                "uniqueId": "8bf37760-93fd-4f1b-b02c-473d319621ab",
-                "character": "Ori",
-                "location": "Mount Gram",
-                "thorinsCompany": "Bifur",
-                "quote": "Where did you go to, if I may ask?' said Thorin to Gandalf as they rode along.  To look ahead,' said he.  And what brought you back in the nick of time?' Looking behind,' said he."
-            }
+                id: 4,
+                description: "NFT - 0x1",
+                owner: "unknown",
+                address: "0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
+                chain: "ethereum",
+                duration: "2:55",
+                seqNo: 5,
+                chainId: 4
+            },
+            {
+                id: 4,
+                description: "NFT - 0x1",
+                owner: "unknown",
+                address: "0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
+                chain: "pulsechain",
+                duration: "2:55",
+                seqNo: 5,
+                chainId: 4
+            },
         ]
     },
     { id: 1,
@@ -183,24 +196,6 @@ exports.MEDIA = [
         "location": "Gondolin",
         "thorinsCompany": "Bombur",
         "quote": "May the wind under your wings bear you where the sun sails and the moon walks."
-    }
-];
-exports.GROOT = [
-    {
-        "id": 1,
-        "isbn": "e4b61eff-259e-4581-813e-52b3ae804a2d",
-        "title": "The Wings of the Dove",
-        "author": "Lonna Murphy",
-        "name": "Felony & Mayhem Press",
-        "type": "Legend"
-    },
-    {
-        "id": 2,
-        "isbn": "aab026e6-65a5-4e4a-a096-634c35944732",
-        "title": "East of Eden",
-        "author": "Len Goyette",
-        "name": "Leafwood Publishers",
-        "type": "Biography/Autobiography"
     }
 ];
 function findChainById(chainId) {
