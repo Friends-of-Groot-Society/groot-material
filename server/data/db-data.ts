@@ -367,7 +367,7 @@ export const NFTS_POLYGON = [
         }
     }
 ]
-export const NFT = {
+export const NFT_ETH = {
     native: "0.03435",
     tokens: [
         "12.0 USDC",
@@ -397,7 +397,7 @@ export const NFT = {
         }
     ]
 }
-export const NFT_POLYGON = {
+export const NFT_POLY = {
     "native": "0.0",
     "tokens": [
         "540.0 BalancerV2.com"
