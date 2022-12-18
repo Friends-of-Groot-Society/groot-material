@@ -12,14 +12,25 @@ import {ChainStore } from '../../utility/chain-store.service';
     margin:0 auto;
   }
   `
-  ]
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  chains$: Observable<Chain[]>;
+  ethereumChains$: Observable<Chain[]>;
+  polygonChains$: Observable<Chain[]>;
+
+  constructor(private chainStore: ChainStore ) { }
 
   ngOnInit(): void {
+    this.reloadChains();
+  }
 
+  reloadChains() {
+    this.chains$ = this.chainStore.selectAllChains();
+   this.ethereumChains$ = this.chainStore.filterByChainName('ETHEREUM'); 
+   this.polygonChains$ = this.chainStore.filterByChainName('POLYGON');
   }
 
 }

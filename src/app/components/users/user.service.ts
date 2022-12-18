@@ -10,12 +10,9 @@ import { environment } from  '../../../environments/environment';
 })
 export class UserService {
 
-  local_url:string;
-
-  constructor(private httpService: HttpClient ) { 
-
-    this.local_url = environment.local_url;
-   
+  local_url:string; 
+  constructor(private httpService: HttpClient ) {  
+    this.local_url = environment.local_url; 
  } 
  
     register(user: User) {

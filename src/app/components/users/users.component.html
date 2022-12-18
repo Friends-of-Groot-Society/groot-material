@@ -1,35 +1,41 @@
 <div class="users">
     <h3>Friends of Groot</h3>
     <input type="number" [(ngModel)]="id" placeholder="User ID">&nbsp;
-    <button type="button" (click)="loadUser(id)">Show member Details</button>
+    <button type="button" (click)="loadUser(id)" class="btn btn-primary">Show member Details</button>
     <hr>
-
-    <button type="button" (click)="loadUsers()">Show all members</button>
-    <hr>
+ 
 
     <div *ngIf="user">
-        <!-- Member's Name <strong>{{user.getName()}}</strong>, with these narratives: -->
-     #{{user.id }}: Member's Name <strong>{{user.fName}} {{user.lName}}  </strong>  <br /> 
+        #{{user.id }}: Member's Name <strong>{{user.fName}} {{user.lName}} </strong> is member of:  <em>
+            <strong>{{user.groupType}}</strong></em>&nbsp;member since:<strong> {{user.memberSince}}</strong>
+    <p *ngIf="user.addresses">
+        Number of addresses: <strong>{{user.addresses.length}}</strong> </p><br />
         <span *ngIf="user.addresses">
-            Number of addresses: <strong>{{user.addresses.length}}</strong> 
-            - located at: <strong>{{user.addresses[0].address}}</strong> <em>{{user.addresses[0].chain }}</em>.  
-        </span>
-    </div>
-      <hr> 
-        <div *ngFor="let add of user.addresses">
-            Character <strong>{{add.address}}</strong>, located at: <strong>{{add.chain}}</strong> <em>{{add.chainId }}</em>. 
-         </div>
  
+        </span>
+        <div *ngFor="let add of user.addresses">
+            Addresses: <strong>{{add.address}}</strong>, located at: <strong>{{add.chain}}</strong> <em>{{add.chainId
+                }}</em>.
+        </div>
+    </div>
+    <hr>
     <div *ngIf="users">
         <hr>
         <ul>
-            <li *ngFor="let user of users;">
+            <li *ngFor="let user of users; let index of users">
                 <!-- ### user.id => this.id -->
-             <a (click)="loadUser(this.id)"><strong>Details #{{user.id }}: </strong></a> <em>&nbsp;{{user.fName}} {{user.lName}}</em> <strong> is member of: </strong> <em>{{user.groupType}}</em>
+                <a (click)="loadUser(user.id)" class="btn btn-primary"><strong>Details #{{user.id }}: </strong></a>
+                <em>&nbsp;{{user.fName}}   {{user.lName}}</em>  
+                    <span *ngFor="let add of user.addresses">
+                        <br />
+                         <strong>{{add.address}}</strong>, located at: <strong>{{add.chain}} 
+                         </strong>&nbsp;<em>{{add.chainId }}</em>.
+                    </span> 
                 <hr>
-            </li> 
+
+            </li>
         </ul>
     </div>
-    
-    
+
+
 </div>
