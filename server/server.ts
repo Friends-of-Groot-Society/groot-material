@@ -50,8 +50,8 @@ app.route('/api/nft-test').post(postNft);
  
 app.route('/api/nfts-test').post(postNfts);
  
-app.route('/api/nft-data').get(getNftData); 
-app.route('/api/nft-data').post(postNftData); 
+// app.route('/api/nft-data').get(getNftData); 
+// app.route('/api/nft-data').post(postNftData); 
 
 /// open-ai stuff
 app.use('/openai', require('./routes/openai.route'));

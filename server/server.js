@@ -37,8 +37,8 @@ app.route('/api/users/:id').get(get_users_route_1.getUserById);
 app.route('/api/nft-test').get(get_nfts_route_1.getNft);
 app.route('/api/nft-test').post(get_nfts_route_1.postNft);
 app.route('/api/nfts-test').post(get_nfts_route_1.postNfts);
-app.route('/api/nft-data').get(get_nfts_route_1.getNftData);
-app.route('/api/nft-data').post(get_nfts_route_1.postNftData);
+// app.route('/api/nft-data').get(getNftData); 
+// app.route('/api/nft-data').post(postNftData); 
 /// open-ai stuff
 app.use('/openai', require('./routes/openai.route'));
 // app.route('/api/openai').post(getOpenai);

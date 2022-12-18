@@ -1,9 +1,7 @@
 
 
 import {Request, Response} from 'express'; 
-import {USERS } from "../data/db-data"; 
-import {NFTS } from "../data/db-data"; 
-
+import {USERS } from "../data/db-data";  
 console.log(USERS);
   
 export function getUsers(req: Request, res: Response) {

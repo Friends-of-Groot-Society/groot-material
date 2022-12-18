@@ -1,6 +1,6 @@
 "use strict";
 exports.__esModule = true;
-exports.findAddressesForChain = exports.findChainById = exports.NFT_POLYGON = exports.NFT = exports.NFTS_POLYGON = exports.NFTS_ETHEREUM = exports.USERS = exports.ADDRESSES = exports.CHAINS = void 0;
+exports.findAddressesForChain = exports.findChainById = exports.NFT_POLY = exports.NFT_ETH = exports.NFTS_POLYGON = exports.NFTS_ETHEREUM = exports.USERS = exports.ADDRESSES = exports.CHAINS = void 0;
 exports.CHAINS = {
     0: {
         id: 0,
@@ -360,7 +360,7 @@ exports.NFTS_POLYGON = [
         }
     }
 ];
-exports.NFT = {
+exports.NFT_ETH = {
     native: "0.03435",
     tokens: [
         "12.0 USDC",
@@ -389,7 +389,7 @@ exports.NFT = {
         }
     ]
 };
-exports.NFT_POLYGON = {
+exports.NFT_POLY = {
     "native": "0.0",
     "tokens": [
         "540.0 BalancerV2.com"

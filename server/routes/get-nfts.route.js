@@ -3,11 +3,11 @@ exports.__esModule = true;
 exports.postNftData = exports.getNftData = exports.postNfts = exports.postNft = exports.getNft = void 0;
 var db_data_1 = require("../data/db-data");
 function getNft(req, res) {
-    res.status(200).json(db_data_1.NFT);
+    res.status(200).json(db_data_1.NFT_ETH);
 }
 exports.getNft = getNft;
 function postNft(req, res) {
-    res.status(200).json(db_data_1.NFT);
+    res.status(200).json(db_data_1.NFT_POLY);
 }
 exports.postNft = postNft;
 function postNfts(req, res) {
@@ -34,14 +34,10 @@ function postNfts(req, res) {
 }
 exports.postNfts = postNfts;
 function getNftData(req, res) {
-    // let address = req.body["address"];
-    // for()
-    res.status(200).json(db_data_1.NFT);
+    // res.status(200).json(NFT_ETH);
 }
 exports.getNftData = getNftData;
 function postNftData(req, res) {
-    var obj = req.body;
-    console.log(obj);
-    res.status(200).json(db_data_1.NFT);
+    // res.status(200).json(NFT_POLY);
 }
 exports.postNftData = postNftData;
