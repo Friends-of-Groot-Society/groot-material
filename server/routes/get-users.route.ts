@@ -1,8 +1,7 @@
 
 
 import {Request, Response} from 'express'; 
-import {USERS } from "../data/db-data";
-import {MEDIA } from "../data/db-data"; 
+import {USERS } from "../data/db-data"; 
 import {NFTS } from "../data/db-data"; 
 
 console.log(USERS);
@@ -26,11 +25,4 @@ export function getUserById(req: Request, res: Response) {
 
         res.status(200).json(user); 
 
-} 
-
-export function getMedia(req: Request, res: Response) {  
-    res.status(200).json({data: Object.values(MEDIA)});  
-}
-export function getNfts(req: Request, res: Response) {  
-    res.status(200).json({data: Object.values(NFTS)});  
-}
+}  
