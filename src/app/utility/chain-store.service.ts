@@ -1,8 +1,8 @@
-import {Injectable} from '@angular/core';
-import {BehaviorSubject, from, Observable, Subject, throwError, timer} from 'rxjs';
- 
-import {catchError, delayWhen, filter, map,  shareReplay, tap, withLatestFrom} from 'rxjs/operators';
-// import {createHttpObservable} from './observable';  
+import { Injectable } from '@angular/core';
+import { BehaviorSubject, from, Observable, Subject, throwError, timer } from 'rxjs';
+
+import { catchError, delayWhen, filter, map, shareReplay, tap, withLatestFrom } from 'rxjs/operators';
+import { createHttpObservable } from './observable';
 import { Chain } from '../models/Chain';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
@@ -13,6 +13,9 @@ import { LoaderService } from '../components/layout/loader/loader.service';
 
 
 export class ChainStore {
+    selectAddressesByChainId(id: number): any {
+      throw new Error('Method not implemented.');
+    }
 
     private subjectChain = new BehaviorSubject<Chain[]>([]);
 
@@ -21,34 +24,22 @@ export class ChainStore {
     constructor(
         private httpClient: HttpClient,
         private loaderService: LoaderService,
-        
+
     ) {
-      
-        this.getAllChains();
-    }   
-    // init() {
-    //     const baseUrl = environment.local_url; 
-    //     const http$ = createHttpObservable(`${baseUrl}/chains`);
-    //     console.log(this.chains$.subscribe())
-    //     http$
-    //         .pipe(
-    //             tap(() => console.log('HTTP request executed')),
-    //             map(res => Object.values(res['data']))
-    //         )
-    //         .subscribe(
-    //             chains => this.subjectChain.next(chains)
-    //         );
-    // } 
-    getAllChains() {
-        const loadChains$ = this.httpClient.get(`${environment.local_url}/chains`)
+        // this.init();
+        this.loadAllChains();
+    }
+
+    loadAllChains() {
+        const loadChains$ = this.httpClient.get(`${environment.local_url}/api/chains`)
             .pipe(
-                map(res =>  res['data']),
+                map(res => res['data']),
                 catchError(err => {
                     return throwError(() => 'error in source. Details: ' + err);
-                } ),
+                }),
                 tap(chains => this.subjectChain.next(chains)),
             )
-            // this.loaderService.showLoaderUntilCompleted(loadChains$).subscribe();
+        // this.loaderService.showLoaderUntilCompleted(loadChains$).subscribe();
     }
 
     selectAllChains() {
@@ -57,14 +48,14 @@ export class ChainStore {
         return this.noFilter();
     }
     selectEthereumChains() {
-        return this.filterByCategory('ETHEREUM');
+        return this.filterByChainName('ETHEREUM');
     }
 
     selectPolygonChains() {
-        return this.filterByCategory('POLYGON');
+        return this.filterByChainName('POLYGON');
     }
 
-    selectChainById(chainId:number) {
+    selectChainById(chainId: number) {
         return this.chains$
             .pipe(
                 map(chains => chains.find(chain => +chain.id == chainId)),
@@ -75,44 +66,64 @@ export class ChainStore {
     noFilter() {
         return this.chains$;
     }
-    filterByCategory(category: string) {
-        return this.chains$
-            .pipe(
-                map(chains => chains
-                    .filter(chain => chain.category == category))
-            );
-    }
+ 
 
-    saveChain(chainId:number, changes): Observable<any> {
+    saveChain(chainId: number, changes): Observable<any> {
 
         const chains = this.subjectChain.getValue();
 
         const chainIndex = chains.findIndex(chain => +chain.id == chainId);
 
-        const newChains = chains.slice(0);
-
-        newChains[chainIndex] = {
+        const newChain: Chain = {
             ...chains[chainIndex],
             ...changes
         };
 
+        const newChains: Chain[] = chains.slice(0);
+        newChains[chainIndex] = newChain;
+
         this.subjectChain.next(newChains);
 
-        return from(fetch(`/api/chains/${chainId}`, {
-            method: 'PUT',
-            body: JSON.stringify(changes),
-            headers: {
-                'content-type': 'application/json'
-            }
-        }));
+        return this.httpClient.put(`${environment.local_url}/api/chains/${chainId}`, changes)
+            .pipe(
+                catchError(err => {
 
+                    return throwError(err);
+                }),
+                shareReplay()
+        // return from(fetch(`/api/chains/${chainId}`, {
+        //     method: 'PUT',
+        //     body: JSON.stringify(changes),
+        //     headers: {
+        //         'content-type': 'application/json'
+        //     }
+        // }));
+            )
     }
 
-
-
+    filterByChainName(searchTerm: string): Observable<Chain[]> {
+        return this.chains$
+        .pipe(
+            map(chains => 
+                chains.filter(chain => chain.name == searchTerm) 
+            )) 
+            }
+  
+    init() {
+        const baseUrl = environment.local_url;
+        const http$ = createHttpObservable(`${baseUrl}/chains`);
+        console.log(this.chains$.subscribe())
+        http$
+            .pipe(
+                tap(() => console.log('HTTP request executed')),
+                map(res => Object.values(res['data']))
+            )
+            .subscribe(
+                chains => this.subjectChain.next(chains)
+            );
+    }
 
 
 }
 
 
-  

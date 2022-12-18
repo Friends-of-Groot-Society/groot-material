@@ -8,6 +8,9 @@ import { BookComponent } from './components/book/book.component';
 import { PhotosComponent } from './components/photos/photos.component';
 import { ChainServersComponent } from './components/chain-servers/chain-servers.component';
 import { ChainComponent } from './components/chain-servers/chain/chain.component';
+import { ChainsCardListComponent } from './components/chain/chains-card-list/chains-card-list.component';
+import { ChainDialogComponent } from './components/chain/chain-dialog/chain-dialog.component';
+
 import { MaterialModule } from './material.module';
 
 import { AboutComponent } from './components/layout/about/about.component';
@@ -18,15 +21,17 @@ import { ContactusComponent } from './components/layout/contactus/contactus.comp
 // import { RegisterComponent } from './components/users/register/register.component';
  
 import { UsersComponent } from './components/users/users.component'; 
+import { HomeComponent } from './components/layout/home.component';
 
 const routes: Routes = [ 
 
   // { path: '', component: GrootComponent },
-  { path: '', component: NftsComponent }, 
-  {path : 'nfts', component : NftsComponent},
-  {path : 'about', component : AboutComponent},
-  {path : 'contact', component : ContactusComponent},
-  {path: 'servers', component: ChainServersComponent},
+  { path: '', component: HomeComponent }, 
+  { path : 'home', component : HomeComponent },
+  { path : 'nfts', component : NftsComponent },
+  { path : 'about', component : AboutComponent },
+  { path : 'contact', component : ContactusComponent },
+  { path: 'servers', component: ChainServersComponent },
   // { path: 'marvel', component: MarvelComponent },
   // { path: 'marvel/:guardiansId', component: MarvelComponent },
   // {path : 'groot/:grootId', component : BookComponent},

@@ -10,4 +10,8 @@ export interface Chain {
     iconUrl?:  string;
     chainListIcon?: string; 
     addressesCount?: number; 
+    rpcUrl?: string;
+    blockExplorerUrl?: string;
+    releaseDate?: string;
+    
 } 

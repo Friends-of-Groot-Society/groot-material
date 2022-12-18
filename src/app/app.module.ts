@@ -20,19 +20,21 @@ import { GrootService } from './services/groot.service';
 import { StoreModule } from '@ngrx/store';
  
 // LAYOUT 
-import { SidenavListComponent } from './components/layout/sidenav-list/sidenav-list.component';
-import { MenuComponent } from './components/layout/menu.component';
-import { ContactusComponent } from './components/layout/contactus/contactus.component';
 import { AboutComponent } from './components/layout/about/about.component'; 
+import { ContactusComponent } from './components/layout/contactus/contactus.component';
 import { FooterComponent } from './components/layout/footer.component';
+import { HomeComponent } from './components/layout/home.component';
+import { MenuComponent } from './components/layout/menu.component';
+import { SidenavListComponent } from './components/layout/sidenav-list/sidenav-list.component';
+
 import { MaterialModule } from './material.module';
 
 // import { MatMomentDateModule } from '@angular/material-moment-adapter';
-import { UsersComponent } from './components/users/users.component';
+import { AlertComponent } from './utility/alert.component';
 import { ChainServersComponent } from './components/chain-servers/chain-servers.component';
 import { ChainComponent } from './components/chain-servers/chain/chain.component';
-import { ServerComponent } from './components/chain-servers/server/server.component'; 
-import { AlertComponent } from './utility/alert.component';
+import { ChainsCardListComponent } from './components/chain/chains-card-list/chains-card-list.component';
+import { ChainDialogComponent } from './components/chain/chain-dialog/chain-dialog.component';
 import { NftsComponent } from './components/crypto/nfts.component';
 import { NftComponent } from './components/crypto/nft/nft.component';
 import { NftAddComponent } from './components/crypto/nft-add/nft-add.component';
@@ -40,7 +42,9 @@ import { ChaindataComponent } from './components/crypto/chaindata/chaindata.comp
 import { reducers } from './reducers/app.reducer';
 import { LoaderService } from './components/layout/loader/loader.service';
 import { LoaderComponent } from './components/layout/loader/loader.component';
-import { HomeComponent } from './components/layout/home.component';
+import { ServerComponent } from './components/chain-servers/server/server.component'; 
+import { UsersComponent } from './components/users/users.component';
+import { AddressComponent } from './components/chain/address/address.component';
 
 @NgModule({
   declarations: [
@@ -66,7 +70,10 @@ import { HomeComponent } from './components/layout/home.component';
     NftAddComponent,
     ChaindataComponent,
     LoaderComponent,
-    HomeComponent 
+    HomeComponent,
+    ChainsCardListComponent,
+    ChainDialogComponent,
+    AddressComponent 
   ],
   imports: [
     MaterialModule,

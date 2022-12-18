@@ -1,6 +1,6 @@
 "use strict";
 exports.__esModule = true;
-exports.findAddressesForChain = exports.findChainById = exports.MEDIA = exports.USERS = exports.ADDRESSES = exports.NFTS = exports.CHAINS = void 0;
+exports.findAddressesForChain = exports.findChainById = exports.NFTS = exports.USERS = exports.ADDRESSES = exports.CHAINS = void 0;
 exports.CHAINS = {
     0: {
         id: 0,
@@ -62,6 +62,109 @@ exports.CHAINS = {
         addressesCount: 3
     }
 };
+exports.ADDRESSES = {
+    0: {
+        id: 4,
+        description: "NFT - 0x1",
+        owner: "thomasm1.maestas@gmail.com",
+        address: "0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
+        chain: "ethereum",
+        duration: "2:55",
+        seqNo: 5,
+        chainId: 4
+    },
+    1: {
+        id: 4,
+        description: "NFT - 0x1",
+        owner: "thomasm1.maestas@gmail.com",
+        address: "0x5f7B0DDd217D55bFC4927b3E49E3CbF57FA81834",
+        chain: "ethereum",
+        duration: "2:55",
+        seqNo: 5,
+        chainId: 4
+    },
+    2: {
+        id: 1,
+        description: "NFT - 0x1",
+        owner: "walter.white@gmail.com",
+        address: "0xcfCa3FEBAceA3AbB643bA90C670D7c4E6D74b633",
+        chain: "ethereum",
+        duration: "2:55",
+        seqNo: 5,
+        chainId: 1
+    },
+    3: {
+        id: 4,
+        description: "NFT - 0x1",
+        owner: "walter.white@gmail.com",
+        address: "0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
+        chain: "polygon",
+        duration: "2:55",
+        seqNo: 5,
+        chainId: 1
+    }
+};
+/////////// USERS
+exports.USERS = [
+    { id: 0,
+        fName: "Tom",
+        lName: "Milton",
+        email: "thomasm1.maestas@gmail.com",
+        memberSince: "02-04-2020",
+        groupType: "Admin",
+        addresses: [
+            {
+                id: 4,
+                description: "NFT - 0x1",
+                owner: "thomasm1.maestas@gmail.com",
+                address: "0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
+                chain: "ethereum",
+                duration: "2:55",
+                seqNo: 5,
+                chainId: 4
+            },
+            {
+                id: 4,
+                description: "NFT - 0x1",
+                owner: "thomasm1.maestas@gmail.com",
+                address: "0x5f7B0DDd217D55bFC4927b3E49E3CbF57FA81834",
+                chain: "ethereum",
+                duration: "2:55",
+                seqNo: 5,
+                chainId: 4
+            },
+        ]
+    },
+    { id: 1,
+        fName: "Walter",
+        lName: "White",
+        email: "walter.white@gmail.com",
+        memberSince: "02-04-2020",
+        groupType: "Premium",
+        addresses: [
+            {
+                id: 1,
+                description: "NFT - 0x1",
+                owner: "walter.white@gmail.com",
+                address: "0xcfCa3FEBAceA3AbB643bA90C670D7c4E6D74b633",
+                chain: "ethereum",
+                duration: "2:55",
+                seqNo: 5,
+                chainId: 1
+            },
+            {
+                id: 4,
+                description: "NFT - 0x1",
+                owner: "walter.white@gmail.com",
+                address: "0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
+                chain: "polygon",
+                duration: "2:55",
+                seqNo: 5,
+                chainId: 1
+            },
+        ]
+    },
+];
 exports.NFTS = {
     "0x900bE021E38B8d08435A03c05657C8cFA837cAeF": {
         native: "0.03435",
@@ -93,115 +196,6 @@ exports.NFTS = {
         ]
     }
 };
-exports.ADDRESSES = {
-    0: {
-        id: 0,
-        description: "NFT - 0x1",
-        owner: "unknown",
-        address: "0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
-        chain: "ethereum",
-        duration: "2:55",
-        seqNo: 5,
-        chainId: 0
-    },
-    1: {
-        id: 1,
-        description: "NFT - 0x1",
-        owner: "unknown",
-        address: "0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
-        chain: "polygon",
-        duration: "2:55",
-        seqNo: 5,
-        chainId: 1
-    }
-};
-/////////// USERS
-exports.USERS = [
-    { id: 0,
-        fName: "Tom",
-        lName: "Milton",
-        email: "thomasm1.maestas@gmail.com",
-        memberSince: "02-04-2020",
-        groupType: "Admin",
-        addresses: [
-            {
-                id: 4,
-                description: "NFT - 0x1",
-                owner: "unknown",
-                address: "0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
-                chain: "ethereum",
-                duration: "2:55",
-                seqNo: 5,
-                chainId: 4
-            },
-            {
-                id: 4,
-                description: "NFT - 0x1",
-                owner: "unknown",
-                address: "0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
-                chain: "pulsechain",
-                duration: "2:55",
-                seqNo: 5,
-                chainId: 4
-            },
-        ]
-    },
-    { id: 1,
-        fName: "Walter",
-        lName: "White",
-        email: "walter.white@gmail.com",
-        memberSince: "02-04-2020",
-        groupType: "Premium",
-        addresses: [
-            {
-                id: 1,
-                description: "NFT - 0x1",
-                owner: "unknown",
-                address: "0xcfCa3FEBAceA3AbB643bA90C670D7c4E6D74b633",
-                chain: "ethereum",
-                duration: "2:55",
-                seqNo: 5,
-                chainId: 1
-            },
-            {
-                id: 4,
-                description: "NFT - 0x1",
-                owner: "unknown",
-                address: "0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
-                chain: "pulsechain",
-                duration: "2:55",
-                seqNo: 5,
-                chainId: 1
-            },
-        ]
-    },
-];
-exports.MEDIA = [
-    {
-        "id": 11,
-        "uniqueId": "f4f8b2f4-b714-49cc-9aed-4d918ae32ee6",
-        "character": "The Great Goblin",
-        "location": "Bree",
-        "thorinsCompany": "Bofur",
-        "quote": "There is nothing like looking, if you want to find something. You certainly usually find something, if you look, but it is not always quite the something you were after."
-    },
-    {
-        "id": 12,
-        "uniqueId": "8bf37760-93fd-4f1b-b02c-473d319621ab",
-        "character": "Ori",
-        "location": "Mount Gram",
-        "thorinsCompany": "Bifur",
-        "quote": "Where did you go to, if I may ask?' said Thorin to Gandalf as they rode along.  To look ahead,' said he.  And what brought you back in the nick of time?' Looking behind,' said he."
-    },
-    {
-        "id": 13,
-        "uniqueId": "a5535656-0011-42a0-a1cd-9628118acdfc",
-        "character": "Radagast",
-        "location": "Gondolin",
-        "thorinsCompany": "Bombur",
-        "quote": "May the wind under your wings bear you where the sun sails and the moon walks."
-    }
-];
 function findChainById(chainId) {
     return exports.CHAINS[chainId];
 }
