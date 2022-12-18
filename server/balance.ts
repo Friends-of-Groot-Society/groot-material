@@ -1,14 +1,17 @@
-// require('dotenv').config(); 
-const express = require("express")
-const cors = require('cors')
-// const bodyParser = require('body-parser')
-const Moralis = require("moralis").default 
-const { EvmChain } = require("@moralisweb3/evm-utils")
 
-const app = express()
-app.use(cors())
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+import * as express from 'express';
+import {Application} from "express";
+const app: Application = express(); 
+import * as dotenv from 'dotenv'; 
+import * as cors from 'cors';
+dotenv.config(); 
+import Moralis  from "moralis" 
+const { EvmChain } = require("@moralisweb3/evm-utils")
+ 
+
+app.use(cors()) 
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -16,18 +19,22 @@ app.use(function (req, res, next) {
   });
 const PORT = 8887 
 
-const API_KEY =  process.env.MORALIS_API_KEY;
-let chain = process.env.DEFAULT_CHAIN || 'eth'
+const API_KEY =  process.env["MORALIS_API_KEY"];
+let chain = process.env["DEFAULT_CHAIN"] || 'ETHEREUM'
 
-const addressDEFAULT =  process.env.DEFAULT_ADDRESS;
+const addressDEFAULT =  process.env["DEFAULT_ADDRESS"];
 const chainETH = EvmChain.ETHEREUM
 const chainROPSTEIN = EvmChain.ROPSTEIN
 const chainRINKEBY = EvmChain.RINKEBY
+const chainGOERLI = EvmChain.GOERLI
 const chainPOLYGON = EvmChain.POLYGON
 const chainMUMBAI = EvmChain.MUMBAI
 const chainBSC = EvmChain.BSC
 const chainBSC_TEST = EvmChain.BSC_TESTNET
 const chainAVA = EvmChain.AVALANCHE
+const chainFUJI = EvmChain.FUJI 
+const chainFANTOM= EvmChain.FANTOM 
+const chainARBITRUM = EvmChain.ARBITRUM 
 
 
 
@@ -65,8 +72,8 @@ async function getData(address, chain) {
 app.get("/nft", async(req, res) => {
 
 try {
-    address = req.query.address || addressDEFAULT;
-    chain = req.query.chain || chainETH;
+    const address = req.query['address'] || addressDEFAULT;
+    chain = req.query['chain'] || chainETH;
     const data = await getData(address, chain)    
     res.status(200)
     res.json(data)
@@ -88,23 +95,31 @@ app.post("/nft", async(req, res) => {
         res.status(400);
         res.json({error: "Invalid chain" });
     }; 
-    switch (req.body.chain.toLowerCase()) {
-        case "eth":
+    switch (req.body.chain.toUpperCase()) {
+        case "ETHEREUM":
             chain = chainETH; break;
-        case "ropstein":
+        case "ROPSTEIN":
             chain = chainROPSTEIN; break;
-        case "rinkeby":
+        case "RINKEBY":
             chain = chainRINKEBY; break;
-        case "polygon":
+        case "GOERLI":
+            chain = chainGOERLI; break;
+        case "POLYGON":
             chain = chainPOLYGON; break;
-        case "mumbai":
+        case "MUMBAI":
             chain = chainMUMBAI; break;
-        case "bsc":
+        case "BNB":
             chain = chainBSC; break;
-        case "bsctest":
+        case "BNB_TEST":
             chain = chainBSC_TEST; break;        
-        case "ava":
-            chain = chainAVA; break;   
+        case "AVALANCHE":
+            chain = chainAVA; break;     
+        case "FUJI":
+            chain = chainFUJI; break;     
+        case "FANTOM":
+            chain = chainFANTOM; break;     
+        case "ARBITRUM":
+            chain = chainARBITRUM; break;   
         default:
             res.status(400);
             res.json({error: "chain not supported" })                    
@@ -146,7 +161,7 @@ app.get("/nft/eth/:address", async(req, res) => {
     }; 
     // multi-chain support later TODO
     const chain = chainETH;
-    try {p
+    try {
         const data  = await getData(address, chain);
         res.status(200)
         res.json(data)

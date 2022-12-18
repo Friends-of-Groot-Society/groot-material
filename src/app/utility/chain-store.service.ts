@@ -33,7 +33,7 @@ export class ChainStore {
     loadAllChains() {
         const loadChains$ = this.httpClient.get(`${environment.local_url}/api/chains`)
             .pipe(
-                map(res => res['data']),
+                map(res => res['data']), 
                 catchError(err => {
                     return throwError(() => 'error in source. Details: ' + err);
                 }),
