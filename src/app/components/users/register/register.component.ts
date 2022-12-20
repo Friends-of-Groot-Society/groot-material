@@ -4,8 +4,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormGroup, FormBuilder,  FormControl, FormArray, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { first } from 'rxjs/operators';
-
-import { AlertService, UserService, AuthenticationService } from '../../../services';
+import {UserService} from '../user.service';
+import { AlertService,  AuthenticationService } from '../../../services';
 
 @Component({
   selector: 'app-register',
@@ -40,19 +40,19 @@ export class RegisterComponent implements OnInit {
 
     this.registerForm = this.formBuilder.group({
      
-      'email': [this.user.email, [
+      email: [this.user.email, [
         Validators.required,
         Validators.email
       ]],
-      'password': [this.user.password, [
+      password: [this.user.password, [
         Validators.required,
         Validators.minLength(4),
         Validators.maxLength(30) 
       ]],
-       'fName': [this.user.fName, [
+      fName: [this.user.fName, [
         Validators.required
       ]],
-      'lName': [this.user.lName, [
+      lName: [this.user.lName, [
         Validators.required
       ]]
     });

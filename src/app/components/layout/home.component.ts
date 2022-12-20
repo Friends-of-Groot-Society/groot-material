@@ -27,10 +27,10 @@ export class HomeComponent implements OnInit {
     this.reloadChains();
   }
 
-  reloadChains() {
+  reloadChains() {  
     this.chains$ = this.chainStore.selectAllChains();
-   this.ethereumChains$ = this.chainStore.filterByChainName('ethereum'); 
-   this.polygonChains$ = this.chainStore.filterByChainName('polygon');
+    this.ethereumChains$ = this.chainStore.filterByChainName('ethereum'); 
+    this.polygonChains$ = this.chainStore.filterByChainName('polygon');  
   }
 
 }

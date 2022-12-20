@@ -1,7 +1,3 @@
-<br />
-<h3>Friends of Groot Society</h3>
-<hr>
-
 <div class="containment" fxLayout="column" fxLayoutAlign="space-evenly center">
 
   <div class="medium-list">
@@ -9,13 +5,16 @@
       <div class="list-header-title">
         <h3 class="page-title middle">Register</h3>
       </div>
-
+      <mat-card class="login-page">
+        <mat-card-title>Login</mat-card-title>
+        <mat-card-content>
       <form [formGroup]="registerForm" (ngSubmit)="registerForm.valid && onRegisterSubmit()" >
         <!-- novalidate -->
         <div class="form-container">
           <mat-form-field>
             <input id="fName" matInput formControlName="fName" placeholder="&nbsp;&nbsp;First Name" class="form-control"
-              [ngClass]="{ 'is-invalid': submitted && f.fName.errors }" />
+            />
+            <!-- [ngClass]="{ 'is-invalid': submitted && f.fName.errors }"  -->
           </mat-form-field>
 
           <mat-form-field>
@@ -38,9 +37,12 @@
             [disabled]="!registerForm.valid">
             <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
             Register</button>
-          <a routerLink="/" class="btn btn-link"><small>Cancel</small></a>
-          <button mat-button routerLink="/login" class="btn btn-link"><small>Already registered?</small></button>
+            <a mat-button routerLink="/login"  class="mat-raised-button mat-secondary "><small>Already registered?</small></a>
+            <a  mat-button  routerLink="/"  class="mat-raised-button mat-secondary "><small>Cancel</small></a>
         </div>
       </form>
+    </mat-card-content>
+  </mat-card>
+  
     </div>
   </div>

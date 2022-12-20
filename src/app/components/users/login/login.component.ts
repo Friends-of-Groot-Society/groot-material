@@ -13,10 +13,10 @@ import { AlertService, AuthenticationService } from '../../../services';
 })
 export class LoginComponent implements OnInit {
 
+  loginForm: FormGroup;
 
   title: string = "";
   user: LoginModel = new LoginModel();
-  loginForm!: FormGroup;
   hide = true;
   loading = false;
   submitted = false;
@@ -29,48 +29,43 @@ export class LoginComponent implements OnInit {
     private authenticationService: AuthenticationService,
     private alertService: AlertService
   ) {
+    ///////////////////////////////// uncomment after fixing AUTH
     // redirect to home if already logged in
-    if (this.authenticationService.currentUserValue) {
-      this.router.navigate(['/']);
-    }
+    // if (this.authenticationService.currentUserValue) {
+    //   this.router.navigate(['/']);
+    // }
+    this.loginForm = formBuilder.group({
+      email: [this.user.email, [Validators.required,Validators.email]],
+      password: [this.user.password, [Validators.required,
+        Validators.minLength(4),Validators.maxLength(30) 
+      ]]
+    });
   }
 
 
   ngOnInit() {
     this.title = "LOGIN";
 
-    this.loginForm = this.formBuilder.group({
-      'email': [this.user.email, [
-        Validators.required,
-        Validators.email
-      ]],
-      'password': [this.user.password, [
-        Validators.required,
-        Validators.minLength(4),
-        Validators.maxLength(30)
 
-      ]]
-    });
     // get return url from route parameters or default to '/'
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
   // convenience getter for easy access to form fields
-  get fromInput() { return this.loginForm.controls; }
+  // get fromInput() { return this.form.controls; }
 
   onLoginSubmit() { 
-    this.submitted = true;
-    // console.log(this.fromInput.email.value);
-    // console.log(this.fromInput.password.value);
+    
+    const val = this.loginForm.value;
+    this.submitted = true; 
 
     // reset alerts on submit
     this.alertService.clear();
     this.loading = true;
     // this.authenticationService.login(this.fromInput.email.value, this.fromInput.password.value);
 
-    this.authenticationService.getMemberAuth(this.fromInput['email'].value, this.fromInput['password'].value)
-      .pipe(first())
+    this.authenticationService.getMemberAuth(val.email, val.password) 
       .subscribe(
-        data => { 
+        () => { 
 
           this.router.navigate([this.returnUrl]);
         },
