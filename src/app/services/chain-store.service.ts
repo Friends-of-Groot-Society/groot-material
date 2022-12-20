@@ -49,11 +49,11 @@ export class ChainStore {
         return this.noFilter();
     }
     selectEthereumChains() {
-        return this.filterByChainName('ETHEREUM');
+        return this.filterByChainName('ethereum');
     }
 
     selectPolygonChains() {
-        return this.filterByChainName('POLYGON');
+        return this.filterByChainName('polygon');
     }
 
     selectChainById(chainId: number) {

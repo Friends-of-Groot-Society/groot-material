@@ -40,22 +40,22 @@ export class ChainComponent implements OnInit {
   }
 
 
-  ngOnInit(): void {
+  ngOnInit()  {
  
     const chainId = parseInt(this.route.snapshot.paramMap.get('chainId'));
     const chain$ = this.chainService.loadChainById(chainId)
       .pipe(
-        catchError(err => throwError(() => new Error('Chain not found'))))
+     startWith(null));
+
     const addresses$ = this.chainService.loadAllChainAddresses(chainId)
       .pipe(
         startWith([])
       );
+
     this.data$ = combineLatest([chain$, addresses$])
       .pipe(
-        // map(([chain, addresses]) => {
-          map(([  addresses]) => {
-            return { addresses }
-          // return { chain, addresses }
+        map(([chain, addresses]) => {  // map to ChainData
+          return { chain, addresses }
         }),
         tap(console.log)
       )
