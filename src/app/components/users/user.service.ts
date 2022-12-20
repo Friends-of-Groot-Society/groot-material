@@ -10,21 +10,21 @@ import { environment } from  '../../../environments/environment';
 })
 export class UserService {
 
-  local_url:string; 
+  nft_url:string; 
   constructor(private httpService: HttpClient ) {  
-    this.local_url = environment.local_url; 
+    this.nft_url = environment.nft_url; 
  } 
  
     register(user: User) {
-      console.log("user "+`${this.local_url}/api/users/register`, user);
-        return this.httpService.post(`${this.local_url}/api/users/register`, user);
+      console.log("user "+`${this.nft_url}/api/users/register`, user);
+        return this.httpService.post(`${this.nft_url}/api/users/register`, user);
     }
 
     delete(id: string) {
-        return this.httpService.delete(`${this.local_url}/api/users/${id}`);
+        return this.httpService.delete(`${this.nft_url}/api/users/${id}`);
     }
     getUser(id: string): Observable<User> {
-    return this.httpService.get<User>(`${this.local_url}/api/users/${id}`);
+    return this.httpService.get<User>(`${this.nft_url}/api/users/${id}`);
   }
   // public getUser(id: number): Observable<User> {
   //   return this.httpService.get<User>(`http://${this.baseUrl}/api/users/${id}`).pipe(
@@ -33,12 +33,12 @@ export class UserService {
   //   );
   // }
    getAllUsers(): Observable<User[]> {
-    return this.httpService.get<User[]>(`${this.local_url}/api/users`).pipe(
+    return this.httpService.get<User[]>(`${this.nft_url}/api/users`).pipe(
       map(data => data["data"])
     );
    }
    getAllUserChains(): Observable<User[]> {
-    return this.httpService.get<User[]>(`${this.local_url}/api/users`).pipe(
+    return this.httpService.get<User[]>(`${this.nft_url}/api/users`).pipe(
       map(data => data["data"])
     );
   }

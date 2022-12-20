@@ -5,7 +5,7 @@ import { NftsService } from './nfts.service';
 import { LoaderService } from '../../components/layout/loader/loader.service';
 
 // import { Chain } from '../../models/Chain';
-import { ChainStore } from 'src/app/utility/chain-store.service';
+import { ChainStore } from 'src/app/services/chain-store.service';
 @Component({
   selector: 'app-nfts',
   templateUrl: './nfts.component.html',

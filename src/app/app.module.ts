@@ -45,6 +45,7 @@ import { LoaderComponent } from './components/layout/loader/loader.component';
 import { ServerComponent } from './components/chain-servers/server/server.component'; 
 import { UsersComponent } from './components/users/users.component';
 import { AddressComponent } from './components/chain/address/address.component';
+import { SearchAddressesComponent } from './components/chain/search-addresses/search-addresses.component';
 
 @NgModule({
   declarations: [
@@ -73,7 +74,8 @@ import { AddressComponent } from './components/chain/address/address.component';
     HomeComponent,
     ChainsCardListComponent,
     ChainDialogComponent,
-    AddressComponent 
+    AddressComponent,
+    SearchAddressesComponent 
   ],
   imports: [
     MaterialModule,

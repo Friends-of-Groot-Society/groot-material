@@ -15,7 +15,7 @@ import * as fromChains from '../../../reducers/chain.reducer';
 }) 
 export class NftAddComponent implements OnInit { 
   chains$!: Observable<Chain[]>;   
-  chain: string = 'eth'; // default chain
+  chain: string = 'ethereum'; // default chain
   nftData: any;
   tokens: any = [];
   nfts: any;
