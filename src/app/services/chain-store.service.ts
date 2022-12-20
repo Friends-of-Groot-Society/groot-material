@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, from, Observable, Subject, throwError, timer } from 'rxjs';
 
 import { catchError, delayWhen, filter, map, shareReplay, tap, withLatestFrom } from 'rxjs/operators';
-import { createHttpObservable } from './observable';
+import { createHttpObservable } from '../utility/observable';
 import { Chain } from '../models/Chain';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
@@ -30,16 +30,17 @@ export class ChainStore {
         this.loadAllChains();
     }
 
-    loadAllChains() {
-        const loadChains$ = this.httpClient.get(`${environment.local_url}/api/chains`)
+    private loadAllChains() {
+        const loadChains$ = this.httpClient.get<Chain[]>(`${environment.nft_url}/api/chains`)
             .pipe(
                 map(res => res['data']), 
                 catchError(err => {
+                    console.log('error in source. Details: ' + err);
                     return throwError(() => 'error in source. Details: ' + err);
                 }),
                 tap(chains => this.subjectChain.next(chains)),
             )
-        // this.loaderService.showLoaderUntilCompleted(loadChains$).subscribe();
+        this.loaderService.showLoaderUntilCompleted(loadChains$).subscribe();
     }
 
     selectAllChains() {
@@ -84,7 +85,7 @@ export class ChainStore {
 
         this.subjectChain.next(newChains);
 
-        return this.httpClient.put(`${environment.local_url}/api/chains/${chainId}`, changes)
+        return this.httpClient.put(`${environment.nft_url}/api/chains/${chainId}`, changes)
             .pipe(
                 catchError(err => {
 
@@ -110,7 +111,7 @@ export class ChainStore {
             }
   
     init() {
-        const baseUrl = environment.local_url;
+        const baseUrl = environment.nft_url;
         const http$ = createHttpObservable(`${baseUrl}/chains`);
         console.log(this.chains$.subscribe())
         http$

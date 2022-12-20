@@ -1,7 +1,7 @@
 "use strict"
 
 exports.MORALIS_CHAINS= [
-    {id:"1",name:"eth",description:"Ethereum Mainnet",type:"Mainnet"},
+    {id:"1",name:"ethereum",description:"Ethereum Mainnet",type:"Mainnet"},
     {id:"3",name:"ropstein",description:"Ethereum Ropsten",type:"Testnet"},
     {id:"4",name:"rinkeby",description:"Ethereum Rinkeby",type:"Testnet"},
     {id:"5",name:"goerli",description:"Ethereum Goerli",type:"Testnet"},

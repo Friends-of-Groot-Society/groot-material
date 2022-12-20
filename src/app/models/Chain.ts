@@ -15,3 +15,6 @@ export interface Chain {
     releaseDate?: string;
     
 } 
+export function sortChainByName(a: Chain, b: Chain): number {
+    return a.name.localeCompare(b.name);
+}

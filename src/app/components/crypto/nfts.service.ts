@@ -38,7 +38,7 @@ export class NftsService {
   }
 
   collectNfts(): Observable<any> {
-    return this.http.get(`${environment.nft_url}/nft`)
+    return this.http.get(`${environment.nft_url}/api/nft`)
     .pipe(
       catchError(err => {
         throw 'error in source. Details: ' + err;
@@ -50,7 +50,7 @@ export class NftsService {
     if (!chain) {
       chain = this.chain;
     }
-    this.http.get(`${environment.nft_url}/nft/${chain}/${address}`)
+    this.http.get(`${environment.nft_url}/api/nft/${chain}/${address}`)
       .pipe(
         catchError(err => {
           throw 'error in source. Details: ' + err;
@@ -67,7 +67,7 @@ export class NftsService {
     if (!chain) {
       chain = this.chain;
     }
-    this.http.post(`${environment.nft_url}/nft`, { chain: chain, address: address },
+    this.http.post(`${environment.nft_url}/api/nft`, { chain: chain, address: address },
       {
         headers: new HttpHeaders({
           Accept: 'application/json'

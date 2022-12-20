@@ -3,7 +3,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import {Chain} from '../../../models/Chain';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import * as day from 'day';
-import { ChainStore } from '../../../utility/chain-store.service';
+import { ChainStore } from '../../../services/chain-store.service';
 import { LoaderService } from '../../layout/loader/loader.service';  
 import { Observable } from 'rxjs';
 import { MORALIS_CHAINS } from '../../../utility/constants';

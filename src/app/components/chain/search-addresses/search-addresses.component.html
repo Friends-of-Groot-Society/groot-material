@@ -1,0 +1,60 @@
+<div class="course">
+
+    <h2>Search All Addresss</h2>
+  
+    <mat-form-field class="search-bar">
+  
+      <input matInput placeholder="Type your search" #searchInput autocomplete="off">
+  
+    </mat-form-field>
+  
+    <button class="search" mat-raised-button color="primary"
+            (click)="onSearch(searchInput.value)" >
+      <mat-icon>search</mat-icon>
+      Search
+    </button>
+  
+      <ng-container  *ngIf="!activeAddress;else detail">
+  
+          <ng-container *ngIf="(searchResults$ | async) as addresses">
+  
+              <table class="addresses-table mat-elevation-z7">
+  
+                  <thead>
+                  <th>#</th>
+                  <th>Description</th>
+                  <th>address</th>
+                  </thead>
+  
+                  <tr class="address-row" *ngFor="let address of addresses"
+                      (click)="openAddress(address)">
+                      <td class="seqno-cell">{{address.seqNo}}</td>
+                      <td class="description-cell">{{address.description}}</td>
+                      <td class="duration-cell">{{address.address}}</td>
+                  </tr>
+  
+              </table>
+  
+          </ng-container>
+  
+      </ng-container>
+  
+      <ng-template #detail>
+  
+          <button mat-raised-button class="back-btn" (click)="onBackToSearch()">
+              <mat-icon>arrow_back_ios</mat-icon>
+              Back to Search
+          </button>
+  
+          <!-- <address [address]="activeAddress"></address> -->
+  
+      </ng-template>
+  
+  
+  
+  
+  </div>
+  
+  
+  
+  
