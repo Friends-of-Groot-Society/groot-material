@@ -13,9 +13,6 @@ import { LoaderService } from '../components/layout/loader/loader.service';
 
 
 export class ChainStore {
-    selectAddressesByChainId(id: number): any {
-      throw new Error('Method not implemented.');
-    }
 
     private subjectChain = new BehaviorSubject<Chain[]>([]);
 

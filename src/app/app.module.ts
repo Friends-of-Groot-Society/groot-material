@@ -26,7 +26,8 @@ import { FooterComponent } from './components/layout/footer.component';
 import { HomeComponent } from './components/layout/home.component';
 import { MenuComponent } from './components/layout/menu.component';
 import { SidenavListComponent } from './components/layout/sidenav-list/sidenav-list.component';
-
+import { LoginComponent } from './components/users/login/login.component';
+import { RegisterComponent } from './components/users/register/register.component';
 import { MaterialModule } from './material.module';
 
 // import { MatMomentDateModule } from '@angular/material-moment-adapter';
@@ -53,7 +54,8 @@ import { SearchAddressesComponent } from './components/chain/search-addresses/se
     // GrootComponent,
     PhotosComponent,
     StarwarsComponent,
-    // MatFormField,
+    LoginComponent,
+    RegisterComponent, 
     MarvelComponent,
     AboutComponent, 
     SidenavListComponent,

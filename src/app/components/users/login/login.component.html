@@ -1,6 +1,4 @@
-<br />
-<h3>Friends of Groot Society</h3>
-<hr>
+ 
 <div fxLayout="column" class="containment" fxLayoutAlign="space-evenly center">
 
 
@@ -9,13 +7,15 @@
             <div class="list-header-title">
                 <h3 class="page-title middle">Sign In</h3>
             </div>
-
+            <mat-card class="login-page">
+                <mat-card-title>Login</mat-card-title>
+                <mat-card-content>
             <form [formGroup]="loginForm" (ngSubmit)="loginForm.valid && onLoginSubmit()" novalidate>
                 <div class="form-container">
                     <mat-form-field>
                         <input id="email" matInput formControlName="email" class="form-control"
-                            [ngClass]="{ 'is-invalid': submitted && fromInput.email.errors }"
-                            placeholder="&nbsp;&nbsp;Email" />
+                        placeholder="&nbsp;&nbsp;Email" />
+                        <!-- [ngClass]="{ 'is-invalid': submitted && fromInput.email.errors }" -->
                         <!-- <div *ngIf="submitted && fromInput.email.errors" class="invalid-feedback">
                             <div *ngIf="fromInput.email.errors.required">Username is required</div>
                         </div> -->
@@ -23,8 +23,8 @@
 
                     <mat-form-field>
                         <input id="password" matInput formControlName="password"
-                            [ngClass]="{ 'is-invalid': submitted && fromInput.password.errors }" class="form-control"
-                            placeholder="&nbsp;&nbsp;Password" [type]="hide ? 'password':'text'" />
+                        placeholder="&nbsp;&nbsp;Password" [type]="hide ? 'password':'text'" />
+                        <!-- [ngClass]="{ 'is-invalid': submitted && fromInput.password.errors }" class="form-control" -->
                         <!-- <div *ngIf="submitted && fromInput.password.errors" class="invalid-feedback">
                             <div *ngIf="fromInput.password.errors.required">Password is required</div>
                         </div> -->
@@ -34,9 +34,15 @@
                     </mat-form-field>
 
                     <button mat-button type="submit" class="mat-raised-button mat-primary login"
-                        [disabled]="!loginForm.valid">Login</button>
-                    <a routerLink="/" class="btn btn-link">Cancel</a>
+                        [disabled]="!loginForm.valid">login</button>     
+                        <a mat-button routerLink="/register" class="mat-raised-button mat-secondary "
+                        [disabled]="!loginForm.valid">register</a>
+                        <a routerLink="/"  mat-button   class="mat-raised-button mat-secondary ">cancel</a>
                 </div>
             </form>
+        </mat-card-content>
+    </mat-card>
+    
         </div>
+    </div>
     </div>

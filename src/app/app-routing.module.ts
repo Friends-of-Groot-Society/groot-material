@@ -18,16 +18,17 @@ import { AboutComponent } from './components/layout/about/about.component';
 import { MarvelComponent } from './components/marvel/marvel.component';
 import { ContactusComponent } from './components/layout/contactus/contactus.component';
 // import { GrootologueComponent } from './components/grootologue/grootologue.component';
-// import { LoginComponent } from './components/users/login/login.component';
-// import { RegisterComponent } from './components/users/register/register.component';
+import { LoginComponent } from './components/users/login/login.component';
+import { RegisterComponent } from './components/users/register/register.component';
  
 import { UsersComponent } from './components/users/users.component'; 
 import { HomeComponent } from './components/layout/home.component';
 
 const routes: Routes = [ 
-
-  // { path: '', component: GrootComponent },
+ 
   { path: '', component: HomeComponent }, 
+  { path: 'login', component: LoginComponent }, 
+  { path: 'register', component: RegisterComponent }, 
   { path : 'home', component : HomeComponent },
   { path:"search-addresses",    component: SearchAddressesComponent  },
   {  path: 'about',    component: AboutComponent  },

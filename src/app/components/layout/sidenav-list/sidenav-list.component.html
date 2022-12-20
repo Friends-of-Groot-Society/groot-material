@@ -7,6 +7,12 @@
   <hr>
   <ul>
     <li routerLinkActive="active">
+      <a mat-list-item routerLink="/login" (click)="onClose()">
+        <mat-icon>user</mat-icon>
+        <span class="nav-caption daily-tech monoton">LOGIN</span>
+      </a> 
+    </li>
+    <li routerLinkActive="active">
       <a mat-list-item routerLink="/nfts" (click)="onClose()">
         <mat-icon>token</mat-icon>
         <span class="nav-caption daily-tech monoton">NFT</span>
