@@ -1,24 +1,22 @@
 <ng-container *ngIf="(data$ | async) as data">
     <div class="chain">
-        <h2>{{data.chain?.description</h2>
-            <img class="" alt="Chain Logo" [src]="{{data.chain?.iconUrl}}" *ngIf="data.chain" />
+        <h2>{{data.chain?.description}}</h2>
+            <img class="" alt="Chain Logo" [src]="data.chain?.iconUrl" *ngIf="data.chain" />
             <table class="addresses-table mat-elevation-z7" *ngIf="data.addresses.length">
 
-                <t-head>
+                <thead>
                     <tr>
                         <th>Address</th>
                         <th>Description</th>
-                        <th>Category</th>
+                        <th>chainId</th>
                     </tr>
-                </t-head>
+                </thead>
 
                 <tr class="address-row" *ngFor="let address of data.addresses">
                     <td>{{address.address}}</td>
                     <td>{{address.description}}</td>
-                    <td>{{address.category}}</td>
+                    <td>{{address.chainId}}</td>
                 </tr>
-            </table>
-   
-   
+            </table> 
         </div>
 </ng-container>>

@@ -36,7 +36,7 @@ export class ChainService {
             }
         })
             .pipe(
-                map(res => res["payload"]),
+                map(res => res["data"]),
                 shareReplay()
             );
     }
@@ -44,7 +44,7 @@ export class ChainService {
     loadAllChains(): Observable<Chain[]> {
         return this.http.get<Chain[]>("/api/chains")
             .pipe(
-                map(res => res["payload"]),
+                map(res => res["data"]),
                 shareReplay()
             );
     }
@@ -66,7 +66,7 @@ export class ChainService {
             }
         })
             .pipe(
-                map(res => res["payload"]),
+                map(res => res["data"]),
                 shareReplay()
             );
     }
