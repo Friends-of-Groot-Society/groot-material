@@ -33,7 +33,8 @@ import { MaterialModule } from './material.module';
 // import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { AlertComponent } from './utility/alert.component';
 import { ChainServersComponent } from './components/chain-servers/chain-servers.component';
-import { ChainComponent } from './components/chain-servers/chain/chain.component';
+import { ConsoleComponent } from './components/chain-servers/console/console.component';
+import { ChainComponent } from './components/chain/chain/chain.component';
 import { ChainsCardListComponent } from './components/chain/chains-card-list/chains-card-list.component';
 import { ChainDialogComponent } from './components/chain/chain-dialog/chain-dialog.component';
 import { NftsComponent } from './components/crypto/nfts.component';
@@ -47,7 +48,8 @@ import { ServerComponent } from './components/chain-servers/server/server.compon
 import { UsersComponent } from './components/users/users.component';
 import { AddressComponent } from './components/chain/address/address.component';
 import { SearchAddressesComponent } from './components/chain/search-addresses/search-addresses.component';
-
+import { PipeUppercase } from './utility/pipe-uppercase.pipe';
+import { UpperCasePipe } from '@angular/common';
 @NgModule({
   declarations: [
     AppComponent,
@@ -66,6 +68,7 @@ import { SearchAddressesComponent } from './components/chain/search-addresses/se
     UsersComponent,
     AlertComponent,
     ChainServersComponent,
+    ConsoleComponent,
     ChainComponent,
     ServerComponent,
     NftsComponent,
@@ -77,7 +80,8 @@ import { SearchAddressesComponent } from './components/chain/search-addresses/se
     ChainsCardListComponent,
     ChainDialogComponent,
     AddressComponent,
-    SearchAddressesComponent 
+    SearchAddressesComponent,
+    PipeUppercase, 
   ],
   imports: [
     MaterialModule,
@@ -90,7 +94,8 @@ import { SearchAddressesComponent } from './components/chain/search-addresses/se
   providers: [ 
     BookService,
     GrootService, 
-    LoaderService
+    LoaderService,
+    UpperCasePipe
   ],
   bootstrap: [AppComponent]
 })

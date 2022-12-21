@@ -2,75 +2,74 @@
 exports.__esModule = true;
 exports.findAddressesForChain = exports.findChainById = exports.NFT_POLY = exports.NFT_ETH = exports.NFTS_POLYGON = exports.NFTS_ETHEREUM = exports.USERS = exports.ADDRESSES = exports.CHAINS = void 0;
 exports.CHAINS = {
-    0: {
-        id: 0,
+    1: {
+        id: 1,
         name: "ethereum",
         symbol: "eth",
-        description: "ethereum",
+        description: "Ethereum Mainnet",
         longDescription: "NFT - 0x1",
         iconUrl: "https://s3.amazonaws.com/tmm.net/img/ether.png",
-        category: "BINANCE",
+        category: "Mainnet",
         chainListIcon: "https://friends-of-groot-society.s3.amazonaws.com/assets/android-chrome-384x384.png",
         state: "ethereum",
         addressesCount: 3
     },
-    1: {
-        id: 1,
+    137: {
+        id: 137,
         name: "polygon",
         symbol: "matic",
-        description: "polygon",
+        description: "Polygon Mainnet",
         longDescription: "NFT - 0x1",
-        iconUrl: "https://s3.amazonaws.com/tmm.net/img/polygon.png",
-        category: "POLYGON",
+        iconUrl: "https://s3.amazonaws.com/tmm.net/img/polygon.jpg",
+        category: "Mainnet",
         chainListIcon: "https://friends-of-groot-society.s3.amazonaws.com/assets/android-chrome-384x384.png",
         state: "polygon"
     },
-    2: {
-        id: 2,
-        name: "binance",
+    56: {
+        id: 56,
         symbol: "bnb",
-        description: "binance",
+        description: "BNB Mainnet",
         longDescription: "NFT - 0x1",
         iconUrl: "https://s3.amazonaws.com/tmm.net/img/bnb.png",
-        category: "ETHEREUM",
+        category: "Mainnet",
         chainListIcon: "https://friends-of-groot-society.s3.amazonaws.com/assets/android-chrome-384x384.png",
         state: "binance",
         addressesCount: 3
     },
-    3: {
-        id: 3,
+    99: {
+        id: 99,
         name: "solana",
         symbol: "sol",
-        description: "solana",
+        description: "solana Mainnet",
         longDescription: "NFT - 0x1",
-        iconUrl: "https://s3.amazonaws.com/tmm.net/img/solana.png",
-        category: "POLYGON",
+        iconUrl: "https://s3.amazonaws.com/tmm.net/img/solana.jpg",
+        category: "Mainnet",
         chainListIcon: "https://friends-of-groot-society.s3.amazonaws.com/assets/android-chrome-384x384.png",
         state: "solana",
         addressesCount: 3
     },
-    4: {
-        id: 4,
+    999: {
+        id: 999,
         name: "pulsechain",
         symbol: "pls",
-        description: "pulsechain",
+        description: "Pulsechain Mainnet",
         longDescription: "NFT - 0x1",
         iconUrl: "https://s3.amazonaws.com/tmm.net/img/pulsechain.png",
-        category: "ETHEREUM",
+        category: "Mainnet",
         chainListIcon: "https://friends-of-groot-society.s3.amazonaws.com/assets/android-chrome-384x384.png",
         state: "pulsechain",
         addressesCount: 3
     },
-    5: {
-        id: 4,
+    43114: {
+        id: 43114,
         name: "avalanche",
         symbol: "avax",
-        description: "avalanche",
+        description: "Avalanche C-Chain",
         longDescription: "NFT - 0x1",
         iconUrl: "https://s3.amazonaws.com/tmm.net/img/avax.png",
-        category: "AVALANCHE",
+        category: "Mainnet",
         chainListIcon: "https://friends-of-groot-society.s3.amazonaws.com/assets/android-chrome-384x384.png",
-        state: "pulsechain",
+        state: "avalanche",
         addressesCount: 3
     }
 };

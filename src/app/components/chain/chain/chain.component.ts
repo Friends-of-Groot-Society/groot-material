@@ -42,7 +42,7 @@ export class ChainComponent implements OnInit {
 
   ngOnInit()  {
  
-    const chainId = parseInt(this.route.snapshot.paramMap.get('chainId'));
+    const chainId = parseInt(this.route.snapshot.paramMap.get('id'));
     const chain$ = this.chainService.loadChainById(chainId)
       .pipe(
      startWith(null));

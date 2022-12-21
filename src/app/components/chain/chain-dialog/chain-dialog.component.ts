@@ -6,7 +6,7 @@ import * as day from 'day';
 import { ChainStore } from '../../../services/chain-store.service';
 import { LoaderService } from '../../layout/loader/loader.service';  
 import { Observable } from 'rxjs';
-import { MORALIS_CHAINS } from '../../../utility/constants';
+import { Constant } from '../../../models/Constant';
 
 @Component({
   selector: 'app-chain-dialog',
@@ -16,6 +16,7 @@ import { MORALIS_CHAINS } from '../../../utility/constants';
     display: block;
     width: 100%;
   } 
+
   textarea {
       height: 100px;
       resize: vertical;
@@ -26,7 +27,7 @@ import { MORALIS_CHAINS } from '../../../utility/constants';
 export class ChainDialogComponent implements OnInit {
   form: FormGroup;
   chain: Chain;
-  chains = MORALIS_CHAINS;
+  chains = Constant.MORALIS_CHAINS;
 
   constructor(
     private formBuilder: FormBuilder,

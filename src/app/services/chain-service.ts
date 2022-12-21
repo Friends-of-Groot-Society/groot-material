@@ -4,32 +4,28 @@ import {Chain} from '../models/Chain';
 import {Observable} from 'rxjs';
 import {map, shareReplay} from 'rxjs/operators';
 import { Address } from '../models/Address';
+import {environment} from '../../environments/environment';
 
 
 @Injectable({
     providedIn:'root'
 })
 export class ChainService {
-    selectAddressesByChainId(chainId: number) {
-      throw new Error('Method not implemented.');
-    }
-    selectChainById(chainId: number) {
-      throw new Error('Method not implemented.');
-    }
+ 
 
     constructor(private http:HttpClient) {
 
     }
 
     loadChainById(chainId:number) {
-       return this.http.get<Chain>(`/api/chains/${chainId}`)
+       return this.http.get<Chain>(`${environment.nft_url}/api/chains/${chainId}`)
             .pipe(
               shareReplay()
             );
     }
 
     loadAllChainAddresses(chainId:number): Observable<Address[]> {
-        return this.http.get<Address[]>('/api/addresses', {
+        return this.http.get<Address[]>(`${environment.nft_url}/api/addresses`, {
             params: {
                 pageSize: "10000",
                 chainId: chainId.toString()
@@ -42,7 +38,7 @@ export class ChainService {
     }
 
     loadAllChains(): Observable<Chain[]> {
-        return this.http.get<Chain[]>("/api/chains")
+        return this.http.get<Chain[]>(`${environment.nft_url}/api/chains`)
             .pipe(
                 map(res => res["data"]),
                 shareReplay()
@@ -51,7 +47,7 @@ export class ChainService {
 
 
     saveChain(chainId:string, changes: Partial<Chain>):Observable<any> {
-        return this.http.put(`/api/chains/${chainId}`, changes)
+        return this.http.put(`${environment.nft_url}/api/chains/${chainId}`, changes)
             .pipe(
                 shareReplay()
             );
@@ -59,7 +55,7 @@ export class ChainService {
 
 
     searchAddresses(search:string): Observable<Address[]> {
-        return this.http.get<Address[]>('/api/addresses', {
+        return this.http.get<Address[]>(`${environment.nft_url}/api/addresses`, {
             params: {
                 filter: search,
                 pageSize: "100"
