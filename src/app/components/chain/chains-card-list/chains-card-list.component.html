@@ -9,7 +9,7 @@ class="chain-card mat-elevation-z7">
     <p>Chain Name: {{chain.name}}</p>
     <p>{{chain.description}}</p>
     <p>Chain ID: {{chain.chainId}}</p>
-    <p>Chain Symbol: {{chain.symbol}}</p>
+    <p>Chain Symbol: {{chain.symbol | pipeUppercase }}</p>
     <p>Chain RPC URL: {{chain.rpcUrl}}</p>
     <p>Chain Block Explorer URL: {{chain.blockExplorerUrl}}</p>
 </mat-card-content>

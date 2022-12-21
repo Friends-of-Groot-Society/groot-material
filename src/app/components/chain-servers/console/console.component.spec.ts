@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ChainComponent } from './chain.component';
+import { ConsoleComponent } from './console.component';
 
-describe('ChainComponent', () => {
-  let component: ChainComponent;
-  let fixture: ComponentFixture<ChainComponent>;
+describe('ConsoleComponent', () => {
+  let component: ConsoleComponent;
+  let fixture: ComponentFixture<ConsoleComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ChainComponent ]
+      declarations: [ ConsoleComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ChainComponent);
+    fixture = TestBed.createComponent(ConsoleComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -64,7 +64,7 @@ var get_nfts_route_1 = require("./routes/get-nfts.route");
 var getDataController_1 = require("./controllers/getDataController");
 /////////////// CONSTANTS
 var PORT = 9000;
-var chains = require("./data/constants");
+var chains = require("./data/db-constants");
 var API_KEY = process.env["MORALIS_API_KEY"];
 var chain = process.env["DEFAULT_CHAIN"] || 'ETHEREUM';
 var addressDEFAULT = process.env["DEFAULT_ADDRESS"];

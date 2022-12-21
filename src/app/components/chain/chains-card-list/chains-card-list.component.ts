@@ -4,6 +4,7 @@ import {ChainDialogComponent} from '../chain-dialog/chain-dialog.component';
 import {Chain} from '../../../models/Chain';
 import {filter, tap} from 'rxjs/operators';
 
+
 @Component({
   selector: 'app-chains-card-list',
   templateUrl: './chains-card-list.component.html',
@@ -16,7 +17,7 @@ export class ChainsCardListComponent implements OnInit {
    
   @Output() chainsChanged = new EventEmitter();
 
-  constructor(private dialog:MatDialog) { }
+  constructor(private dialog:MatDialog ) { }
 
   ngOnInit(): void {
   }

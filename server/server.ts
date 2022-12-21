@@ -37,7 +37,7 @@ import { getDataController } from './controllers/getDataController';
 /////////////// CONSTANTS
 const PORT = 9000;
 
-import * as chains from './data/constants';
+import * as chains from './data/db-constants';
 const API_KEY = process.env["MORALIS_API_KEY"];
 let chain = process.env["DEFAULT_CHAIN"] || 'ETHEREUM'
 const addressDEFAULT = process.env["DEFAULT_ADDRESS"];

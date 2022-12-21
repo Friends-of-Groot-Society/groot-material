@@ -32,7 +32,7 @@ const routes: Routes = [
   { path : 'home', component : HomeComponent },
   { path:"search-addresses",    component: SearchAddressesComponent  },
   {  path: 'about',    component: AboutComponent  },
-  { path: 'chains/:chainId',    component: ChainComponent  },
+  { path: 'chains/:id',    component: ChainComponent  },
 
   { path : 'nfts', component : NftsComponent }, 
   { path : 'about', component : AboutComponent },

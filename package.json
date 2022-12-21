@@ -5,7 +5,8 @@
     "ng": "ng",
     "start": "ng serve",
     "data": "ts-node -P ./server/server.tsconfig.json ./server/server.ts",
-    "server": "nodemon ./server/bal.js",
+    "server": "nodemon ./server/server.js",
+    "tsc": "tsc -w server/server.ts",
     "build": "ng build --configuration production",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"

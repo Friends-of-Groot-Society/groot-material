@@ -4,7 +4,7 @@ import { MatMenuTrigger } from '@angular/material/menu';
 import { Observable, Subject, Subscription , of} from 'rxjs';
 import { NftsService } from '../nfts.service';
 import { Store } from '@ngrx/store';
-import { MORALIS_CHAINS } from '../../../utility/constants';
+import { Constant } from '../../../models/Constant';
 import { Chain } from '../../../models/Chain';
 import * as fromChains from '../../../reducers/chain.reducer';
 
@@ -33,7 +33,7 @@ export class NftAddComponent implements OnInit {
     private nftsService: NftsService,
     // private store: Store<fromChains.State>
   ) {   
-    this.chains$ = of(MORALIS_CHAINS)
+    this.chains$ = of(Constant.MORALIS_CHAINS)
      }
   
     ngOnInit(): void {

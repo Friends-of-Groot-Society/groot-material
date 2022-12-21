@@ -1,11 +1,11 @@
 import { Component,  OnInit, EventEmitter, Output, ViewChild, ElementRef } from '@angular/core';
 
 @Component({
-  selector: 'app-chain',
-  templateUrl: './chain.component.html',
-  styleUrls: ['./chain.component.scss']
+  selector: 'app-console',
+  templateUrl: './console.component.html',
+  styleUrls: ['./console.component.scss']
 })
-export class ChainComponent implements OnInit {
+export class ConsoleComponent implements OnInit {
   @Output() serverCreated = new EventEmitter<{serverName: string, serverContent: string}>();
   @Output('bpCreated') blueprintCreated = new EventEmitter<{serverName: string, serverContent: string}>();
   // newServerName = '';
