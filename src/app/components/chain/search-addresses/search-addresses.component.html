@@ -1,4 +1,4 @@
-<div class="course">
+<div class="chain">
 
     <h2>Search All Addresss</h2>
   
@@ -14,23 +14,30 @@
       Search
     </button>
   
-      <ng-container  *ngIf="!activeAddress;else detail">
+      <ng-container  *ngIf="!activeAddress; else detail">
   
           <ng-container *ngIf="(searchResults$ | async) as addresses">
   
               <table class="addresses-table mat-elevation-z7">
   
                   <thead>
-                  <th>#</th>
+                  <th>Owner</th> 
+                  <th>OwnerId</th> 
+                  <th>Chain</th>
                   <th>Description</th>
-                  <th>address</th>
+                  <th>Address</th>
+                  <th>Exlorer</th>
                   </thead>
   
                   <tr class="address-row" *ngFor="let address of addresses"
                       (click)="openAddress(address)">
-                      <td class="seqno-cell">{{address.seqNo}}</td>
+                      <td class="owner-cell">{{address.owner}}</td>
+                      <td class="owner-cell">{{address.ownerId}}</td>
+                      <td class="owner-cell">{{address.chain}}</td>
                       <td class="description-cell">{{address.description}}</td>
-                      <td class="duration-cell">{{address.address}}</td>
+                      <td class="explorer-cell">{{address.address | slice:-10:-1 }}</td>
+                      <td class="explorer-cell">{{address.blockExplorerUrl | slice:8:18}} </td>
+                      
                   </tr>
   
               </table>

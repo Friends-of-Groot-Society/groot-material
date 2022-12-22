@@ -8,7 +8,7 @@
         <br/>
         <mat-card-content>
       <div class="row">
-        <div class="col col-6">
+        <div class="col-md-8">
             <p><strong>Chain Name:</strong> {{data.chain?.name}}</p> 
             <p><strong>Chain ID: </strong>{{data.chain?.id}}</p>
             <p><strong>Chain Symbol:</strong> {{data.chain?.symbol | pipeUppercase }}</p>
@@ -16,7 +16,7 @@
             <p><strong>Chain Block Explorer URL:</strong> {{data.chain?.blockExplorerUrl}}</p>
 
         </div>
-        <div class="col col-6 img" >
+        <div class="col-md-4 img" >
             <img class="mat-card-image" alt="Chain Logo" [src]="data.chain?.iconUrl" *ngIf="data.chain" />
            </div>
       </div>
@@ -26,8 +26,7 @@
                 <thead>
                     <tr>                       
                         <th>ID</th>
-                        <th>Owner</th>
-                        <th>Description</th>
+                        <th>Owner</th> 
                         <th>Address</th>
 
                     </tr>
@@ -35,9 +34,8 @@
 
                 <tr class="address-row" *ngFor="let address of data.addresses">
                     <td>{{address.chainId}}</td>
-                    <td>{{address.owner | slice:0:15 }}...</td>
-                    <td>{{address.description}}</td>
-                    <td>{{address.address | slice:0:10}}...</td>
+                    <td>{{address.owner | slice:0:20 }}...</td> 
+                    <td>{{address.address | slice:-10:-1}}...</td>
                 </tr>
             </table> 
             <br />

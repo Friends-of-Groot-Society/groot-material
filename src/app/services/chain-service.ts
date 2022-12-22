@@ -54,10 +54,12 @@ export class ChainService {
     }
 
 
-    searchAddresses(search:string): Observable<Address[]> {
-        return this.http.get<Address[]>(`/api/addresses`, {
+    searchAddresses(searchInput:string, searchInput2:string): Observable<Address[]> {
+
+        return this.http.get<Address[]>(`${environment.nft_url}/api/addresses`, {
             params: {
-                filter: search,
+                filter: searchInput,
+                filter2: searchInput2, // equals "" if none provided
                 pageSize: "100"
             }
         })

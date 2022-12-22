@@ -35,8 +35,11 @@ export class SearchAddressesComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onSearch(search:string) {
-    this.searchResults$  = this.chainService.searchAddresses(search);
+  onSearch(searchInput:string) {
+    let strArr = searchInput.split(",");
+    let input = strArr[0].trim().toLowerCase();
+    let input2 = strArr.length > 1? strArr[1].trim().toLowerCase() : "" ;
+    this.searchResults$  = this.chainService.searchAddresses(input,input2);
 }
 
 openAddress(address:Address) {

@@ -40,9 +40,7 @@ export class ChainStore {
         this.loaderService.showLoaderUntilCompleted(loadChains$).subscribe();
     }
 
-    selectAllChains() {
-        console.log("chainsSelct")
-        console.log(this.chains$.subscribe())
+    selectAllChains() {  
         return this.noFilter();
     }
     selectEthereumChains() {

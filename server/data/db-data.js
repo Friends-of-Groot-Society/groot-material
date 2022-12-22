@@ -82,7 +82,7 @@ exports.ADDRESSES = {
         address: "0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
         chain: "ethereum",
         blockExplorerUrl: "https://explorer-mainnet.maticvigil.com/address/0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
-        seqNo: 5,
+        ownerId: 0,
         chainId: 1
     },
     1: {
@@ -92,7 +92,7 @@ exports.ADDRESSES = {
         address: "0x5f7B0DDd217D55bFC4927b3E49E3CbF57FA81834",
         chain: "ethereum",
         blockExplorerUrl: "https://explorer-mainnet.maticvigil.com/address/0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
-        seqNo: 5,
+        ownerId: 0,
         chainId: 1
     },
     2: {
@@ -102,7 +102,7 @@ exports.ADDRESSES = {
         address: "0xcfCa3FEBAceA3AbB643bA90C670D7c4E6D74b633",
         chain: "ethereum",
         blockExplorerUrl: "https://explorer-mainnet.maticvigil.com/address/0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
-        seqNo: 5,
+        ownerId: 1,
         chainId: 1
     },
     3: {
@@ -112,7 +112,7 @@ exports.ADDRESSES = {
         address: "0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
         chain: "ethereum",
         blockExplorerUrl: "https://explorer-mainnet.maticvigil.com/address/0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
-        seqNo: 5,
+        ownerId: 1,
         chainId: 1
     },
     4: {
@@ -122,7 +122,7 @@ exports.ADDRESSES = {
         address: "0x5f7B0DDd217D55bFC4927b3E49E3CbF57FA81834",
         chain: "polygon",
         blockExplorerUrl: "https://explorer-mainnet.maticvigil.com/address/0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
-        seqNo: 5,
+        ownerId: 0,
         chainId: 137
     },
     5: {
@@ -132,7 +132,7 @@ exports.ADDRESSES = {
         address: "0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
         chain: "polygon",
         blockExplorerUrl: "https://explorer-mainnet.maticvigil.com/address/0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
-        seqNo: 5,
+        ownerId: 0,
         chainId: 137
     },
     6: {
@@ -142,7 +142,7 @@ exports.ADDRESSES = {
         address: "0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
         chain: "avalanche",
         blockExplorerUrl: "https://explorer-mainnet.maticvigil.com/address/0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
-        seqNo: 5,
+        ownerId: 0,
         chainId: 43114
     }
 };
@@ -170,7 +170,7 @@ exports.USERS = [
                 address: "0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
                 chain: "ethereum",
                 blockExplorerUrl: "https://explorer-mainnet.maticvigil.com/address/0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
-                seqNo: 5,
+                ownerId: 5,
                 chainId: 4
             },
             {
@@ -180,7 +180,7 @@ exports.USERS = [
                 address: "0x5f7B0DDd217D55bFC4927b3E49E3CbF57FA81834",
                 chain: "ethereum",
                 blockExplorerUrl: "https://explorer-mainnet.maticvigil.com/address/0x5f7B0DDd217D55bFC4927b3E49E3CbF57FA81834",
-                seqNo: 5,
+                ownerId: 5,
                 chainId: 4
             },
             {
@@ -190,7 +190,7 @@ exports.USERS = [
                 address: "0x5f7B0DDd217D55bFC4927b3E49E3CbF57FA81834",
                 chain: "polygon",
                 blockExplorerUrl: "https://explorer-mainnet.maticvigil.com/address/0x5f7B0DDd217D55bFC4927b3E49E3CbF57FA81834",
-                seqNo: 5,
+                ownerId: 5,
                 chainId: 137
             },
             {
@@ -200,7 +200,7 @@ exports.USERS = [
                 address: "0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
                 chain: "polygon",
                 blockExplorerUrl: "https://explorer-mainnet.maticvigil.com/address/0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
-                seqNo: 5,
+                ownerId: 5,
                 chainId: 137
             },
             {
@@ -210,7 +210,7 @@ exports.USERS = [
                 address: "0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
                 chain: "avalanche",
                 blockExplorerUrl: "https://explorer-mainnet.maticvigil.com/address/0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
-                seqNo: 5,
+                ownerId: 5,
                 chainId: 43114
             }
         ]
@@ -231,7 +231,7 @@ exports.USERS = [
                 address: "0xcfCa3FEBAceA3AbB643bA90C670D7c4E6D74b633",
                 chain: "ethereum",
                 blockExplorerUrl: "https://explorer-mainnet.maticvigil.com/address/0xcfCa3FEBAceA3AbB643bA90C670D7c4E6D74b633",
-                seqNo: 5,
+                ownerId: 5,
                 chainId: 1
             },
             {
@@ -241,7 +241,7 @@ exports.USERS = [
                 address: "0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
                 chain: "polygon",
                 blockExplorerUrl: "https://explorer-mainnet.maticvigil.com/address/0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
-                seqNo: 5,
+                ownerId: 5,
                 chainId: 1
             },
         ]

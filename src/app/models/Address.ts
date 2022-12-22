@@ -5,7 +5,7 @@ export interface Address {
     address?: string;
     chain?:  string;
     iconUrl?:  string;
-    duration?:  string;
-    seqNo?:  number;
+    blockExplorerUrl?:  string;
+    ownerId?:  number;
     chainId?: number;
     }
