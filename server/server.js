@@ -73,7 +73,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 /// ROUTING
 app.route('/api/chains').get(get_chains_route_1.getAllChains);
 app.route('/api/chains/:id').get(get_chains_route_1.getChainById);
-app.route('/api/addresses').get(search_addresses_route_1.getAllAddresses);
+app.route('/api/addresses').get(search_addresses_route_1.searchAddresses);
 // app.route('/api/addresses:category').get(searchAddressesByCategory);  
 app.route('/api/chains/:id').put(save_chain_route_1.saveChain);
 // app.route('/api/nft').get(getNft);  

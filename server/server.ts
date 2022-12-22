@@ -24,7 +24,7 @@ const { EvmChain } = require("@moralisweb3/evm-utils")
 
 ///////// TEST DATA METHODS
 import { getAllChains, getChainById } from "./routes/get-chains.route";
-import { getAllAddresses } from "./routes/search-addresses.route";
+import {  searchAddresses } from "./routes/search-addresses.route";
 // searchAddressesByCategory 
 import { saveChain } from './routes/save-chain.route';
 import { getUsers, postLogin, getUserById, } from './routes/get-users.route';
@@ -50,7 +50,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.route('/api/chains').get(getAllChains);
 app.route('/api/chains/:id').get(getChainById);
 
-app.route('/api/addresses').get(getAllAddresses);
+app.route('/api/addresses').get(searchAddresses);
 // app.route('/api/addresses:category').get(searchAddressesByCategory);  
 app.route('/api/chains/:id').put(saveChain);
 // app.route('/api/nft').get(getNft);  

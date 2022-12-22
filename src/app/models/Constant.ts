@@ -44,7 +44,7 @@ export abstract class Constant {
                     address: "0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
                     chain: "ethereum",
                     duration: "2:55",
-                    seqNo: 5,
+                    ownerId: 5,
                     chainId: 4
                 },
                 {
@@ -54,7 +54,7 @@ export abstract class Constant {
                     address: "0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
                     chain: "polygon",
                     duration: "2:55",
-                    seqNo: 5,
+                    ownerId: 5,
                     chainId: 137
                 },
             ]
@@ -73,7 +73,7 @@ export abstract class Constant {
                     address: "0xcfCa3FEBAceA3AbB643bA90C670D7c4E6D74b633",
                     chain: "ethereum",
                     duration: "2:55",
-                    seqNo: 5,
+                    ownerId: 5,
                     chainId: 1
                 },
                 {
@@ -83,7 +83,7 @@ export abstract class Constant {
                     address: "0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
                     chain: "pulsechain",
                     duration: "2:55",
-                    seqNo: 5,
+                    ownerId: 5,
                     chainId: 1
                 },
             ]

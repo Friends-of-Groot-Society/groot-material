@@ -19,7 +19,12 @@
  p {
      margin: 0;
  }
-
+.nav-link {
+  cursor:pointer;
+}
+.logout {
+  transform:translateY(5px)
+}
  .spacer {
      flex: 1;
  }
