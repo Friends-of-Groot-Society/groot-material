@@ -5,12 +5,14 @@ import { Address } from 'src/app/models/Address';
   selector: 'app-address',
   templateUrl: './address.component.html',
   styles: [`
+  .address-detail {
+    text-align:left;
+  }
   `]
 })
 export class AddressComponent implements OnInit {
 
-  @Input() address: Address;
-
+  @Input() address: Address; 
   
   constructor() { }
 
