@@ -4,19 +4,19 @@ import * as express from 'express';
 import { Application } from "express";
 const app: Application = express();
 import * as path from 'path';
-import * as dotenv from 'dotenv';
 import * as cors from 'cors';
+// import * as dotenv from 'dotenv';
 
-dotenv.config();
+// dotenv.config();
 app.use(cors({ origin: true }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-// app.use(function (req, res, next) {
-//   res.header("Access-Control-Allow-Origin", "*");
-//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-//   next();
-// });
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
 import Moralis from "moralis"
 const { EvmChain } = require("@moralisweb3/evm-utils")
@@ -27,7 +27,7 @@ import { getAllChains, getChainById } from "./routes/get-chains.route";
 import { getAllAddresses } from "./routes/search-addresses.route";
 // searchAddressesByCategory 
 import { saveChain } from './routes/save-chain.route';
-import { getUsers, getUserById, } from './routes/get-users.route';
+import { getUsers, postLogin, getUserById, } from './routes/get-users.route';
 // import  {getOpenai} from './routes/openai.route';
 import { getNft, postNft, postNfts, getNftData, postNftData } from './routes/get-nfts.route';
 
@@ -53,7 +53,8 @@ app.route('/api/chains/:id').get(getChainById);
 app.route('/api/addresses').get(getAllAddresses);
 // app.route('/api/addresses:category').get(searchAddressesByCategory);  
 app.route('/api/chains/:id').put(saveChain);
-// app.route('/api/nft').get(getNft); 
+// app.route('/api/nft').get(getNft);  
+app.route('/api/login').post(postLogin);
 app.route('/api/users').get(getUsers);
 app.route('/api/users/:id').get(getUserById);
 
