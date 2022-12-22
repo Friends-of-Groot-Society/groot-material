@@ -1,8 +1,23 @@
 "use strict";
 exports.__esModule = true;
-exports.getUserById = exports.getUsers = void 0;
+exports.getUserById = exports.getUsers = exports.postLogin = void 0;
 var db_data_1 = require("../data/db-data");
-console.log(db_data_1.USERS);
+function postLogin(req, res) {
+    var data = req.body;
+    var userData = { email: data.email, password: data.password };
+    var users = Object.values(db_data_1.USERS);
+    var user = users.find(function (user) {
+        if (user.email == userData.email && user.password == userData.password) {
+            res.header("Access-Control-Allow-Origin", "*");
+            res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+            res.status(200).json(user);
+        }
+        else {
+            res.status(400).json(null);
+        }
+    });
+}
+exports.postLogin = postLogin;
 function getUsers(req, res) {
     res.status(200).json({ data: Object.values(db_data_1.USERS) });
 }
