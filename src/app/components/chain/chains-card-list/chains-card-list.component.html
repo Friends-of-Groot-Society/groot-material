@@ -1,21 +1,22 @@
 <mat-card *ngFor="let chain of chains"
 class="chain-card mat-elevation-z7">
 
-<mat-card-header>
-    <img mat-card-image [src]="chain.iconUrl" [alt]="chain.name" class="chain-logo">
-</mat-card-header>
+    <mat-card-header>
+        <img mat-card-image [src]="chain.iconUrl" [alt]="chain.name" class="chain-logo">
+    </mat-card-header>
 
-<mat-card-content>
-    <p>Chain Name: {{chain.name}}</p>
-    <p>{{chain.description}}</p>
-    <p>Chain ID: {{chain.chainId}}</p>
-    <p>Chain Symbol: {{chain.symbol | pipeUppercase }}</p>
-    <p>Chain RPC URL: {{chain.rpcUrl}}</p>
-    <p>Chain Block Explorer URL: {{chain.blockExplorerUrl}}</p>
-</mat-card-content>
+    <mat-card-content>
+        <p><strong>Chain Name:</strong> {{chain.name | titlecase}}</p>
+        <p><strong>Category</strong>{{chain.category}}</p>
+        <p><strong>Chain ID:</strong> {{chain.id}}</p>
+        <p><strong>Chain Symbol:</strong> {{chain.symbol | pipeUppercase }}</p>
+        <p><strong>Chain RPC URL:</strong><br /> {{chain.rpcUrl | slice:0:50}} </p> 
+    </mat-card-content>
 
-<mat-card-actions class="chain-actions">
-    <button mat-button mat-raised-button color="primary" [routerLink]="['/chains', chain.id]">View</button>
-    <button mat-button mat-raised-button color="accent" (click)="editChain(chain)">Edit</button>
-</mat-card-actions>
+    <mat-card-actions class="chain-actions">
+        <button mat-button mat-raised-button color="primary" 
+        [routerLink]="['/chains', chain.id]">View</button>
+        <button mat-button mat-raised-button color="accent" 
+        (click)="editChain(chain)">Edit</button>
+    </mat-card-actions>
 </mat-card>
