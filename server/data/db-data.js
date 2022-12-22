@@ -1,6 +1,6 @@
 "use strict";
 exports.__esModule = true;
-exports.findAddressesForChain = exports.findChainById = exports.NFT_POLY = exports.NFT_ETH = exports.NFTS_POLYGON = exports.NFTS_ETHEREUM = exports.USERS = exports.ADDRESSES = exports.CHAINS = void 0;
+exports.findAddressesForChain = exports.findChainById = exports.NFT_POLY = exports.NFT_ETH = exports.NFTS_POLYGON = exports.NFTS_ETHEREUM = exports.USERS = exports.LOGIN = exports.ADDRESSES = exports.CHAINS = void 0;
 exports.CHAINS = {
     1: {
         id: 1,
@@ -146,6 +146,12 @@ exports.ADDRESSES = {
         chainId: 43114
     }
 };
+exports.LOGIN = [
+    { email: "thomasm1.maestas@gmail.com",
+        password: "pass" },
+    { email: "walter.white@gmail.com",
+        password: "pass" }
+];
 /////////// USERS
 exports.USERS = [
     {
@@ -153,6 +159,7 @@ exports.USERS = [
         fName: "Tom",
         lName: "Milton",
         email: "thomasm1.maestas@gmail.com",
+        password: "pass",
         memberSince: "02-04-2020",
         groupType: "Admin",
         addresses: [
@@ -213,6 +220,7 @@ exports.USERS = [
         fName: "Walter",
         lName: "White",
         email: "walter.white@gmail.com",
+        password: "pass",
         memberSince: "02-04-2020",
         groupType: "Premium",
         addresses: [

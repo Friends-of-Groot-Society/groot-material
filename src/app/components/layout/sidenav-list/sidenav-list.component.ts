@@ -4,6 +4,7 @@ import { Observable, Subscription } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
  
 import { ActivatedRoute } from '@angular/router';
+import { AuthStore } from 'src/app/services/auth/auth-store.service';
  
 
 
@@ -22,14 +23,19 @@ export class SidenavListComponent implements OnInit { // }, OnDestroy {
       map(result => result.matches),
       shareReplay()
     );
-  constructor(private breakpointObserver: BreakpointObserver,
-    private route: ActivatedRoute, 
+  constructor(
+    private breakpointObserver: BreakpointObserver,
+    private route: ActivatedRoute,  
+    public authStore: AuthStore
     ) { }
 
   ngOnInit() {
     this.variable = this.route.snapshot.params['name']; 
   }
 
+  logout() {
+    this.authStore.logout();
+  }
 
   onClose() {
     this.closeSidenav.emit();

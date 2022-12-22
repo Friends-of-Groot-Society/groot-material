@@ -7,9 +7,13 @@
   <hr>
   <ul>
     <li routerLinkActive="active">
-      <a mat-list-item routerLink="/login" (click)="onClose()">
+      <a mat-list-item routerLink="/login" *ngIf="authStore.isLoggedOut$ | async"    (click)="onClose()">
         <mat-icon>user</mat-icon>
         <span class="nav-caption daily-tech monoton">LOGIN</span>
+      </a> 
+      <a mat-list-item routerLink="/login"   *ngIf="authStore.isLoggedIn$ | async"   (click)="logout();onClose()">
+        <mat-icon>user</mat-icon>
+        <span class="nav-caption daily-tech monoton"><mat-icon>exit_to_app</mat-icon></span>
       </a> 
     </li>
     <li routerLinkActive="active">
