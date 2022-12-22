@@ -15,11 +15,12 @@ import {filter, tap} from 'rxjs/operators';
 export class ChainsCardListComponent implements OnInit {
   @Input() chains: Chain[]  ;
    
-  @Output() chainsChanged = new EventEmitter();
+  @Output() 
+  private chainsChanged = new EventEmitter();
 
   constructor(private dialog:MatDialog ) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
   }
 
   editChain(chain: Chain) {

@@ -1,7 +1,6 @@
 import { Component, HostListener } from '@angular/core';
 import { Store, select } from '@ngrx/store';
-import { SET_MENU_STATE } from './reducers/menu-reducer';
-import {LoaderService} from './components/layout/loader/loader.service';
+import { SET_MENU_STATE } from './reducers/menu-reducer'; 
 
 import { Router, Event, NavigationStart, NavigationEnd, NavigationError, NavigationCancel } from '@angular/router';
 

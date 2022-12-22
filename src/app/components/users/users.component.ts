@@ -15,19 +15,19 @@ export class UsersComponent implements OnInit {
   users: any;
 
   ngOnInit(): void {  
-   this.loadUser("0");
+    this.user = this.loadUser("0");
    this.users =  this.loadUsers();
   }
 
 
   constructor(private userService: UserService) {
     // on page load first piece of data
-    this.loadUser("0")
     this.users = this.loadUsers();
   }
  
   public loadUser(id: string) {
- this.user =    this.userService.getUser(this.id).subscribe((user) => {
+    console.log(id);
+return   this.userService.getUser(id).subscribe((user) => {
       this.user = user 
     
     });

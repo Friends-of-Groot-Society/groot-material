@@ -11,7 +11,7 @@ exports.CHAINS = {
         iconUrl: "https://s3.amazonaws.com/tmm.net/img/ether.png",
         category: "Mainnet",
         chainListIcon: "https://friends-of-groot-society.s3.amazonaws.com/assets/android-chrome-384x384.png",
-        state: "ethereum",
+        rpcUrl: "https://mainnet.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161",
         addressesCount: 3
     },
     137: {
@@ -23,7 +23,8 @@ exports.CHAINS = {
         iconUrl: "https://s3.amazonaws.com/tmm.net/img/polygon.jpg",
         category: "Mainnet",
         chainListIcon: "https://friends-of-groot-society.s3.amazonaws.com/assets/android-chrome-384x384.png",
-        state: "polygon"
+        rpcUrl: " https://rpc-mainnet.maticvigil.com/",
+        addressesCount: 3
     },
     56: {
         id: 56,
@@ -33,7 +34,7 @@ exports.CHAINS = {
         iconUrl: "https://s3.amazonaws.com/tmm.net/img/bnb.png",
         category: "Mainnet",
         chainListIcon: "https://friends-of-groot-society.s3.amazonaws.com/assets/android-chrome-384x384.png",
-        state: "binance",
+        rpcUrl: " https://bsc-dataseed.binance.org/",
         addressesCount: 3
     },
     99: {
@@ -45,7 +46,7 @@ exports.CHAINS = {
         iconUrl: "https://s3.amazonaws.com/tmm.net/img/solana.jpg",
         category: "Mainnet",
         chainListIcon: "https://friends-of-groot-society.s3.amazonaws.com/assets/android-chrome-384x384.png",
-        state: "solana",
+        rpcUrl: "https://api.mainnet-beta.solana.com",
         addressesCount: 3
     },
     999: {
@@ -57,7 +58,7 @@ exports.CHAINS = {
         iconUrl: "https://s3.amazonaws.com/tmm.net/img/pulsechain.png",
         category: "Mainnet",
         chainListIcon: "https://friends-of-groot-society.s3.amazonaws.com/assets/android-chrome-384x384.png",
-        state: "pulsechain",
+        rpcUrl: "https://rpc.pulsechain.io",
         addressesCount: 3
     },
     43114: {
@@ -69,50 +70,80 @@ exports.CHAINS = {
         iconUrl: "https://s3.amazonaws.com/tmm.net/img/avax.png",
         category: "Mainnet",
         chainListIcon: "https://friends-of-groot-society.s3.amazonaws.com/assets/android-chrome-384x384.png",
-        state: "avalanche",
+        rpcUrl: "https://api.avax.network/ext/bc/C/rpc",
         addressesCount: 3
     }
 };
 exports.ADDRESSES = {
     0: {
-        id: 4,
+        id: 0,
         description: "NFT - 0x1",
         owner: "thomasm1.maestas@gmail.com",
         address: "0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
         chain: "ethereum",
-        duration: "2:55",
+        blockExplorerUrl: "https://explorer-mainnet.maticvigil.com/address/0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
         seqNo: 5,
-        chainId: 4
+        chainId: 1
     },
     1: {
-        id: 4,
+        id: 1,
         description: "NFT - 0x1",
         owner: "thomasm1.maestas@gmail.com",
         address: "0x5f7B0DDd217D55bFC4927b3E49E3CbF57FA81834",
         chain: "ethereum",
-        duration: "2:55",
+        blockExplorerUrl: "https://explorer-mainnet.maticvigil.com/address/0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
         seqNo: 5,
-        chainId: 4
+        chainId: 1
     },
     2: {
-        id: 1,
+        id: 2,
         description: "NFT - 0x1",
         owner: "walter.white@gmail.com",
         address: "0xcfCa3FEBAceA3AbB643bA90C670D7c4E6D74b633",
         chain: "ethereum",
-        duration: "2:55",
+        blockExplorerUrl: "https://explorer-mainnet.maticvigil.com/address/0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
         seqNo: 5,
         chainId: 1
     },
     3: {
-        id: 4,
+        id: 3,
         description: "NFT - 0x1",
         owner: "walter.white@gmail.com",
         address: "0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
-        chain: "polygon",
-        duration: "2:55",
+        chain: "ethereum",
+        blockExplorerUrl: "https://explorer-mainnet.maticvigil.com/address/0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
         seqNo: 5,
         chainId: 1
+    },
+    4: {
+        id: 4,
+        description: "NFT - 0x1",
+        owner: "thomasm1.maestas@gmail.com",
+        address: "0x5f7B0DDd217D55bFC4927b3E49E3CbF57FA81834",
+        chain: "polygon",
+        blockExplorerUrl: "https://explorer-mainnet.maticvigil.com/address/0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
+        seqNo: 5,
+        chainId: 137
+    },
+    5: {
+        id: 5,
+        description: "NFT - 0x1",
+        owner: "thomasm1.maestas@gmail.com",
+        address: "0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
+        chain: "polygon",
+        blockExplorerUrl: "https://explorer-mainnet.maticvigil.com/address/0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
+        seqNo: 5,
+        chainId: 137
+    },
+    6: {
+        id: 6,
+        description: "NFT - 0x1",
+        owner: "thomasm1.maestas@gmail.com",
+        address: "0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
+        chain: "avalanche",
+        blockExplorerUrl: "https://explorer-mainnet.maticvigil.com/address/0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
+        seqNo: 5,
+        chainId: 43114
     }
 };
 /////////// USERS
@@ -126,12 +157,22 @@ exports.USERS = [
         groupType: "Admin",
         addresses: [
             {
-                id: 4,
+                id: 0,
                 description: "NFT - 0x1",
                 owner: "thomasm1.maestas@gmail.com",
                 address: "0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
                 chain: "ethereum",
-                duration: "2:55",
+                blockExplorerUrl: "https://explorer-mainnet.maticvigil.com/address/0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
+                seqNo: 5,
+                chainId: 4
+            },
+            {
+                id: 1,
+                description: "NFT - 0x1",
+                owner: "thomasm1.maestas@gmail.com",
+                address: "0x5f7B0DDd217D55bFC4927b3E49E3CbF57FA81834",
+                chain: "ethereum",
+                blockExplorerUrl: "https://explorer-mainnet.maticvigil.com/address/0x5f7B0DDd217D55bFC4927b3E49E3CbF57FA81834",
                 seqNo: 5,
                 chainId: 4
             },
@@ -140,11 +181,31 @@ exports.USERS = [
                 description: "NFT - 0x1",
                 owner: "thomasm1.maestas@gmail.com",
                 address: "0x5f7B0DDd217D55bFC4927b3E49E3CbF57FA81834",
-                chain: "ethereum",
-                duration: "2:55",
+                chain: "polygon",
+                blockExplorerUrl: "https://explorer-mainnet.maticvigil.com/address/0x5f7B0DDd217D55bFC4927b3E49E3CbF57FA81834",
                 seqNo: 5,
-                chainId: 4
+                chainId: 137
             },
+            {
+                id: 5,
+                description: "NFT - 0x1",
+                owner: "thomasm1.maestas@gmail.com",
+                address: "0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
+                chain: "polygon",
+                blockExplorerUrl: "https://explorer-mainnet.maticvigil.com/address/0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
+                seqNo: 5,
+                chainId: 137
+            },
+            {
+                id: 6,
+                description: "NFT - 0x1",
+                owner: "thomasm1.maestas@gmail.com",
+                address: "0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
+                chain: "avalanche",
+                blockExplorerUrl: "https://explorer-mainnet.maticvigil.com/address/0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
+                seqNo: 5,
+                chainId: 43114
+            }
         ]
     },
     {
@@ -161,7 +222,7 @@ exports.USERS = [
                 owner: "walter.white@gmail.com",
                 address: "0xcfCa3FEBAceA3AbB643bA90C670D7c4E6D74b633",
                 chain: "ethereum",
-                duration: "2:55",
+                blockExplorerUrl: "https://explorer-mainnet.maticvigil.com/address/0xcfCa3FEBAceA3AbB643bA90C670D7c4E6D74b633",
                 seqNo: 5,
                 chainId: 1
             },
@@ -171,7 +232,7 @@ exports.USERS = [
                 owner: "walter.white@gmail.com",
                 address: "0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
                 chain: "polygon",
-                duration: "2:55",
+                blockExplorerUrl: "https://explorer-mainnet.maticvigil.com/address/0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
                 seqNo: 5,
                 chainId: 1
             },

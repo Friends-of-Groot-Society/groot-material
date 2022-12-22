@@ -37,7 +37,7 @@ const routes: Routes = [
   { path : 'nfts', component : NftsComponent }, 
   { path : 'about', component : AboutComponent },
   { path : 'contact', component : ContactusComponent },
-  { path: 'servers', component: ChainServersComponent },
+  // { path: 'servers', component: ChainServersComponent },
   // { path: 'marvel', component: MarvelComponent },
   // { path: 'marvel/:guardiansId', component: MarvelComponent },
   // {path : 'groot/:grootId', component : BookComponent},

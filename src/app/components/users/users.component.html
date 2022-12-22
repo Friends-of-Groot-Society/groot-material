@@ -1,41 +1,84 @@
+
+
 <div class="users">
     <h3>Friends of Groot</h3>
-    <input type="number" [(ngModel)]="id" placeholder="User ID">&nbsp;
-    <button type="button" (click)="loadUser(id)" class="btn btn-primary">Show member Details</button>
-    <hr>
- 
+      <hr>   
 
-    <div *ngIf="user">
-        #{{user.id }}: Member's Name <strong>{{user.fName}} {{user.lName}} </strong> is member of:  <em>
-            <strong>{{user.groupType}}</strong></em>&nbsp;member since:<strong> {{user.memberSince}}</strong>
-    <p *ngIf="user.addresses">
-        Number of addresses: <strong>{{user.addresses.length}}</strong> </p><br />
-        <span *ngIf="user.addresses">
- 
-        </span>
-        <div *ngFor="let add of user.addresses">
-            Addresses: <strong>{{add.address}}</strong>, located at: <strong>{{add.chain}}</strong> <em>{{add.chainId
-                }}</em>.
+<div class="row">
+    <div class="col col-md-6">
+        <div *ngIf="user">
+            <mat-card>
+             
+         <mat-card-content>
+       
+                <mat-card-title   >User Details</mat-card-title>
+                <mat-card-subtitle> {{user.email}} </mat-card-subtitle> 
+                <strong>User:</strong>#{{user.id }}:&nbsp; {{user.fName}} {{user.lName}}
+                <br /><strong>Member of:</strong> 
+                <em>  {{user.groupType}}</em>
+                <br /><strong>Since:</strong> {{user.memberSince}} 
+               
+            
+        <p *ngIf="user.addresses">
+             <strong>addresses:</strong> {{user.addresses.length}} </p> 
+            <span *ngIf="user.addresses"> 
+            </span>
+            <span *ngFor="let add of user.addresses">
+                 ...{{add.address | slice:-10:-1}}, <strong>on:</strong> {{add.chain | titlecase}} <em>{{add.chainId
+                    }}</em>.
+            </span>
+            <br />
+            </mat-card-content>
+            <mat-card-actions>  
+                <!-- <button mat-button mat-raised-button color="primary" [routerLink]="['']">Close</button> -->
+                <!-- <button mat-button mat-raised-button color="accent" (click)="editUser(user)">Edit</button> -->
+            </mat-card-actions>
+            </mat-card> 
         </div>
+       
+    
+    
     </div>
-    <hr>
-    <div *ngIf="users">
-        <hr>
-        <ul>
-            <li *ngFor="let user of users; let index of users">
-                <!-- ### user.id => this.id -->
-                <a (click)="loadUser(user.id)" class="btn btn-primary"><strong>Details #{{user.id }}: </strong></a>
-                <em>&nbsp;{{user.fName}}   {{user.lName}}</em>  
-                    <span *ngFor="let add of user.addresses">
-                        <br />
-                         <strong>{{add.address}}</strong>, located at: <strong>{{add.chain}} 
-                         </strong>&nbsp;<em>{{add.chainId }}</em>.
-                    </span> 
-                <hr>
-
-            </li>
-        </ul>
+    <div class="col col-md-6"> 
+        <div *ngIf="users"> 
+            <ul>
+            <mat-card class="filter">
+      <div class="row ">
+        <div class="col col-md-6">
+            <mat-card-title>  Users</mat-card-title>
+            <mat-card-subtitle>Filtered Users: {{users.length}}</mat-card-subtitle>  
+         
+        </div>
+        <div class="col col-md-6">
+           
+            <button type="button" (click)="loadUser(id)" class="btn btn-primary">Look Up</button>
+            <input   type="number" [(ngModel)]="id" placeholder="User ID" class="lookup">  
+        </div>
+      </div>
+            </mat-card>
+            <br />
+                    <li *ngFor="let user of users; let index of users"> 
+                        <mat-card> 
+                          <mat-card-content>
+                        <a (click)="loadUser(user.id)"   class="btn btn-primary">Details #{{user.id }}: </a>
+                        <em>&nbsp;{{user.fName}}   {{user.lName}}</em>  
+                            <span *ngFor="let add of user.addresses">
+                                <br />
+                                 ...{{add.address | slice:-10:-1}}, <strong>on: </strong> {{add.chain}} 
+                                 &nbsp;<em>{{add.chainId }}</em>.
+                            </span> 
+                        <hr>
+                        <a [routerLink]="['/users', user.id]">
+                            {{index + 1}}: {{user.fName}} {{user.lName}}
+                        </a> 
+                </mat-card-content>
+            </mat-card> 
+            <br />
+                    </li>
+            </ul>
+        </div>
+    
     </div>
-
+</div>
 
 </div>

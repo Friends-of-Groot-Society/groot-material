@@ -2,3 +2,13 @@
     width:80%;
     margin:auto;
 }
+a {
+    color:white
+}
+.lookup { 
+    max-width:100px;
+    margin-top:10px;
+}
+.filter {
+    background-color: rgba(166, 183, 228, 0.377);
+}

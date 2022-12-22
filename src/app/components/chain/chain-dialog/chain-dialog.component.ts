@@ -2,7 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';     
 import {Chain} from '../../../models/Chain';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import * as day from 'day';
+// import * as day from 'day';
 import { ChainStore } from '../../../services/chain-store.service';
 import { LoaderService } from '../../layout/loader/loader.service';  
 import { Observable } from 'rxjs';
@@ -27,7 +27,7 @@ import { Constant } from '../../../models/Constant';
 export class ChainDialogComponent implements OnInit {
   form: FormGroup;
   chain: Chain;
-  chains = Constant.MORALIS_CHAINS;
+  chainConstants = Constant.MORALIS_CHAINS;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -37,10 +37,13 @@ export class ChainDialogComponent implements OnInit {
   ) { 
     this.chain = chain;
     this.form = this.formBuilder.group({
+      name: [chain.name, Validators.required],
+      symbol: [chain.symbol, Validators.required],
+      category: [chain.category, Validators.required],
       description: [chain.description, Validators.required],
       longDescription: [chain.longDescription, Validators.required],
       iconUrl: [chain.iconUrl, Validators.required],
-      releasedAt: [day(chain.releaseDate).format('YYYY-MM-DD'), Validators.required],
+      // releasedAt: [day(chain.releaseDate).format('YYYY-MM-DD'), Validators.required],
   });
 }
 

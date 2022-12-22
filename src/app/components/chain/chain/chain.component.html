@@ -1,23 +1,49 @@
-<div>cahin !!!!!!!!!</div>
 <ng-container *ngIf="(data$ | async) as data">
-    <div class="chain">
-        <h2>{{data.chain?.description}}</h2>
-            <img class="icon-url" alt="Chain Logo" [src]="data.chain?.iconUrl" *ngIf="data.chain" />
-            <table class="addresses-table mat-elevation-z7" *ngIf="data.addresses.length">
+    <mat-card class="chain">
+        <mat-card-header>
+            <mat-card-title>
+                   <h3>{{data.chain?.description}}</h3>
+            </mat-card-title> 
+        </mat-card-header>
+        <br/>
+        <mat-card-content>
+      <div class="row">
+        <div class="col col-6">
+            <p><strong>Chain Name:</strong> {{data.chain?.name}}</p> 
+            <p><strong>Chain ID: </strong>{{data.chain?.id}}</p>
+            <p><strong>Chain Symbol:</strong> {{data.chain?.symbol | pipeUppercase }}</p>
+            <p><strong>Chain RPC URL:</strong> {{data.chain?.rpcUrl}}</p>
+            <p><strong>Chain Block Explorer URL:</strong> {{data.chain?.blockExplorerUrl}}</p>
+
+        </div>
+        <div class="col col-6 img" >
+            <img class="mat-card-image" alt="Chain Logo" [src]="data.chain?.iconUrl" *ngIf="data.chain" />
+           </div>
+      </div>
+        </mat-card-content>
+             <table class="addresses-table mat-elevation-z7" *ngIf="data.addresses.length">
 
                 <thead>
-                    <tr>
-                        <th>Address</th>
+                    <tr>                       
+                        <th>ID</th>
+                        <th>Owner</th>
                         <th>Description</th>
-                        <th>chainId</th>
+                        <th>Address</th>
+
                     </tr>
                 </thead>
 
                 <tr class="address-row" *ngFor="let address of data.addresses">
-                    <td>{{address.address}}</td>
-                    <td>{{address.description}}</td>
                     <td>{{address.chainId}}</td>
+                    <td>{{address.owner | slice:0:15 }}...</td>
+                    <td>{{address.description}}</td>
+                    <td>{{address.address | slice:0:10}}...</td>
                 </tr>
             </table> 
-        </div>
+            <br />
+        <mat-card-actions class="chain-actions">
+            <button mat-button mat-raised-button color="primary" [routerLink]="['']">Close</button>
+            <!-- <button mat-button mat-raised-button color="accent" (click)="editChain(data.chain)">Edit</button> -->
+        </mat-card-actions>
+        </mat-card>
 </ng-container>
