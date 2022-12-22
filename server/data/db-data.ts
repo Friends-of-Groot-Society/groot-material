@@ -117,6 +117,12 @@ export const ADDRESSES = {
     }
 
 }
+export const LOGIN = [
+    {email:"thomasm1.maestas@gmail.com",
+password:"pass"}, 
+{email:"walter.white@gmail.com",
+password:"pass"}
+]
 /////////// USERS
 export const USERS = [
     {
@@ -124,6 +130,7 @@ export const USERS = [
         fName: "Tom",
         lName: "Milton",
         email: "thomasm1.maestas@gmail.com",
+        password:"pass",
         memberSince: "02-04-2020",
         groupType: "Admin",
         addresses: [
@@ -154,6 +161,7 @@ export const USERS = [
         fName: "Walter",
         lName: "White",
         email: "walter.white@gmail.com",
+        password:"pass",
         memberSince: "02-04-2020",
         groupType: "Premium",
         addresses: [

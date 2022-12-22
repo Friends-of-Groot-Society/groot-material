@@ -41,7 +41,7 @@ import { NftsComponent } from './components/crypto/nfts.component';
 import { NftComponent } from './components/crypto/nft/nft.component';
 import { NftAddComponent } from './components/crypto/nft-add/nft-add.component';
 import { ChaindataComponent } from './components/crypto/chaindata/chaindata.component';
-import { reducers } from './reducers/app.reducer';
+// import { reducers } from './reducers/app.reducer';
 import { LoaderService } from './components/layout/loader/loader.service';
 import { LoaderComponent } from './components/layout/loader/loader.component';
 import { ServerComponent } from './components/chain-servers/server/server.component'; 
@@ -89,7 +89,7 @@ import { UpperCasePipe } from '@angular/common';
     AppRoutingModule,
     HttpClientModule, 
     BrowserAnimationsModule,
-    StoreModule.forRoot( reducers ),
+    // StoreModule.forRoot( reducers ),
   ],
   providers: [ 
     BookService,

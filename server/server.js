@@ -39,17 +39,17 @@ exports.__esModule = true;
 var express = require("express");
 var app = express();
 var path = require("path");
-var dotenv = require("dotenv");
 var cors = require("cors");
-dotenv.config();
+// import * as dotenv from 'dotenv';
+// dotenv.config();
 app.use(cors({ origin: true }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-// app.use(function (req, res, next) {
-//   res.header("Access-Control-Allow-Origin", "*");
-//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-//   next();
-// });
+app.use(function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
 var moralis_1 = require("moralis");
 var EvmChain = require("@moralisweb3/evm-utils").EvmChain;
 ///////// TEST DATA METHODS
@@ -76,7 +76,8 @@ app.route('/api/chains/:id').get(get_chains_route_1.getChainById);
 app.route('/api/addresses').get(search_addresses_route_1.getAllAddresses);
 // app.route('/api/addresses:category').get(searchAddressesByCategory);  
 app.route('/api/chains/:id').put(save_chain_route_1.saveChain);
-// app.route('/api/nft').get(getNft); 
+// app.route('/api/nft').get(getNft);  
+app.route('/api/login').post(get_users_route_1.postLogin);
 app.route('/api/users').get(get_users_route_1.getUsers);
 app.route('/api/users/:id').get(get_users_route_1.getUserById);
 app.route('/api/nft-test').get(get_nfts_route_1.getNft);
