@@ -33,12 +33,13 @@ export class SearchAddressesComponent implements OnInit {
   constructor(private chainService: ChainService) { }
 
   ngOnInit(): void {
+    this.onSearch("")
   }
 
   onSearch(searchInput:string) {
     let strArr = searchInput.split(",");
     let input = strArr[0].trim().toLowerCase();
-    let input2 = strArr.length > 1? strArr[1].trim().toLowerCase() : "" ;
+    let input2 = strArr.length > 1? strArr[1].trim().toLowerCase() : "" ; 
     this.searchResults$  = this.chainService.searchAddresses(input,input2);
 }
 

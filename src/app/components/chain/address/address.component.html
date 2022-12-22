@@ -1,10 +1,12 @@
 
-<div class="address-detail">  
-    <h6><strong>Owner:</strong> {{address.owner}}</h6>
-    <p><strong>OwnerId:</strong> {{address.ownerId}}</p>
-    <p><strong>Chain:</strong> {{address.chain}}</p>
-    <p><strong>Desc:</strong> {{address.description}}</p>
-    <p><strong>Addr:</strong>{{address.address | slice:-10:-1}}</p> 
-    <p><strong>Explorer:</strong> {{address.blockExplorerUrl  | slice:8:18}} </p>
- 
-</div>
+<mat-card>
+    <div class="address-detail">  
+        <p><strong>Owner:</strong> {{address.owner}}</p>
+        <p><strong>OwnerId:</strong> {{address.ownerId}}</p>
+        <p><strong>Chain:</strong> {{address.chain}}</p>
+        <p><strong>Desc:</strong> {{address.description}}</p>
+        <p><strong>Addr:</strong>{{address.address  }}</p> 
+        <p><strong>Explorer:</strong> {{address.blockExplorerUrl  }} </p>
+     
+    </div>
+</mat-card>
