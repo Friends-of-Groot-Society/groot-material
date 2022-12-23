@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { NFT_ETH, NFT_POLY,  NFTS_ETHEREUM, NFTS_POLYGON } from "../data/db-data";
+import { NFT_ETH, NFT_POLY, NFTS_ETHEREUM, NFTS_POLYGON } from "../data/db-data";
 
 export function getNft(req: Request, res: Response) {
     res.status(200).json(NFT_ETH);
@@ -39,10 +39,10 @@ export function postNfts(req: Request, res: Response) {
 
 
 export function getNftData(req: Request, res: Response) {
- 
+
     // res.status(200).json(NFT_ETH);
 }
 export function postNftData(req: Request, res: Response) {
- 
+
     // res.status(200).json(NFT_POLY);
 }

@@ -36,21 +36,23 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
+var moralis_1 = require("moralis");
 var express = require("express");
-var app = express();
 var path = require("path");
 var cors = require("cors");
+var chains = require("./data/db-constants");
 // import * as dotenv from 'dotenv';
 // dotenv.config();
-app.use(cors({ origin: true }));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+var app = express();
 app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
 });
-var moralis_1 = require("moralis");
+app.use(cors({ origin: true }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+// app.use(bodyParser);
 var EvmChain = require("@moralisweb3/evm-utils").EvmChain;
 ///////// TEST DATA METHODS
 var get_chains_route_1 = require("./routes/get-chains.route");
@@ -64,7 +66,6 @@ var get_nfts_route_1 = require("./routes/get-nfts.route");
 var getDataController_1 = require("./controllers/getDataController");
 /////////////// CONSTANTS
 var PORT = 9000;
-var chains = require("./data/db-constants");
 var API_KEY = process.env["MORALIS_API_KEY"];
 var chain = process.env["DEFAULT_CHAIN"] || 'ETHEREUM';
 var addressDEFAULT = process.env["DEFAULT_ADDRESS"];

@@ -4,18 +4,17 @@ exports.getUserById = exports.getUsers = exports.postLogin = void 0;
 var db_data_1 = require("../data/db-data");
 function postLogin(req, res) {
     var data = req.body;
-    var userData = { email: data.email, password: data.password };
+    var email = data.email;
+    var password = data.password;
+    var user = null;
     var users = Object.values(db_data_1.USERS);
-    var user = users.find(function (user) {
-        if (user.email == userData.email && user.password == userData.password) {
-            res.header("Access-Control-Allow-Origin", "*");
-            res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-            res.status(200).json(user);
+    for (var _i = 0, users_1 = users; _i < users_1.length; _i++) {
+        var u = users_1[_i];
+        if (u.email == email && u.password == password) {
+            user = u;
         }
-        else {
-            res.status(400).json(null);
-        }
-    });
+    }
+    res.status(200).json(user);
 }
 exports.postLogin = postLogin;
 function getUsers(req, res) {
