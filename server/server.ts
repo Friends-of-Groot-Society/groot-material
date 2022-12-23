@@ -1,24 +1,26 @@
 
+import Moralis from "moralis"
 import * as express from 'express';
 
 import { Application } from "express";
-const app: Application = express();
 import * as path from 'path';
 import * as cors from 'cors';
+import * as chains from './data/db-constants'; 
 // import * as dotenv from 'dotenv';
 
 // dotenv.config();
-app.use(cors({ origin: true }));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-
+const app: Application = express();
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
+app.use(cors({ origin: true }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+// app.use(bodyParser);
+ 
 
-import Moralis from "moralis"
 const { EvmChain } = require("@moralisweb3/evm-utils")
 
 
@@ -27,7 +29,7 @@ import { getAllChains, getChainById } from "./routes/get-chains.route";
 import {  searchAddresses } from "./routes/search-addresses.route";
 // searchAddressesByCategory 
 import { saveChain } from './routes/save-chain.route';
-import { getUsers, postLogin, getUserById, } from './routes/get-users.route';
+import { postLogin,  getUsers, getUserById, } from './routes/get-users.route';
 // import  {getOpenai} from './routes/openai.route';
 import { getNft, postNft, postNfts, getNftData, postNftData } from './routes/get-nfts.route';
 
@@ -37,7 +39,6 @@ import { getDataController } from './controllers/getDataController';
 /////////////// CONSTANTS
 const PORT = 9000;
 
-import * as chains from './data/db-constants';
 const API_KEY = process.env["MORALIS_API_KEY"];
 let chain = process.env["DEFAULT_CHAIN"] || 'ETHEREUM'
 const addressDEFAULT = process.env["DEFAULT_ADDRESS"];

@@ -172,7 +172,7 @@ export const USERS = [
                 address: "0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
                 chain: "ethereum",
                 blockExplorerUrl:"https://explorer-mainnet.maticvigil.com/address/0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
-                ownerId: 5,
+                ownerId: 0,
                 chainId: 4
             },
             {
@@ -182,7 +182,7 @@ export const USERS = [
                 address: "0x5f7B0DDd217D55bFC4927b3E49E3CbF57FA81834",
                 chain: "ethereum",
                 blockExplorerUrl:"https://explorer-mainnet.maticvigil.com/address/0x5f7B0DDd217D55bFC4927b3E49E3CbF57FA81834",
-                ownerId: 5,
+                ownerId: 0,
                 chainId: 4
             },
             {
@@ -192,7 +192,7 @@ export const USERS = [
                 address: "0x5f7B0DDd217D55bFC4927b3E49E3CbF57FA81834",
                 chain: "polygon",
                 blockExplorerUrl:"https://explorer-mainnet.maticvigil.com/address/0x5f7B0DDd217D55bFC4927b3E49E3CbF57FA81834",
-                ownerId: 5,
+                ownerId: 0,
                 chainId: 137
             },
             {
@@ -202,7 +202,7 @@ export const USERS = [
                 address: "0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
                 chain: "polygon",
                 blockExplorerUrl:"https://explorer-mainnet.maticvigil.com/address/0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
-                ownerId: 5,
+                ownerId: 0,
                 chainId: 137
             },
             {
@@ -212,13 +212,44 @@ export const USERS = [
                 address: "0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
                 chain: "avalanche",
                 blockExplorerUrl:"https://explorer-mainnet.maticvigil.com/address/0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
-                ownerId: 5,
+                ownerId: 0,
                 chainId: 43114
             }
         ],
     },
     {
         id: 1,
+        fName: "randy",
+        lName: "rock",
+        email: "randy.rock@gmail.com",
+        password:"pass",
+        memberSince: "02-04-2020",
+        groupType: "Premium",
+        addresses: [
+            {
+                id: 1,
+                description: "NFT - 0x1",
+                owner: "randy.rock@gmail.com",
+                address: "0xcfCa3FEBAceA3AbB643bA90C670D7c4E6D74b633",
+                chain: "ethereum",
+                blockExplorerUrl:"https://explorer-mainnet.maticvigil.com/address/0xcfCa3FEBAceA3AbB643bA90C670D7c4E6D74b633",
+                ownerId: 1,
+                chainId: 1
+            },
+            {
+                id: 4,
+                description: "NFT - 0x1",
+                owner: "randy.rock@gmail.com",
+                address: "0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
+                chain: "polygon",
+                blockExplorerUrl:"https://explorer-mainnet.maticvigil.com/address/0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
+                ownerId: 1,
+                chainId: 1
+            },
+        ],
+    },
+    {
+        id: 2,
         fName: "Walter",
         lName: "White",
         email: "walter.white@gmail.com",
@@ -231,9 +262,9 @@ export const USERS = [
                 description: "NFT - 0x1",
                 owner: "walter.white@gmail.com",
                 address: "0xcfCa3FEBAceA3AbB643bA90C670D7c4E6D74b633",
-                chain: "ethereum",
+                chain: "binance",
                 blockExplorerUrl:"https://explorer-mainnet.maticvigil.com/address/0xcfCa3FEBAceA3AbB643bA90C670D7c4E6D74b633",
-                ownerId: 5,
+                ownerId: 2,
                 chainId: 1
             },
             {
@@ -241,9 +272,9 @@ export const USERS = [
                 description: "NFT - 0x1",
                 owner: "walter.white@gmail.com",
                 address: "0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
-                chain: "polygon",
+                chain: "binance",
                 blockExplorerUrl:"https://explorer-mainnet.maticvigil.com/address/0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
-                ownerId: 5,
+                ownerId: 2,
                 chainId: 1
             },
         ],
