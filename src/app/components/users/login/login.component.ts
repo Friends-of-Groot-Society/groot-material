@@ -5,6 +5,9 @@ import { FormGroup, FormBuilder, Validators, } from '@angular/forms';
 import { AuthStore } from 'src/app/services/auth/auth-store.service';
 import { first } from 'rxjs/operators';
 import { AlertService, AuthenticationService } from '../../../services';
+import { User } from 'src/app/models/User';
+import { environment } from 'src/environments/environment';
+import { AdminAuthenticationService } from 'src/app/services/auth/admin-authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +17,7 @@ import { AlertService, AuthenticationService } from '../../../services';
 export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
-
+  adminData = new User() ;
   title: string = "";
   user: LoginModel = new LoginModel();
   hide = true;
@@ -27,7 +30,7 @@ export class LoginComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private authStore: AuthStore,
-    // private authenticationService: AuthenticationService,
+    private adminService: AdminAuthenticationService,
     private alertService: AlertService
   ) {
     ///////////////////////////////// uncomment after fixing AUTH
@@ -45,17 +48,29 @@ export class LoginComponent implements OnInit {
 
 
   ngOnInit() {
-    this.title = "LOGIN";
-
+    this.title = "LOGIN"; 
 
     // get return url from route parameters or default to '/'
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
   // convenience getter for easy access to form fields
   // get fromInput() { return this.form.controls; }
+  onAdminSubmit() { 
+    const val = this.loginForm.value;
+    this.submitted = true; 
+    this.loading = true;
+    this.adminService.login(val.email, val.password)
+      .subscribe(
+        () => {
+          this.router.navigateByUrl(`/admin/users`); 
+          },
+          err => {
+            alert("login failed");
+          }
+      )
+  }
 
-  onLoginSubmit() { 
-    
+  onLoginSubmit() {  
     const val = this.loginForm.value;
     this.submitted = true; 
 
@@ -64,8 +79,8 @@ export class LoginComponent implements OnInit {
     this.loading = true;
     this.authStore.login(val.email, val.password)
       .subscribe(
-        () => {
-          this.router.navigateByUrl("/users")
+        (user:User) => {
+          this.router.navigateByUrl(`/users?id=${user.id}`)  
           },
           err => {
             alert("login failed");

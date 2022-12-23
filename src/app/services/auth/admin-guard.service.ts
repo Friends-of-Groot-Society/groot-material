@@ -4,8 +4,7 @@ import {
   ActivatedRouteSnapshot,
   RouterStateSnapshot,
   Router
-} from '@angular/router';
-
+} from '@angular/router'; 
 import { AdminAuthenticationService } from './admin-authentication.service';
 
 @Injectable({

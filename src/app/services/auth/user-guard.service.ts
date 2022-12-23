@@ -9,44 +9,50 @@ import {
 } from '@angular/router';
 import { pipe } from 'rxjs';
 import { take } from 'rxjs/operators';
-
-import { JwtAuthService } from './jwt-auth.service';
+ 
 import { AdminAuthenticationService } from './admin-authentication.service';
-import { Store } from '@ngrx/store';
+import { AuthStore } from './auth-store.service'
+// import { Store } from '@ngrx/store';
 import * as fromRoot from '../../reducers/app.reducer';
 
 @Injectable()
 export class UserGuardService implements CanActivate, CanLoad {
   constructor(
-    private adminAuthService: AdminAuthenticationService,
-    // private authService: JwtAuthService,
-    private store: Store<fromRoot.State>,
+    private adminAuthService: AdminAuthenticationService, 
+    // private Store: Store<fromRoot.State>,
+    private auth: AuthStore,
     private router: Router
   ) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    // USER AUTH  ----------------------   ADMIN AUTH
-    // if (this.authService.isAuth() || this.adminAuthService.isAdminLoggedIn()) {
-
-    if (
-      this.store.select(fromRoot.getIsAuth).pipe(take(1)) ||
-      this.adminAuthService.isAdminLoggedIn()
+  
+    if ( this.auth.isLoggedIn$ || this.adminAuthService.isAdminLoggedIn
+      // || this.store.select(fromRoot.getIsAuth).pipe(take(1))  
     ) {
       return true;
     } else {
       this.router.navigate(['/login']);
+      return false;
     }
   }
   canLoad(route: Route) {
+      if(this.auth.isLoggedIn$) {
+        return true; 
+      } else {
+        this.router.navigate([])
+        return false;
+      }
+
     // if (this.authService.isAuth()) {
     //   return true;
     // } else {
     //   this.router.navigate(['/login']);
     // }
-    if (this.store.select(fromRoot.getIsAuth).pipe(take(1))) {
-      return true;
-    } else {
-      this.router.navigate(['/login']);
-    }
+
+    // if (this.store.select(fromRoot.getIsAuth).pipe(take(1))) {
+    //   return true;
+    // } else {
+    //   this.router.navigate(['/login']);
+    // }
   }
 }

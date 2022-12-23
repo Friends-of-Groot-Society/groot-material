@@ -23,7 +23,8 @@ import { RegisterComponent } from './components/users/register/register.componen
  
 import { UsersComponent } from './components/users/users.component'; 
 import { HomeComponent } from './components/layout/home.component';
-
+import { UserGuardService } from './services/auth/user-guard.service'
+import { AdminGuardService } from './services/auth/admin-guard.service';
 const routes: Routes = [ 
  
   { path: '', component: HomeComponent }, 
@@ -43,7 +44,8 @@ const routes: Routes = [
   // {path : 'groot/:grootId', component : BookComponent},
  
   { path: 'users', component: UsersComponent },
-  { path: 'tiles', component: PhotosComponent }, 
+  { path: 'admin/users', component: UsersComponent, canActivate:[AdminGuardService] },
+  { path: 'members', component: PhotosComponent, canActivate:[UserGuardService] }, 
   // { path: 'tiles/:albumId', component: PhotosComponent }, 
   // { path: 'search', component: NewsArticleSearchComponent },
    

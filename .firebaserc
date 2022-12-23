@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "friends-of-groot": {
+      "hosting": {
+        "groot": [
+          "friends-of-groot"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "friends-of-groot"
+  }
+}

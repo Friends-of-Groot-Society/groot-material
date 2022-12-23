@@ -12,6 +12,7 @@ export class PhotosComponent implements OnInit {
   // photos!: Observable<Object>;
   photos: any; //Subscription | undefined;
   private  photo:any;
+  memberid: any = '0';
       albumId: any = '0';
   constructor(
     private grootService: GrootService,
@@ -19,7 +20,7 @@ export class PhotosComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.albumId = this.route.snapshot.params['albumId'];
+    this.memberid = this.route.snapshot.params['memberid'];
     // this.photos = this.grootService.getPhotos(this.albumId);
     this.route.paramMap.subscribe(params => {
       this.albumId = params.get('albumId');

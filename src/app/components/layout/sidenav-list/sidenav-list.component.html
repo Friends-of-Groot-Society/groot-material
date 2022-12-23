@@ -44,7 +44,7 @@
         <span class="nav-caption daily-tech monoton">LOGIN</span>
       </a> 
 
-      <a mat-list-item  title="LOGOUT"   *ngIf="authStore.isLoggedIn$ | async"   (click)="logout();onClose()"> 
+      <a mat-list-item  title="LOGOUT"  routerLink="/login" *ngIf="authStore.isLoggedIn$ | async"   (click)="logout();onClose()"> 
         <span class="nav-caption daily-tech monoton"><mat-icon>exit_to_app</mat-icon></span>
       </a> 
     </li>
@@ -68,7 +68,7 @@
   <!-- <a mat-list-item  id="guardians" routerLink="grootologue/">Guardians</a> -->
 
 
-  <a mat-list-item id="photos" routerLink="tiles/1">Tiles</a>
+  <a mat-list-item id="photos" routerLink="members">Members</a>
   <!-- <a mat-list-item routerLink="photos/:id">Photos</a>  -->
 
 

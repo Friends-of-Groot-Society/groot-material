@@ -3,6 +3,7 @@ import { Observable, Subscription } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { AuthStore } from 'src/app/services/auth/auth-store.service';
+import { AdminAuthenticationService } from 'src/app/services/auth/admin-authentication.service';
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
@@ -15,7 +16,8 @@ export class MenuComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    public authStore: AuthStore
+    public authStore: AuthStore, 
+    public adminAuth: AdminAuthenticationService
   ) { }
 
   ngOnInit() {
@@ -24,6 +26,7 @@ export class MenuComponent implements OnInit {
   }
   logout() {
     this.authStore.logout();
+    this.adminAuth.logout();
   }
   onToggleSidenav() {
     this.sidenavToggle.emit();
