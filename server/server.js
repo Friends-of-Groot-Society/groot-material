@@ -41,8 +41,6 @@ var express = require("express");
 var path = require("path");
 var cors = require("cors");
 var chains = require("./data/db-constants");
-// import * as dotenv from 'dotenv';
-// dotenv.config();
 var app = express();
 app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -52,7 +50,6 @@ app.use(function (req, res, next) {
 app.use(cors({ origin: true }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-// app.use(bodyParser);
 var EvmChain = require("@moralisweb3/evm-utils").EvmChain;
 ///////// TEST DATA METHODS
 var get_chains_route_1 = require("./routes/get-chains.route");
@@ -219,6 +216,7 @@ app.get("api/nft/eth/:address", function (req, res) { return __awaiter(void 0, v
         }
     });
 }); });
+//// WEBHOOKS
 var startServer = function () { return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_a) {
         switch (_a.label) {

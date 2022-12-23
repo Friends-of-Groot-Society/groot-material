@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { first } from 'rxjs/operators';
 import {UserService} from '../user.service';
 import { AlertService,  AuthenticationService } from '../../../services';
-
+import { AdminAuthenticationService } from 'src/app/services/auth/admin-authentication.service';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -25,6 +25,7 @@ export class RegisterComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
     private authenticationService: AuthenticationService,
+    private adminAuthenticationService: AdminAuthenticationService,
     private userService: UserService,
     private alertService: AlertService
   ) {
@@ -40,10 +41,7 @@ export class RegisterComponent implements OnInit {
 
     this.registerForm = this.formBuilder.group({
      
-      email: [this.user.email, [
-        Validators.required,
-        Validators.email
-      ]],
+      email: [this.user.email, [  Validators.required, Validators.email ]],
       password: [this.user.password, [
         Validators.required,
         Validators.minLength(4),
@@ -59,7 +57,25 @@ export class RegisterComponent implements OnInit {
   } 
   
   get f() { return this.registerForm.controls; }
+  onAdminRegister() {
+    this.submitted = true;
+    this.alertService.clear();
 
+    console.log("submitted: "+this.user.fName + ' ' + this.user.lName + ' ' + this.user.email  );
+    this.loading = true;
+    console.log("registerForm.value "+ this.registerForm.value);
+    this.adminAuthenticationService.register(this.registerForm.value)
+      .pipe(first())
+      .subscribe(
+        data => {
+          this.alertService.success('Registration successful', true);
+          this.router.navigate(['/']);
+        },
+        error => {
+          this.alertService.error(error);
+          this.loading = false;
+        });
+  } 
   onRegisterSubmit() {
     this.submitted = true;
     this.alertService.clear();

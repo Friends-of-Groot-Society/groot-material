@@ -3,11 +3,13 @@ import { HttpClient } from '@angular/common/http'
 import {  Observable, map } from 'rxjs';
 import { Greeting } from '../../../models/Greeting';
 import { createHttpObservable } from 'src/app/utility/observable';
- 
+import { LoaderService } from '../loader/loader.service';
+
 @Component({
   selector: 'app-about',
   templateUrl: './about.component.html',
-  styleUrls: ['./about.component.css']
+  styleUrls: ['./about.component.css'],
+  providers: [LoaderService]
 })
 export class AboutComponent implements OnInit {
   http$!: Observable<any[]>;

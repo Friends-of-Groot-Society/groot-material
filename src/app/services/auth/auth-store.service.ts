@@ -27,10 +27,11 @@ export class AuthStore {
    }
    
    login(email: string, password:string):Observable<User> {
-    return this.httpClient.post<User>(`${environment.nft_url}/api/login`, {email, password})
+    return this.httpClient.post<User>(`${environment.nft_url}/api/login/`, {email, password})
     .pipe(
         tap(user => {
             this.uSubject.next(user);
+            user.password = "********";
             localStorage.setItem(AUTH_DATA, JSON.stringify(user));
         }),
         shareReplay()

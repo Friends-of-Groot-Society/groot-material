@@ -50,6 +50,11 @@ import { AddressComponent } from './components/chain/address/address.component';
 import { SearchAddressesComponent } from './components/chain/search-addresses/search-addresses.component';
 import { PipeUppercase } from './utility/pipe-uppercase.pipe';
 import { UpperCasePipe } from '@angular/common';
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { provideAuth,getAuth } from '@angular/fire/auth';
+import { provideDatabase,getDatabase } from '@angular/fire/database';
+import { provideFirestore,getFirestore } from '@angular/fire/firestore';
+import { provideFunctions,getFunctions } from '@angular/fire/functions';
 @NgModule({
   declarations: [
     AppComponent,
@@ -88,7 +93,7 @@ import { UpperCasePipe } from '@angular/common';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule, 
-    BrowserAnimationsModule,
+    BrowserAnimationsModule, provideFirebaseApp(() => initializeApp(environment.firebase)), provideAuth(() => getAuth()), provideDatabase(() => getDatabase()), provideFirestore(() => getFirestore()), provideFunctions(() => getFunctions()),
     // StoreModule.forRoot( reducers ),
   ],
   providers: [ 

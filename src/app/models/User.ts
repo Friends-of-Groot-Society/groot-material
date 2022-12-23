@@ -1,8 +1,9 @@
 import { Media } from './Media';
 
 export class User { //
-    id?: string;
-    tokenId?: string;
+    id?: number;
+    userId?:string;
+    tokenId?: string; 
     email!: string;
     password!: string;
     fName!: string;
@@ -10,8 +11,7 @@ export class User { //
     memberSince?: string;
     groupType?: string;
     // public media?: Media[];
-    addresses?: any[];
-
+    addresses?: any[]; 
 
     // deserialize(input: any): this {
     //     // Assign input to our object BEFORE deserialize Media to prevent already deserialized Media from being overwritten.

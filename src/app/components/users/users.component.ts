@@ -1,33 +1,35 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from './user.service';
 import { User } from '../../models/User';
-
+import { Router, ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.css']
 })
 export class UsersComponent implements OnInit {
+ 
+  userid:string = "0";
 
-  id!: string;
   chains: any 
   user: any;
-  users: any;
-
-  ngOnInit(): void {  
-    this.user = this.loadUser("0");
-   this.users =  this.loadUsers();
-  }
+  users: any; 
 
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService, private route:ActivatedRoute) {
     // on page load first piece of data
     this.users = this.loadUsers();
   }
+  ngOnInit(): void {  
+   this.users =  this.loadUsers();
+   this.userid = this.route.snapshot.queryParams['id'] || '0';
+   this.user = this.loadUser(this.userid);
+  }
+
  
-  public loadUser(id: string) {
-    console.log(id);
-return   this.userService.getUser(id).subscribe((user) => {
+  public loadUser(userid: string) {
+    console.log(userid);
+return   this.userService.getUser(userid).subscribe((user) => {
       this.user = user 
     
     });

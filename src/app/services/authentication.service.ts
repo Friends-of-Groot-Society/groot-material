@@ -17,16 +17,16 @@ import { User } from '../models/User';
 
 export class AuthenticationService {
   private currentUserSubject: BehaviorSubject<User>;
-  public currentUser: Observable<User>;
+  public currentUser$: Observable<User>;
 
   baseUrl: string;
 
   private headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 
   constructor(private http: HttpClient) {
-    this.baseUrl = environment.baseUrl;
-    this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser') || '{}'));
-    this.currentUser = this.currentUserSubject.asObservable();
+    this.baseUrl = environment.nft_url;
+     this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('USER_DATA') || '{}'));
+    this.currentUser$ = this.currentUserSubject.asObservable();
   }
 
 
@@ -37,11 +37,14 @@ export class AuthenticationService {
 
   getMemberAuth(email: string, password: string): Observable<User> {
     console.log("member "+ email + " Successfully logged in")
-    return this.http.get<User>(`${this.baseUrl}/api/users/email/${email}`);
+    return this.http.post<User>(`${this.baseUrl}/api/login`, {
+      email:email,
+      password:password
+    });
   }
   
   login(email: any, password: any) {
-    return this.http.post<any>(`${this.baseUrl}/api/users/authenticate`, { email, password })
+    return this.http.post<any>(`${this.baseUrl}/api/login`, { email, password })
       .pipe(map(user => {
         // store user details and jwt token in local storage to keep user logged in between page refreshes
         localStorage.setItem('currentUser', JSON.stringify(user));
@@ -50,15 +53,15 @@ export class AuthenticationService {
       }));
   }
 
-  loginEmail(email: any, password: any) {
-    return this.http.post<any>(`${this.baseUrl}/api/users/authenticate/${email}`, { email})
-      .pipe(map(user => {
-        // store user details and jwt token in local storage to keep user logged in between page refreshes
-        localStorage.setItem('currentUser', JSON.stringify(user));
-        this.currentUserSubject.next(user);
-        return user;
-      }));
-  }
+  // loginEmail(email: any, password: any) {
+  //   return this.http.post<any>(`${this.baseUrl}/api/users/authenticate/${email}`, { email})
+  //     .pipe(map(user => {
+  //       // store user details and jwt token in local storage to keep user logged in between page refreshes
+  //       localStorage.setItem('currentUser', JSON.stringify(user));
+  //       this.currentUserSubject.next(user);
+  //       return user;
+  //     }));
+  // }
 
   logout() {
     let userEmpty:User = new User(); 

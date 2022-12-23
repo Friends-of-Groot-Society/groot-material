@@ -6,9 +6,8 @@ import { Application } from "express";
 import * as path from 'path';
 import * as cors from 'cors';
 import * as chains from './data/db-constants'; 
-// import * as dotenv from 'dotenv';
+ 
 
-// dotenv.config();
 const app: Application = express();
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -18,8 +17,6 @@ app.use(function (req, res, next) {
 app.use(cors({ origin: true }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-// app.use(bodyParser);
- 
 
 const { EvmChain } = require("@moralisweb3/evm-utils")
 
@@ -35,6 +32,7 @@ import { getNft, postNft, postNfts, getNftData, postNftData } from './routes/get
 
 /////// LIVE DATA METHODS
 import { getDataController } from './controllers/getDataController';
+import { runInThisContext } from "vm";
 
 /////////////// CONSTANTS
 const PORT = 9000;
@@ -62,11 +60,12 @@ app.route('/api/users/:id').get(getUserById);
 app.route('/api/nft-test').get(getNft);
 app.route('/api/nft-test').post(postNft);
 
-app.route('/api/nfts-test').post(postNfts);
-
+app.route('/api/nfts-test').post(postNfts); 
 /// open-ai stuff
 app.use('/api/openai', require('./routes/openai.route'));
 // app.route('/api/openai').post(getOpenai);
+
+
 
 //// LIVE DATA ROUTES
 app.get("/api/nft", async (req, res) => {
@@ -155,6 +154,12 @@ app.get("api/nft/eth/:address", async (req, res) => {
     res.json({ error: error.message })
   }
 })
+
+
+//// WEBHOOKS
+ 
+
+
 const startServer = async () => {
   await Moralis.start({
     apiKey: API_KEY,
@@ -162,6 +167,5 @@ const startServer = async () => {
   app.listen(PORT, () => {
     console.log(`HTTP REST API Server listening at http://localhost:${PORT}/api/nft`)
   })
-}
-startServer();
- 
+} 
+startServer(); 

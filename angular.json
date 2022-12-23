@@ -106,6 +106,16 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "groot:build:production",
+            "firebaseProject": "friends-of-groot",
+            "firebaseHostingSite": "friends-of-groot"
+          }
         }
       }
     }

@@ -162,6 +162,8 @@ exports.USERS = [
         password: "pass",
         memberSince: "02-04-2020",
         groupType: "Admin",
+        userId: "string",
+        tokenId: "string",
         addresses: [
             {
                 id: 0,
@@ -217,17 +219,19 @@ exports.USERS = [
     },
     {
         id: 1,
-        fName: "randy",
-        lName: "rock",
-        email: "randy.rock@gmail.com",
+        fName: "Jil",
+        lName: "G",
+        email: "jil@gmail.com",
         password: "pass",
         memberSince: "02-04-2020",
         groupType: "Premium",
+        userId: "string",
+        tokenId: "string",
         addresses: [
             {
                 id: 1,
                 description: "NFT - 0x1",
-                owner: "randy.rock@gmail.com",
+                owner: "jil@gmail.com",
                 address: "0xcfCa3FEBAceA3AbB643bA90C670D7c4E6D74b633",
                 chain: "ethereum",
                 blockExplorerUrl: "https://explorer-mainnet.maticvigil.com/address/0xcfCa3FEBAceA3AbB643bA90C670D7c4E6D74b633",
@@ -237,10 +241,10 @@ exports.USERS = [
             {
                 id: 4,
                 description: "NFT - 0x1",
-                owner: "randy.rock@gmail.com",
-                address: "0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
+                owner: "jil@gmail.com",
+                address: "0x5f7B0DDd217D55bFC4927b3E49E3CbF57FA81834",
                 chain: "polygon",
-                blockExplorerUrl: "https://explorer-mainnet.maticvigil.com/address/0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
+                blockExplorerUrl: "https://explorer-mainnet.maticvigil.com/address/0x5f7B0DDd217D55bFC4927b3E49E3CbF57FA81834",
                 ownerId: 1,
                 chainId: 1
             },
@@ -254,6 +258,8 @@ exports.USERS = [
         password: "pass",
         memberSince: "02-04-2020",
         groupType: "Premium",
+        userId: "string",
+        tokenId: "string",
         addresses: [
             {
                 id: 1,
