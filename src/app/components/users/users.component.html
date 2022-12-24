@@ -16,16 +16,15 @@
                 <strong>User:</strong>#{{user.id }}:&nbsp; {{user.fName}} {{user.lName}}
                 <br /><strong>Member of:</strong> 
                 <em>  {{user.groupType}}</em>
-                <br /><strong>Since:</strong> {{user.memberSince}} 
-               
+                <br /><strong>Since:</strong> {{user.memberSince}}  
             
         <p *ngIf="user.addresses">
-             <strong>addresses:</strong> {{user.addresses.length}} </p> 
+             <strong>Chain-addresses:</strong> {{user.addresses.length}} </p> 
             <span *ngIf="user.addresses"> 
             </span>
             <span *ngFor="let add of user.addresses">
                  ...{{add.address | slice:-10:-1}}, <strong>on:</strong> {{add.chain | titlecase}} <em>{{add.chainId
-                    }}</em>.
+                    }}</em><br />
             </span>
             <br />
             </mat-card-content>

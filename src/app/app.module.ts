@@ -12,11 +12,9 @@ import { environment } from '../environments/environment';
 import { PhotosComponent } from './components/photos/photos.component'; 
 import { StarwarsComponent } from './components/starwars/starwars.component';
 import { MarvelComponent } from './components/marvel/marvel.component';
-import { BookComponent } from './components/book/book.component'; 
-  
+ 
 // SERVICES
-import { BookService } from './services/book.service';
-import { GrootService } from './services/groot.service'; 
+ import { GrootService } from './services/groot.service'; 
 import { StoreModule } from '@ngrx/store';
  
 // LAYOUT 
@@ -68,8 +66,7 @@ import { provideFunctions,getFunctions } from '@angular/fire/functions';
     SidenavListComponent,
     MenuComponent,
     ContactusComponent, 
-    FooterComponent,
-    BookComponent, 
+    FooterComponent, 
     UsersComponent,
     AlertComponent,
     ChainServersComponent,
@@ -96,8 +93,7 @@ import { provideFunctions,getFunctions } from '@angular/fire/functions';
     BrowserAnimationsModule, provideFirebaseApp(() => initializeApp(environment.firebase)), provideAuth(() => getAuth()), provideDatabase(() => getDatabase()), provideFirestore(() => getFirestore()), provideFunctions(() => getFunctions()),
     // StoreModule.forRoot( reducers ),
   ],
-  providers: [ 
-    BookService,
+  providers: [  
     GrootService, 
     LoaderService,
     UpperCasePipe
