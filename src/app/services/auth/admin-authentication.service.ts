@@ -8,7 +8,9 @@ import { environment } from '../../../environments/environment';
 
 import { User } from '../../models/User';
 export const TOKEN_ID = 'tokenId'
-export const USER_AUTH = 'USER_AUTH'
+export const AUTH_ADMIN = 'AUTH_ADMIN'
+export const AUTH_DATA = 'AUTH_DATA'
+ 
 
 // https://firebase.google.com/docs/reference/rest/auth#section-create-email-password
 export interface AuthResponseData { 
@@ -26,10 +28,19 @@ export interface AuthResponseData {
 export class AdminAuthenticationService {
  /// NOTE!!! only file to use localStorage so that token is deleted on tab-close
   baseUrl:string;
-  user = new BehaviorSubject<User>(null);
+  private uAdminSubject$ = new BehaviorSubject<User>(null);
+  adminUser$: Observable<User> = this.uAdminSubject$.asObservable();
+
+  isAdminLoggedIn$: Observable<boolean>
+  isAdminLoggedOut$: Observable<boolean>
+
  
   constructor(private http: HttpClient, private router:Router) { 
     this.baseUrl = environment.nft_url; 
+
+    this.isAdminLoggedIn$ = this.adminUser$.pipe(map(user => !!user));
+    this.isAdminLoggedOut$ = this.isAdminLoggedIn$.pipe(map(loggedIn => !loggedIn));
+
    }
    register({email, password,fname,lname}) {
      sessionStorage.setItem("fname",fname);
@@ -58,7 +69,7 @@ export class AdminAuthenticationService {
    login(email: string, password: string)  {
     return this.http
       .post<AuthResponseData>(
-      `https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=${environment.FIREBASE_GROOT}`,
+      `https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=${environment.FIREBASE_GROOT}`,
         {
           email: email,
           password: password,
@@ -106,27 +117,11 @@ export class AdminAuthenticationService {
     user.userId = userId;
     user.tokenId = token; 
 
-    this.user.next(user); 
-    localStorage.setItem('USER_AUTH', JSON.stringify(user));
+    this.uAdminSubject$.next(user); 
+    localStorage.setItem('AUTH_ADMIN', JSON.stringify(user));
+    localStorage.setItem('AUTH_DATA', JSON.stringify(user));
 
    }
-  // executeAuthenticationService(adminName, password) {
-  //   // Basic Authentication
-  //   let basicAuthHeaderString = 'Basic ' + window.btoa(adminName + ':' + password);
-  //   let headers = new HttpHeaders({
-  //       Authorization: basicAuthHeaderString
-  //     })
-  //   return this.http.get<BasicAuthBean>(
-  //     `${this.baseUrl}/dailytech/login`,
-  //     {headers}).pipe(
-  //       map(
-  //         data => {
-  //           localStorage.setItem(AUTHENTICATED_USER, adminName);
-  //           localStorage.setItem(TOKEN, basicAuthHeaderString);
-  //           return data;
-  //         }
-  //       )
-  //     );
 
   // executeAuthJwtService(username, password) {
   //   return this.http.post<any>(
@@ -145,7 +140,7 @@ export class AdminAuthenticationService {
   // }
 
   getAuthenticatedUser() {
-    return localStorage.getItem(USER_AUTH)
+    return localStorage.getItem(AUTH_ADMIN)
   }
   getAuthenticatedToken() {
     if(this.getAuthenticatedUser())
@@ -153,24 +148,23 @@ export class AdminAuthenticationService {
     else 
       return null;
   }
-
-  isAdminLoggedIn() {
-    let user = localStorage.getItem(USER_AUTH)
+// not for authing in/out, but for admin privileges
+  isAdminLoggedIn() { 
+    let user = localStorage.getItem(AUTH_ADMIN)
     return !(user === null)
   }
   
+// not for authing in/out, but for admin privileges
   isAdminLoggedOut() {
-    let user = localStorage.getItem(USER_AUTH)
+    let user = localStorage.getItem(AUTH_ADMIN)
     return (user === null)
   }
-  logout(){    this.user.next(null);
+  logout(){     
+    this.uAdminSubject$.next(null);
     this.router.navigate(['/']); 
-    localStorage.removeItem(USER_AUTH)
+    localStorage.removeItem('AUTH_ADMIN')
+    localStorage.removeItem('AUTH_DATA')
     localStorage.removeItem(TOKEN_ID)
-  }
+  } 
+}
  
-}
-
-export class BasicAuthBean{
-  constructor(public message:string) { }
-}

@@ -5,7 +5,7 @@ import { map, shareReplay } from 'rxjs/operators';
  
 import { ActivatedRoute } from '@angular/router';
 import { AuthStore } from 'src/app/services/auth/auth-store.service';
- 
+import { AdminAuthenticationService } from 'src/app/services/auth/admin-authentication.service';
 
 
 @Component({
@@ -17,7 +17,7 @@ export class SidenavListComponent implements OnInit { // }, OnDestroy {
   @Output() closeSidenav = new EventEmitter<void>();
 
   variable = ''; 
-
+  
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches),
@@ -26,7 +26,8 @@ export class SidenavListComponent implements OnInit { // }, OnDestroy {
   constructor(
     private breakpointObserver: BreakpointObserver,
     private route: ActivatedRoute,  
-    public authStore: AuthStore
+    public authStore: AuthStore,
+    public adminAuth: AdminAuthenticationService
     ) { }
 
   ngOnInit() {
@@ -35,6 +36,7 @@ export class SidenavListComponent implements OnInit { // }, OnDestroy {
 
   logout() {
     this.authStore.logout();
+    this.adminAuth.logout();
   }
 
   onClose() {

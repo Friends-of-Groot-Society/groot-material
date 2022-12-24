@@ -26,7 +26,7 @@ export class UserGuardService implements CanActivate, CanLoad {
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
   
-    if ( this.auth.isLoggedIn$ || this.adminAuthService.isAdminLoggedIn
+    if ( this.auth.isLoggedIn$ || this.adminAuthService.isAdminLoggedIn$
       // || this.store.select(fromRoot.getIsAuth).pipe(take(1))  
     ) {
       return true;

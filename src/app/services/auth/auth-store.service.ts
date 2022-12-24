@@ -4,6 +4,7 @@ import { User } from '../../models/User';
 import { map, shareReplay, tap } from 'rxjs/operators'
 import { HttpClient } from "@angular/common/http";
 import { environment } from "src/environments/environment";
+import { AdminAuthenticationService } from "./admin-authentication.service";
 const AUTH_DATA = "auth_data";
 
 @Injectable({
@@ -17,6 +18,7 @@ export class AuthStore {
    isLoggedOut$: Observable<boolean>
 
    constructor(private httpClient: HttpClient) {
+      
     this.isLoggedIn$ = this.user$.pipe(map(user => !!user));
     this.isLoggedOut$ = this.isLoggedIn$.pipe(map(loggedIn => !loggedIn));
 
