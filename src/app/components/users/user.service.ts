@@ -17,7 +17,8 @@ export class UserService {
  
     register(user: User) {
       console.log("user "+`${this.nft_url}/api/users/register`, user);
-        return this.httpService.post(`${this.nft_url}/api/users/register`, user);
+      this.httpService.post(`${this.nft_url}/api/users/register`, user);
+      
     }
 
     delete(id: string) {

@@ -5,8 +5,9 @@ import { FormGroup, FormBuilder,  FormControl, FormArray, Validators } from '@an
 import { Router } from '@angular/router';
 import { first } from 'rxjs/operators';
 import {UserService} from '../user.service';
-import { AlertService,  AuthenticationService } from '../../../services';
+import { AlertService } from '../../../services';
 import { AdminAuthenticationService } from 'src/app/services/auth/admin-authentication.service';
+import { AuthStore } from 'src/app/services/auth/auth-store.service';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -24,7 +25,7 @@ export class RegisterComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
-    private authenticationService: AuthenticationService,
+    private authStore: AuthStore,
     private adminAuthenticationService: AdminAuthenticationService,
     private userService: UserService,
     private alertService: AlertService
@@ -83,7 +84,7 @@ export class RegisterComponent implements OnInit {
     console.log("submitted: "+this.user.fName + ' ' + this.user.lName + ' ' + this.user.email  );
     this.loading = true;
     console.log("registerForm.value "+ this.registerForm.value);
-    this.userService.register(this.registerForm.value)
+    this.authStore.register(this.registerForm.value)
       .pipe(first())
       .subscribe(
         data => {

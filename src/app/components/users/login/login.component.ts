@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginModel } from '../../../models/login';
 import { Router, ActivatedRoute } from '@angular/router';
-import { FormGroup, FormBuilder, Validators, } from '@angular/forms';
-import { AuthStore } from 'src/app/services/auth/auth-store.service';
+import { FormGroup, FormBuilder, Validators, } from '@angular/forms'; 
 import { first } from 'rxjs/operators';
-import { AlertService, AuthenticationService } from '../../../services';
+import { AlertService } from '../../../services';
 import { User } from 'src/app/models/User';
 import { environment } from 'src/environments/environment';
-import { AdminAuthenticationService } from 'src/app/services/auth/admin-authentication.service';
-
+import { AdminAuthenticationService } from 'src/app/services/auth/admin-authentication.service'; 
+import { AuthStore } from 'src/app/services/auth/auth-store.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -79,8 +78,9 @@ export class LoginComponent implements OnInit {
     this.loading = true;
     this.authStore.login(val.email, val.password)
       .subscribe(
-        (user:User) => {
-          this.router.navigateByUrl(`/users?id=${user.id}`)  
+        () => {
+          this.router.navigateByUrl(`/user`)
+          // this.router.navigateByUrl(`/users?id=${user.id}`)  
           },
           err => {
             alert("login failed");
