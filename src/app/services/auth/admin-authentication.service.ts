@@ -8,7 +8,7 @@ import { environment } from '../../../environments/environment';
 
 import { User } from '../../models/User';
 export const TOKEN_ID = 'tokenId'
-export const AUTH_ADMIN = 'AUTH_ADMIN'
+export const AUTH_ADMIN = 'AUTH_ADMIN' // extra auth to be JWT
 export const AUTH_DATA = 'AUTH_DATA'
  
 
@@ -25,8 +25,7 @@ export interface AuthResponseData {
 @Injectable({
   providedIn: 'root'
 })  
-export class AdminAuthenticationService {
- /// NOTE!!! only file to use localStorage so that token is deleted on tab-close
+export class AdminAuthenticationService { 
   baseUrl:string;
   private uAdminSubject$ = new BehaviorSubject<User>(null);
   adminUser$: Observable<User> = this.uAdminSubject$.asObservable();
@@ -43,9 +42,9 @@ export class AdminAuthenticationService {
 
    }
    register({email, password,fname,lname}) {
-     sessionStorage.setItem("fname",fname);
-    sessionStorage.setItem("lname",lname);
-    sessionStorage.setItem("email",email) 
+     localStorage.setItem("fname",fname);
+    localStorage.setItem("lname",lname);
+    localStorage.setItem("email",email) 
     return this.http
         .post<AuthResponseData>(
           `https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=${environment.FIREBASE_GROOT} `,
@@ -110,8 +109,7 @@ export class AdminAuthenticationService {
     email:string,
     userId:string,
     token:string 
-   ) {
-    
+   ) {    
     const user = new User();
     user.email = email;
     user.userId = userId;
@@ -142,6 +140,7 @@ export class AdminAuthenticationService {
   getAuthenticatedUser() {
     return localStorage.getItem(AUTH_ADMIN)
   }
+
   getAuthenticatedToken() {
     if(this.getAuthenticatedUser())
       return localStorage.getItem(TOKEN_ID)
