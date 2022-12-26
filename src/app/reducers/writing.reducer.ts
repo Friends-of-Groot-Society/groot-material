@@ -5,12 +5,11 @@ import {
   SET_FINISHED_WRITINGS,
   START_WRITING,
   STOP_WRITING,
-} from './writing.actions';
-import { WritingBlog } from '../models/writing-blogs.model';
+} from './writing.actions'; 
 import * as fromRoot from './app.reducer';
 
 export interface WritingState {
-  /// State for this module;
+  /// State for this modu4le;
   availableWritingBlogs: WritingBlog[]; /// bc this is lazy loaded;
   finishedWritingBlogs: WritingBlog[]; // Writing State Knows about the app state, but app state doesn't know about Writing!!
   activeWriting: WritingBlog;

@@ -1,5 +1,4 @@
 import { Component, OnInit, OnDestroy } from '@angular/core'; 
-import { GrootService } from '../../services/groot.service';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 @Component({
@@ -14,8 +13,7 @@ export class PhotosComponent implements OnInit {
   private  photo:any;
   memberid: any = '0';
       albumId: any = '0';
-  constructor(
-    private grootService: GrootService,
+  constructor( 
     private route: ActivatedRoute,
   ) { }
 
@@ -24,10 +22,6 @@ export class PhotosComponent implements OnInit {
     // this.photos = this.grootService.getPhotos(this.albumId);
     this.route.paramMap.subscribe(params => {
       this.albumId = params.get('albumId');
-    this.grootService.getPhotos(this.albumId)
-      .subscribe(data => {
-        this.photos = data;
-      });
     });
       
   // OnDestroy() {

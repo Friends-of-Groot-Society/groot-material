@@ -68,7 +68,9 @@
   <!-- <a mat-list-item  id="guardians" routerLink="grootologue/">Guardians</a> -->
 
 
-  <a mat-list-item id="photos" routerLink="members">Members</a>
+  <a mat-list-item id="photos" 
+  [ngClass]="{'nopointer':(this.adminAuth.isAdminLoggedOut$ |async)}"  
+  *ngIf="(isAdmin$ | async) || (isLoggedIn$ | async)"    routerLink="members">Admin</a>
   <!-- <a mat-list-item routerLink="photos/:id">Photos</a>  -->
 
 

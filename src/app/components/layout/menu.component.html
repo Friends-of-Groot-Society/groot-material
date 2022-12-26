@@ -14,7 +14,10 @@
       <a mat-list-item routerLink="/users"      routerLinkActive="active" class="nav-link daily-tech monoton">users</a>
       <a mat-list-item routerLink="/search-addresses"      routerLinkActive="active" class="nav-link daily-tech monoton">search</a>
        <hr />
-       <a mat-list-item routerLink="/members"   *ngIf="((authStore.isLoggedIn$ | async) || (adminAuth.isAdminLoggedIn$ | async))"   routerLinkActive="active" class="nav-link daily-tech monoton">members</a>
+       <a mat-list-item routerLink="/members"  
+       
+  [ngClass]="{'nopointer':(this.adminAuth.isAdminLoggedOut$ |async)}"  
+   *ngIf="((authStore.isLoggedIn$ | async) || (adminAuth.isAdminLoggedIn$ | async))"   routerLinkActive="active" class="nav-link daily-tech monoton">members</a>
       <!-- <a mat-list-item routerLink="/servers"      routerLinkActive="active" class="nav-link daily-tech monoton">servers</a> -->
       <!-- <a mat-list-item routerLink="/blogs" class="nav-link daily-tech monoton">TECH BLOG</a> -->
       <!-- <a mat-list-item routerLink="/news" class="nav-link daily-tech monoton">NEWS</a>  -->

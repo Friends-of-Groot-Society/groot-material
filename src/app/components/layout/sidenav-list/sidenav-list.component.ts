@@ -15,9 +15,11 @@ import { AdminAuthenticationService } from 'src/app/services/auth/admin-authenti
 })
 export class SidenavListComponent implements OnInit { // }, OnDestroy {
   @Output() closeSidenav = new EventEmitter<void>();
-
-  variable = ''; 
-  
+ 
+  variable: any; 
+  isAdmin$: Observable<boolean> = this.adminAuth.isAdminLoggedIn$;
+  isLoggedIn$: Observable<boolean> = this.authStore.isLoggedIn$;
+ 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches),

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
-import {  Observable, map } from 'rxjs';
-import { Greeting } from '../../../models/Greeting';
+import {  Observable, map } from 'rxjs'; 
 import { createHttpObservable } from 'src/app/utility/observable';
 import { LoaderService } from '../loader/loader.service';
 

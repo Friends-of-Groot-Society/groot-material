@@ -14,7 +14,6 @@ import {SearchAddressesComponent} from './components/chain/search-addresses/sear
 import { MaterialModule } from './material.module';
 
 import { AboutComponent } from './components/layout/about/about.component';
-import { MarvelComponent } from './components/marvel/marvel.component';
 import { ContactusComponent } from './components/layout/contactus/contactus.component';
 // import { GrootologueComponent } from './components/grootologue/grootologue.component';
 import { LoginComponent } from './components/users/login/login.component';
