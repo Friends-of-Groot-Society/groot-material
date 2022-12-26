@@ -43,16 +43,5 @@ export class UserGuardService implements CanActivate, CanLoad {
         return false;
       }
 
-    // if (this.authService.isAuth()) {
-    //   return true;
-    // } else {
-    //   this.router.navigate(['/login']);
-    // }
-
-    // if (this.store.select(fromRoot.getIsAuth).pipe(take(1))) {
-    //   return true;
-    // } else {
-    //   this.router.navigate(['/login']);
-    // }
   }
 }
