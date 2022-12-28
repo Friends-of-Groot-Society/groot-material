@@ -41,14 +41,14 @@ const routes: Routes = [
   // { path: 'marvel/:guardiansId', component: MarvelComponent },
   // {path : 'groot/:grootId', component : BookComponent},
  
-  { path: 'users', component: UsersComponent },
+  { path: 'users', component: UsersComponent, canActivate: [UserGuardService]  },
   { path: 'admin/users', component: UsersComponent, canActivate:[AdminGuardService] },
   { path: 'members', component: PhotosComponent, canActivate:[UserGuardService] }, 
   // { path: 'tiles/:albumId', component: PhotosComponent }, 
   // { path: 'search', component: NewsArticleSearchComponent },
    
   // {path : 'grootologue', component : GrootologueComponent},
-  {path : '**', redirectTo: '/' },
+  {path : '**', redirectTo: '' },
 
 ]; 
 @NgModule({

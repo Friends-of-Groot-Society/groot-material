@@ -11,9 +11,15 @@ import * as fromChains from '../../../reducers/chain.reducer';
 @Component({
   selector: 'app-nft-add',
   templateUrl: './nft-add.component.html',
-  styleUrls: ['./nft-add.component.scss']
+  styles: [`
+  #button {
+    transform:translate(100px, 10px);
+}
+
+  `]
 }) 
 export class NftAddComponent implements OnInit { 
+
   chains$!: Observable<Chain[]>;   
   chain: string = 'ethereum'; // default chain
   nftData: any;
@@ -40,12 +46,17 @@ export class NftAddComponent implements OnInit {
       // this.chains$ = this.store.select(fromChains.getAvailableChains)
     
     }
+ 
    
+   saveForm(form: { valid: any; value: { chain: string, nftAddress: string; }; }) { 
+  
+    console.log( this.nftsService.getNftData())  
+    } 
+    
     formReplaceNft(form: { valid: any; value: { chain: string, nftAddress: string; }; }) { 
       console.log(form.value.chain, form.value.nftAddress);
       if(form.valid) {
-      this.nftsService.replacePostNfts(form.value.chain, form.value.nftAddress) 
-        return this.nftData;
+     this.nftData =  this.nftsService.replacePostNfts(form.value.chain, form.value.nftAddress)  
       } 
     } 
   // onAddNft(form: { valid: any; value: { nftAddress: string; }; }) {

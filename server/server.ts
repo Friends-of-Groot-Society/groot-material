@@ -5,8 +5,9 @@ import * as express from 'express';
 import { Application } from "express";
 import * as path from 'path';
 import * as cors from 'cors';
-import * as chains from './data/db-constants'; 
- 
+import * as chains from './data/db-constants';
+import * as test from './data/db-data';
+
 
 const app: Application = express();
 app.use(function (req, res, next) {
@@ -23,10 +24,10 @@ const { EvmChain } = require("@moralisweb3/evm-utils")
 
 ///////// TEST DATA METHODS
 import { getAllChains, getChainById } from "./routes/get-chains.route";
-import {  searchAddresses } from "./routes/search-addresses.route";
+import { searchAddresses } from "./routes/search-addresses.route";
 // searchAddressesByCategory 
 import { saveChain } from './routes/save-chain.route';
-import { postLogin,  getUsers, getUserById, } from './routes/get-users.route';
+import { postLogin, getUsers, getUserById, } from './routes/get-users.route';
 // import  {getOpenai} from './routes/openai.route';
 import { getNft, postNft, postNfts, getNftData, postNftData } from './routes/get-nfts.route';
 
@@ -40,7 +41,7 @@ const PORT = 9000;
 const API_KEY = process.env["MORALIS_API_KEY"];
 let chain = process.env["DEFAULT_CHAIN"] || 'ETHEREUM'
 const addressDEFAULT = process.env["DEFAULT_ADDRESS"];
- 
+
 
 
 //// STATIC FILES
@@ -60,7 +61,7 @@ app.route('/api/users/:id').get(getUserById);
 app.route('/api/nft-test').get(getNft);
 app.route('/api/nft-test').post(postNft);
 
-app.route('/api/nfts-test').post(postNfts); 
+app.route('/api/nfts-test').post(postNfts);
 /// open-ai stuff
 app.use('/api/openai', require('./routes/openai.route'));
 // app.route('/api/openai').post(getOpenai);
@@ -70,7 +71,7 @@ app.use('/api/openai', require('./routes/openai.route'));
 //// LIVE DATA ROUTES
 app.get("/api/nft", async (req, res) => {
 
-  try { 
+  try {
     const address = req.query['address'] || addressDEFAULT;
     chain = req.query['chain'] || chains.chainETH;
     const data = await getDataController(address, chain)
@@ -81,6 +82,11 @@ app.get("/api/nft", async (req, res) => {
     res.status(500)
     res.json({ error: error.message })
   }
+})
+app.post("/api/nft-test", async (req, res) => {
+
+  res.status(200)
+  res.json(test.NFTS_ETHEREUM)
 })
 
 app.post("/api/nft", async (req, res) => {
@@ -94,7 +100,7 @@ app.post("/api/nft", async (req, res) => {
     res.status(400);
     res.json({ error: "Invalid chain" });
   };
-  
+
   switch (req.body.chain.toUpperCase()) {
     case "ETHEREUM":
       chain = chains.chainETH; break;
@@ -135,7 +141,7 @@ app.post("/api/nft", async (req, res) => {
     res.json({ error: error.message })
   }
 })
- 
+
 app.get("api/nft/eth/:address", async (req, res) => {
   const address = req.params.address;
   if (!address || address.length !== 42) {
@@ -157,7 +163,7 @@ app.get("api/nft/eth/:address", async (req, res) => {
 
 
 //// WEBHOOKS
- 
+
 
 
 const startServer = async () => {
@@ -167,5 +173,5 @@ const startServer = async () => {
   app.listen(PORT, () => {
     console.log(`HTTP REST API Server listening at http://localhost:${PORT}/api/nft`)
   })
-} 
+}
 startServer(); 

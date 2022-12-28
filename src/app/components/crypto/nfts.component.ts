@@ -41,8 +41,8 @@ export class NftsComponent implements OnInit, OnDestroy {
     //  this.chains$ = this.store.selectAllChains();
     //  console.log("init",this.chains$)
  
-    this.nftDataSubscription = this.nftsService.chainDataUpdated.subscribe(() => {
-      this.nftData = this.nftsService.getChainData();
+    this.nftDataSubscription = this.nftsService.nftDataUpdated.subscribe(() => {
+      this.nftData = this.nftsService.getNftData();
      }
      );
  

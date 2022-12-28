@@ -7,25 +7,34 @@
       <button mat-icon-button (click)="onToggleSidenav()">
         <mat-icon>menu</mat-icon>
       </button>
-    </div> 
-    <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs id="menu-list"> 
-      <a mat-list-item routerLink="/nfts"      routerLinkActive="active" class="nav-link daily-tech monoton">nfts</a>
-      <a mat-list-item routerLink="/about"      routerLinkActive="active" class="nav-link daily-tech monoton">about</a>
-      <a mat-list-item routerLink="/users"      routerLinkActive="active" class="nav-link daily-tech monoton">users</a>
-      <a mat-list-item routerLink="/search-addresses"      routerLinkActive="active" class="nav-link daily-tech monoton">search</a>
-       <hr />
-       <a mat-list-item routerLink="/members"  
-       
-  [ngClass]="{'nopointer':(this.adminAuth.isAdminLoggedOut$ |async)}"  
-   *ngIf="((authStore.isLoggedIn$ | async) || (adminAuth.isAdminLoggedIn$ | async))"   routerLinkActive="active" class="nav-link daily-tech monoton">members</a>
+    </div>
+    <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs id="menu-list">
+      <a mat-list-item routerLink="/nfts" routerLinkActive="active" 
+        class="nav-link daily-tech monoton">nfts</a>
+      <a mat-list-item routerLink="/about" routerLinkActive="active" 
+        class="nav-link daily-tech monoton">about</a>
+      <a mat-list-item routerLink="/users" routerLinkActive="active"
+        *ngIf="((authStore.isLoggedIn$ | async) || (adminAuth.isAdminLoggedIn$ | async))"
+        class="nav-link daily-tech monoton">users</a>
+      <a mat-list-item routerLink="/search-addresses" routerLinkActive="active"
+        *ngIf="((authStore.isLoggedIn$ | async) || (adminAuth.isAdminLoggedIn$ | async))"
+        class="nav-link daily-tech monoton">search</a>
+      <hr />
+      <a mat-list-item routerLink="/members" [ngClass]="{'nopointer':(this.adminAuth.isAdminLoggedOut$ |async)}"
+        *ngIf="((authStore.isLoggedIn$ | async) || (adminAuth.isAdminLoggedIn$ | async))" routerLinkActive="active"
+        class="nav-link daily-tech monoton">members</a>
       <!-- <a mat-list-item routerLink="/servers"      routerLinkActive="active" class="nav-link daily-tech monoton">servers</a> -->
       <!-- <a mat-list-item routerLink="/blogs" class="nav-link daily-tech monoton">TECH BLOG</a> -->
       <!-- <a mat-list-item routerLink="/news" class="nav-link daily-tech monoton">NEWS</a>  -->
 
-      <a mat-list-item routerLink="/login" *ngIf="!((authStore.isLoggedIn$ | async) || (adminAuth.isAdminLoggedIn$ | async))"     routerLinkActive="active" class="nav-link daily-tech monoton">login</a>
+      <a mat-list-item routerLink="/login"
+        *ngIf="!((authStore.isLoggedIn$ | async) || (adminAuth.isAdminLoggedIn$ | async))" routerLinkActive="active"
+        class="nav-link daily-tech monoton">login</a>
 
-      <a mat-list-item   *ngIf="((authStore.isLoggedIn$ | async) || (adminAuth.isAdminLoggedIn$ | async))"   (click)="logout()" title="LOGOUT" routerLinkActive="active" class="logout nav-link daily-tech monoton"><mat-icon>exit_to_app</mat-icon></a>
-  
+      <a mat-list-item *ngIf="((authStore.isLoggedIn$ | async) || (adminAuth.isAdminLoggedIn$ | async))"
+        (click)="logout()" title="LOGOUT" routerLinkActive="active"
+        class="logout nav-link daily-tech monoton"><mat-icon>exit_to_app</mat-icon></a>
+
     </div>
   </mat-toolbar>
 </div>
