@@ -31,7 +31,8 @@ export class UserGuardService implements CanActivate, CanLoad {
     ) {
       return true;
     } else {
-      this.router.navigate(['/login']);
+      this.router.navigate(['/'], { queryParams: { returnUrl: state.url }});
+      // this.router.navigate(['/login']);
       return false;
     }
   }
