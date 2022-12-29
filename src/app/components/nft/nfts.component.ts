@@ -1,6 +1,6 @@
  
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Observable, Subject, Subscription } from 'rxjs';
+import { map, Observable, Subject, Subscription, tap } from 'rxjs';
 import { Nft } from 'src/app/models/Nft';
 import { NftsService } from './nfts.service';
 import { LoaderService } from '../../components/layout/loader/loader.service';
@@ -31,6 +31,7 @@ export class NftsComponent implements OnInit, OnDestroy {
   nftData: any;
   tokens: any = [];
   nftRefs:any;
+  nftRefArrs: any = [];
 
   // chainDataUpdated = new Subject<any[]>();
   private nftDataSubscription: Subscription = new Subscription;
@@ -77,15 +78,26 @@ export class NftsComponent implements OnInit, OnDestroy {
   //   return this.chains$
   // }
   loadNftRefs() {
-    this.nftRefs = this.nftsService.collectNftRefs()
-    .subscribe((data: any) => {
-      if (data != undefined) {
-        this.nftRefs = data;
-        console.log("this.nftRefs")
-        console.log(this.nftRefs);
-  
-      }
-    })
+ this.nftsService.collectNftRefs() 
+    .pipe( 
+      map(res => { 
+        for (const key in res) {
+          if (res.hasOwnProperty(key)) {
+            this.nftRefArrs.push({ ...res[key], name: key });
+          }
+        }
+        return this.nftRefArrs;          
+      }),
+      tap(
+        (dataArray: any) => {
+          if (dataArray != undefined) { 
+            this.nftRefs = dataArray; 
+            console.log("this.nftRefs")
+            console.log(this.nftRefs); 
+          }
+        }
+      ),
+    ).subscribe();
   };
 
   loadNfts() {

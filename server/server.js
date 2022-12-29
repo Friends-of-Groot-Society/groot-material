@@ -72,10 +72,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 /// ROUTING
 app.route('/api/chains').get(get_chains_route_1.getAllChains);
 app.route('/api/chains/:id').get(get_chains_route_1.getChainById);
+app.route('/api/nft-refs/:name').get(get_nfts_route_1.getNftRefsByName);
 app.route('/api/addresses').get(search_addresses_route_1.searchAddresses);
 // app.route('/api/addresses:category').get(searchAddressesByCategory);  
 app.route('/api/chains/:id').put(save_chain_route_1.saveChain);
-// app.route('/api/nft').get(getNft);  
 app.route('/api/login').post(get_users_route_1.postLogin);
 app.route('/api/users').get(get_users_route_1.getUsers);
 app.route('/api/users/:id').get(get_users_route_1.getUserById);

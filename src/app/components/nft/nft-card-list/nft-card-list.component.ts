@@ -9,6 +9,13 @@ import {NftRef} from '../../../models/NftRef';
 @Component({
   selector: 'app-nft-card-list',
   templateUrl: './nft-card-list.component.html', 
+  styles:[`
+    .mat-card {
+      margin: 10px;
+      }
+    strong {
+     width:30px;
+    }`],
   changeDetection: ChangeDetectionStrategy.OnPush // less greedy/requires 
 })
 export class NftCardListComponent implements OnInit {

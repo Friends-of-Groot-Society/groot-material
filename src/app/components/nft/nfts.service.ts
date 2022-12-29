@@ -38,6 +38,11 @@ export class NftsService {
     this.key = this.keyService.getMoralisKey();
 
   }
+
+  findNftRefByName(name:string): Observable<NftRef> {
+    return this.http.get<NftRef>(`${env.nft_url}/api/nft-refs/${name}${env.test_env}`)
+  }
+
   collectNftRefs(): Observable<any> {
     return this.http.get(`${env.nft_url}/api/nft-refs${env.test_env}`)
     .pipe(
