@@ -41,6 +41,7 @@ var express = require("express");
 var path = require("path");
 var cors = require("cors");
 var chains = require("./data/db-constants");
+var test = require("./data/db-data");
 var app = express();
 app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -78,6 +79,7 @@ app.route('/api/chains/:id').put(save_chain_route_1.saveChain);
 app.route('/api/login').post(get_users_route_1.postLogin);
 app.route('/api/users').get(get_users_route_1.getUsers);
 app.route('/api/users/:id').get(get_users_route_1.getUserById);
+app.route('/api/nft-refs').get(get_nfts_route_1.getNftRefs);
 app.route('/api/nft-test').get(get_nfts_route_1.getNft);
 app.route('/api/nft-test').post(get_nfts_route_1.postNft);
 app.route('/api/nfts-test').post(get_nfts_route_1.postNfts);
@@ -107,6 +109,13 @@ app.get("/api/nft", function (req, res) { return __awaiter(void 0, void 0, void 
                 return [3 /*break*/, 3];
             case 3: return [2 /*return*/];
         }
+    });
+}); });
+app.post("/api/nft-test", function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    return __generator(this, function (_a) {
+        res.status(200);
+        res.json(test.NFTS_ETHEREUM);
+        return [2 /*return*/];
     });
 }); });
 app.post("/api/nft", function (req, res) { return __awaiter(void 0, void 0, void 0, function () {

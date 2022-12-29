@@ -1,24 +1,22 @@
-    <mat-sidenav-container>
-      <mat-sidenav #sidenav role="navigation">
-        <app-sidenav-list (closeSidenav)="sidenav.close()"></app-sidenav-list>
-      </mat-sidenav>
+<mat-sidenav-container>
+  <mat-sidenav #sidenav role="navigation">
+    <app-sidenav-list (closeSidenav)="sidenav.close()"></app-sidenav-list>
+  </mat-sidenav>
 
-      <mat-sidenav-content>
- 
-        <app-menu (sidenavToggle)="sidenav.toggle()"></app-menu>
-        <main>  
-          <app-loader></app-loader>
-          <router-outlet></router-outlet>   
-             <div fxLayout="row" fxLayoutAlign="center center"> 
-              <!-- <img width="275" class="logo" alt="Angular Logo" src="https://s3.amazonaws.com/friendsofgroot.com/assets/grootr.png"> --> 
-              <img width="275" class="logo" alt="Angular Logo" src="assets/grootr.png">
-     
-              <!-- <img width="275" class="logo" alt="Angular Logo" src="https://s3.amazonaws.com/friendsofgroot.com/assets/groot.png">      -->
-               <img width="275" class="logo" alt="Angular Logo" src="assets/groot.png">
-     
- 
-            </div>
-        </main>
-       <app-footer></app-footer>
-      </mat-sidenav-content>
-    </mat-sidenav-container>
+  <mat-sidenav-content>
+
+    <app-menu (sidenavToggle)="sidenav.toggle()"></app-menu>
+    <main>
+      <app-loader></app-loader>
+      <router-outlet></router-outlet> 
+    </main>
+    <div fxLayout="row" fxLayoutAlign="center center">
+      <!-- <img width="275" class="logo" alt="Angular Logo" src="https://s3.amazonaws.com/friendsofgroot.com/assets/grootr.png"> -->
+      <img width="275" class="logo" alt="Angular Logo" src="assets/grootr.png">
+
+      <!-- <img width="275" class="logo" alt="Angular Logo" src="https://s3.amazonaws.com/friendsofgroot.com/assets/groot.png">      -->
+      <img width="275" class="logo" alt="Angular Logo" src="assets/groot.png">
+    </div>
+    <app-footer></app-footer>
+  </mat-sidenav-content>
+</mat-sidenav-container>

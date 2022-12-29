@@ -1,7 +1,7 @@
 import { Component, OnInit,   ChangeDetectionStrategy  } from '@angular/core';
 import { Chain  } from 'src/app/models/Chain';
 import { Observable } from 'rxjs';
-import {ChainStore } from '../../services/chain-store.service';
+import { ChainStore } from '../../services/chain-store.service';
 
 @Component({
   selector: 'app-home',

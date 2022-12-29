@@ -32,10 +32,10 @@ import { ConsoleComponent } from './components/chain-servers/console/console.com
 import { ChainComponent } from './components/chain/chain/chain.component';
 import { ChainsCardListComponent } from './components/chain/chains-card-list/chains-card-list.component';
 import { ChainDialogComponent } from './components/chain/chain-dialog/chain-dialog.component';
-import { NftsComponent } from './components/crypto/nfts.component';
-import { NftComponent } from './components/crypto/nft/nft.component';
-import { NftAddComponent } from './components/crypto/nft-add/nft-add.component';
-import { ChaindataComponent } from './components/crypto/chaindata/chaindata.component';
+import { NftsComponent } from './components/nft/nfts.component';
+import { NftComponent } from './components/nft/nft/nft.component';
+import { NftAddComponent } from './components/nft/nft-add/nft-add.component';
+import { ChaindataComponent } from './components/nft/chaindata/chaindata.component';
 // import { reducers } from './reducers/app.reducer';
 import { LoaderService } from './components/layout/loader/loader.service';
 import { LoaderComponent } from './components/layout/loader/loader.component';
@@ -50,6 +50,8 @@ import { provideAuth,getAuth } from '@angular/fire/auth';
 import { provideDatabase,getDatabase } from '@angular/fire/database';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { provideFunctions,getFunctions } from '@angular/fire/functions';
+import { NftCardListComponent } from './components/nft/nft-card-list/nft-card-list.component';
+import { NftDialogComponent } from './components/nft/nft-dialog/nft-dialog.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -78,7 +80,9 @@ import { provideFunctions,getFunctions } from '@angular/fire/functions';
     ChainDialogComponent,
     AddressComponent,
     SearchAddressesComponent,
-    PipeUppercase, 
+    PipeUppercase,
+    NftCardListComponent,
+    NftDialogComponent, 
   ],
   imports: [
     MaterialModule,

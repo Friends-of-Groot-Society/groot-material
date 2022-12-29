@@ -1,9 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Routes, RouterModule } from '@angular/router';
-// import { GrootComponent } from './components/groot/groot.component';
-import { NftsComponent } from './components/crypto/nfts.component';
-import { NftAddComponent } from './components/crypto/nft-add/nft-add.component';  
+import { Routes, RouterModule } from '@angular/router'; 
+import { NftsComponent } from './components/nft/nfts.component';
+import { NftAddComponent } from './components/nft/nft-add/nft-add.component';  
 import { PhotosComponent } from './components/photos/photos.component';
 import { ChainServersComponent } from './components/chain-servers/chain-servers.component';
 import { ChainComponent } from './components/chain/chain/chain.component';
@@ -14,8 +13,7 @@ import {SearchAddressesComponent} from './components/chain/search-addresses/sear
 import { MaterialModule } from './material.module';
 
 import { AboutComponent } from './components/layout/about/about.component';
-import { ContactusComponent } from './components/layout/contactus/contactus.component';
-// import { GrootologueComponent } from './components/grootologue/grootologue.component';
+import { ContactusComponent } from './components/layout/contactus/contactus.component'; 
 import { LoginComponent } from './components/users/login/login.component';
 import { RegisterComponent } from './components/users/register/register.component';
  
@@ -23,31 +21,26 @@ import { UsersComponent } from './components/users/users.component';
 import { HomeComponent } from './components/layout/home.component';
 import { UserGuardService } from './services/auth/user-guard.service'
 import { AdminGuardService } from './services/auth/admin-guard.service';
+
+import { NftCardListComponent } from './components/nft/nft-card-list/nft-card-list.component';
 const routes: Routes = [ 
  
-  { path: '', component: HomeComponent }, 
+  { path: '', component: NftCardListComponent }, 
   { path: 'login', component: LoginComponent }, 
   { path: 'register', component: RegisterComponent }, 
   { path : 'home', component : HomeComponent },
   { path:"search-addresses",    component: SearchAddressesComponent  },
   {  path: 'about',    component: AboutComponent  },
-  { path: 'chains/:id',    component: ChainComponent  },
-
-  { path : 'nfts', component : NftsComponent }, 
-  { path : 'about', component : AboutComponent },
+  { path: 'nftRef/:name',    component: NftCardListComponent  },
+  { path: 'chains/:id',    component: ChainComponent  }, 
+  { path : 'nfts', component : NftsComponent },  
   { path : 'contact', component : ContactusComponent },
-  // { path: 'servers', component: ChainServersComponent },
-  // { path: 'marvel', component: MarvelComponent },
-  // { path: 'marvel/:guardiansId', component: MarvelComponent },
-  // {path : 'groot/:grootId', component : BookComponent},
+  // { path: 'servers', component: ChainServersComponent }, 
  
   { path: 'users', component: UsersComponent, canActivate: [UserGuardService]  },
   { path: 'admin/users', component: UsersComponent, canActivate:[AdminGuardService] },
   { path: 'members', component: PhotosComponent, canActivate:[UserGuardService] }, 
-  // { path: 'tiles/:albumId', component: PhotosComponent }, 
-  // { path: 'search', component: NewsArticleSearchComponent },
-   
-  // {path : 'grootologue', component : GrootologueComponent},
+  // { path: 'tiles/:albumId', component: PhotosComponent },   
   {path : '**', redirectTo: '' },
 
 ]; 

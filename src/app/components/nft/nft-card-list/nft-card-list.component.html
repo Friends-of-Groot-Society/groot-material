@@ -1,0 +1,23 @@
+<h3>NFT_CARD_LIST</h3>
+{{nftRefs | json}}
+<mat-card *ngFor="let nftRef of nftRefs"
+class="chain-card mat-elevation-z7">
+
+    <mat-card-header> 
+        <mat-card-title>
+            <h3>{{nftRef.address | slice:-10:-1}}</h3>
+        </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <p><strong>Chain Identifier:</strong> {{nftRef.name  }}</p>
+        <p><strong>Chain</strong> {{nftRef.chain}}</p>  
+        <p><strong>Email</strong> {{nftRef.email}}</p>  
+    </mat-card-content>
+
+    <mat-card-actions class="chain-actions">
+        <button mat-button mat-raised-button color="primary" 
+        [routerLink]="['/nftRef', nftRef.name]">View</button>
+        <button mat-button mat-raised-button color="accent" 
+        (click)="editNftRef(nftRef)">Edit</button>
+    </mat-card-actions>
+</mat-card>
