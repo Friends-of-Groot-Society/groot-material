@@ -52,6 +52,8 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { provideFunctions,getFunctions } from '@angular/fire/functions';
 import { NftCardListComponent } from './components/nft/nft-card-list/nft-card-list.component';
 import { NftDialogComponent } from './components/nft/nft-dialog/nft-dialog.component';
+import { NftRefComponent } from './components/nft/nft-ref/nft-ref.component';
+import { NftRefResolver } from './components/nft/nft-ref-resolver';
 @NgModule({
   declarations: [
     AppComponent,
@@ -82,7 +84,8 @@ import { NftDialogComponent } from './components/nft/nft-dialog/nft-dialog.compo
     SearchAddressesComponent,
     PipeUppercase,
     NftCardListComponent,
-    NftDialogComponent, 
+    NftDialogComponent,
+    NftRefComponent, 
   ],
   imports: [
     MaterialModule,
@@ -94,7 +97,8 @@ import { NftDialogComponent } from './components/nft/nft-dialog/nft-dialog.compo
   ],
   providers: [  
     LoaderService,
-    UpperCasePipe
+    UpperCasePipe,
+    NftRefResolver,
   ],
   bootstrap: [AppComponent]
 })

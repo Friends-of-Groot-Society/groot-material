@@ -1,6 +1,6 @@
 "use strict";
 exports.__esModule = true;
-exports.postNftData = exports.getNftData = exports.postNfts = exports.postNft = exports.getNftRefs = exports.getNft = void 0;
+exports.postNftData = exports.getNftData = exports.postNfts = exports.postNft = exports.getNftRefsByName = exports.getNftRefs = exports.getNft = void 0;
 var db_data_1 = require("../data/db-data");
 function getNft(req, res) {
     res.status(200).json(db_data_1.NFT_ETH);
@@ -10,6 +10,23 @@ function getNftRefs(req, res) {
     res.status(200).json(db_data_1.NFT_REFS);
 }
 exports.getNftRefs = getNftRefs;
+function getNftRefsByName(req, res) {
+    var nftRefName = req.params["name"];
+    var nftRef = {};
+    console.log(db_data_1.NFT_REFS);
+    console.log(nftRefName);
+    var nftRefsArray = Object.keys(db_data_1.NFT_REFS);
+    console.log(nftRefsArray);
+    console.log(nftRefsArray.length);
+    for (var i = 0; i < nftRefsArray.length; i++) {
+        if (nftRefsArray[i] == nftRefName) {
+            nftRef = db_data_1.NFT_REFS[nftRefsArray[i]];
+        }
+    }
+    console.log(nftRef);
+    res.status(200).json(nftRef);
+}
+exports.getNftRefsByName = getNftRefsByName;
 function postNft(req, res) {
     res.status(200).json(db_data_1.NFT_POLY);
 }

@@ -29,7 +29,7 @@ import { searchAddresses } from "./routes/search-addresses.route";
 import { saveChain } from './routes/save-chain.route';
 import { postLogin, getUsers, getUserById, } from './routes/get-users.route';
 // import  {getOpenai} from './routes/openai.route';
-import { getNft, postNft, postNfts, getNftData, postNftData, getNftRefs } from './routes/get-nfts.route';
+import { getNft, postNft, postNfts, getNftData, postNftData, getNftRefs,getNftRefsByName } from './routes/get-nfts.route';
 
 /////// LIVE DATA METHODS
 import { getDataController } from './controllers/getDataController';
@@ -49,11 +49,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 /// ROUTING
 app.route('/api/chains').get(getAllChains);
 app.route('/api/chains/:id').get(getChainById);
+app.route('/api/nft-refs/:name').get(getNftRefsByName);  
 
 app.route('/api/addresses').get(searchAddresses);
 // app.route('/api/addresses:category').get(searchAddressesByCategory);  
 app.route('/api/chains/:id').put(saveChain);
-// app.route('/api/nft').get(getNft);  
 app.route('/api/login').post(postLogin);
 app.route('/api/users').get(getUsers);
 app.route('/api/users/:id').get(getUserById);

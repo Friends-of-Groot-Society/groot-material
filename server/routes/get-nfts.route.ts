@@ -7,6 +7,24 @@ export function getNft(req: Request, res: Response) {
 export function getNftRefs(req: Request, res: Response) {
     res.status(200).json(NFT_REFS);
 }
+
+export function getNftRefsByName(req: Request, res: Response) {
+
+    const nftRefName = req.params["name"];
+    let nftRef = {};
+    console.log(NFT_REFS)
+    console.log(nftRefName);
+    const nftRefsArray: any = Object.keys(NFT_REFS);
+    console.log(nftRefsArray);
+    console.log(nftRefsArray.length)
+    for (let i = 0; i < nftRefsArray.length; i++) {
+        if (nftRefsArray[i] == nftRefName) {
+            nftRef = NFT_REFS[nftRefsArray[i]];
+        }
+    }
+    console.log(nftRef)
+    res.status(200).json(nftRef);
+}
 export function postNft(req: Request, res: Response) {
     res.status(200).json(NFT_POLY);
 }

@@ -1,10 +1,11 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';     
+import { MAT_DIALOG_DATA, MatDialogRef, MatDialogConfig, MatDialog } from '@angular/material/dialog';     
 import {NftRef} from '../../../models/NftRef';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DataStorageService } from 'src/app/services/data-storage.service'; 
 import { LoaderService } from '../../layout/loader/loader.service';  
 import { Observable } from 'rxjs'; 
+import { Nft } from 'src/app/models/Nft';
 
 
 @Component({
@@ -44,3 +45,22 @@ export class NftDialogComponent implements OnInit {
   ngOnInit(): void {
   }
 }
+
+export function openEditNftRefDialog(dialog: MatDialog, nft:Nft) {
+
+  const config = new MatDialogConfig();
+
+  config.disableClose = true;
+  config.autoFocus = true;
+  config.panelClass = "modal-panel";
+  config.backdropClass = "backdrop-modal-panel";
+
+  config.data = {
+      ...nft
+  };
+
+  const dialogRef = dialog.open(NftDialogComponent, config);
+
+  return dialogRef.afterClosed();
+}
+

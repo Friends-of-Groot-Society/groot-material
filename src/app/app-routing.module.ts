@@ -21,19 +21,23 @@ import { UsersComponent } from './components/users/users.component';
 import { HomeComponent } from './components/layout/home.component';
 import { UserGuardService } from './services/auth/user-guard.service'
 import { AdminGuardService } from './services/auth/admin-guard.service';
-
+import { NftRefResolver } from './components/nft/nft-ref-resolver';
+import { NftRefComponent } from './components/nft/nft-ref/nft-ref.component';
 import { NftCardListComponent } from './components/nft/nft-card-list/nft-card-list.component';
 const routes: Routes = [ 
  
-  { path: '', component: NftCardListComponent }, 
+  { path: '', component: HomeComponent }, 
   { path: 'login', component: LoginComponent }, 
   { path: 'register', component: RegisterComponent }, 
   { path : 'home', component : HomeComponent },
   { path:"search-addresses",    component: SearchAddressesComponent  },
   {  path: 'about',    component: AboutComponent  },
-  { path: 'nftRef/:name',    component: NftCardListComponent  },
   { path: 'chains/:id',    component: ChainComponent  }, 
   { path : 'nfts', component : NftsComponent },  
+  { path: 'nft-ref/:name',    component: NftRefComponent,
+  resolve: {
+      nftRef: NftRefResolver
+  }  },
   { path : 'contact', component : ContactusComponent },
   // { path: 'servers', component: ChainServersComponent }, 
  
