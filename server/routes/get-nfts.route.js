@@ -1,11 +1,15 @@
 "use strict";
 exports.__esModule = true;
-exports.postNftData = exports.getNftData = exports.postNfts = exports.postNft = exports.getNft = void 0;
+exports.postNftData = exports.getNftData = exports.postNfts = exports.postNft = exports.getNftRefs = exports.getNft = void 0;
 var db_data_1 = require("../data/db-data");
 function getNft(req, res) {
     res.status(200).json(db_data_1.NFT_ETH);
 }
 exports.getNft = getNft;
+function getNftRefs(req, res) {
+    res.status(200).json(db_data_1.NFT_REFS);
+}
+exports.getNftRefs = getNftRefs;
 function postNft(req, res) {
     res.status(200).json(db_data_1.NFT_POLY);
 }
@@ -15,6 +19,7 @@ function postNfts(req, res) {
     var address = data.address;
     var chain = data.chain;
     var NFTS = [];
+    var NFT_REFS = {};
     if (chain == "POLYGON".toLowerCase()) {
         NFTS = db_data_1.NFTS_POLYGON;
     }

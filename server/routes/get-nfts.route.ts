@@ -1,10 +1,12 @@
 import { Request, Response } from 'express';
-import { NFT_ETH, NFT_POLY, NFTS_ETHEREUM, NFTS_POLYGON } from "../data/db-data";
+import { NFT_ETH, NFT_POLY, NFTS_ETHEREUM, NFTS_POLYGON, NFT_REFS } from "../data/db-data";
 
 export function getNft(req: Request, res: Response) {
     res.status(200).json(NFT_ETH);
 }
-
+export function getNftRefs(req: Request, res: Response) {
+    res.status(200).json(NFT_REFS);
+}
 export function postNft(req: Request, res: Response) {
     res.status(200).json(NFT_POLY);
 }
@@ -15,6 +17,7 @@ export function postNfts(req: Request, res: Response) {
     let address = data.address;
     let chain = data.chain;
     let NFTS = [];
+    let NFT_REFS = {};
 
     if (chain == "POLYGON".toLowerCase()) {
         NFTS = NFTS_POLYGON;
