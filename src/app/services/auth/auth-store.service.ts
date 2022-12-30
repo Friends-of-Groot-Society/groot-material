@@ -23,8 +23,12 @@ export interface AuthResponseData {
     providedIn: 'root'
 })
 export class AuthStore {
+    setUser(user: AuthResponseData) {
+      throw new Error('Method not implemented.');
+    }
     private uSubject$ = new BehaviorSubject<User>(null);
     user$: Observable<User> = this.uSubject$.asObservable();
+    email:string = localStorage.getItem('email'); 
 
     isLoggedIn$: Observable<boolean>
     isLoggedOut$: Observable<boolean>
@@ -39,10 +43,10 @@ export class AuthStore {
             this.uSubject$.next(JSON.parse(user));
         }
     }
-    register({ email, password, fname, lname }) {
-        sessionStorage.setItem("fname", fname);
-        sessionStorage.setItem("lname", lname);
-        sessionStorage.setItem("email", email);
+    register({ email, password, fName, lName }) {
+        localStorage.setItem('email',  email ); 
+        localStorage.setItem('fName', fName );
+       localStorage.setItem('lName',  lName );
         return this.httpClient
             .post<AuthResponseData>(
                 `https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=${environment.FIREBASE_GROOT} `,
@@ -51,20 +55,20 @@ export class AuthStore {
                     password: password,
                     returnSecureToken: true
                 }
-            )
-            .pipe(
-                catchError(this.handleError),
-                tap(resData => {
-                    this.executeAuthenticationService(
-                        resData.email,
-                        resData.localId,
-                        resData.idToken
-                    );
-                })
-            )
-    }
+                )
+                .pipe(
+                    tap(resData => {
+                        this.executeAuthenticationService(
+                            resData.email,
+                            resData.localId,
+                            resData.idToken
+                        );
+                    })
+                )
+            }
 
     login(email: string, password: string): Observable<AuthResponseData> {
+        localStorage.setItem('email',  email ); 
         return this.httpClient
             .post<AuthResponseData>(
                 `https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=${environment.FIREBASE_GROOT}`,
@@ -90,6 +94,7 @@ export class AuthStore {
                 // shareReplay()
             );
     }
+    
     executeAuthenticationService(
         email: string,
         userId: string,
@@ -101,7 +106,11 @@ export class AuthStore {
         user.tokenId = token;
 
         this.uSubject$.next(user);
+        user.fName = localStorage.getItem('fName');
+        user.lName = localStorage.getItem('lName');
         localStorage.setItem('AUTH_DATA', JSON.stringify(user)); 
+        localStorage.setItem('tokenId', token);
+        localStorage.setItem('userId', userId); 
     }
 
     private handleError(errorRes: HttpErrorResponse) {
@@ -122,6 +131,11 @@ export class AuthStore {
         }
         return throwError(errorMessage);
     }
+    getEmailId(){
+        let email = localStorage.getItem('email'); 
+        return this.email;
+    }
+
     logout() {
         this.uSubject$.next(null);
         localStorage.removeItem(AUTH_DATA);

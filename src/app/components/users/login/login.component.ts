@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit {
   loading = false;
   submitted = false;
   returnUrl!: string;
+  email: string;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -33,7 +34,7 @@ export class LoginComponent implements OnInit {
     private alertService: AlertService
   ) {
     ///////////////////////////////// uncomment after fixing AUTH
-    // redirect to home if already logged in
+    // redirenUct to home if already logged in
     // if (this.authenticationService.currentUserValue) {
     //   this.router.navigate(['/']);
     // }
@@ -78,9 +79,9 @@ export class LoginComponent implements OnInit {
     this.loading = true;
     this.authStore.login(val.email, val.password)
       .subscribe(
-        () => {
-          this.router.navigateByUrl(`/user`)
-          // this.router.navigateByUrl(`/users?id=${user.id}`)  
+        () => { 
+          localStorage.setItem('email', val.email); 
+          this.router.navigateByUrl(`/user/${val.email}`)  
           },
           err => {
             alert("login failed");

@@ -78,7 +78,7 @@ app.route('/api/addresses').get(search_addresses_route_1.searchAddresses);
 app.route('/api/chains/:id').put(save_chain_route_1.saveChain);
 app.route('/api/login').post(get_users_route_1.postLogin);
 app.route('/api/users').get(get_users_route_1.getUsers);
-app.route('/api/users/:id').get(get_users_route_1.getUserById);
+app.route('/api/users/:email').get(get_users_route_1.getUserById);
 app.route('/api/nft-refs').get(get_nfts_route_1.getNftRefs);
 app.route('/api/nft-test').get(get_nfts_route_1.getNft);
 app.route('/api/nft-test').post(get_nfts_route_1.postNft);

@@ -4,6 +4,7 @@ import { MatMenuTrigger } from '@angular/material/menu';
 import { Observable, Subject, Subscription , of} from 'rxjs';
 import { NftsService } from '../nfts.service';
 import { Store } from '@ngrx/store';
+import { AuthStore } from 'src/app/services/auth/auth-store.service';
 import { DataStorageService } from 'src/app/services/data-storage.service'; 
 import { Constant } from '../../../models/Constant';
 import { Chain } from '../../../models/Chain';
@@ -41,6 +42,7 @@ export class NftAddComponent implements OnInit {
   
   constructor(
     private nftsService: NftsService,
+    public authStore: AuthStore,
     // private store: Store<fromChains.State>
     private dataStore: DataStorageService,
   ) {   

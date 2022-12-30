@@ -63,14 +63,11 @@
   </a> -->
 
   <hr />
-  <!-- <a mat-list-item routerLink="search/">Search</a> -->
-  <!-- <a mat-list-item  id="marvel" routerLink="marvel/">Marvel</a> -->
-  <!-- <a mat-list-item  id="guardians" routerLink="grootologue/">Guardians</a> -->
-
+  <!-- <a mat-list-item routerLink="search/">Search</a> --> 
 
   <a mat-list-item id="photos" 
   [ngClass]="{'nopointer':(this.adminAuth.isAdminLoggedOut$ |async)}"  
-  *ngIf="(isAdmin$ | async) || (isLoggedIn$ | async)"    routerLink="members">Admin</a>
+  *ngIf="isAdmin$ | async"    routerLink="admin/users">Admin</a>
   <!-- <a mat-list-item routerLink="photos/:id">Photos</a>  -->
 
 
