@@ -32,9 +32,9 @@ export function getUserById(req: Request, res: Response) {
   //   }
   //   return res.json(user[idx]);
 
-  const userId = req.params["id"];
+  const email = req.params["email"];
   const users: any = Object.values(USERS);// users;
-  const user = users.find((user: { id: number; }) => user.id == +userId);
+  const user = users.find((user: { email: string; }) => user.email == email);
 
   res.status(200).json(user);
 

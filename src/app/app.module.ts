@@ -54,6 +54,8 @@ import { NftCardListComponent } from './components/nft/nft-card-list/nft-card-li
 import { NftDialogComponent } from './components/nft/nft-dialog/nft-dialog.component';
 import { NftRefComponent } from './components/nft/nft-ref/nft-ref.component';
 import { NftRefResolver } from './components/nft/nft-ref-resolver';
+import { UserGuardService } from './services/auth/user-guard.service';
+import { AdminuserComponent } from './components/users/adminuser.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -85,7 +87,8 @@ import { NftRefResolver } from './components/nft/nft-ref-resolver';
     PipeUppercase,
     NftCardListComponent,
     NftDialogComponent,
-    NftRefComponent, 
+    NftRefComponent,
+    AdminuserComponent, 
   ],
   imports: [
     MaterialModule,
@@ -99,6 +102,7 @@ import { NftRefResolver } from './components/nft/nft-ref-resolver';
     LoaderService,
     UpperCasePipe,
     NftRefResolver,
+    UserGuardService,
   ],
   bootstrap: [AppComponent]
 })

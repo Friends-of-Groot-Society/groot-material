@@ -9,45 +9,30 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class UsersComponent implements OnInit {
  
-  userid:string = "0";
+  email:string = "";
 
   chains: any 
-  user: any;
+  user: User;
   users: any; 
 
 
   constructor(private userService: UserService, private route:ActivatedRoute) {
-    // on page load first piece of data
-    this.users = this.loadUsers();
+    // on page load first piece of data 
   }
-  ngOnInit(): void {  
-   this.users =  this.loadUsers();
-   this.userid = this.route.snapshot.queryParams['id'] || '0';
-   this.user = this.loadUser(this.userid);
+  ngOnInit(): void {   
+   this.email = this.route.snapshot.queryParams['email'];
+   this.loadUser(this.email);
   }
 
  
-  public loadUser(userid: string) {
-    console.log(userid);
-return   this.userService.getUser(userid).subscribe((user) => {
-      this.user = user 
+  public loadUser(email: string) {
+
+ 
+   this.userService.getUser(email).subscribe((user) => {
+    return this.user = user 
     
     });
     // return this.user;
-  }
-
-  public loadUsers() {
-    this.users = this.userService.getAllUsers()
-      .subscribe((data: any) => {
-        if (data != undefined) {
-          this.users = data;
-          console.log("this.users")
-          console.log(this.users);
-
-
-          // this.usersUpdated.next([...this.users]);
-        }
-      }); 
-  }
+  } 
 
 }

@@ -28,9 +28,9 @@ function getUserById(req, res) {
     //     return res.status(404).json({ error: "user not found" });
     //   }
     //   return res.json(user[idx]);
-    var userId = req.params["id"];
+    var email = req.params["email"];
     var users = Object.values(db_data_1.USERS); // users;
-    var user = users.find(function (user) { return user.id == +userId; });
+    var user = users.find(function (user) { return user.email == email; });
     res.status(200).json(user);
 }
 exports.getUserById = getUserById;

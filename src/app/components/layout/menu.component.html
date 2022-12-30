@@ -1,28 +1,28 @@
 <div class="menu">
   <mat-toolbar color="primary">
+    <div fxHide.gt-sm>
+    <button mat-icon-button (click)="onToggleSidenav()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    </div>
     <mat-toolbar class="logo-box" routerLink="/">
       <img class="logo" alt="DailyTech Logo" src="assets/groot.png" />
     </mat-toolbar>
-    <div fxHide.gt-xs>
-      <button mat-icon-button (click)="onToggleSidenav()">
-        <mat-icon>menu</mat-icon>
-      </button>
-    </div>
     <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs id="menu-list">
       <a mat-list-item routerLink="/nfts" routerLinkActive="active" 
         class="nav-link daily-tech monoton">nfts</a>
       <a mat-list-item routerLink="/about" routerLinkActive="active" 
         class="nav-link daily-tech monoton">about</a>
-      <a mat-list-item routerLink="/users" routerLinkActive="active"
-        *ngIf="((authStore.isLoggedIn$ | async) || (adminAuth.isAdminLoggedIn$ | async))"
-        class="nav-link daily-tech monoton">users</a>
+      <a mat-list-item [routerLink]="['/user',authStore.getEmailId()]" routerLinkActive="active"
+        *ngIf="authStore.isLoggedIn$ | async"
+        class="nav-link daily-tech monoton">account</a>
       <a mat-list-item routerLink="/search-addresses" routerLinkActive="active"
         *ngIf="((authStore.isLoggedIn$ | async) || (adminAuth.isAdminLoggedIn$ | async))"
         class="nav-link daily-tech monoton">search</a>
       <hr />
-      <a mat-list-item routerLink="/members" [ngClass]="{'nopointer':(this.adminAuth.isAdminLoggedOut$ |async)}"
-        *ngIf="((authStore.isLoggedIn$ | async) || (adminAuth.isAdminLoggedIn$ | async))" routerLinkActive="active"
-        class="nav-link daily-tech monoton">members</a>
+      <a mat-list-item routerLink="/admin/users" [ngClass]="{'nopointer':(this.adminAuth.isAdminLoggedOut$ |async)}"
+        *ngIf="adminAuth.isAdminLoggedIn$ | async" routerLinkActive="active"
+        class="nav-link daily-tech monoton">admin</a>
       <!-- <a mat-list-item routerLink="/servers"      routerLinkActive="active" class="nav-link daily-tech monoton">servers</a> -->
       <!-- <a mat-list-item routerLink="/blogs" class="nav-link daily-tech monoton">TECH BLOG</a> -->
       <!-- <a mat-list-item routerLink="/news" class="nav-link daily-tech monoton">NEWS</a>  -->

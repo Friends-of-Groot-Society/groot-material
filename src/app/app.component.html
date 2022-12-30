@@ -1,11 +1,13 @@
 <mat-sidenav-container>
   <mat-sidenav #sidenav role="navigation">
-    <app-sidenav-list (closeSidenav)="sidenav.close()"></app-sidenav-list>
+    <!-- <app-sidenav-list (closeSidenav)="sidenav.close()"></app-sidenav-list> -->
+    <app-sidenav-list (click)="sidenav.close()"></app-sidenav-list>
   </mat-sidenav>
 
   <mat-sidenav-content>
 
     <app-menu (sidenavToggle)="sidenav.toggle()"></app-menu>
+    
     <main>
       <app-loader></app-loader>
       <router-outlet></router-outlet> 

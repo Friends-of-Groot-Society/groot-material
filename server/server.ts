@@ -56,7 +56,7 @@ app.route('/api/addresses').get(searchAddresses);
 app.route('/api/chains/:id').put(saveChain);
 app.route('/api/login').post(postLogin);
 app.route('/api/users').get(getUsers);
-app.route('/api/users/:id').get(getUserById);
+app.route('/api/users/:email').get(getUserById);
 app.route('/api/nft-refs').get(getNftRefs);
 
 app.route('/api/nft-test').get(getNft);

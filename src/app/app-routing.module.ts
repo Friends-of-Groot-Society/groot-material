@@ -24,6 +24,7 @@ import { AdminGuardService } from './services/auth/admin-guard.service';
 import { NftRefResolver } from './components/nft/nft-ref-resolver';
 import { NftRefComponent } from './components/nft/nft-ref/nft-ref.component';
 import { NftCardListComponent } from './components/nft/nft-card-list/nft-card-list.component';
+import { AdminuserComponent } from './components/users/adminuser.component';
 const routes: Routes = [ 
  
   { path: '', component: HomeComponent }, 
@@ -41,8 +42,8 @@ const routes: Routes = [
   { path : 'contact', component : ContactusComponent },
   // { path: 'servers', component: ChainServersComponent }, 
  
-  { path: 'users', component: UsersComponent, canActivate: [UserGuardService]  },
-  { path: 'admin/users', component: UsersComponent, canActivate:[AdminGuardService] },
+  { path: 'user/:email', component: UsersComponent, canActivate: [UserGuardService]  },
+  { path: 'admin/users', component: AdminuserComponent, canActivate:[AdminGuardService] },
   { path: 'members', component: PhotosComponent, canActivate:[UserGuardService] }, 
   // { path: 'tiles/:albumId', component: PhotosComponent },   
   {path : '**', redirectTo: '' },

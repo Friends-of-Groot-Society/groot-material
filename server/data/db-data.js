@@ -153,137 +153,180 @@ exports.LOGIN = [
         password: "pass" }
 ];
 /////////// USERS
-exports.USERS = [
+exports.USERS = 
     {
-        id: 0,
-        fName: "Tom",
-        lName: "Milton",
-        email: "thomasm1.maestas@gmail.com",
-        password: "pass",
-        memberSince: "02-04-2020",
-        groupType: "Admin",
-        userId: "string",
-        tokenId: "string",
-        addresses: [
-            {
-                id: 0,
-                description: "NFT - 0x1",
-                owner: "thomasm1.maestas@gmail.com",
-                address: "0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
-                chain: "ethereum",
-                blockExplorerUrl: "https://explorer-mainnet.maticvigil.com/address/0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
-                ownerId: 0,
-                chainId: 4
-            },
-            {
-                id: 1,
-                description: "NFT - 0x1",
-                owner: "thomasm1.maestas@gmail.com",
-                address: "0x5f7B0DDd217D55bFC4927b3E49E3CbF57FA81834",
-                chain: "ethereum",
-                blockExplorerUrl: "https://explorer-mainnet.maticvigil.com/address/0x5f7B0DDd217D55bFC4927b3E49E3CbF57FA81834",
-                ownerId: 0,
-                chainId: 4
-            },
-            {
-                id: 4,
-                description: "NFT - 0x1",
-                owner: "thomasm1.maestas@gmail.com",
-                address: "0x5f7B0DDd217D55bFC4927b3E49E3CbF57FA81834",
-                chain: "polygon",
-                blockExplorerUrl: "https://explorer-mainnet.maticvigil.com/address/0x5f7B0DDd217D55bFC4927b3E49E3CbF57FA81834",
-                ownerId: 0,
-                chainId: 137
-            },
-            {
-                id: 5,
-                description: "NFT - 0x1",
-                owner: "thomasm1.maestas@gmail.com",
-                address: "0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
-                chain: "polygon",
-                blockExplorerUrl: "https://explorer-mainnet.maticvigil.com/address/0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
-                ownerId: 0,
-                chainId: 137
-            },
-            {
-                id: 6,
-                description: "NFT - 0x1",
-                owner: "thomasm1.maestas@gmail.com",
-                address: "0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
-                chain: "avalanche",
-                blockExplorerUrl: "https://explorer-mainnet.maticvigil.com/address/0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
-                ownerId: 0,
-                chainId: 43114
-            }
-        ]
+        "-NKWDS4yHn8bDBJKN_si":    {
+            "id":0,
+            "fName":"Tom",
+            "lName":"Milton",
+            "email":"thomasm1.maestas@gmail.com",
+            "password":"pass",
+            "memberSince":"02-04-2020",
+            "groupType":"Admin",
+            "userId":"string",
+            "tokenId":"string",
+            "addresses":[
+               {
+                  "id":0,
+                  "description":"NFT - 0x1",
+                  "owner":"thomasm1.maestas@gmail.com",
+                  "address":"0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
+                  "chain":"ethereum",
+                  "blockExplorerUrl":"https://explorer-mainnet.maticvigil.com/address/0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
+                  "ownerId":0,
+                  "chainId":4
+               },
+               {
+                  "id":1,
+                  "description":"NFT - 0x1",
+                  "owner":"thomasm1.maestas@gmail.com",
+                  "address":"0x5f7B0DDd217D55bFC4927b3E49E3CbF57FA81834",
+                  "chain":"ethereum",
+                  "blockExplorerUrl":"https://explorer-mainnet.maticvigil.com/address/0x5f7B0DDd217D55bFC4927b3E49E3CbF57FA81834",
+                  "ownerId":0,
+                  "chainId":4
+               },
+               {
+                  "id":4,
+                  "description":"NFT - 0x1",
+                  "owner":"thomasm1.maestas@gmail.com",
+                  "address":"0x5f7B0DDd217D55bFC4927b3E49E3CbF57FA81834",
+                  "chain":"polygon",
+                  "blockExplorerUrl":"https://explorer-mainnet.maticvigil.com/address/0x5f7B0DDd217D55bFC4927b3E49E3CbF57FA81834",
+                  "ownerId":0,
+                  "chainId":137
+               },
+               {
+                  "id":5,
+                  "description":"NFT - 0x1",
+                  "owner":"thomasm1.maestas@gmail.com",
+                  "address":"0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
+                  "chain":"polygon",
+                  "blockExplorerUrl":"https://explorer-mainnet.maticvigil.com/address/0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
+                  "ownerId":0,
+                  "chainId":137
+               },
+               {
+                  "id":6,
+                  "description":"NFT - 0x1",
+                  "owner":"thomasm1.maestas@gmail.com",
+                  "address":"0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
+                  "chain":"avalanche",
+                  "blockExplorerUrl":"https://explorer-mainnet.maticvigil.com/address/0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
+                  "ownerId":0,
+                  "chainId":43114
+               }
+            ]
+         }
+        
     },
+{
+    "-NKWFA2vZa8wIBzONzzC":     {
+        "id":1,
+        "fName":"Jil",
+        "lName":"G",
+        "email":"jil@gmail.com",
+        "password":"pass",
+        "memberSince":"02-04-2020",
+        "groupType":"Premium",
+        "userId":"string",
+        "tokenId":"string",
+        "addresses":[
+           {
+              "id":1,
+              "description":"NFT - 0x1",
+              "owner":"jil@gmail.com",
+              "address":"0xcfCa3FEBAceA3AbB643bA90C670D7c4E6D74b633",
+              "chain":"ethereum",
+              "blockExplorerUrl":"https://explorer-mainnet.maticvigil.com/address/0xcfCa3FEBAceA3AbB643bA90C670D7c4E6D74b633",
+              "ownerId":1,
+              "chainId":1
+           },
+           {
+              "id":4,
+              "description":"NFT - 0x1",
+              "owner":"jil@gmail.com",
+              "address":"0x5f7B0DDd217D55bFC4927b3E49E3CbF57FA81834",
+              "chain":"polygon",
+              "blockExplorerUrl":"https://explorer-mainnet.maticvigil.com/address/0x5f7B0DDd217D55bFC4927b3E49E3CbF57FA81834",
+              "ownerId":1,
+              "chainId":1
+           }
+        ]
+     }
+},
+{ 
+    "-NKWGgijvscYde-rIX3S":
     {
-        id: 1,
-        fName: "Jil",
-        lName: "G",
-        email: "jil@gmail.com",
-        password: "pass",
-        memberSince: "02-04-2020",
-        groupType: "Premium",
-        userId: "string",
-        tokenId: "string",
-        addresses: [
-            {
-                id: 1,
-                description: "NFT - 0x1",
-                owner: "jil@gmail.com",
-                address: "0xcfCa3FEBAceA3AbB643bA90C670D7c4E6D74b633",
-                chain: "ethereum",
-                blockExplorerUrl: "https://explorer-mainnet.maticvigil.com/address/0xcfCa3FEBAceA3AbB643bA90C670D7c4E6D74b633",
-                ownerId: 1,
-                chainId: 1
-            },
-            {
-                id: 4,
-                description: "NFT - 0x1",
-                owner: "jil@gmail.com",
-                address: "0x5f7B0DDd217D55bFC4927b3E49E3CbF57FA81834",
-                chain: "polygon",
-                blockExplorerUrl: "https://explorer-mainnet.maticvigil.com/address/0x5f7B0DDd217D55bFC4927b3E49E3CbF57FA81834",
-                ownerId: 1,
-                chainId: 1
-            },
+        "id":2,
+        "fName":"Walter",
+        "lName":"White",
+        "email":"walter.white@gmail.com",
+        "password":"pass",
+        "memberSince":"02-04-2020",
+        "groupType":"Premium",
+        "userId":"string",
+        "tokenId":"string",
+        "addresses":[
+           {
+              "id":1,
+              "description":"NFT - 0x1",
+              "owner":"walter.white@gmail.com",
+              "address":"0xcfCa3FEBAceA3AbB643bA90C670D7c4E6D74b633",
+              "chain":"binance",
+              "blockExplorerUrl":"https://explorer-mainnet.maticvigil.com/address/0xcfCa3FEBAceA3AbB643bA90C670D7c4E6D74b633",
+              "ownerId":2,
+              "chainId":1
+           },
+           {
+              "id":4,
+              "description":"NFT - 0x1",
+              "owner":"walter.white@gmail.com",
+              "address":"0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
+              "chain":"binance",
+              "blockExplorerUrl":"https://explorer-mainnet.maticvigil.com/address/0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
+              "ownerId":2,
+              "chainId":1
+           }
         ]
-    },
+     }
+     },
     {
-        id: 2,
-        fName: "Walter",
-        lName: "White",
-        email: "walter.white@gmail.com",
-        password: "pass",
-        memberSince: "02-04-2020",
-        groupType: "Premium",
-        userId: "string",
-        tokenId: "string",
-        addresses: [
-            {
-                id: 1,
-                description: "NFT - 0x1",
-                owner: "walter.white@gmail.com",
-                address: "0xcfCa3FEBAceA3AbB643bA90C670D7c4E6D74b633",
-                chain: "binance",
-                blockExplorerUrl: "https://explorer-mainnet.maticvigil.com/address/0xcfCa3FEBAceA3AbB643bA90C670D7c4E6D74b633",
-                ownerId: 2,
-                chainId: 1
-            },
-            {
-                id: 4,
-                description: "NFT - 0x1",
-                owner: "walter.white@gmail.com",
-                address: "0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
-                chain: "binance",
-                blockExplorerUrl: "https://explorer-mainnet.maticvigil.com/address/0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
-                ownerId: 2,
-                chainId: 1
-            },
-        ]
-    },
-];
+        "-NKWH4uj_c5V3vz3kCvm": {
+            "id":3,
+            "fName":"customer3",
+            "lName":"c3",
+            "email":"customer3@gmail.com",
+            "password":"pass",
+            "memberSince":"02-04-2020",
+            "groupType":"Premium",
+            "userId":"string",
+            "tokenId":"string",
+            "addresses":[
+               {
+                  "id":1,
+                  "description":"NFT - 0x1",
+                  "owner":"customer3@gmail.com",
+                  "address":"0xcfCa3FEBAceA3AbB643bA90C670D7c4E6D74b633",
+                  "chain":"binance",
+                  "blockExplorerUrl":"https://explorer-mainnet.maticvigil.com/address/0xcfCa3FEBAceA3AbB643bA90C670D7c4E6D74b633",
+                  "ownerId":2,
+                  "chainId":1
+               },
+               {
+                  "id":4,
+                  "description":"NFT - 0x1",
+                  "owner":"customer3@gmail.com",
+                  "address":"0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
+                  "chain":"binance",
+                  "blockExplorerUrl":"https://explorer-mainnet.maticvigil.com/address/0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
+                  "ownerId":2,
+                  "chainId":1
+               }
+            ]
+         }  
+};
+
 exports.NFT_REFS = {
     "-NKEMZxPfzYObXOMhGvJ": {
         "address": "0xc8d6A88EF3627C7B666117Da5F6d23Ac0B01b156",

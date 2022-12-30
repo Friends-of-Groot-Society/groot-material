@@ -9,7 +9,7 @@ import { environment } from  '../../../environments/environment';
   providedIn: 'root'
 })
 export class UserService {
-
+  email: string;
   nft_url:string; 
   constructor(private httpService: HttpClient ) {  
     this.nft_url = environment.nft_url; 
@@ -21,11 +21,13 @@ export class UserService {
       
     }
 
-    delete(id: string) {
-        return this.httpService.delete(`${this.nft_url}/api/users/${id}`);
-    }
-    getUser(id: string): Observable<User> {
-    return this.httpService.get<User>(`${this.nft_url}/api/users/${id}`);
+    // delete(id: string) {
+    //     return this.httpService.delete(`${this.nft_url}/api/users/${id}`);
+    // }
+    getUser(emailId: string): Observable<User> {
+      this.email = localStorage.getItem('email'); 
+          return this.httpService.get<User>(`${this.nft_url}/api/users/${this.email}`);
+  
   }
   // public getUser(id: number): Observable<User> {
   //   return this.httpService.get<User>(`http://${this.baseUrl}/api/users/${id}`).pipe(

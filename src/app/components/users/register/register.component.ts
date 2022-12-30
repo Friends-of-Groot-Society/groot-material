@@ -3,7 +3,7 @@ import { RegisterModel } from '../../../models/register';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormGroup, FormBuilder,  FormControl, FormArray, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { first } from 'rxjs/operators';
+import { first, tap } from 'rxjs/operators';
 import {UserService} from '../user.service';
 import { AlertService } from '../../../services';
 import { AdminAuthenticationService } from 'src/app/services/auth/admin-authentication.service';
@@ -21,6 +21,9 @@ export class RegisterComponent implements OnInit {
   hide = true;
   loading = false;
   submitted = false;
+  email: void;
+  fName: void;
+  lName: void;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -85,11 +88,14 @@ export class RegisterComponent implements OnInit {
     this.loading = true;
     console.log("registerForm.value "+ this.registerForm.value);
     this.authStore.register(this.registerForm.value)
-      .pipe(first())
+      .pipe(first(),
+      tap((user) => {
+        this.authStore.setUser(user);
+      })) 
       .subscribe(
         data => {
           this.alertService.success('Registration successful', true);
-          this.router.navigate(['/']);
+          this.router.navigate(['/user/'+this.user.email]);
         },
         error => {
           this.alertService.error(error);
