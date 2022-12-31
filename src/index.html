@@ -1,28 +1,54 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="msapplication-starturl" content="/">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#ffffff">
+
   <title>Friends of Groot Society</title>
-  <meta name="theme-color" content="#ffffff"> 
 
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
     integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <!-- <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> -->
+  <!-- <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> -->
   <base href="/">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  
+
   <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+  <!-- <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet"> -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
- 
-  <link rel="icon" type="image/x-icon" href="https://friends-of-groot-society.s3.amazonaws.com/assets/favicon.ico">
-  <link rel="apple-touch-icon" sizes="180x180" href="https://friends-of-groot-society.s3.amazonaws.com/assets/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="https://friends-of-groot-society.s3.amazonaws.com/assets/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="https://friends-of-groot-society.s3.amazonaws.com/assets/favicon-32x32.png"> 
-  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon-16x16.png">
+  <link rel="manifest" href="./assets/site.webmanifest">
+  <link rel="mask-icon" href="./assets/safari-pinned-tab.svg" color="#5bbad5">
+  <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
+  <!-- <link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon-32x32.png"> 
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"> -->
+
+
 </head>
+
 <body>
   <app-root></app-root>
   <noscript>Please enable JavaScript to continue using this application.</noscript>
+  <SCRIPT>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/service-worker.js')
+        .then((registration) => {
+          console.log('SW registered');
+        })
+        .catch((err) => {
+          console.log('SW error', err);
+        });
+    } </SCRIPT>
+
 </body>
+
 </html>

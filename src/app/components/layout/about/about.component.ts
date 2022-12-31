@@ -11,16 +11,13 @@ import { LoaderService } from '../loader/loader.service';
   providers: [LoaderService]
 })
 export class AboutComponent implements OnInit {
-  http$!: Observable<any[]>;
-  data$!: Observable<any[]>; 
-  web3$!: Observable<any[]>;
+  http$!: Observable<any[]>; 
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
 
    this.http$ = createHttpObservable("https://z3noflrq9b.execute-api.us-east-1.amazonaws.com/dev/posts");
-    this.http$.subscribe(console.log);
-    this.web3$ = this.http$
+   this.http$
     .pipe(
       map(res => Object.values(res)
       .filter((res: any) => res.cat3 === "Musing Blockchain") 
