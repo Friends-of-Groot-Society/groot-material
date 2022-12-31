@@ -3,8 +3,7 @@
 <hr>
 
 <div class="about container">
-
-  <app-loader></app-loader>
+ 
   <div class="row">
     <div class="col-md-9">
 
@@ -12,8 +11,8 @@
       <mat-tab-group>
         <mat-tab label="Vision">
           <p>{{vision}}</p>
-          <mat-spinner *ngIf="!web3$" class="centerSpinner"></mat-spinner> 
-          <div *ngIf="(web3$ | async) as web3">
+          <mat-spinner *ngIf="!http$" class="centerSpinner"></mat-spinner> 
+          <div *ngIf="(http$ | async) as web3">
             <ul *ngFor="let w of web3">
              <mat-card>
               <mat-card-header fxLayout="row" fxAlign="center center">
