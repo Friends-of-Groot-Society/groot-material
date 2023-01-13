@@ -43,10 +43,10 @@ export class AuthStore {
             this.uSubject$.next(JSON.parse(user));
         }
     }
-    register({ email, password, fName, lName }) {
+    register({ email, password, firstName, lastName }) {
         localStorage.setItem('email',  email ); 
-        localStorage.setItem('fName', fName );
-       localStorage.setItem('lName',  lName );
+        localStorage.setItem('firstName', firstName );
+       localStorage.setItem('lastName',  lastName );
         return this.httpClient
             .post<AuthResponseData>(
                 `https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=${environment.FIREBASE_GROOT} `,
@@ -106,8 +106,8 @@ export class AuthStore {
         user.tokenId = token;
 
         this.uSubject$.next(user);
-        user.fName = localStorage.getItem('fName');
-        user.lName = localStorage.getItem('lName');
+        user.firstName = localStorage.getItem('firstName');
+        user.lastName = localStorage.getItem('lastName');
         localStorage.setItem('AUTH_DATA', JSON.stringify(user)); 
         localStorage.setItem('tokenId', token);
         localStorage.setItem('userId', userId); 

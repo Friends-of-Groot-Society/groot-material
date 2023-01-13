@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Character } from '../models/Character';
-import { Groot } from '../models/Groot';
-import { Greeting } from '../models/Greeting';
+// import { Groot } from '../models/Groot';
+// import { Greeting } from '../models/Greeting';
 import { environment } from '../../environments/environment';
 
 // @Injectable is a decorator that marks a class as a target for
@@ -25,7 +25,7 @@ export class MarvelService {
   constructor(private http: HttpClient) {
 
     this.baseUrl = environment.baseUrl;
-    this.marvel_Key = environment.marvelKey;
+    // this.marvel_Key = environment.marvelKey;
     // this.hash = environment.marvelHash;
   }
 
@@ -67,14 +67,14 @@ export class MarvelService {
   }
 
   ///GrootApp/getGroot.do
-  getAllGroot(): Observable<Groot[]> {
-    // return this.http.get<Groot[]>("http://localhost:8080/GrootApp/getAllGroot.do");
-    return this.http.get<Groot[]>(`http://${this.baseUrl}/api/groot`);
-  }
+  // getAllGroot(): Observable<Groot[]> {
+  //   // return this.http.get<Groot[]>("http://localhost:8080/GrootApp/getAllGroot.do");
+  //   return this.http.get<Groot[]>(`http://${this.baseUrl}/api/groot`);
+  // }
 
-  addGroot(g: Groot): Observable<Groot> {
-    // return this.http.post<Groot>("http://localhost:8080/GrootApp/addGroot.do", poke, {headers: this.headers}); 
-    return this.http.post<Groot>(`http://${this.baseUrl}/api/groot`, g, { headers: this.headers });
-    // return this.http.post<Groot>("http://localhost:8080/api/groot", g, {headers: this.headers});
-  }
+  // addGroot(g: Groot): Observable<Groot> {
+  //   // return this.http.post<Groot>("http://localhost:8080/GrootApp/addGroot.do", poke, {headers: this.headers}); 
+  //   return this.http.post<Groot>(`http://${this.baseUrl}/api/groot`, g, { headers: this.headers });
+  //   // return this.http.post<Groot>("http://localhost:8080/api/groot", g, {headers: this.headers});
+  // }
 }

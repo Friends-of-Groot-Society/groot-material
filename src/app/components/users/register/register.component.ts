@@ -22,8 +22,8 @@ export class RegisterComponent implements OnInit {
   loading = false;
   submitted = false;
   email: void;
-  fName: void;
-  lName: void;
+  firstName: void;
+  lastName: void;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -51,10 +51,10 @@ export class RegisterComponent implements OnInit {
         Validators.minLength(4),
         Validators.maxLength(30) 
       ]],
-      fName: [this.user.fName, [
+      firstName: [this.user.firstName, [
         Validators.required
       ]],
-      lName: [this.user.lName, [
+      lastName: [this.user.lastName, [
         Validators.required
       ]]
     });
@@ -65,7 +65,7 @@ export class RegisterComponent implements OnInit {
     this.submitted = true;
     this.alertService.clear();
 
-    console.log("submitted: "+this.user.fName + ' ' + this.user.lName + ' ' + this.user.email  );
+    console.log("submitted: "+this.user.firstName + ' ' + this.user.lastName + ' ' + this.user.email  );
     this.loading = true;
     console.log("registerForm.value "+ this.registerForm.value);
     this.adminAuthenticationService.register(this.registerForm.value)
@@ -84,7 +84,7 @@ export class RegisterComponent implements OnInit {
     this.submitted = true;
     this.alertService.clear();
 
-    console.log("submitted: "+this.user.fName + ' ' + this.user.lName + ' ' + this.user.email  );
+    console.log("submitted: "+this.user.firstName + ' ' + this.user.lastName + ' ' + this.user.email  );
     this.loading = true;
     console.log("registerForm.value "+ this.registerForm.value);
     this.authStore.register(this.registerForm.value)

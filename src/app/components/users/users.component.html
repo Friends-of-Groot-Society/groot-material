@@ -9,7 +9,7 @@
                     <mat-card-content>
                         <mat-card-title>User Details</mat-card-title>
                         <mat-card-subtitle> {{user.email}} </mat-card-subtitle>
-                        <strong>User:</strong>#{{user.id }}:&nbsp; {{user.fName}} {{user.lName}}
+                        <strong>User:</strong>#{{user.id }}:&nbsp; {{user.firstName}} {{user.lastName}}
                         <br /><strong>Member of:</strong>
                         <em> {{user.groupType}}</em>
                         <br /><strong>Since:</strong> {{user.memberSince}}
@@ -57,7 +57,7 @@
                         <mat-card>
                             <mat-card-content>
                                 <a (click)="loadUser(user.id)" class="btn btn-primary">Details #{{user.id }}: </a>
-                                <em>&nbsp;{{user.fName}} {{user.lName}}</em>
+                                <em>&nbsp;{{user.firstName}} {{user.lastName}}</em>
                                 <span *ngFor="let add of user.addresses">
                                     <br />
                                     ...{{add.address | slice:-10:-1}}, <strong>on: </strong> {{add.chain}}
@@ -65,7 +65,7 @@
                                 </span>
                                 <hr>
                                 <a [routerLink]="['/users', user.id]">
-                                    {{index + 1}}: {{user.fName}} {{user.lName}}
+                                    {{index + 1}}: {{user.firstName}} {{user.lastName}}
                                 </a>
                             </mat-card-content>
                         </mat-card>

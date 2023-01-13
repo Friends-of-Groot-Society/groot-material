@@ -4,11 +4,12 @@ export class User {
     
     tokenId?: string;
     userId?:string;
-    id?: string;
-    email!: string;
-    password!: string;
-    fName!: string;
-    lName!: string;
+    id?: number;
+    email?: string;
+    password?: string;
+    userName: string;
+    firstName?: string;
+    lastName?: string;
     memberSince?: string;
     groupType?: string; 
     addresses?: Address[]; 
@@ -17,7 +18,7 @@ export class User {
         return this.tokenId;
     }
     getFullName() {
-        return this.fName + ' ' + this.lName;
+        return this.firstName + ' ' + this.lastName;
     }
 
 }

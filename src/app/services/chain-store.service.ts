@@ -28,9 +28,10 @@ export class ChainStore {
     }
 
     private loadAllChains() {
-        const loadChains$ = this.httpClient.get<Chain[]>(`${environment.nft_url}/api/chains`)
+        const loadChains$ = this.httpClient.get<Chain[]>(`${environment.nft_url}/chains`)
             .pipe(
-                map(res => res['data']), 
+                // map(res => res['data']), 
+                map(res => res),
                 catchError(err => {
                     console.log('error in source. Details: ' + err);
                     return throwError(() => 'error in source. Details: ' + err);
@@ -80,14 +81,15 @@ export class ChainStore {
 
         this.subjectChain.next(newChains);
 
-        return this.httpClient.put(`${environment.nft_url}/api/chains/${chainId}`, changes)
+        // return this.httpClient.put(`${environment.nft_url}/chains/${chainId}`, changes)
+        return this.httpClient.put(`${environment.nft_url}/chains `, changes)
             .pipe(
                 catchError(err => {
 
                     return throwError(err);
                 }),
                 shareReplay()
-        // return from(fetch(`/api/chains/${chainId}`, {
+        // return from(fetch(`/chains/${chainId}`, {
         //     method: 'PUT',
         //     body: JSON.stringify(changes),
         //     headers: {
@@ -112,7 +114,7 @@ export class ChainStore {
         http$
             .pipe(
                 tap(() => console.log('HTTP request executed')),
-                map(res => Object.values(res['data']))
+                // map(res => Object.values(res['data']))
             )
             .subscribe(
                 chains => this.subjectChain.next(chains)

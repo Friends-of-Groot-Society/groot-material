@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { map, tap, take, exhaustMap, catchError } from 'rxjs/operators';
 
+import { environment } from 'src/environments/environment';
 import { Chain } from 'src/app/models/Chain';
 import { NftRef } from '../models/NftRef';
 import { Nft } from '../models/Nft';
@@ -33,7 +34,8 @@ export class DataStorageService {
     let email = this.currUser.email;
     this.nftRef = {email, chain, address}
     this.httpClient.post<NftRef>(
-      'https://friends-of-groot-default-rtdb.firebaseio.com/api/nft.json',
+      // 'https://friends-of-groot-default-rtdb.firebaseio.com/api/nft.json',
+      `${environment.nft_url}/nft`,
       this.nftRef
     )
     .pipe(

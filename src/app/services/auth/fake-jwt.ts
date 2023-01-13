@@ -44,8 +44,8 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             return ok({
                 id: user.id,
                 email: user.email,
-                fName: user.fName,
-                lName: user.lName,
+                firstName: user.firstName,
+                lastName: user.lastName,
                 tokenId: 'fake-jwt-tokenId'
             })
         }
@@ -79,7 +79,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
 
         // helper functions
 
-        function ok(body?: { id: any; email: any; fName: any; lName: any; tokenId: string; } | undefined) {
+        function ok(body?: { id: any; email: any; firstName: any; lastName: any; tokenId: string; } | undefined) {
             return of(new HttpResponse({ status: 200, body }))
         }
 

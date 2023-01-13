@@ -31,8 +31,8 @@ export abstract class Constant {
 
     static USERS_VIEW = [
         { id: 0,
-            fName: "Tom",
-            lName: "Milton",
+            firstName: "Tom",
+            lastName: "Milton",
             email: "thomasm1.maestas@gmail.com",
             memberSince: "02-04-2020",
             groupType: "Admin",
@@ -60,8 +60,8 @@ export abstract class Constant {
             ]
         },
         { id: 1,
-            fName: "Walter",
-            lName: "White",
+            firstName: "Walter",
+            lastName: "White",
             email: "walter.white@gmail.com",
             memberSince: "02-04-2020",
             groupType: "Premium",

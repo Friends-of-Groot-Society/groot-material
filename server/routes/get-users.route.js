@@ -18,7 +18,8 @@ function postLogin(req, res) {
 }
 exports.postLogin = postLogin;
 function getUsers(req, res) {
-    res.status(200).json({ data: Object.values(db_data_1.USERS) });
+    // res.status(200).json({ data: Object.values(USERS) });
+    res.status(200).json(Object.values(db_data_1.USERS));
 }
 exports.getUsers = getUsers;
 function getUserById(req, res) {
