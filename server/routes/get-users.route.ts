@@ -20,7 +20,8 @@ export function postLogin(req: Request, res: Response) {
 }
 
 export function getUsers(req: Request, res: Response) {
-  res.status(200).json({ data: Object.values(USERS) });
+  // res.status(200).json({ data: Object.values(USERS) });
+  res.status(200).json( Object.values(USERS) );
 }
 
 export function getUserById(req: Request, res: Response) {

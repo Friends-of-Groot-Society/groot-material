@@ -1,6 +1,6 @@
 export class RegisterModel {
-    fName!: String;
-    lName!: String; 
+    firstName!: String;
+    lastName!: String; 
     email!: String;
     password!: String;  
 }

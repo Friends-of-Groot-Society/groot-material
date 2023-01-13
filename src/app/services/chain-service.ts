@@ -18,36 +18,37 @@ export class ChainService {
     }
 
     loadChainById(chainId:number) {
-       return this.http.get<Chain>(`${environment.nft_url}/api/chains/${chainId}`)
+       return this.http.get<Chain>(`${environment.nft_url}/chains/${chainId}`)
             .pipe(
               shareReplay()
             );
     }
 
     loadAllChainAddresses(chainId:number): Observable<Address[]> {
-        return this.http.get<Address[]>(`${environment.nft_url}/api/addresses`, {
+        return this.http.get<Address[]>(`${environment.nft_url}/addresses`, {
             params: {
                 pageSize: "10000",
                 chainId: chainId.toString()
             }
         })
             .pipe(
-                map(res => res["data"]),
+                // map(res => res["data"]),
                 shareReplay()
             );
     }
 
     loadAllChains(): Observable<Chain[]> {
-        return this.http.get<Chain[]>(`${environment.nft_url}/api/chains`)
+        return this.http.get<Chain[]>(`${environment.nft_url}/chains`)
             .pipe(
-                map(res => res["data"]),
+                // map(res => res["data"]),
+                map(res => res),
                 shareReplay()
             );
     }
 
 
     saveChain(chainId:string, changes: Partial<Chain>):Observable<any> {
-        return this.http.put(`${environment.nft_url}/api/chains/${chainId}`, changes)
+        return this.http.put(`${environment.nft_url}/chains/${chainId}`, changes)
             .pipe(
                 shareReplay()
             );
@@ -56,7 +57,7 @@ export class ChainService {
 
     searchAddresses(searchInput:string, searchInput2:string): Observable<Address[]> {
 
-        return this.http.get<Address[]>(`${environment.nft_url}/api/addresses`, {
+        return this.http.get<Address[]>(`${environment.nft_url}/addresses`, {
             params: {
                 filter: searchInput,
                 filter2: searchInput2, // equals "" if none provided

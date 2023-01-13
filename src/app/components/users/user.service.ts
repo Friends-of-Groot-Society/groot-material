@@ -26,7 +26,7 @@ export class UserService {
     // }
     getUser(emailId: string): Observable<User> {
       this.email = localStorage.getItem('email'); 
-          return this.httpService.get<User>(`${this.nft_url}/api/users/${this.email}`);
+          return this.httpService.get<User>(`${this.nft_url}/api/users/email/${this.email}`);
   
   }
   // public getUser(id: number): Observable<User> {
@@ -36,14 +36,17 @@ export class UserService {
   //   );
   // }
    getAllUsers(): Observable<User[]> {
-    return this.httpService.get<User[]>(`${this.nft_url}/api/users`).pipe(
-      map(data => data["data"])
-    );
+    return this.httpService.get<User[]>(`${this.nft_url}/api/users`)
+    // .pipe(
+    //   map(data => data["data"])
+    // );
    }
+
    getAllUserChains(): Observable<User[]> {
-    return this.httpService.get<User[]>(`${this.nft_url}/api/users`).pipe(
-      map(data => data["data"])
-    );
+    return this.httpService.get<User[]>(`${this.nft_url}/api/users`)
+    // .pipe(
+    //   map(data => data["data"])
+    // );
   }
    
   // public getAllUsers(): Observable<User[]> {

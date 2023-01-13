@@ -1,6 +1,8 @@
 
 import Moralis from "moralis"
 import * as express from 'express';
+import * as fs from 'fs';
+import * as https from 'https';
 
 import { Application } from "express";
 import * as path from 'path';
@@ -21,6 +23,10 @@ app.use(express.urlencoded({ extended: false }));
 
 const { EvmChain } = require("@moralisweb3/evm-utils")
 
+// const httpsOptions = { 
+//   key: fs.readFileSync('/etc/letsencrypt/live/cryptomaven.xyz/privkey.pem'),
+//   cert: fs.readFileSync('/etc/letsencrypt/live/cryptomaven.xyz/fullchain.pem')
+// };
 
 ///////// TEST DATA METHODS
 import { getAllChains, getChainById } from "./routes/get-chains.route";
@@ -56,7 +62,7 @@ app.route('/api/addresses').get(searchAddresses);
 app.route('/api/chains/:id').put(saveChain);
 app.route('/api/login').post(postLogin);
 app.route('/api/users').get(getUsers);
-app.route('/api/users/:email').get(getUserById);
+app.route('/api/users/email/:email').get(getUserById);
 app.route('/api/nft-refs').get(getNftRefs);
 
 app.route('/api/nft-test').get(getNft);
@@ -171,8 +177,10 @@ const startServer = async () => {
   await Moralis.start({
     apiKey: API_KEY,
   })
+  // https.createServer(httpsOptions, app).listen(PORT);
   app.listen(PORT, () => {
     console.log(`HTTP REST API Server listening at http://localhost:${PORT}/api/nft`)
   })
+
 }
 startServer(); 
