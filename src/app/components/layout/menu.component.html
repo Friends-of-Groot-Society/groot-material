@@ -13,6 +13,9 @@
         class="nav-link daily-tech monoton">nfts</a>
       <a mat-list-item routerLink="/about" routerLinkActive="active" 
         class="nav-link daily-tech monoton">about</a>
+        
+      <a mat-list-item routerLink="/blogs" routerLinkActive="active" 
+      class="nav-link daily-tech monoton">blogs</a>
       <a mat-list-item [routerLink]="['/user',authStore.getEmailId()]" routerLinkActive="active"
         *ngIf="authStore.isLoggedIn$ | async"
         class="nav-link daily-tech monoton">account</a>

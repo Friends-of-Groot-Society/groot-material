@@ -6,7 +6,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'; 
 // DEVELOPMENT/PROD URL (replace file in angular.json) 
 import { environment } from '../environments/environment';
+import { MatDialogModule } from '@angular/material/dialog';
+ // BLOG
  
+import { BlogModalComponent } from './components/blogs-public/blog-modal/blog-modal.component';
+import { BlogsComponent } from './components/blogs-public/blogs/blogs.component';
+import { BlogComponent } from './components/blogs-public/blog/blog.component';
+import { BlogsListComponent } from './components/blogs-public/blogs-list/blogs-list.component';
 
 // GROOT-MARVEL 
 import { PhotosComponent } from './components/photos/photos.component'; 
@@ -44,6 +50,7 @@ import { UsersComponent } from './components/users/users.component';
 import { AddressComponent } from './components/chain/address/address.component';
 import { SearchAddressesComponent } from './components/chain/search-addresses/search-addresses.component';
 import { PipeUppercase } from './utility/pipe-uppercase.pipe';
+import { SafeHtmlPipe } from './utility/safe-html.pipe';
 import { UpperCasePipe } from '@angular/common';
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { provideAuth,getAuth } from '@angular/fire/auth';
@@ -60,6 +67,10 @@ import { AdminuserComponent } from './components/users/adminuser.component';
   declarations: [
     AppComponent,
     // GrootComponent,
+    BlogsListComponent,
+    BlogModalComponent,
+    BlogsComponent,
+    BlogComponent,
     PhotosComponent, 
     LoginComponent,
     RegisterComponent,  
@@ -84,11 +95,12 @@ import { AdminuserComponent } from './components/users/adminuser.component';
     ChainDialogComponent,
     AddressComponent,
     SearchAddressesComponent,
-    PipeUppercase,
+    PipeUppercase, 
     NftCardListComponent,
     NftDialogComponent,
     NftRefComponent,
     AdminuserComponent, 
+    SafeHtmlPipe,
   ],
   imports: [
     MaterialModule,
@@ -103,8 +115,10 @@ import { AdminuserComponent } from './components/users/adminuser.component';
     UpperCasePipe,
     NftRefResolver,
     UserGuardService,
+    SafeHtmlPipe,
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [ MatDialogModule]
 })
 export class AppModule { }
  
