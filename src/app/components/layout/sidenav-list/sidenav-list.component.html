@@ -21,7 +21,7 @@
     </li>
     <li routerLinkActive="active">
       <a mat-list-item routerLink="/blogs" (click)="onClose()">
-        <mat-icon>blog</mat-icon>
+        <mat-icon>book</mat-icon>
         <span class="nav-caption daily-tech monoton">BLOG</span>
       </a>
 
@@ -34,7 +34,7 @@
     </li> -->
     <li routerLinkActive="active"  *ngIf="((authStore.isLoggedIn$ | async) || (adminAuth.isAdminLoggedIn$ | async))" >
       <a mat-list-item routerLink="/users" (click)="onClose()">
-        <mat-icon>box</mat-icon>
+        <mat-icon>person</mat-icon>
         <span class="nav-caption daily-tech monoton">USERS</span>
       </a> 
     </li>
@@ -46,13 +46,16 @@
     </li>
    
     <li routerLinkActive="active" *ngIf="!((authStore.isLoggedIn$ | async) || (adminAuth.isAdminLoggedIn$ | async))"   >
-      <a mat-list-item routerLink="/login"  (click)="onClose()">
-         
+      <a mat-list-item routerLink="/login"  (click)="onClose()"> 
         <span class="nav-caption daily-tech monoton">LOGIN</span>
       </a> 
+      </li>
 
-      <a mat-list-item  title="LOGOUT"  routerLink="/login" *ngIf="((authStore.isLoggedIn$ | async) || (adminAuth.isAdminLoggedIn$ | async))"   (click)="logout();onClose()"> 
-        <span class="nav-caption daily-tech monoton"><mat-icon>exit_to_app</mat-icon></span>
+      <li routerLinkActive="active" *ngIf="((authStore.isLoggedIn$ | async) || (adminAuth.isAdminLoggedIn$ | async))"    > 
+      <a mat-list-item  title="LOGOUT"  routerLink="/login" 
+      (click)="logout();onClose()"> 
+        <span class="nav-caption daily-tech monoton">
+          <mat-icon>exit_to_app</mat-icon></span>
       </a> 
     </li>
   </ul>

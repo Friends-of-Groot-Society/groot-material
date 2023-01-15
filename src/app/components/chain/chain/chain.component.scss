@@ -4,6 +4,13 @@
 //     max-width: 390px;
 //     margin: 0 auto;
 // }
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+ button {
+    margin: 20px;
+ }
 .mat-card-image {
     width:100px;
     max-width:100;

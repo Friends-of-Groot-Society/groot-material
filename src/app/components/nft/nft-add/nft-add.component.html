@@ -15,10 +15,10 @@
         </div>
 
         <div class="col col-6" id="button">
-          <button mat-raised-button mat-icon-button color="accent" type="submit">
+          <button mat-raised-button  class="mat-elevation-z8"  mat-icon-button color="accent" type="submit">
             <mat-icon>add</mat-icon>
           </button>
-          <button mat-raised-button mat-icon-button color="accent" 
+          <button mat-raised-button  class="mat-elevation-z8"  mat-icon-button color="accent" 
           *ngIf=" authStore.isLoggedIn$ | async "
           (click)="saveForm(f)" >
             <mat-icon>save</mat-icon>

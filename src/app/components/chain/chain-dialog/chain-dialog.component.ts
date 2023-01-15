@@ -37,6 +37,8 @@ export class ChainDialogComponent implements OnInit {
   ) { 
     this.chain = chain;
     this.form = this.formBuilder.group({
+      id: [chain.id, Validators.required],
+      rpcUrl: [chain.rpcUrl, Validators.required],
       name: [chain.name, Validators.required],
       symbol: [chain.symbol, Validators.required],
       category: [chain.category, Validators.required],
@@ -47,12 +49,17 @@ export class ChainDialogComponent implements OnInit {
   });
 }
 
-  save() {
+  update() {
     const changes = this.form.value;
     this.chainStore.saveChain(+this.chain.id, changes).subscribe();
     this.dialogRef.close(changes);
   }
 
+  save() {
+    const changes = this.form.value;
+    this.chainStore.saveChain(-1, changes).subscribe();
+    this.dialogRef.close(changes);
+  }
   close() {
     this.dialogRef.close();
   }

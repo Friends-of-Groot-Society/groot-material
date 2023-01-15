@@ -36,7 +36,8 @@
 
       <a mat-list-item *ngIf="((authStore.isLoggedIn$ | async) || (adminAuth.isAdminLoggedIn$ | async))"
         (click)="logout()" title="LOGOUT" routerLinkActive="active"
-        class="logout nav-link daily-tech monoton"><mat-icon>exit_to_app</mat-icon></a>
+        class="logout nav-link daily-tech monoton">
+        <mat-icon>exit_to_app</mat-icon></a>
 
     </div>
   </mat-toolbar>

@@ -47,6 +47,13 @@ export class ChainService {
     }
 
 
+    deleteChain(chainId:string):Observable<any> {
+        return this.http.delete(`${environment.nft_url}/chains/${chainId}`)
+            .pipe(
+                shareReplay()
+            );
+    }
+
     saveChain(chainId:string, changes: Partial<Chain>):Observable<any> {
         return this.http.put(`${environment.nft_url}/chains/${chainId}`, changes)
             .pipe(

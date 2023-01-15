@@ -13,9 +13,11 @@ class="chain-card mat-elevation-z7">
     </mat-card-content>
 
     <mat-card-actions class="chain-actions">
-        <button mat-button mat-raised-button color="primary" 
+        <button mat-button mat-raised-button class="mat-elevation-z8"  color="primary" 
         [routerLink]="['/chains', chain.id]">View</button>
-        <button mat-button mat-raised-button color="accent" 
-        (click)="editChain(chain)">Edit</button>
+        <button mat-button mat-raised-button class="mat-elevation-z8"   color="accent" 
+        (click)="editChain(chain)">Edit</button> 
+        <button mat-button mat-raised-button class="mat-elevation-z8"   color="warning" 
+        (click)="deleteChain(chain.id)">Delete</button> 
     </mat-card-actions>
 </mat-card>
