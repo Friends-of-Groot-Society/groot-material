@@ -2,6 +2,9 @@
 <app-loader></app-loader>
 <mat-dialog-content [formGroup]="form">
   
+  <mat-form-field>
+    <input matInput placeholder="Chain Name" formControlName="name">
+    </mat-form-field>  
         <mat-form-field>
         <input matInput placeholder="Chain Symbol" formControlName="symbol">
         </mat-form-field> 
@@ -16,6 +19,9 @@
     <mat-datepicker #myDatepicker></mat-datepicker>
   </mat-form-field> -->
 
+  <mat-form-field>
+    <input matInput placeholder="RPC Url" formControlName="rpcUrl">
+    </mat-form-field> 
   <mat-form-field>
     <input matInput placeholder="Icon Url" formControlName="iconUrl">
     </mat-form-field> 
@@ -39,15 +45,18 @@
     
 <mat-dialog-actions>
 
-    <button mat-raised-button
+    <button mat-raised-button  class="mat-elevation-z8" 
             (click)="close()">
       Close
     </button>
   
-    <button mat-raised-button color="primary" #saveButton (click)="save()">
-      Save
+    <button mat-raised-button class="mat-elevation-z8"  color="primary" #updateButton (click)="update()">
+      Update
     </button>
-  
+   
+    <button mat-raised-button class="mat-elevation-z8"  color="primary" #saveButton (click)="save()">
+      Save New
+    </button>
   </mat-dialog-actions>
   
   

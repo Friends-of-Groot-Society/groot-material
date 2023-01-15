@@ -3,6 +3,7 @@ import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import {ChainDialogComponent} from '../chain-dialog/chain-dialog.component';
 import {Chain} from '../../../models/Chain';
 import {filter, tap} from 'rxjs/operators';
+import { ChainService } from 'src/app/services/chain-service';
 
 
 @Component({
@@ -15,12 +16,12 @@ import {filter, tap} from 'rxjs/operators';
 export class ChainsCardListComponent implements OnInit {
   @Input() chains: Chain[]  ;
    
-  @Output() 
+  @Output() // emit event to parent component to reload [ChangeDetection: ChangeDetectionStrategy.OnPush]
   private chainsChanged = new EventEmitter();
 
-  constructor(private dialog:MatDialog ) { }
+  constructor(private dialog:MatDialog, private chainService:ChainService ) { }
 
-  ngOnInit() {
+  ngOnInit() { 
   }
 
   editChain(chain: Chain) {
@@ -41,5 +42,13 @@ export class ChainsCardListComponent implements OnInit {
       tap(() => this.chainsChanged.emit())
     )
     .subscribe();
+  }
+
+  deleteChain(id: string) {
+    this.chainService.deleteChain(id)
+    .pipe(   
+      tap(() => this.chainsChanged.emit()) // TODO check if chain deleting after delete
+    )
+    .subscribe((resp)=>console.log('Chain deleted: '+resp));
   }
 }

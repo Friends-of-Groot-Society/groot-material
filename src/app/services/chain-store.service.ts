@@ -67,10 +67,21 @@ export class ChainStore {
 
     saveChain(chainId: number, changes): Observable<any> {
 
+       if(chainId==-1) {
+        console.log(chainId); 
+        changes.id = null;
+        return this.httpClient.post(`${environment.nft_url}/chains`, changes)
+            .pipe(
+                catchError(err => {
+                    return throwError(() => 'error in source. Details: ' + err);
+                }),
+                shareReplay()
+            )
+
+       } else {
         const chains = this.subjectChain.getValue();
 
-        const chainIndex = chains.findIndex(chain => +chain.id == chainId);
-
+        const chainIndex = chains.findIndex(chain => +chain.id == chainId); 
         const newChain: Chain = {
             ...chains[chainIndex],
             ...changes
@@ -79,14 +90,11 @@ export class ChainStore {
         const newChains: Chain[] = chains.slice(0);
         newChains[chainIndex] = newChain;
 
-        this.subjectChain.next(newChains);
-
-        // return this.httpClient.put(`${environment.nft_url}/chains/${chainId}`, changes)
+        this.subjectChain.next(newChains);  
         return this.httpClient.put(`${environment.nft_url}/chains `, changes)
             .pipe(
-                catchError(err => {
-
-                    return throwError(err);
+                catchError(err => { 
+                    return throwError(() => 'error in source. Details: ' + err);
                 }),
                 shareReplay()
         // return from(fetch(`/chains/${chainId}`, {
@@ -97,6 +105,7 @@ export class ChainStore {
         //     }
         // }));
             )
+       }
     }
 
     filterByChainName(searchTerm: string): Observable<Chain[]> {

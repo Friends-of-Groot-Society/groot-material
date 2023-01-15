@@ -45,11 +45,10 @@ const routes: Routes = [
   { path: 'blog/:id', component: BlogComponent },
 
 
-  { path: 'nft-ref/:name',    component: NftRefComponent,
-  
-  resolve: {
-      nftRef: NftRefResolver
-  }  },
+  { path: 'nft-ref/:name',    component: NftRefComponent, 
+    resolve: {
+        nftRef: NftRefResolver
+    }  },
   { path : 'contact', component : ContactusComponent },
   // { path: 'servers', component: ChainServersComponent }, 
  

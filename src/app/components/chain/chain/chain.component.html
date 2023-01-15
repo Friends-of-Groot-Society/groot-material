@@ -37,11 +37,12 @@
                     <td>{{address.owner | slice:0:20 }}...</td> 
                     <td>{{address.address | slice:-10:-1}}...</td>
                 </tr>
-            </table> 
+            </table>  
             <br />
-        <mat-card-actions class="chain-actions">
-            <button mat-button mat-raised-button color="primary" [routerLink]="['']">Close</button>
+        <mat-card-actions  class="chain-actions">
+            <button mat-button mat-raised-button class="mat-elevation-z8"  color="primary" [routerLink]="['']">Close</button>
             <!-- <button mat-button mat-raised-button color="accent" (click)="editChain(data.chain)">Edit</button> -->
         </mat-card-actions>
+        <br />
         </mat-card>
 </ng-container>
