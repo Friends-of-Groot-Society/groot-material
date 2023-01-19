@@ -18,6 +18,15 @@
 
         </mat-tab>
 
+
+        <mat-tab label="PulseChain">
+
+            <app-chains-card-list [chains]="pulseChains$ | async">
+    
+            </app-chains-card-list>
+    
+    
+        </mat-tab>
     <mat-tab label="Polygon">
 
         <app-chains-card-list [chains]="polygonChains$ | async">

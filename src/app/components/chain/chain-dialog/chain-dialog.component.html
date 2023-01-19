@@ -3,13 +3,24 @@
 <mat-dialog-content [formGroup]="form">
   
   <mat-form-field>
-    <input matInput placeholder="Chain Name" formControlName="name">
+    <input matInput placeholder="Network Name" formControlName="name">
     </mat-form-field>  
         <mat-form-field>
-        <input matInput placeholder="Chain Symbol" formControlName="symbol">
+        <input matInput placeholder="Currency Symbol" formControlName="symbol">
         </mat-form-field> 
 
-        
+        <mat-form-field>
+          <input matInput placeholder="Chain ID" formControlName="chainId">
+          </mat-form-field> 
+       
+          <mat-form-field>
+            <input matInput placeholder="Block Explorer URL" formControlName="blockExplorerUrl">
+            </mat-form-field> 
+     
+            <mat-form-field>
+              <input matInput placeholder="Release Date" formControlName="releaseDate">
+              </mat-form-field> 
+      
   <!-- <mat-form-field>
     <input matInput [matDatepicker]="myDatepicker" #searchInput
            formControlName="releaseDate">
@@ -17,10 +28,10 @@
                            [for]="myDatepicker">
     </mat-datepicker-toggle>
     <mat-datepicker #myDatepicker></mat-datepicker>
-  </mat-form-field> -->
+  </mat-form-field>  -->
 
   <mat-form-field>
-    <input matInput placeholder="RPC Url" formControlName="rpcUrl">
+    <input matInput placeholder="RPC URL" formControlName="rpcUrl">
     </mat-form-field> 
   <mat-form-field>
     <input matInput placeholder="Icon Url" formControlName="iconUrl">
@@ -30,7 +41,7 @@
     </mat-form-field> 
 
     <mat-form-field>
-      <input matInput placeholder="Short Category" formControlName="category">
+      <input matInput placeholder="Category" formControlName="category">
       </mat-form-field> 
   <mat-form-field>
 

@@ -44,6 +44,8 @@ export class ChainDialogComponent implements OnInit {
       category: [chain.category, Validators.required],
       description: [chain.description, Validators.required],
       longDescription: [chain.longDescription, Validators.required],
+      chainId: [chain.chainId, Validators.required],
+      blockExplorerUrl: [chain.blockExplorerUrl, Validators.required],
       iconUrl: [chain.iconUrl, Validators.required],
       // releasedAt: [day(chain.releaseDate).format('YYYY-MM-DD'), Validators.required],
   });
