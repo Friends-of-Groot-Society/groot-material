@@ -44,12 +44,16 @@ export class ChainStore {
     selectAllChains() {  
         return this.noFilter();
     }
+    
+    selectPulsechainChains() {
+        return this.filterByChainName('pulsechain'.toUpperCase());
+    }
     selectEthereumChains() {
-        return this.filterByChainName('ethereum');
+        return this.filterByChainName('ethereum'.toUpperCase());
     }
 
     selectPolygonChains() {
-        return this.filterByChainName('polygon');
+        return this.filterByChainName('polygon'.toUpperCase());
     }
 
     selectChainById(chainId: number) {
@@ -112,7 +116,7 @@ export class ChainStore {
         return this.chains$
         .pipe(
             map(chains => 
-                chains.filter(chain => chain.name == searchTerm) 
+                chains.filter(chain => chain.name.toUpperCase() == searchTerm.toUpperCase()) 
             )) 
             }
   

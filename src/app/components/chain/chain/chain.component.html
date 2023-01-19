@@ -2,15 +2,15 @@
     <mat-card class="chain">
         <mat-card-header>
             <mat-card-title>
-                   <h3>{{data.chain?.description}}</h3>
+                   <h3>{{data.chain?.name | pipeUppercase}}</h3>
             </mat-card-title> 
         </mat-card-header>
         <br/>
         <mat-card-content>
       <div class="row">
         <div class="col-md-8">
-            <p><strong>Chain Name:</strong> {{data.chain?.name}}</p> 
-            <p><strong>Chain ID: </strong>{{data.chain?.id}}</p>
+            <p><strong>Chain Name:</strong> {{data.chain?.description}}</p> 
+            <p><strong>Chain ID: </strong>{{data.chain?.chainId}}</p>
             <p><strong>Chain Symbol:</strong> {{data.chain?.symbol | pipeUppercase }}</p>
             <p><strong>Chain RPC URL:</strong> {{data.chain?.rpcUrl}}</p>
             <p><strong>Chain Block Explorer URL:</strong> {{data.chain?.blockExplorerUrl}}</p>

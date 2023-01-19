@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Subject } from 'rxjs';
 import { Post } from '../../models/Post';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,8 @@ export class BlogsService {
 
   constructor(private http: HttpClient) { }
 
-
+ private headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+ private urlAWS: string = `${environment.nft_url}/api/posts`;
 
   protected urlDev2: string = 'https://emfm9dpoeh.execute-api.us-east-1.amazonaws.com/dev2';
   protected urlDev: string = 'https://z3noflrq9b.execute-api.us-east-1.amazonaws.com/dev';

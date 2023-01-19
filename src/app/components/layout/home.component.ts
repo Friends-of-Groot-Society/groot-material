@@ -19,6 +19,7 @@ export class HomeComponent implements OnInit {
 
   chains$: Observable<Chain[]>;
   ethereumChains$: Observable<Chain[]>;
+  pulseChains$: Observable<Chain[]>;
   polygonChains$: Observable<Chain[]>;
 
   constructor(private chainStore: ChainStore ) { }
@@ -29,6 +30,7 @@ export class HomeComponent implements OnInit {
 
   reloadChains() {  
     this.chains$ = this.chainStore.selectAllChains();
+    this.pulseChains$ = this.chainStore.filterByChainName('pulsechain'); 
     this.ethereumChains$ = this.chainStore.filterByChainName('ethereum'); 
     this.polygonChains$ = this.chainStore.filterByChainName('polygon');  
   }

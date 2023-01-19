@@ -8,6 +8,7 @@ export class Post {
     public cat3: string,
     public title: string,
     public post: string,
-    public blogcite: string
+    public blogcite: string,
+    public username?: string,
   ) { }
 }    
