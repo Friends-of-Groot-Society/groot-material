@@ -2,7 +2,7 @@ import { Nft } from "./Nft";
 
 export interface NftRef {
     name?: string;
-    email?: string; 
+    owner?: string; 
     address?: string;
     chain?: string;
     nft?: Nft;

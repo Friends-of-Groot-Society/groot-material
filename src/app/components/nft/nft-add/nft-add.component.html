@@ -19,7 +19,7 @@
             <mat-icon>add</mat-icon>
           </button>
           <button mat-raised-button  class="mat-elevation-z8"  mat-icon-button color="accent" 
-          *ngIf=" authStore.isLoggedIn$ | async "
+          *ngIf=" (adminAuthenticationService.isAdminLoggedIn$ || authStore.isLoggedIn$) | async "
           (click)="saveForm(f)" >
             <mat-icon>save</mat-icon>
           </button> 
