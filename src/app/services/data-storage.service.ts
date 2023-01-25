@@ -18,6 +18,7 @@ import { shareReplay } from 'rxjs-compat/operator/shareReplay';
 export class DataStorageService {
   currUser : User; 
   nftRef: NftRef;
+  owner:string;
   nftRefs = [];
   subjectNftRef = new Subject<NftRef>();
 
@@ -28,12 +29,13 @@ export class DataStorageService {
     private nftService: NftsService,
   ) { }
 
-  savePersistedNfts(chain: string, address: string) {
-    this.currUser  = this.authStore.currentUserValue;
-    let email = this.currUser.email;
-    this.nftRef = {email, chain, address}
+  savePersistedNfts(chain: string, address: string ) { 
+    // this.currUser  = this.authStore.currentUserValue;
+    this.owner = localStorage.getItem('email');
+    this.nftRef = {chain, address, owner: this.owner}
     this.httpClient.post<NftRef>(
-      'https://friends-of-groot-default-rtdb.firebaseio.com/api/nft.json',
+      `http://localhost:8080/api/addresses`,
+      // 'https://friends-of-groot-default-rtdb.firebaseio.com/api/nft.json',
       this.nftRef
     )
     .pipe(

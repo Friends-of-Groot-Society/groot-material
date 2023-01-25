@@ -28,7 +28,7 @@ export class NftDialogComponent implements OnInit {
     this.nftRef = nftRef;
     this.form = this.formBuilder.group({
       name: [nftRef.name, Validators.required],
-      email: [nftRef.email, Validators.required],
+      owner: [nftRef.owner, Validators.required],
       address: [nftRef.address, Validators.required],
       chain: [nftRef.chain, Validators.required]
   });
