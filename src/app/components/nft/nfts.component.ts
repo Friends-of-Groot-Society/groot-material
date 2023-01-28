@@ -81,11 +81,16 @@ export class NftsComponent implements OnInit, OnDestroy {
  this.nftsService.collectNftRefs() 
     .pipe( 
       map(res => { 
-        for (const key in res) {
-          if (res.hasOwnProperty(key)) {
-            this.nftRefArrs.push({ ...res[key], name: key });
-          }
+        console.log("res")
+        console.log(res)
+        for(let i in res) {
+          this.nftRefArrs.push({ ...res[i] });
         }
+        // for (const key in res) {
+        //   if (res.hasOwnProperty(key)) {
+            // this.nftRefArrs.push({ ...res[key], name: key });
+        //   }
+        // }
         return this.nftRefArrs;          
       }),
       tap(

@@ -11,6 +11,7 @@ import { LoaderService } from '../layout/loader/loader.service';
 import { Nft } from 'src/app/models/Nft';
 import { User } from 'src/app/models/User';
 import { NftRef } from 'src/app/models/NftRef';
+import { Address } from 'src/app/models/Address';
 
 @Injectable({
   providedIn: 'root'
@@ -26,7 +27,7 @@ export class NftsService {
 
   nftsUpdated = new Subject<any[]>();
   nftDataUpdated = new Subject<any>();
-  nftRefsUpdated = new Subject<NftRef>();
+  nftRefsUpdated = new Subject<Address>();
  
 
   constructor(
@@ -38,20 +39,26 @@ export class NftsService {
     this.key = this.keyService.getMoralisKey();
 
   }
-
-  findNftRefByName(name:string): Observable<NftRef> {
-    return this.http.get<NftRef>(`${env.nftsURL}/api/nft-refs/${name}${env.test_env}`)
+/////////////////////// NFT REF  
+  findNftRefById(id:string): Observable<Address> {
+    return this.http.get<Address>(`${env.nft_url}/addresses/${id}`)
+    // return this.http.get<NftRef>(`${env.nftsURL}/api/nft-refs/${name}${env.test_env}`)
   }
 
+  findNftRefByName(name:string): Observable<Address> {
+    return this.http.get<Address>(`${env.nft_url}/addresses/${name}`)
+    // return this.http.get<NftRef>(`${env.nftsURL}/api/nft-refs/${name}${env.test_env}`)
+  }
   collectNftRefs(): Observable<any> {
-    return this.http.get(`${env.nftsURL}/api/nft-refs${env.test_env}`)
+    return this.http.get(`${env.nft_url}/addresses`)
+    // return this.http.get(`${env.nftsURL}/api/nft-refs${env.test_env}`)
     .pipe(
       catchError(err => {
         throw 'error in source. Details: ' + err;
       }))
      
   }
- 
+ ///////////////
   collectNfts(): Observable<any> {
     return this.http.get(`${env.nftsURL}/api/nft${env.test_env}`)
     .pipe(
@@ -62,7 +69,7 @@ export class NftsService {
   }
 
 
-  replacePostNfts(chain: string, address: string) {
+  chainNftData(chain: string, address: string) {
     if (!chain) {
       chain = this.chain;
     }
@@ -99,38 +106,4 @@ export class NftsService {
     });
     this.nftsUpdated.next(this.nfts);
   }
-  
-  // Chain and its wrapper token address data
-  networkData = [
-    {
-      "networkName": "Ethereum",
-      "chainId": "0x1",
-      "wrappedTokenAddress": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2"
-    },
-    {
-      "networkName": "Polygon",
-      "chainId": "0x89",
-      "wrappedTokenAddress": "0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270"
-    },
-    {
-      "networkName": "Binance",
-      "chainId": "0x38",
-      "wrappedTokenAddress": "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c"
-    },
-    {
-      "networkName": "Avalanche",
-      "chainId": "0xa86a",
-      "wrappedTokenAddress": "0xb31f66aa3c1e785363f0875a1b74e27b85fd66c7"
-    },
-    {
-      "networkName": "Fantom",
-      "chainId": "0xfa",
-      "wrappedTokenAddress": "0x21be370D5312f44cB42ce377BC9b8a0cEF1A4C83"
-    },
-    {
-      "networkName": "Cronos",
-      "chainId": "0x19",
-      "wrappedTokenAddress": "0x5C7F8A570d578ED84E63fdFA7b1eE72dEae1AE23"
-    }
-  ]
 }

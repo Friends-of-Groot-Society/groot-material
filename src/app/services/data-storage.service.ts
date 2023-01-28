@@ -11,7 +11,7 @@ import { AuthStore } from './auth/auth-store.service';
 import { AdminAuthenticationService } from './auth/admin-authentication.service';
 import { Subject, throwError } from 'rxjs';
 import { shareReplay } from 'rxjs-compat/operator/shareReplay';
-
+import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
@@ -19,6 +19,8 @@ export class DataStorageService {
   currUser : User; 
   nftRef: NftRef;
   owner:string;
+  nftData:any;
+
   nftRefs = [];
   subjectNftRef = new Subject<NftRef>();
 
@@ -27,14 +29,19 @@ export class DataStorageService {
     private authStore: AuthStore,
     private adminAuth: AdminAuthenticationService,
     private nftService: NftsService,
-  ) { }
+  ) {
+    
+    this.owner = localStorage.getItem('email');
+   }
 
   savePersistedNfts(chain: string, address: string ) { 
     // this.currUser  = this.authStore.currentUserValue;
-    this.owner = localStorage.getItem('email');
-    this.nftRef = {chain, address, owner: this.owner}
+    this.owner = localStorage.getItem('email'); 
+    this.nftData = this.nftService.getNftData();
+    console.log("nftData", this.nftData);
+    this.nftRef = {chain, address, owner: this.owner, nft: this.nftData}
     this.httpClient.post<NftRef>(
-      `http://localhost:8080/api/addresses`,
+      `${environment.nft_url}/addresses`,
       // 'https://friends-of-groot-default-rtdb.firebaseio.com/api/nft.json',
       this.nftRef
     )
@@ -71,7 +78,8 @@ export class DataStorageService {
 
     return this.httpClient
     .put<NftRef>(
-      `https://friends-of-groot-default-rtdb.firebaseio.com/api/nft/${name}.json`,
+      `${environment.nft_url}/addresses`,
+      // `https://friends-of-groot-default-rtdb.firebaseio.com/api/nft/${name}.json`,
       changes)
       .pipe(
         catchError(err => {
@@ -90,7 +98,8 @@ export class DataStorageService {
   getAllNftRefs() {
     return  this.httpClient
       .get(
-        'https://friends-of-groot-default-rtdb.firebaseio.com/api/nft.json'
+        `${environment.nft_url}/addresses`,
+        // 'https://friends-of-groot-default-rtdb.firebaseio.com/api/nft.json'
       )
       .pipe(
         map(res => { 
