@@ -23,3 +23,12 @@ export interface Nft
     }
   ]
 }
+
+// @Id
+// int id;
+// int name;
+// int amount;
+// @OneToOne
+// @JoinColumn(name = "metadata_metaid")
+// Metadata metadata;
+// int nft_address_id;

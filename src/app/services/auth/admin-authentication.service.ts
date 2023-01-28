@@ -77,6 +77,10 @@ export class AdminAuthenticationService {
       )
       .pipe(
         catchError(this.handleError),
+        tap(resData => { 
+        localStorage.setItem('email', resData.email); 
+        localStorage.setItem('token', resData.idToken);   
+   }),
         tap(resData => {
           this.executeAuthenticationService(
             resData.email,
