@@ -11,9 +11,11 @@ export class UsersComponent implements OnInit {
  
   email:string = "";
 
+  
   chains: any 
   user: User;
   users: any; 
+
 
 
   constructor(private userService: UserService, private route:ActivatedRoute) {
@@ -22,14 +24,17 @@ export class UsersComponent implements OnInit {
   ngOnInit(): void {   
    this.email = this.route.snapshot.queryParams['email'];
    this.loadUser(this.email);
+   console.log("email "+this.email);
+ 
   }
 
  
   public loadUser(email: string) {
 
  
-   this.userService.getUser(email).subscribe((user) => {
-    return this.user = user 
+  this.userService.getUser(email).subscribe((u) => {
+
+    return this.user = u
     
     });
     // return this.user;

@@ -8,6 +8,10 @@ Java Application for Friends of Groot Society
 > <a style="text-decoration:none;color:black;" href="http://friends-of-groot-society.s3-website-us-east-1.amazonaws.com/grootedex">Friends_of_Groot_Society</a>
 
 > Full-Stack application that manages Groot Fan Club News and Features
+#### Features
+
+#### Data Structures
+Address -> NftAddress -> nfts[] Nft-> Metadata
 
 ### Author 
 > Thomas Maestas 

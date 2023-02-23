@@ -93,7 +93,7 @@ export class AdminAuthenticationService {
    private handleError(errorRes: HttpErrorResponse) {
     let errorMessage = 'An unknown error occurred!';
     if (!errorRes.error || !errorRes.error.error) {
-      return throwError(errorMessage);
+      return throwError(() => console.log(errorMessage));
     }
     switch (errorRes.error.error.message) {
       case 'EMAIL_EXISTS':
@@ -106,7 +106,7 @@ export class AdminAuthenticationService {
         errorMessage = 'This password is not correct.';
         break;
     }
-    return throwError(errorMessage);
+    return throwError(() => console.log(errorMessage));
   }
 
    executeAuthenticationService(

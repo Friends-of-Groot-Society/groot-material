@@ -16,41 +16,41 @@ export class UserService {
  } 
  
     register(user: User) {
-      console.log("user "+`${this.nft_url}/api/users/register`, user);
-      this.httpService.post(`${this.nft_url}/api/users/register`, user);
+      console.log("user "+`${this.nft_url}/users/register`, user);
+      this.httpService.post(`${this.nft_url}/users/register`, user); 
       
     }
 
     // delete(id: string) {
-    //     return this.httpService.delete(`${this.nft_url}/api/users/${id}`);
+    //     return this.httpService.delete(`${this.nft_url}/users/${id}`);
     // }
     getUser(emailId: string): Observable<User> {
       this.email = localStorage.getItem('email'); 
-          return this.httpService.get<User>(`${this.nft_url}/api/users/email/${this.email}`);
+          return this.httpService.get<User>(`${this.nft_url}/users/email/${this.email}`);
   
   }
   // public getUser(id: number): Observable<User> {
-  //   return this.httpService.get<User>(`http://${this.baseUrl}/api/users/${id}`).pipe(
+  //   return this.httpService.get<User>(`http://${this.baseUrl}/users/${id}`).pipe(
   //     map(data => new User().deserialize(data)),
   //     catchError(() => throwError('Oops! Member not found ...'))
   //   );
   // }
    getAllUsers(): Observable<User[]> {
-    return this.httpService.get<User[]>(`${this.nft_url}/api/users`)
+    return this.httpService.get<User[]>(`${this.nft_url}/users`)
     // .pipe(
     //   map(data => data["data"])
     // );
    }
 
    getAllUserChains(): Observable<User[]> {
-    return this.httpService.get<User[]>(`${this.nft_url}/api/users`)
+    return this.httpService.get<User[]>(`${this.nft_url}/users`)
     // .pipe(
     //   map(data => data["data"])
     // );
   }
    
   // public getAllUsers(): Observable<User[]> {
-  //   return this.httpService.get<User[]>(`http://${this.baseUrl}/api/users`).pipe(
+  //   return this.httpService.get<User[]>(`http://${this.baseUrl}/users`).pipe(
   //     map(data => data.map(data => new User().deserialize(data)))
   //   );
   // }
