@@ -29,7 +29,7 @@ import { Component, OnInit } from '@angular/core';
 
     background-image: url("../../../assets/bluechipTile.jpg");
     }
-    i.fa {
+    i.fa { 
       color:white;
     }
 

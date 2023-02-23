@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginModel } from '../../../models/login';
+import { LoginModel } from '../../../models/LoginModel';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators, } from '@angular/forms'; 
 import { first } from 'rxjs/operators';

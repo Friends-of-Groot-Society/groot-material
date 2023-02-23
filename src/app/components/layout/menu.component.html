@@ -11,11 +11,11 @@
     <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs id="menu-list">
       <a mat-list-item routerLink="/nfts" routerLinkActive="active" 
         class="nav-link daily-tech monoton">nfts</a>
+        <a mat-list-item routerLink="/chains" routerLinkActive="active" 
+          class="nav-link daily-tech monoton">chains</a>
       <a mat-list-item routerLink="/about" routerLinkActive="active" 
         class="nav-link daily-tech monoton">about</a>
-        
-      <a mat-list-item routerLink="/blogs" routerLinkActive="active" 
-      class="nav-link daily-tech monoton">blogs</a>
+         
       <a mat-list-item [routerLink]="['/user',authStore.getEmailId()]" routerLinkActive="active"
         *ngIf="authStore.isLoggedIn$ | async"
         class="nav-link daily-tech monoton">account</a>
@@ -27,7 +27,7 @@
         *ngIf="adminAuth.isAdminLoggedIn$ | async" routerLinkActive="active"
         class="nav-link daily-tech monoton">admin</a>
       <!-- <a mat-list-item routerLink="/servers"      routerLinkActive="active" class="nav-link daily-tech monoton">servers</a> -->
-      <!-- <a mat-list-item routerLink="/blogs" class="nav-link daily-tech monoton">TECH BLOG</a> -->
+ 
       <!-- <a mat-list-item routerLink="/news" class="nav-link daily-tech monoton">NEWS</a>  -->
 
       <a mat-list-item routerLink="/login"
