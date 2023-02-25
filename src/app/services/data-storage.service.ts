@@ -10,13 +10,13 @@ import { NftsService } from '../components/nft/nfts.service';
 import { AuthStore } from './auth/auth-store.service';
 import { AdminAuthenticationService } from './auth/admin-authentication.service';
 import { Subject, throwError } from 'rxjs';
-import { shareReplay } from 'rxjs-compat/operator/shareReplay';
+import { shareReplay } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
 export class DataStorageService {
-  currUser : User; 
+  currUser : User;
   nftRef: NftRef;
   owner:string;
   nftData:any;
@@ -30,13 +30,13 @@ export class DataStorageService {
     private adminAuth: AdminAuthenticationService,
     private nftService: NftsService,
   ) {
-    
+
     this.owner = localStorage.getItem('email');
    }
 
-  savePersistedNfts(chain: string, address: string ) { 
+  savePersistedNfts(chain: string, address: string ) {
     // this.currUser  = this.authStore.currentUserValue;
-    this.owner = localStorage.getItem('email'); 
+    this.owner = localStorage.getItem('email');
     this.nftData = this.nftService.getNftData();
     console.log("nftData", this.nftData);
     this.nftRef = {chain, address, owner: this.owner, nft: this.nftData}
@@ -53,10 +53,10 @@ export class DataStorageService {
       })
     )
     .subscribe();
-      
+
   }
   editPersistedNftRef(name: string, changes) {
-    // const nft = this.nftService.getNftData(); 
+    // const nft = this.nftService.getNftData();
     const nftRefs = this.nftRefs;
     const nftRef  = nftRefs.find(nftRef => nftRef.name === name);
     const newNftRef: NftRef = {
@@ -93,7 +93,7 @@ export class DataStorageService {
     // .subscribe(response => {
     //   console.log(response);
     // } );
-  } 
+  }
 
   getAllNftRefs() {
     return  this.httpClient
@@ -102,13 +102,13 @@ export class DataStorageService {
         // 'https://friends-of-groot-default-rtdb.firebaseio.com/api/nft.json'
       )
       .pipe(
-        map(res => { 
+        map(res => {
           for (const key in res) {
             if (res.hasOwnProperty(key)) {
               this.nftRefs.push({ ...res[key]});//, id: key });
             }
           }
-          return this.nftRefs;          
+          return this.nftRefs;
         }
         ),
         tap(nftRefs => {
@@ -138,5 +138,5 @@ export class DataStorageService {
       )
   }
 
-   
+
 }
