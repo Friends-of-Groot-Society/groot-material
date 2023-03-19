@@ -26,7 +26,7 @@ export class ChainsCardListComponent implements OnInit {
 
   editChain(chain: Chain) {
     console.log(chain);
-    
+     
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;

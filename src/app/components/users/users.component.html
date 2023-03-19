@@ -56,6 +56,28 @@
                     <li *ngFor="let user of users; let index of users">
                         <mat-card>
                             <mat-card-content>
+                                <mat-card-title>User Details</mat-card-title>
+                                <mat-card-subtitle> {{user.email}} </mat-card-subtitle>
+                                <strong>User:</strong>#{{user.userId }}:&nbsp; {{user.firstName}} {{user.lastName}}
+                                <br /><strong>Member Type:</strong>
+                                <em> {{user.groupType}}</em>
+                                <br /><strong>userName:</strong> {{user.userName}}
+                                <br /><strong>Since:</strong> {{user.memberSince}}
+                                <br /><strong>Since:</strong> {{user.memberSince}}
+                                <br /><strong>Since:</strong> {{user.memberSince}}
+        
+                                <p *ngIf="user.addresses">
+                                    <strong>Chain-addresses:</strong> {{user.addresses.length}}
+                                </p>
+                                <span *ngIf="user.addresses">
+                                </span>
+                                <span *ngFor="let add of user.addresses">
+                                    ...{{add.address | slice:-10:-1}}, <strong>on:</strong> {{add.chain | titlecase}}
+                                    <em>{{add.chainId
+                                        }}</em><br />
+                                </span>
+                                <br />
+
                                 <a (click)="loadUser(user.id)" class="btn btn-primary">Details #{{user.id }}: </a>
                                 <em>&nbsp;{{user.firstName}} {{user.lastName}}</em>
                                 <span *ngFor="let add of user.addresses">

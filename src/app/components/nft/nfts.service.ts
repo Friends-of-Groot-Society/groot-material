@@ -58,22 +58,35 @@ export class NftsService {
       }))
      
   }
- ///////////////
+  
+  getNftData() { 
+    return this.nftData;
+  }
+  getAllNfts() {
+    return [...this.nfts];
+  }
+ 
+  deleteNft(nftNamed: string) {
+    this.nfts = this.nfts.filter((nft: Nft) => {
+      return nft !== nftNamed;
+    });
+    this.nftsUpdated.next(this.nfts);
+  } 
+
+ ///// nftFromChain //////////
   collectNfts(): Observable<any> {
-    return this.http.get(`${env.nftsURL}/api/nft${env.test_env}`)
+    return this.http.get(`${env.nftFromChain}/api/nft${env.test_env}`)
     .pipe(
       catchError(err => {
         throw 'error in source. Details: ' + err;
-      }))
-
-  }
-
+      })) 
+  } 
 
   chainNftData(chain: string, address: string) {
     if (!chain) {
       chain = this.chain;
     }
-    this.http.post<Nft>(`${env.nftsURL}/api/nft${env.test_env}`, { chain: chain, address: address },
+    this.http.post<Nft>(`${env.nftFromChain}/api/nft${env.test_env}`, { chain: chain, address: address },
       {
         headers: new HttpHeaders({
           Accept: 'application/json'
@@ -93,17 +106,4 @@ export class NftsService {
       }) 
   }
  
-  getNftData() { 
-    return this.nftData;
-  }
-  getAllNfts() {
-    return [...this.nfts];
-  }
- 
-  deleteNft(nftNamed: string) {
-    this.nfts = this.nfts.filter((nft: Nft) => {
-      return nft !== nftNamed;
-    });
-    this.nftsUpdated.next(this.nfts);
-  }
 }
