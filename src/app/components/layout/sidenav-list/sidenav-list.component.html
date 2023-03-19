@@ -70,7 +70,7 @@
   <!-- <a mat-list-item routerLink="search/">Search</a> --> 
 
   <a mat-list-item id="photos" 
-  [ngClass]="{'nopointer':(this.adminAuth.isAdminLoggedOut$ |async)}"  
+  [ngClass]="{'nopointer':(this.adminAuth.isAdminLoggedOut$ |async)}"  routerLinkActive="active"
   *ngIf="isAdmin$ | async"    routerLink="admin/users">Admin</a>
   <!-- <a mat-list-item routerLink="photos/:id">Photos</a>  -->
 
