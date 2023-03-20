@@ -46,7 +46,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 email: user.email,
                 firstName: user.firstName,
                 lastName: user.lastName,
-                tokenId: 'fake-jwt-tokenId'
+                idToken: 'fake-jwt-idToken'
             })
         }
 
@@ -79,7 +79,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
 
         // helper functions
 
-        function ok(body?: { id: any; email: any; firstName: any; lastName: any; tokenId: string; } | undefined) {
+        function ok(body?: { id: any; email: any; firstName: any; lastName: any; idToken: string; } | undefined) {
             return of(new HttpResponse({ status: 200, body }))
         }
 
@@ -92,7 +92,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         }
 
         function isLoggedIn() {
-            return headers.get('Authorization') === 'Bearer fake-jwt-tokenId';
+            return headers.get('Authorization') === 'Bearer fake-jwt-idToken';
         }
 
         function idFromUrl() {
