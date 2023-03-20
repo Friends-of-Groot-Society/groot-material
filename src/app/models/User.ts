@@ -2,20 +2,26 @@ import { Address } from './Address';
 
 export class User {
     
-    tokenId?: string;
+    idToken?: string;
     userId?:string;
-    id?: number;
-    email?: string;
-    password?: string;
-    userName: string;
-    firstName?: string;
+    username: string;
     lastName?: string;
+    firstName?: string;
+    groups?:number;
+    userType?: number;
+    email?: string; 
+    phone?: string;
+    cusUrl?: string;
+    photoPath?: string;
+    userGroup?: string;
+    isActive?: number; // 0 = inactive, 1 = active 
+    id?: number;
+    addresses?: Address[];  
+    
     memberSince?: string;
-    groupType?: string; 
-    addresses?: Address[]; 
 
-    getTokenId() {
-        return this.tokenId;
+    getIdToken() {
+        return this.idToken;
     }
     getFullName() {
         return this.firstName + ' ' + this.lastName;

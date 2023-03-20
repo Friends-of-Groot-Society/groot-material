@@ -16,7 +16,7 @@
       <a mat-list-item routerLink="/about" routerLinkActive="active" 
         class="nav-link daily-tech monoton">about</a>
          
-      <a mat-list-item [routerLink]="['/user',authStore.getEmailId()]" routerLinkActive="active"
+      <a mat-list-item [routerLink]="['/users',authStore.getEmailId()]" routerLinkActive="active"
         *ngIf="authStore.isLoggedIn$ | async"
         class="nav-link daily-tech monoton">account</a>
       <a mat-list-item routerLink="/search-addresses" routerLinkActive="active"

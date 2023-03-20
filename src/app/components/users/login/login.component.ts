@@ -62,7 +62,8 @@ export class LoginComponent implements OnInit {
     this.adminService.login(val.email, val.password)
       .subscribe(
         () => {
-          this.router.navigateByUrl(`/admin/users`); 
+          localStorage.setItem('email', val.email); 
+          this.router.navigateByUrl(`/admin/users/${val.email}`); 
           },
           err => {
             alert("login failed");
@@ -81,7 +82,7 @@ export class LoginComponent implements OnInit {
       .subscribe(
         () => { 
           localStorage.setItem('email', val.email); 
-          this.router.navigateByUrl(`/user/${val.email}`)  
+          this.router.navigateByUrl(`/users/${val.email}`)  
           },
           err => {
             alert("login failed");
