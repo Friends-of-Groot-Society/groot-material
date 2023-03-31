@@ -1,8 +1,12 @@
 import { Injectable } from '@angular/core';
 import { KeyService } from '../../services/auth/key.service';
-import { HttpHeaders, HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { environment  as env  }from "src/environments/environment";
-import { catchError, Observable, throwError } from "rxjs";
+import {
+  HttpHeaders,
+  HttpClient,
+  HttpErrorResponse,
+} from '@angular/common/http';
+import { environment as env } from 'src/environments/environment';
+import { catchError, Observable, throwError } from 'rxjs';
 // import Moralis from 'moralis'.default();
 // import { EvmChain } from '@moralisweb3/evm-utils'
 import { AuthStore } from 'src/app/services/auth/auth-store.service';
@@ -14,96 +18,99 @@ import { NftRef } from 'src/app/models/NftRef';
 import { Address } from 'src/app/models/Address';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-
 export class NftsService {
-
-  currUser : User;
+  currUser: User;
   key: string = '';
   chain: string = 'ethereum';
-  nftData: Nft; 
+  nftData: Nft;
   nfts: Nft[] = [];
 
   nftsUpdated = new Subject<any[]>();
   nftDataUpdated = new Subject<any>();
   nftRefsUpdated = new Subject<Address>();
- 
 
   constructor(
     private http: HttpClient,
     private keyService: KeyService,
     private loaderService: LoaderService,
-    private authStore: AuthStore,
+    private authStore: AuthStore
   ) {
     this.key = this.keyService.getMoralisKey();
-
   }
-/////////////////////// NFT REF  
-  findNftRefById(id:string): Observable<Address> {
-    return this.http.get<Address>(`${env.nft_url}/addresses/${id}`)
+  /////////////////////// NFT REF
+  findNftRefById(id: string): Observable<Address> {
+    return this.http.get<Address>(`${env.nft_url}/addresses/${id}`);
     // return this.http.get<NftRef>(`${env.nftsURL}/api/nft-refs/${name}${env.test_env}`)
   }
 
-  findNftRefByName(name:string): Observable<Address> {
-    return this.http.get<Address>(`${env.nft_url}/addresses/${name}`)
+  findNftRefByName(name: string): Observable<Address> {
+    return this.http.get<Address>(`${env.nft_url}/addresses/${name}`);
     // return this.http.get<NftRef>(`${env.nftsURL}/api/nft-refs/${name}${env.test_env}`)
   }
   collectNftRefs(): Observable<any> {
-    return this.http.get(`${env.nft_url}/addresses`)
-    // return this.http.get(`${env.nftsURL}/api/nft-refs${env.test_env}`)
-    .pipe(
-      catchError(err => {
-        throw 'error in source. Details: ' + err;
-      }))
-     
-  }
- ///////////////
-  collectNfts(): Observable<any> {
-    return this.http.get(`${env.nftsURL}/api/nft${env.test_env}`)
-    .pipe(
-      catchError(err => {
-        throw 'error in source. Details: ' + err;
-      }))
-
+    return (
+      this.http
+        .get(`${env.nft_url}/addresses`)
+        // return this.http.get(`${env.nftsURL}/api/nft-refs${env.test_env}`)
+        .pipe(
+          catchError((err) => {
+            throw 'error in source. Details: ' + err;
+          })
+        )
+    );
   }
 
-
-  chainNftData(chain: string, address: string) {
-    if (!chain) {
-      chain = this.chain;
-    }
-    this.http.post<Nft>(`${env.nftsURL}/api/nft${env.test_env}`, { chain: chain, address: address },
-      {
-        headers: new HttpHeaders({
-          Accept: 'application/json'
-        })
-      })
-      .pipe(
-        catchError(err => {
-          throw 'error in source. Details: ' + err;
-        }))
-      .subscribe((data: any) => {
-        this.nftData = data;
-        console.log(this.nftData);
-        this.nftDataUpdated.next(this.nftData); 
-        
-        this.nfts.push(this.nftData);
-        this.nftsUpdated.next([...this.nfts]);
-      }) 
-  }
- 
-  getNftData() { 
+  getNftData() {
     return this.nftData;
   }
   getAllNfts() {
     return [...this.nfts];
   }
- 
+
   deleteNft(nftNamed: string) {
     this.nfts = this.nfts.filter((nft: Nft) => {
       return nft !== nftNamed;
     });
     this.nftsUpdated.next(this.nfts);
+  }
+
+  ///// nftFromChain //////////
+  collectNfts(): Observable<any> {
+    return this.http.get(`${env.nftFromChain}/api/nft${env.test_env}`).pipe(
+      catchError((err) => {
+        throw 'error in source. Details: ' + err;
+      })
+    );
+  }
+
+  chainNftData(chain: string, address: string) {
+    if (!chain) {
+      chain = this.chain;
+    }
+    this.http
+      .post<Nft>(
+        `${env.nftFromChain}/api/nft${env.test_env}`,
+        { chain: chain, address: address },
+        {
+          headers: new HttpHeaders({
+            Accept: 'application/json',
+          }),
+        }
+      )
+      .pipe(
+        catchError((err) => {
+          throw 'error in source. Details: ' + err;
+        })
+      )
+      .subscribe((data: any) => {
+        this.nftData = data;
+        console.log(this.nftData);
+        this.nftDataUpdated.next(this.nftData);
+
+        this.nfts.push(this.nftData);
+        this.nftsUpdated.next([...this.nfts]);
+      });
   }
 }
