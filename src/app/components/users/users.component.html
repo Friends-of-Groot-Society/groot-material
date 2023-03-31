@@ -9,13 +9,17 @@
                     <mat-card-content>
                         <mat-card-title>User Details</mat-card-title>
                         <mat-card-subtitle> {{user.email}} </mat-card-subtitle>
-                        <strong>User:</strong>#{{user.id }}:&nbsp; {{user.firstName}} {{user.lastName}}
+                        <strong>User:</strong>#{{user.userId }}:&nbsp; {{user.firstName}} {{user.lastName}}
                         <br /><strong>Member of:</strong>
-                        <em> {{user.groupType}}</em>
+                        <em> {{user.userGroup}}</em>
                         <br /><strong>Since:</strong> {{user.memberSince}}
 
                         <p *ngIf="user.addresses">
                             <strong>Chain-addresses:</strong> {{user.addresses.length}}
+                            <br /> <strong>userGroup:</strong> {{user.userGroup}}
+                            <br />  <strong>photoPath:</strong> {{user.photoPath}}
+                            <br />  <strong>phone:</strong> {{user.phone}} 
+                            <br />   <strong>isActive:</strong> {{user.isActive}}
                         </p>
                         <span *ngIf="user.addresses">
                         </span>
@@ -55,8 +59,36 @@
                     </mat-card>
                     <li *ngFor="let user of users; let index of users">
                         <mat-card>
+                            <mat-card-header>
+                                <img mat-card-image [src]="user.cusUrl" [alt]="user.username" class="chain-logo">
+                            </mat-card-header>
                             <mat-card-content>
-                                <a (click)="loadUser(user.id)" class="btn btn-primary">Details #{{user.id }}: </a>
+                                <mat-card-title>User Details</mat-card-title>
+                                <mat-card-subtitle> {{user.email}} </mat-card-subtitle>
+                                <strong>User:</strong>#{{user.userId }}:&nbsp; {{user.firstName}} {{user.lastName}}
+                                <br /><strong>Member Type:</strong>
+                                <em> {{user.userGroup}}</em>
+                                <br /><strong>Username:</strong> {{user.username}}
+                                <br /><strong>Since:</strong> {{user.memberSince}} 
+
+                                <br /><strong>Username:</strong> {{user.username}}
+                                <br /><strong>Since:</strong> {{user.userGroup}} 
+                                <br /><strong>Username:</strong> {{user.isActive}}
+                                <br /><strong>Since:</strong> {{user.contactType}} 
+        
+                                <p *ngIf="user.addresses">
+                                    <strong>Chain-addresses:</strong> {{user.addresses.length}}
+                                </p>
+                                <span *ngIf="user.addresses">
+                                </span>
+                                <span *ngFor="let add of user.addresses">
+                                    ...{{add.address | slice:-10:-1}}, <strong>on:</strong> {{add.chain | titlecase}}
+                                    <em>{{add.chainId
+                                        }}</em><br />
+                                </span>
+                                <br />
+
+                                <a (click)="loadUser(user.userId)" class="btn btn-primary">Details #{{user.userId }}: </a>
                                 <em>&nbsp;{{user.firstName}} {{user.lastName}}</em>
                                 <span *ngFor="let add of user.addresses">
                                     <br />
@@ -64,7 +96,7 @@
                                     &nbsp;<em>{{add.chainId }}</em>.
                                 </span>
                                 <hr>
-                                <a [routerLink]="['/users', user.id]">
+                                <a [routerLink]="['/users', user.userId]">
                                     {{index + 1}}: {{user.firstName}} {{user.lastName}}
                                 </a>
                             </mat-card-content>

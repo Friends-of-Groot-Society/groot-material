@@ -50,16 +50,13 @@ export class NftsService {
     // return this.http.get<NftRef>(`${env.nftsURL}/api/nft-refs/${name}${env.test_env}`)
   }
   collectNftRefs(): Observable<any> {
-    return (
-      this.http
-        .get(`${env.nft_url}/addresses`)
-        // return this.http.get(`${env.nftsURL}/api/nft-refs${env.test_env}`)
-        .pipe(
-          catchError((err) => {
-            throw 'error in source. Details: ' + err;
-          })
-        )
-    );
+    return this.http.get(`${env.nft_url}/addresses`)
+    // return this.http.get(`${env.nftsURL}/api/nft-refs${env.test_env}`)
+    .pipe(
+      catchError(err => {
+        throw 'error in source. Details: ' + err;
+      }))
+
   }
 
   getNftData() {
@@ -76,34 +73,29 @@ export class NftsService {
     this.nftsUpdated.next(this.nfts);
   }
 
-  ///// nftFromChain //////////
+ ///// nftFromChain //////////
   collectNfts(): Observable<any> {
-    return this.http.get(`${env.nftFromChain}/api/nft${env.test_env}`).pipe(
-      catchError((err) => {
+    return this.http.get(`${env.nftFromChain}/api/nft${env.test_env}`)
+    .pipe(
+      catchError(err => {
         throw 'error in source. Details: ' + err;
-      })
-    );
+      }))
   }
 
   chainNftData(chain: string, address: string) {
     if (!chain) {
       chain = this.chain;
     }
-    this.http
-      .post<Nft>(
-        `${env.nftFromChain}/api/nft${env.test_env}`,
-        { chain: chain, address: address },
-        {
-          headers: new HttpHeaders({
-            Accept: 'application/json',
-          }),
-        }
-      )
-      .pipe(
-        catchError((err) => {
-          throw 'error in source. Details: ' + err;
+    this.http.post<Nft>(`${env.nftFromChain}/api/nft${env.test_env}`, { chain: chain, address: address },
+      {
+        headers: new HttpHeaders({
+          Accept: 'application/json'
         })
-      )
+      })
+      .pipe(
+        catchError(err => {
+          throw 'error in source. Details: ' + err;
+        }))
       .subscribe((data: any) => {
         this.nftData = data;
         console.log(this.nftData);
@@ -111,6 +103,7 @@ export class NftsService {
 
         this.nfts.push(this.nftData);
         this.nftsUpdated.next([...this.nfts]);
-      });
+      })
   }
+
 }

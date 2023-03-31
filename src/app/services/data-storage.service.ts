@@ -18,7 +18,7 @@ import { environment } from 'src/environments/environment';
 export class DataStorageService {
   currUser : User;
   nftRef: NftRef;
-  owner:string;
+  email:string;
   nftData:any;
 
   nftRefs = [];
@@ -31,15 +31,15 @@ export class DataStorageService {
     private nftService: NftsService,
   ) {
 
-    this.owner = localStorage.getItem('email');
+    this.email = localStorage.getItem('email');
    }
 
   savePersistedNfts(chain: string, address: string ) {
     // this.currUser  = this.authStore.currentUserValue;
-    this.owner = localStorage.getItem('email');
+    this.email = localStorage.getItem('email');
     this.nftData = this.nftService.getNftData();
     console.log("nftData", this.nftData);
-    this.nftRef = {chain, address, owner: this.owner, nft: this.nftData}
+    this.nftRef = {chain, address, email: this.email, nft: this.nftData}
     this.httpClient.post<NftRef>(
       `${environment.nft_url}/addresses`,
       // 'https://friends-of-groot-default-rtdb.firebaseio.com/api/nft.json',
@@ -49,7 +49,7 @@ export class DataStorageService {
       tap(response => {
         this.nftRef.name = response.name;
         console.log(this.nftRef);
-        // this.nftService.nftsUpdated.next(this.nftRef);
+        this.nftService.nftsUpdated.next([this.nftRef]);
       })
     )
     .subscribe();

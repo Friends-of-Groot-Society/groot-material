@@ -34,7 +34,7 @@ export class NftComponent implements OnInit {
     price: 0.01,
     owner: '0x0f0c0000f0',
     contract: '0x00000000',
-    tokenId: 0,
+    idToken: 0,
     isForSale: false,
     isForAuction: false,
     isForSwap: false,

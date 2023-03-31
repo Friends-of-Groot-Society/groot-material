@@ -9,12 +9,12 @@ export class JwtInterceptor implements HttpInterceptor {
     constructor(private adminAuthService: AdminAuthenticationService) {}
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        // add authorization header with jwt tokenId if available
+        // add authorization header with jwt idToken if available
         let currentUser = this.adminAuthService.getAuthenticatedUser;
         // if (currentUser && currentUser.token) {
         //     request = request.clone({
         //         setHeaders: { 
-        //             Authorization: `Bearer ${currentUser.tokenId}`
+        //             Authorization: `Bearer ${currentUser.idToken}`
         //         }
         //     });
         // }

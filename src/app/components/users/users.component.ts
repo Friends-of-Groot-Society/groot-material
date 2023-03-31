@@ -23,21 +23,19 @@ export class UsersComponent implements OnInit {
   }
   ngOnInit(): void {   
    this.email = this.route.snapshot.queryParams['email'];
-   this.loadUser(this.email);
+   this.user = this.loadUser(this.email);
    console.log("email "+this.email);
  
   }
 
  
-  public loadUser(email: string) {
-
- 
+  public loadUser(email: string) {  
   this.userService.getUser(email).subscribe((u) => {
 
     return this.user = u
     
     });
-    // return this.user;
+    return this.user;
   } 
 
 }
