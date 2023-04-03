@@ -1,4 +1,4 @@
-<div class="container-panel">
+<div class="container-panel col">
   <h3>All Chains</h3>
 
   <mat-tab-group>
@@ -17,6 +17,10 @@
     </mat-tab>
     <mat-tab label="Polygon" *ngIf="(polygonChains$ | async)?.length > 0">
       <app-chains-card-list [chains]="polygonChains$ | async">
+      </app-chains-card-list>
+    </mat-tab>
+    <mat-tab label="Avalanche" *ngIf="(avalancheChains$ | async)?.length > 0">
+      <app-chains-card-list [chains]="avalancheChains$ | async">
       </app-chains-card-list>
     </mat-tab>
   </mat-tab-group>
