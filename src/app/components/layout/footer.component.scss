@@ -1,0 +1,32 @@
+p {
+  font-size: 0.9rem;
+  color: rgb(220, 220, 247);
+  text-decoration: none;
+}
+a.footer-text {
+  color: rgb(220, 220, 247);
+  text-decoration: none;
+}
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 50vw;
+  min-width: 400px;
+  z-index: 100;
+  padding: .5em 1em;
+  color: rgb(220, 220, 247);
+  text-align: center;
+  line-height: 2rem;
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: .5em .5em 0 0;
+}
+div.menu {
+  background-image: url("../../../assets/bluechipTile.jpg");
+}
+i.fa {
+  color: white;
+}
+.footer-container {
+  display: flex;
+  justify-content: center;
+}
