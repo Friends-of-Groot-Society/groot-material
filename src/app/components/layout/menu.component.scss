@@ -1,78 +1,70 @@
+li.pointer {
+  cursor: pointer;
+}
 
-
- li.pointer  {
-   cursor: pointer;
- }
-
- h1,
- h2,
- h3,
- h4,
- h5,
- h6 {
-     margin: 8px 0;
- }
- .active {
-  background-color: rgba(70, 131, 180, 0.360);
-  border-radius:15px;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 8px 0;
+}
+.active {
+  background-color: rgba(255,255,255,.3);
+  border-radius: 15px;
 }
 
 .nopointer {
-  cursor:not-allowed;
+  cursor: not-allowed;
 }
- p {
-     margin: 0;
- }
+p {
+  margin: 0;
+}
 .nav-link {
-  cursor:pointer;
+  cursor: pointer;
 }
 .logout {
-  transform:translateY(5px)
+  transform: translateY(5px);
 }
- .spacer {
-     flex: 1;
- }
+.spacer {
+  flex: 1;
+}
 mat-toolbar {
-    height:80px;
-}
-mat-toolbar.mat-primary {
-    background: #673ab75c;
+  height: 80px;
 }
 
-div.menu {
-  background-image: url("../../../assets/bluechipTile.jpg");
-}
 #menu-list a {
-
-  color:rgba(255, 255, 255, 0.497);
-  font-family:'roboto';
+  color: rgba(255, 255, 255);
+  font-family: "roboto";
 }
 
- .logo {
-     /* position: relative; */
-     top: -10px;
-     height: 75px;
-     margin: 0 10px;
- }
- .logo-box {
-   background-color:transparent;
-   cursor:pointer;
- }
+.mat-icon {
+  color: #fff;
+}
 
- /* ANIMATION */
+.logo {
+  /* position: relative; */
+  top: -10px;
+  height: 75px;
+  margin: 0 10px;
+}
+.logo-box {
+  background-color: transparent;
+  cursor: pointer;
+}
 
+/* ANIMATION */
 
+a,
+a:visited,
+a:hover {
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1.4rem;
+  min-height: 100%;
+}
 
- a,
- a:visited, a:hover  {
-     text-decoration: none;
-     font-weight:500;
-     font-size: 1.4rem;
-     min-height:100%;
- }
-
- a:active {
-     color: lightgray;
- }
-
-
+a:active {
+  color: lightgray;
+}

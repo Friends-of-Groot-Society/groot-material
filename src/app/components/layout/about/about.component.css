@@ -1,5 +1,5 @@
  .container {
-    background-color: rgba(166, 183, 228, 0.377);
+    background-color: rgba(0,0,0,.5);
  }
 .footer {
     position:absolute;
@@ -11,7 +11,7 @@ mat-tab-group {
     max-height: 800px;
 }
 mat-card-title {
-    text-align:center; 
+    text-align:center;
 }
 .paragraph {
     text-align:justify;

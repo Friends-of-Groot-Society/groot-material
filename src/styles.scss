@@ -3,8 +3,8 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,500,500i,600,600i,700');
 @import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css');
 /* ANGULAR  MATERIAL */
-// @import '@angular/material/prebuilt-themes/indigo-pink.css';  
-@import "@angular/material/prebuilt-themes/deeppurple-amber.css";
+// @import '@angular/material/prebuilt-themes/indigo-pink.css';
+// @import "@angular/material/prebuilt-themes/deeppurple-amber.css";
       // Defined in daily-theme.scss ....old  angular.json
       // "styles": [ "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css", "src/styles.scss" ],
 
@@ -39,7 +39,7 @@ h5,
 h6 {
     margin: 8px 0;
     text-align: center;
-    color:rgb(17, 122, 192);
+    color:#fff;
 }
 
 li {
@@ -308,13 +308,13 @@ p.firstparagraph {
 }
   p.blog-post::after {
       content: " ... ";
-         
+
   }
-  .blog-post::after { 
+  .blog-post::after {
     content: " ... ";
   }
- 
-p.firstparagraph::after {  
+
+p.firstparagraph::after {
     content: " ... ";
 }
 
@@ -329,7 +329,7 @@ p.blog-post {
     text-overflow: clip;
     text-overflow: ellipsis ellipsis;
     text-overflow: ellipsis " [..]";
-    
+
     /* Global values */
     text-overflow: inherit;
     text-overflow: initial;
@@ -340,25 +340,25 @@ p.blog-post {
     text-overflow: clip;
     text-overflow: ellipsis ellipsis;
     text-overflow: ellipsis " [..]";
-    
+
     /* Global values */
     text-overflow: inherit;
     text-overflow: initial;
     text-overflow: revert;
     text-overflow: unset;
   }
- 
+
 p.firstparagraph {
     text-overflow: clip;
     text-overflow: ellipsis ellipsis;
     text-overflow: ellipsis " [..]";
-    
+
     /* Global values */
     text-overflow: inherit;
     text-overflow: initial;
     text-overflow: revert;
     text-overflow: unset;
- 
+
 }
 
 .firstp::first-letter {
