@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
-import {  Observable, map } from 'rxjs'; 
+import {  Observable, map } from 'rxjs';
 import { createHttpObservable } from 'src/app/utility/observable';
 import { LoaderService } from '../loader/loader.service';
 
 @Component({
   selector: 'app-about',
   templateUrl: './about.component.html',
-  styleUrls: ['./about.component.css'],
+  styleUrls: ['./about.component.scss'],
   providers: [LoaderService]
 })
 export class AboutComponent implements OnInit {
-  http$!: Observable<any[]>; 
+  http$!: Observable<any[]>;
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
@@ -20,17 +20,17 @@ export class AboutComponent implements OnInit {
    this.http$
     .pipe(
       map(res => Object.values(res)
-      .filter((res: any) => res.cat3 === "Musing Blockchain") 
+      .filter((res: any) => res.cat3 === "Musing Blockchain")
       ));
 }
   vision:string =``;
   about:string = ``;
-   mission:string = `This website is designed for the web3 experimentation and development, 
-   sponsored by the Friends of Groot Society, intended for fellow Groot fans in an web3 development environment. 
-   <br />Find news, events, photos, and other Groot-related features in the groot society database. 
+   mission:string = `This website is designed for the web3 experimentation and development,
+   sponsored by the Friends of Groot Society, intended for fellow Groot fans in an web3 development environment.
+   <br />Find news, events, photos, and other Groot-related features in the groot society database.
    Please feel free to Contact the Society for News and Updates!`;
    data: any = [];
- 
+
 
 
 }
