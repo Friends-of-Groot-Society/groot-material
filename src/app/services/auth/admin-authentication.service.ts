@@ -3,7 +3,7 @@ import { HttpHeaders, HttpClient, HttpErrorResponse } from '@angular/common/http
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { map, catchError, tap } from 'rxjs/operators';
-import { throwError, BehaviorSubject, Observable } from 'rxjs'; 
+import { throwError, BehaviorSubject, Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 
 import { User } from '../../models/User';
@@ -11,7 +11,7 @@ import { Address } from 'src/app/models/Address';
 export const ID_TOKEN = 'idToken'
 export const AUTH_ADMIN = 'AUTH_ADMIN' // extra auth to be JWT
 export const AUTH_DATA = 'AUTH_DATA'
- 
+
 
 // https://firebase.google.com/docs/reference/rest/auth#section-create-email-password
 export interface FireBaseAuthResponseData {
@@ -22,7 +22,7 @@ export interface FireBaseAuthResponseData {
   expiresIn?: string;
   localId?: string;
   registered?: boolean;
-  
+
 }
 /*
 *displayName  email :  "thomasm1.maestas@gmail.com"
@@ -35,95 +35,77 @@ registered :  true
 */
 export interface GrootAuth extends FireBaseAuthResponseData {
   idToken?: string;
-  userId?:string;
+  userId?: string;
   username: string;
   lastName?: string;
   firstName?: string;
-  groups?:number;
+  groups?: number;
   userType?: number;
-  email?: string; 
+  email?: string;
   phone?: string;
   cusUrl?: string;
   photoPath?: string;
   userGroup?: string;
   isActive?: number; // 0 = inactive, 1 = active
-  groupType?: string; 
+  groupType?: string;
   id?: number;
-  addresses?: Address[];  
+  addresses?: Address[];
 }
 @Injectable({
   providedIn: 'root'
-})  
-export class AdminAuthenticationService { 
-  baseUrl:string;
+})
+export class AdminAuthenticationService {
+  baseUrl: string;
   private uAdminSubject$ = new BehaviorSubject<User>(null);
   adminUser$: Observable<User> = this.uAdminSubject$.asObservable();
 
   isAdminLoggedIn$: Observable<boolean>
   isAdminLoggedOut$: Observable<boolean>
 
- 
-  constructor(private http: HttpClient, private router:Router) { 
-    this.baseUrl = environment.nft_url; 
+
+  constructor(private http: HttpClient, private router: Router) {
+    this.baseUrl = environment.nft_url;
 
     this.isAdminLoggedIn$ = this.adminUser$.pipe(map(user => !!user));
     this.isAdminLoggedOut$ = this.isAdminLoggedIn$.pipe(map(loggedIn => !loggedIn));
 
-   }
-   register({email, password,firstName,lastName}) { 
-    localStorage.setItem('email',  email ); 
-    localStorage.setItem('firstName', firstName );
-   localStorage.setItem('lastName',  lastName );
-    return this.http
-        .post<GrootAuth>(
-          // `https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=${environment.FIREBASE_GROOT} `,
-          `${environment.nft_url}/users/register`,           
-          { 
-            email: email,
-            password: password, 
-            firstName: firstName,
-            lastName: lastName
-      }
-        )
-        .pipe(
-          catchError(this.handleError),
-          tap(resData => {
-            this.executeAuthenticationService(
-              resData.email,
-              resData.localId, // userId
-              resData.idToken  // String id
-            );
-          })
-        )
-   }
-   registerAdmin({email, password,firstName,lastName}) { 
-    localStorage.setItem('email',  email ); 
-    localStorage.setItem('firstName', firstName );
-   localStorage.setItem('lastName',  lastName );
-    return this.http
-        .post<GrootAuth>(
-          `https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=${environment.FIREBASE_GROOT} `,      
-          { 
-            email: email,
-            password: password,
-            returnSecureToken: true
-      }
-        )
-        .pipe(
-          catchError(this.handleError),
-          tap(resData => {
-            this.executeAuthenticationService(
-              resData.email,
-              resData.localId,
-              resData.idToken 
-            );
-          })
-        )
-   }
-   login(email: string, password: string)  {
+  }
+  //////////////////////////////   8080/users/register  //////////////////////////////
+  register({ email, password, firstName, lastName }) {
+    localStorage.setItem('email', email);
+    localStorage.setItem('firstName', firstName);
+    localStorage.setItem('lastName', lastName);
     return this.http
       .post<GrootAuth>(
-      `https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=${environment.FIREBASE_GROOT}`,
+        `${environment.nft_url}/users/register`,
+        {
+          email: email,
+          password: password,
+          firstName: firstName,
+          lastName: lastName
+        }
+      )
+      .pipe(
+        catchError(this.handleError),
+        tap(resData => {
+          localStorage.setItem('email', resData.email);
+          localStorage.setItem('userId', resData.userId);
+          localStorage.setItem('token', resData.idToken);
+        }),
+        tap(resData => {
+          this.executeAuthenticationService(
+            resData.email,
+            resData.userId, // userId
+            resData.idToken  // String id
+          );
+        })
+      )
+  }
+  //////////////////////////////   FIREBASE_GROOT   
+  registerAdmin({ email, password }) {
+    return this.http
+      .post<FireBaseAuthResponseData>(
+        `https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=${environment.FIREBASE_GROOT} `,
         {
           email: email,
           password: password,
@@ -132,20 +114,71 @@ export class AdminAuthenticationService {
       )
       .pipe(
         catchError(this.handleError),
-        tap(resData => { 
-        localStorage.setItem('email', resData.email); 
-        localStorage.setItem('token', resData.idToken);   
-   }),
         tap(resData => {
           this.executeAuthenticationService(
             resData.email,
-            resData.localId,
-            resData.idToken 
+            resData.localId, // userId
+            resData.idToken  // String id
+          );
+        })
+      )
+  }
+  //////////////////////////////   8080/users/login  //////////////////////////////
+  login(email: string, password: string) {
+    return this.http
+      .post<GrootAuth>(
+        `${environment.nft_url}/users/login`,
+        {
+          email: email,
+          password: password,
+          returnSecureToken: true
+        }
+      )
+      .pipe(
+        catchError(this.handleError),
+        tap(resData => {
+          localStorage.setItem('email', resData.email);
+          localStorage.setItem('userId', resData.userId);
+          localStorage.setItem('token', resData.idToken);
+        }),
+        tap(resData => {
+          this.executeAuthenticationService(
+            resData.email,
+            resData.userId,
+            resData.idToken
           );
         })
       );
   }
-   private handleError(errorRes: HttpErrorResponse) {
+
+  //////////////////////////////   FIREBASE_GROOT   
+  loginAdmin(email: string, password: string) {
+    return this.http
+      .post<FireBaseAuthResponseData>(
+        `https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=${environment.FIREBASE_GROOT}`,
+        {
+          email: email,
+          password: password,
+          returnSecureToken: true
+        }
+      )
+      .pipe(
+        catchError(this.handleError),
+        tap(resData => {
+          localStorage.setItem('email', resData.email);
+          localStorage.setItem('token', resData.idToken);
+        }),
+        tap(resData => {
+          this.executeAuthenticationService(
+            resData.email,
+            resData.localId,
+            resData.idToken
+          );
+        })
+      );
+  }
+
+  private handleError(errorRes: HttpErrorResponse) {
     let errorMessage = 'An unknown error occurred!';
     if (!errorRes.error || !errorRes.error.error) {
       return throwError(() => console.log(errorMessage));
@@ -164,21 +197,21 @@ export class AdminAuthenticationService {
     return throwError(() => console.log(errorMessage));
   }
 
-   executeAuthenticationService(
-    email:string,
-    userId:string,
-    token:string 
-   ) {    
+  executeAuthenticationService(
+    email: string,
+    userId: string,
+    token: string
+  ) {
     const user = new User();
     user.email = email;
     user.userId = userId;
-    user.idToken = token; 
+    user.idToken = token;
 
-    this.uAdminSubject$.next(user); 
+    this.uAdminSubject$.next(user);
     localStorage.setItem('AUTH_ADMIN', JSON.stringify(user));
     localStorage.setItem('AUTH_DATA', JSON.stringify(user));
 
-   }
+  }
 
   // executeAuthJwtService(username, password) {
   //   return this.http.post<any>(
@@ -201,28 +234,28 @@ export class AdminAuthenticationService {
   }
 
   getAuthenticatedToken() {
-    if(this.getAuthenticatedUser())
+    if (this.getAuthenticatedUser())
       return localStorage.getItem(ID_TOKEN)
-    else 
+    else
       return null;
   }
-// not for authing in/out, but for admin privileges
-  isAdminLoggedIn() { 
+  // not for authing in/out, but for admin privileges
+  isAdminLoggedIn() {
     let user = localStorage.getItem(AUTH_ADMIN)
     return !(user === null)
   }
-  
-// not for authing in/out, but for admin privileges
+
+  // not for authing in/out, but for admin privileges
   isAdminLoggedOut() {
     let user = localStorage.getItem(AUTH_ADMIN)
     return (user === null)
   }
-  logout(){     
+  logout() {
     this.uAdminSubject$.next(null);
-    this.router.navigate(['/']); 
+    this.router.navigate(['/']);
     localStorage.removeItem('AUTH_ADMIN')
     localStorage.removeItem('AUTH_DATA')
     localStorage.removeItem(ID_TOKEN)
-  } 
+  }
 }
- 
+

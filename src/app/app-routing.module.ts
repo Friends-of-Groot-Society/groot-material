@@ -43,12 +43,12 @@ const routes: Routes = [
   { path: 'contact', component: ContactusComponent },
   // { path: 'servers', component: ChainServersComponent }, 
 
-  { path: 'users', component: UsersComponent, canActivate: [AdminGuardService, UserGuardService] },
-  { path: 'users/:email', component: UsersComponent, canActivate: [AdminGuardService, UserGuardService] },
+  { path: 'users', component: UsersComponent },//, canActivate: [AdminGuardService, UserGuardService] },
+  { path: 'users/:email', component: UsersComponent },//, canActivate: [AdminGuardService, UserGuardService] },
   
-  { path: 'admin/users', component: AdminuserComponent, canActivate: [AdminGuardService, UserGuardService] },
-  { path: 'admin/users/:email', component: AdminuserComponent, canActivate: [AdminGuardService, UserGuardService] },
-  { path: 'members', component: PhotosComponent, canActivate: [UserGuardService] },
+  { path: 'admin/users', component: AdminuserComponent },//, canActivate: [AdminGuardService, UserGuardService] },
+  { path: 'admin/users/:email', component: AdminuserComponent },//, canActivate: [AdminGuardService, UserGuardService] },
+  { path: 'members', component: PhotosComponent },//, canActivate: [UserGuardService] },
   // { path: 'tiles/:albumId', component: PhotosComponent },   
   { path: '**', redirectTo: '' },
 

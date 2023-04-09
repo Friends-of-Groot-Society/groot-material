@@ -18,26 +18,29 @@
         <span class="nav-caption daily-tech monoton">CHAINS</span>
       </a>
     </li>
-    <li routerLinkActive="active">
+    <!-- <li routerLinkActive="active">
       <a mat-list-item routerLink="/about" (click)="onClose()">
         <mat-icon>house</mat-icon>
         <span class="nav-caption daily-tech monoton">ABOUT</span>
       </a>
 
-    </li> 
+    </li>  -->
     <!-- <li routerLinkActive="active">
       <a mat-list-item routerLink="/server" (click)="onClose()">
         <mat-icon>computer</mat-icon>
         <span class="nav-caption daily-tech monoton">SERVER</span>
       </a> 
     </li> -->
-    <li routerLinkActive="active"  *ngIf="((authStore.isLoggedIn$ | async) || (adminAuth.isAdminLoggedIn$ | async))" >
+
+    <li routerLinkActive="active"   >
+    <!-- <li routerLinkActive="active"  *ngIf="((authStore.isLoggedIn$ | async) || (adminAuth.isAdminLoggedIn$ | async))" > -->
       <a mat-list-item routerLink="/users" (click)="onClose()">
         <mat-icon>person</mat-icon>
         <span class="nav-caption daily-tech monoton">USERS</span>
       </a> 
     </li>
-    <li routerLinkActive="active"  *ngIf="((authStore.isLoggedIn$ | async) || (adminAuth.isAdminLoggedIn$ | async))" >
+    <li routerLinkActive="active"   >
+    <!-- <li routerLinkActive="active"  *ngIf="((authStore.isLoggedIn$ | async) || (adminAuth.isAdminLoggedIn$ | async))" > -->
       <a mat-list-item routerLink="/search-addresses" (click)="onClose()">
         <mat-icon>search</mat-icon>
         <span class="nav-caption daily-tech monoton">SEARCH</span>

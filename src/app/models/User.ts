@@ -6,9 +6,7 @@ export class User {
     userId?:string;
     username: string;
     lastName?: string;
-    firstName?: string;
-    groups?:number;
-    userType?: number;
+    firstName?: string; 
     email?: string; 
     phone?: string;
     cusUrl?: string;
