@@ -78,9 +78,7 @@ export class AuthStore {
        localStorage.setItem('lastName',  lastName );
         return this.httpClient
             .post<GrootAuth>( // AuthResponseData
-                `${environment.nft_url}/users/register`,
-                // `https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=${environment.FIREBASE_GROOT} `,
-                {
+                `${environment.nft_url}/users/register`,                 {
                     email: email,
                     password: password, 
                     firstName: firstName,
@@ -103,8 +101,7 @@ export class AuthStore {
         return this.httpClient
             .post<GrootAuth>(
                 `${environment.nft_url}/users/login`,
-                // `https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=${environment.FIREBASE_GROOT}`,
-                {
+                  {
                     email: email,
                     password: password,
                     returnSecureToken: true
@@ -143,7 +140,7 @@ export class AuthStore {
         localStorage.setItem('AUTH_DATA', JSON.stringify(user)); 
         localStorage.setItem('idToken', token);
         localStorage.setItem('userId', userId); 
-    }
+    }  
 
     private handleError(errorRes: HttpErrorResponse) {
         let errorMessage = 'An unknown error occurred!';
