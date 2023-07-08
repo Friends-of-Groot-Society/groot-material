@@ -5,9 +5,7 @@ import { environment } from '../../environments/environment';
 
 
 import * as fromUi from './ui.reducer';
-import * as fromAuth from './auth.reducer';
-import  { NewsReducer } from './news.reducer';
-import { NewsSearchReducer } from './news-search.reducer';
+import * as fromAuth from './auth.reducer'; 
 
 export interface State {
   ui: fromUi.State;

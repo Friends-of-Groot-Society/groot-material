@@ -7,15 +7,11 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 // DEVELOPMENT/PROD URL (replace file in angular.json) 
 import { environment } from '../environments/environment';
 import { MatDialogModule } from '@angular/material/dialog'; 
-
-// GROOT-MARVEL 
-import { PhotosComponent } from './components/photos/photos.component'; 
  
 // SERVICES
 import { StoreModule } from '@ngrx/store';
  
-// LAYOUT 
-import { AboutComponent } from './components/layout/about/about.component'; 
+// LAYOUT  
 import { ContactusComponent } from './components/layout/contactus/contactus.component';
 import { FooterComponent } from './components/layout/footer.component';
 import { HomeComponent } from './components/layout/home.component';
@@ -26,9 +22,7 @@ import { RegisterComponent } from './components/users/register/register.componen
 import { MaterialModule } from './material.module';
 
 // import { MatMomentDateModule } from '@angular/material-moment-adapter';
-import { AlertComponent } from './utility/alert.component';
-import { ChainServersComponent } from './components/chain-servers/chain-servers.component';
-import { ConsoleComponent } from './components/chain-servers/console/console.component';
+import { AlertComponent } from './utility/alert.component'; 
 import { ChainComponent } from './components/chain/chain/chain.component';
 import { ChainsCardListComponent } from './components/chain/chains-card-list/chains-card-list.component';
 import { ChainDialogComponent } from './components/chain/chain-dialog/chain-dialog.component';
@@ -38,8 +32,7 @@ import { NftAddComponent } from './components/nft/nft-add/nft-add.component';
 import { ChaindataComponent } from './components/nft/chaindata/chaindata.component';
 // import { reducers } from './reducers/app.reducer';
 import { LoaderService } from './components/layout/loader/loader.service';
-import { LoaderComponent } from './components/layout/loader/loader.component';
-import { ServerComponent } from './components/chain-servers/server/server.component'; 
+import { LoaderComponent } from './components/layout/loader/loader.component'; 
 import { UsersComponent } from './components/users/users.component';
 import { AddressComponent } from './components/chain/address/address.component';
 import { SearchAddressesComponent } from './components/chain/search-addresses/search-addresses.component';
@@ -60,21 +53,16 @@ import { UserGuardService } from './services/auth/user-guard.service';
 import { AdminuserComponent } from './components/users/adminuser.component';
 @NgModule({
   declarations: [
-    AppComponent, 
-    PhotosComponent, 
+    AppComponent,  
     LoginComponent,
-    RegisterComponent,  
-    AboutComponent, 
+    RegisterComponent,   
     SidenavListComponent,
     MenuComponent,
     ContactusComponent, 
     FooterComponent, 
     UsersComponent,
-    AlertComponent,
-    ChainServersComponent,
-    ConsoleComponent,
-    ChainComponent,
-    ServerComponent,
+    AlertComponent, 
+    ChainComponent, 
     NftsComponent,
     NftComponent,
     NftAddComponent,
