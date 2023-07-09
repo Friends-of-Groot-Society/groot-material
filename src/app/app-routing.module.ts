@@ -1,14 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
-import { NftsComponent } from './components/nft/nfts.component';
-import { PhotosComponent } from './components/photos/photos.component';
+import { NftsComponent } from './components/nft/nfts.component'; 
 import { ChainComponent } from './components/chain/chain/chain.component';
 
 import { SearchAddressesComponent } from './components/chain/search-addresses/search-addresses.component';
 import { MaterialModule } from './material.module';
-
-import { AboutComponent } from './components/layout/about/about.component';
+ 
 import { ContactusComponent } from './components/layout/contactus/contactus.component';
 import { LoginComponent } from './components/users/login/login.component';
 import { RegisterComponent } from './components/users/register/register.component';
@@ -28,8 +26,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
 
   { path: 'chains', component: HomeComponent },
-  { path: "search-addresses", component: SearchAddressesComponent },
-  { path: 'about', component: AboutComponent },
+  { path: "search-addresses", component: SearchAddressesComponent }, 
   { path: 'chains/:id', component: ChainComponent },
 
 
@@ -47,8 +44,7 @@ const routes: Routes = [
   { path: 'users/:email', component: UsersComponent },//, canActivate: [AdminGuardService, UserGuardService] },
   
   { path: 'admin/users', component: AdminuserComponent },//, canActivate: [AdminGuardService, UserGuardService] },
-  { path: 'admin/users/:email', component: AdminuserComponent },//, canActivate: [AdminGuardService, UserGuardService] },
-  { path: 'members', component: PhotosComponent },//, canActivate: [UserGuardService] },
+  { path: 'admin/users/:email', component: AdminuserComponent },//, canActivate: [AdminGuardService, UserGuardService] }, 
   // { path: 'tiles/:albumId', component: PhotosComponent },   
   { path: '**', redirectTo: '' },
 
