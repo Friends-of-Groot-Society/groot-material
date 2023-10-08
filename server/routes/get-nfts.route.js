@@ -1,5 +1,5 @@
 "use strict";
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.postNftData = exports.getNftData = exports.postNfts = exports.postNft = exports.getNftRefsByName = exports.getNftRefs = exports.getNft = void 0;
 var db_data_1 = require("../data/db-data");
 function getNft(req, res) {

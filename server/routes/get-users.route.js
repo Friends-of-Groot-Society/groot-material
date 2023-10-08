@@ -1,5 +1,5 @@
 "use strict";
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.getUserById = exports.getUsers = exports.postLogin = void 0;
 var db_data_1 = require("../data/db-data");
 function postLogin(req, res) {
