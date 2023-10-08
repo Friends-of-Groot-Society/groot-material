@@ -1,5 +1,5 @@
 "use strict";
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.findAddressesForChain = exports.findChainById = exports.NFT_POLY = exports.NFT_ETH = exports.NFTS_POLYGON = exports.NFTS_ETHEREUM = exports.NFT_REFS = exports.USERS = exports.LOGIN = exports.ADDRESSES = exports.CHAINS = void 0;
 exports.CHAINS = {
     1: {
@@ -12,7 +12,7 @@ exports.CHAINS = {
         category: "Mainnet",
         chainListIcon: "https://friends-of-groot-society.s3.amazonaws.com/assets/android-chrome-384x384.png",
         rpcUrl: "https://mainnet.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161",
-        addressesCount: 3
+        addressesCount: 3,
     },
     137: {
         id: 137,
@@ -72,7 +72,7 @@ exports.CHAINS = {
         chainListIcon: "https://friends-of-groot-society.s3.amazonaws.com/assets/android-chrome-384x384.png",
         rpcUrl: "https://api.avax.network/ext/bc/C/rpc",
         addressesCount: 3
-    }
+    },
 };
 exports.ADDRESSES = {
     0: {
@@ -144,7 +144,7 @@ exports.ADDRESSES = {
         blockExplorerUrl: "https://explorer-mainnet.maticvigil.com/address/0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
         ownerId: 0,
         chainId: 43114
-    }
+    },
 };
 exports.LOGIN = [
     { email: "thomasm1.maestas@gmail.com",
@@ -215,7 +215,7 @@ exports.USERS = [
                 ownerId: 0,
                 chainId: 43114
             }
-        ]
+        ],
     },
     {
         id: 1,
@@ -248,7 +248,7 @@ exports.USERS = [
                 ownerId: 1,
                 chainId: 1
             },
-        ]
+        ],
     },
     {
         id: 2,
@@ -281,7 +281,7 @@ exports.USERS = [
                 ownerId: 2,
                 chainId: 1
             },
-        ]
+        ],
     },
 ];
 exports.NFT_REFS = {

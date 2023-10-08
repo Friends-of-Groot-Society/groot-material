@@ -1,5 +1,5 @@
 "use strict";
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.searchAddresses = exports.getAllAddresses = void 0;
 var db_data_1 = require("../data/db-data");
 var timers_1 = require("timers");

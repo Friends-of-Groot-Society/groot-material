@@ -10,7 +10,7 @@ var __assign = (this && this.__assign) || function () {
     };
     return __assign.apply(this, arguments);
 };
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.saveChain = void 0;
 var db_data_1 = require("../data/db-data");
 var timers_1 = require("timers");

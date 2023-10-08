@@ -1,5 +1,5 @@
 "use strict";
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.chainARBITRUM = exports.chainFANTOM = exports.chainFUJI = exports.chainAVA = exports.chainBSC_TEST = exports.chainBSC = exports.chainMUMBAI = exports.chainPOLYGON = exports.chainGOERLI = exports.chainRINKEBY = exports.chainROPSTEIN = exports.chainETH = void 0;
 var EvmChain = require("@moralisweb3/evm-utils").EvmChain;
 exports.chainETH = EvmChain.ETHEREUM;

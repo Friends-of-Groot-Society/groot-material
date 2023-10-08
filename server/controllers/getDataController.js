@@ -14,7 +14,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
+        while (g && (g = 0, op[0] && (_ = 0)), _) try {
             if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
             if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
@@ -35,7 +35,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.getDataController = void 0;
 var moralis_1 = require("moralis");
 function getDataController(address, chain) {
@@ -43,7 +43,7 @@ function getDataController(address, chain) {
         var nativeBal, native, tokenBals, tokens, nftBals, nfts;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, moralis_1["default"].EvmApi.balance.getNativeBalance({
+                case 0: return [4 /*yield*/, moralis_1.default.EvmApi.balance.getNativeBalance({
                         address: address,
                         chain: chain
                     })
@@ -52,7 +52,7 @@ function getDataController(address, chain) {
                 case 1:
                     nativeBal = _a.sent();
                     native = nativeBal.result.balance.ether;
-                    return [4 /*yield*/, moralis_1["default"].EvmApi.token.getWalletTokenBalances({
+                    return [4 /*yield*/, moralis_1.default.EvmApi.token.getWalletTokenBalances({
                             address: address,
                             chain: chain
                         })
@@ -61,10 +61,10 @@ function getDataController(address, chain) {
                 case 2:
                     tokenBals = _a.sent();
                     tokens = tokenBals.result.map(function (token) { return token.display(); });
-                    return [4 /*yield*/, moralis_1["default"].EvmApi.nft.getWalletNFTs({
+                    return [4 /*yield*/, moralis_1.default.EvmApi.nft.getWalletNFTs({
                             address: address,
                             chain: chain,
-                            limit: 10
+                            limit: 10,
                         })
                         // Format outpu to return name, amount and metadata
                     ];
@@ -73,7 +73,7 @@ function getDataController(address, chain) {
                     nfts = nftBals.result.map(function (nft) { return ({
                         name: nft.result.name,
                         amount: nft.result.amount,
-                        metadata: nft.result.metadata
+                        metadata: nft.result.metadata,
                     }); });
                     return [2 /*return*/, { native: native, tokens: tokens, nfts: nfts }];
             }
