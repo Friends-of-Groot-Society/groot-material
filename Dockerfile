@@ -1,7 +1,6 @@
-FROM node:alpine
-WORKDIR /app
-COPY package.json ./package.json
-RUN npm install
-COPY ./ /app
-CMD ["npm", "start"]
+FROM nginx:latest
+WORKDIR /usr/share/nginx/html
+COPY ./groot/index.html index.html
+COPY ./groot ./
+
  

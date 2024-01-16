@@ -21,7 +21,7 @@ import { AdminuserComponent } from './components/users/adminuser.component';
 
 const routes: Routes = [
 
-  { path: '', component: HomeComponent },
+  { path: '', component: NftsComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
 
