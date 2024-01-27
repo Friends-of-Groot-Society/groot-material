@@ -54,7 +54,7 @@ export class ChainComponent implements OnInit {
 
     this.data$ = combineLatest([chain$, addresses$])
       .pipe(
-        map(([chain, addresses]) => {  // map to ChainData
+        map(([chain, addresses]) => {   
           return { chain, addresses }
         }),
         tap(console.log)
