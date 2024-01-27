@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { AddressComponent } from './address.component';
 
 describe('AddressComponent', () => {
@@ -11,7 +10,9 @@ describe('AddressComponent', () => {
       declarations: [ AddressComponent ]
     })
     .compileComponents();
+  });
 
+  beforeEach(() => {
     fixture = TestBed.createComponent(AddressComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
@@ -21,3 +22,4 @@ describe('AddressComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+ 
