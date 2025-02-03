@@ -1,15 +1,16 @@
 
 import Moralis from "moralis"
-import * as express from 'express';
+import express from 'express';
 import * as fs from 'fs';
 import * as https from 'https';
 
 import { Application } from "express";
-import * as path from 'path';
-import * as cors from 'cors';
-import * as chains from './data/db-constants';
-import * as test from './data/db-data';
-
+import path from "path";
+import { fileURLToPath } from "url";
+import cors from 'cors';
+import * as chains from './data/db-constants.js';
+import * as test from './data/db-data.js';
+ 
 
 const app: Application = express();
 app.use(function (req, res, next) {
@@ -20,8 +21,9 @@ app.use(function (req, res, next) {
 app.use(cors({ origin: true }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-
-const { EvmChain } = require("@moralisweb3/evm-utils")
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+import { EvmChain } from "@moralisweb3/common-evm-utils";
 
 // const httpsOptions = { 
 //   key: fs.readFileSync('/etc/letsencrypt/live/cryptomaven.xyz/privkey.pem'),
@@ -29,23 +31,23 @@ const { EvmChain } = require("@moralisweb3/evm-utils")
 // };
 
 ///////// TEST DATA METHODS
-import { getAllChains, getChainById } from "./routes/get-chains.route";
-import { searchAddresses } from "./routes/search-addresses.route";
+import { getAllChains, getChainById } from "./routes/get-chains.route.js";
+import { searchAddresses } from "./routes/search-addresses.route.js";
 // searchAddressesByCategory 
-import { saveChain } from './routes/save-chain.route';
-import { postLogin, getUsers, getUserById, } from './routes/get-users.route';
-// import  {getOpenai} from './routes/openai.route';
-import { getNft, postNft, postNfts, getNftData, postNftData, getNftRefs,getNftRefsByName } from './routes/get-nfts.route';
+import { saveChain } from './routes/save-chain.route.js';
+import { postLogin, getUsers, getUserById, } from './routes/get-users.route.js';
+import  {getOpenai} from './routes/openai.route.js';
+import { getNft, postNft, postNfts, getNftData, postNftData, getNftRefs,getNftRefsByName } from './routes/get-nfts.route.js';
 
 /////// LIVE DATA METHODS
-import { getDataController } from './controllers/getDataController';
+import { getDataController } from './controllers/getDataController.js';
 import { runInThisContext } from "vm";
 
 /////////////// CONSTANTS
 const PORT = 9000;
 
 const API_KEY = process.env["MORALIS_API_KEY"];
-let chain = process.env["DEFAULT_CHAIN"] || 'ETHEREUM'
+let chain:any = process.env["DEFAULT_CHAIN"] || 'ETHEREUM'
 const addressDEFAULT = process.env["DEFAULT_ADDRESS"];
 
 
@@ -70,8 +72,8 @@ app.route('/api/nft-test').post(postNft);
 
 app.route('/api/nfts-test').post(postNfts);
 /// open-ai stuff
-app.use('/api/openai', require('./routes/openai.route'));
-// app.route('/api/openai').post(getOpenai);
+// app.use('/api/openai', require('./routes/openai.route'));
+app.route('/api/openai').get(getOpenai);
 
 
 
@@ -112,7 +114,7 @@ app.post("/api/nft", async (req, res) => {
     case "ETHEREUM":
       chain = chains.chainETH; break;
     case "ROPSTEIN":
-      chain = chains.chainROPSTEIN; break;
+      chain = chains.chainROPSTEN; break;
     case "RINKEBY":
       chain = chains.chainRINKEBY; break;
     case "GOERLI":
@@ -121,7 +123,7 @@ app.post("/api/nft", async (req, res) => {
       chain = chains.chainPOLYGON; break;
     case "MUMBAI":
       chain = chains.chainMUMBAI; break;
-    case "BNB":
+    case "BSC":
       chain = chains.chainBSC; break;
     case "BNB_TEST":
       chain = chains.chainBSC_TEST; break;
@@ -133,6 +135,8 @@ app.post("/api/nft", async (req, res) => {
       chain = chains.chainFANTOM; break;
     case "ARBITRUM":
       chain = chains.chainARBITRUM; break;
+      case "PULSECHAIN":
+        chain = chains.chainPULSECHAIN; break;
     default:
       res.status(400);
       res.json({ error: "chain not supported" })

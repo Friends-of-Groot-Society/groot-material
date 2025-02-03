@@ -1,7 +1,12 @@
-"use strict";
-exports.__esModule = true;
-var express = require("express");
-var openaiController_1 = require("../controllers/openaiController");
-var router = express.Router();
-router.post('/generateimage', openaiController_1.generateImage);
-module.exports = router;
+import * as express from 'express';
+import { generateImage } from '../controllers/openaiController.js';
+export const openaiRouter = express.Router();
+export const getOpenai = async (req, res, next) => {
+    try {
+        return generateImage(req, res);
+    }
+    catch (error) {
+        next(error);
+    }
+};
+//# sourceMappingURL=openai.route.js.map

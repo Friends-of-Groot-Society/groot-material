@@ -1,5 +1,5 @@
 import {Request, Response} from 'express';
-import {CHAINS} from "../data/db-data";
+import {CHAINS} from "../data/db-data.js";
 import {setTimeout} from 'timers';
 
 
