@@ -1,13 +1,10 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.findAddressesForChain = exports.findChainById = exports.NFT_POLY = exports.NFT_ETH = exports.NFTS_POLYGON = exports.NFTS_ETHEREUM = exports.NFT_REFS = exports.USERS = exports.LOGIN = exports.ADDRESSES = exports.CHAINS = void 0;
-exports.CHAINS = {
+export const CHAINS = {
     1: {
         id: 1,
         name: "ethereum",
         symbol: "eth",
         description: "Ethereum Mainnet",
-        longDescription: "NFT - 0x1",
+        longDescription: "Ethereum is the pioneering smart contract platform that enables developers to build decentralized applications (dapps) on a permissionless blockchain. It supports smart contracts, decentralized finance (DeFi), and a broad array of token standards, including ERC-20 and ERC-721. Ethereum’s consensus mechanism transitioned from Proof of Work (PoW) to Proof of Stake (PoS) with the Ethereum 2.0 upgrade, making it more energy-efficient. As the largest smart contract platform by market capitalization and developer activity, Ethereum remains a leader in the blockchain space.",
         iconUrl: "https://s3.amazonaws.com/tmm.net/img/ether.png",
         category: "Mainnet",
         chainListIcon: "https://friends-of-groot-society.s3.amazonaws.com/assets/android-chrome-384x384.png",
@@ -19,7 +16,7 @@ exports.CHAINS = {
         name: "polygon",
         symbol: "matic",
         description: "Polygon Mainnet",
-        longDescription: "NFT - 0x1",
+        longDescription: "Polygon is a Layer 2 scaling solution for Ethereum, offering faster transactions with lower fees while still benefiting from Ethereum’s security. Polygon aims to improve the user experience and developer experience by enabling decentralized applications (dapps) to scale efficiently. With a robust ecosystem and a growing set of tools, Polygon has become a popular choice for DeFi, NFTs, and gaming applications.",
         iconUrl: "https://s3.amazonaws.com/tmm.net/img/polygon.jpg",
         category: "Mainnet",
         chainListIcon: "https://friends-of-groot-society.s3.amazonaws.com/assets/android-chrome-384x384.png",
@@ -28,9 +25,9 @@ exports.CHAINS = {
     },
     56: {
         id: 56,
-        symbol: "bnb",
-        description: "BNB Mainnet",
-        longDescription: "NFT - 0x1",
+        symbol: "bsc",
+        description: "BSC Mainnet",
+        longDescription: "Binance Smart Chain (BSC) is a high-performance blockchain designed for decentralized applications (dApps) and digital asset transactions. It supports smart contracts and offers lower transaction fees and faster confirmation times compared to Ethereum. BSC is compatible with the Ethereum Virtual Machine (EVM), allowing developers to migrate dApps and assets between Ethereum and BSC seamlessly. BSC has gained significant adoption, especially in the DeFi and NFT ecosystems.",
         iconUrl: "https://s3.amazonaws.com/tmm.net/img/bnb.png",
         category: "Mainnet",
         chainListIcon: "https://friends-of-groot-society.s3.amazonaws.com/assets/android-chrome-384x384.png",
@@ -49,16 +46,16 @@ exports.CHAINS = {
         rpcUrl: "https://api.mainnet-beta.solana.com",
         addressesCount: 3
     },
-    999: {
-        id: 999,
+    369: {
+        id: 369,
         name: "pulsechain",
         symbol: "pls",
         description: "Pulsechain Mainnet",
-        longDescription: "NFT - 0x1",
+        longDescription: "NFT - 0x1: Pulsechain is a high-performance blockchain that provides a fast and cost-effective platform for decentralized applications and token transactions. With its focus on scalability and efficiency, Pulsechain offers developers an innovative environment for building blockchain-based solutions.",
         iconUrl: "https://s3.amazonaws.com/tmm.net/img/pulsechain.png",
         category: "Mainnet",
         chainListIcon: "https://friends-of-groot-society.s3.amazonaws.com/assets/android-chrome-384x384.png",
-        rpcUrl: "https://rpc.pulsechain.io",
+        rpcUrl: "https://rpc.pulsechain.com",
         addressesCount: 3
     },
     43114: {
@@ -66,19 +63,31 @@ exports.CHAINS = {
         name: "avalanche",
         symbol: "avax",
         description: "Avalanche C-Chain",
-        longDescription: "NFT - 0x1",
+        longDescription: "Avalanche is a high-performance, scalable, and secure blockchain platform that is compatible with Ethereum's smart contracts. Known for its low fees and fast transaction times, Avalanche provides an environment for decentralized applications (dApps), DeFi, and NFT projects. Avalanche aims to solve many of the scalability and congestion issues seen on other blockchains while maintaining decentralization and security.",
         iconUrl: "https://s3.amazonaws.com/tmm.net/img/avax.png",
         category: "Mainnet",
         chainListIcon: "https://friends-of-groot-society.s3.amazonaws.com/assets/android-chrome-384x384.png",
         rpcUrl: "https://api.avax.network/ext/bc/C/rpc",
         addressesCount: 3
     },
+    250: {
+        id: 250,
+        name: "fantom",
+        symbol: "ftm",
+        description: "Fantom Chain",
+        longDescription: "Fantom is a highly scalable and decentralized Layer 1 blockchain platform designed for dApps and digital assets. Fantom is known for its high speed and low transaction fees, making it ideal for DeFi applications. It provides a highly customizable and EVM-compatible environment for developers.",
+        iconUrl: "https://s3.amazonaws.com/tmm.net/img/fantom.png",
+        category: "Mainnet",
+        chainListIcon: "https://friends-of-groot-society.s3.amazonaws.com/assets/android-chrome-384x384.png",
+        rpcUrl: "https://rpcapi.fantom.network",
+        addressesCount: 3
+    },
 };
-exports.ADDRESSES = {
+export const ADDRESSES = {
     0: {
         id: 0,
         description: "NFT - 0x1",
-        owner: "thomasm1.maestas@gmail.com",
+        owner: "thomas1.maestas@gmail.com",
         address: "0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
         chain: "ethereum",
         blockExplorerUrl: "https://explorer-mainnet.maticvigil.com/address/0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
@@ -88,7 +97,7 @@ exports.ADDRESSES = {
     1: {
         id: 1,
         description: "NFT - 0x1",
-        owner: "thomasm1.maestas@gmail.com",
+        owner: "thomas1.maestas@gmail.com",
         address: "0x5f7B0DDd217D55bFC4927b3E49E3CbF57FA81834",
         chain: "ethereum",
         blockExplorerUrl: "https://explorer-mainnet.maticvigil.com/address/0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
@@ -98,7 +107,7 @@ exports.ADDRESSES = {
     2: {
         id: 2,
         description: "NFT - 0x1",
-        owner: "walter.white@gmail.com",
+        owner: "thomas.maestas@hotmail.com",
         address: "0xcfCa3FEBAceA3AbB643bA90C670D7c4E6D74b633",
         chain: "ethereum",
         blockExplorerUrl: "https://explorer-mainnet.maticvigil.com/address/0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
@@ -108,17 +117,17 @@ exports.ADDRESSES = {
     3: {
         id: 3,
         description: "NFT - 0x1",
-        owner: "walter.white@gmail.com",
+        owner: "crypto.mavn@gmail.com",
         address: "0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
         chain: "ethereum",
         blockExplorerUrl: "https://explorer-mainnet.maticvigil.com/address/0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
-        ownerId: 1,
+        ownerId: 2,
         chainId: 1
     },
     4: {
         id: 4,
         description: "NFT - 0x1",
-        owner: "thomasm1.maestas@gmail.com",
+        owner: "thomas1.maestas@gmail.com",
         address: "0x5f7B0DDd217D55bFC4927b3E49E3CbF57FA81834",
         chain: "polygon",
         blockExplorerUrl: "https://explorer-mainnet.maticvigil.com/address/0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
@@ -128,7 +137,7 @@ exports.ADDRESSES = {
     5: {
         id: 5,
         description: "NFT - 0x1",
-        owner: "thomasm1.maestas@gmail.com",
+        owner: "thomas1.maestas@gmail.com",
         address: "0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
         chain: "polygon",
         blockExplorerUrl: "https://explorer-mainnet.maticvigil.com/address/0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
@@ -138,27 +147,59 @@ exports.ADDRESSES = {
     6: {
         id: 6,
         description: "NFT - 0x1",
-        owner: "thomasm1.maestas@gmail.com",
+        owner: "thomas1.maestas@gmail.com",
         address: "0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
         chain: "avalanche",
         blockExplorerUrl: "https://explorer-mainnet.maticvigil.com/address/0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
         ownerId: 0,
         chainId: 43114
     },
+    7: {
+        id: 7,
+        description: "Pulsechain is a high-performance blockchain that provides a fast and cost-effective platform for decentralized applications and token transactions. With its focus on scalability and efficiency, Pulsechain offers developers an innovative environment for building blockchain-based solutions.",
+        owner: "thomas1.maestas@gmail.com",
+        address: "0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
+        chain: "pulsechain",
+        blockExplorerUrl: "https://explorer-mainnet.maticvigil.com/address/0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
+        ownerId: 0,
+        chainId: 369
+    },
+    8: {
+        id: 8,
+        description: "Pulsechain is a high-performance blockchain that provides a fast and cost-effective platform for decentralized applications and token transactions. With its focus on scalability and efficiency, Pulsechain offers developers an innovative environment for building blockchain-based solutions.",
+        owner: "thomas.maestas@hotmail.com",
+        address: "0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
+        chain: "pulsechain",
+        blockExplorerUrl: "https://explorer-mainnet.maticvigil.com/address/0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
+        ownerId: 1,
+        chainId: 369
+    },
+    9: {
+        id: 9,
+        description: "Pulsechain is a high-performance blockchain that provides a fast and cost-effective platform for decentralized applications and token transactions. With its focus on scalability and efficiency, Pulsechain offers developers an innovative environment for building blockchain-based solutions.",
+        owner: "crypto.mavn@gmail.com",
+        address: "0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
+        chain: "pulsechain",
+        blockExplorerUrl: "https://explorer-mainnet.maticvigil.com/address/0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
+        ownerId: 2,
+        chainId: 369
+    },
 };
-exports.LOGIN = [
-    { email: "thomasm1.maestas@gmail.com",
+export const LOGIN = [
+    { email: "thomas1.maestas@gmail.com",
         password: "pass" },
-    { email: "walter.white@gmail.com",
+    { email: "thomas.maestas@hotmail.com",
+        password: "pass" },
+    { email: "crypto.mavn@gmail.com",
         password: "pass" }
 ];
 /////////// USERS
-exports.USERS = [
+export const USERS = [
     {
         id: 0,
         fName: "Tom",
         lName: "Milton",
-        email: "thomasm1.maestas@gmail.com",
+        email: "thomas1.maestas@gmail.com",
         password: "pass",
         memberSince: "02-04-2020",
         groupType: "Admin",
@@ -168,7 +209,7 @@ exports.USERS = [
             {
                 id: 0,
                 description: "NFT - 0x1",
-                owner: "thomasm1.maestas@gmail.com",
+                owner: "thomas1.maestas@gmail.com",
                 address: "0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
                 chain: "ethereum",
                 blockExplorerUrl: "https://explorer-mainnet.maticvigil.com/address/0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
@@ -178,7 +219,7 @@ exports.USERS = [
             {
                 id: 1,
                 description: "NFT - 0x1",
-                owner: "thomasm1.maestas@gmail.com",
+                owner: "thomas1.maestas@gmail.com",
                 address: "0x5f7B0DDd217D55bFC4927b3E49E3CbF57FA81834",
                 chain: "ethereum",
                 blockExplorerUrl: "https://explorer-mainnet.maticvigil.com/address/0x5f7B0DDd217D55bFC4927b3E49E3CbF57FA81834",
@@ -188,7 +229,7 @@ exports.USERS = [
             {
                 id: 4,
                 description: "NFT - 0x1",
-                owner: "thomasm1.maestas@gmail.com",
+                owner: "thomas1.maestas@gmail.com",
                 address: "0x5f7B0DDd217D55bFC4927b3E49E3CbF57FA81834",
                 chain: "polygon",
                 blockExplorerUrl: "https://explorer-mainnet.maticvigil.com/address/0x5f7B0DDd217D55bFC4927b3E49E3CbF57FA81834",
@@ -198,7 +239,7 @@ exports.USERS = [
             {
                 id: 5,
                 description: "NFT - 0x1",
-                owner: "thomasm1.maestas@gmail.com",
+                owner: "thomas1.maestas@gmail.com",
                 address: "0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
                 chain: "polygon",
                 blockExplorerUrl: "https://explorer-mainnet.maticvigil.com/address/0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
@@ -208,7 +249,7 @@ exports.USERS = [
             {
                 id: 6,
                 description: "NFT - 0x1",
-                owner: "thomasm1.maestas@gmail.com",
+                owner: "thomas1.maestas@gmail.com",
                 address: "0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
                 chain: "avalanche",
                 blockExplorerUrl: "https://explorer-mainnet.maticvigil.com/address/0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
@@ -221,7 +262,7 @@ exports.USERS = [
         id: 1,
         fName: "Jil",
         lName: "G",
-        email: "jil@gmail.com",
+        email: "thomas.maestas@hotmail.com",
         password: "pass",
         memberSince: "02-04-2020",
         groupType: "Premium",
@@ -231,7 +272,7 @@ exports.USERS = [
             {
                 id: 1,
                 description: "NFT - 0x1",
-                owner: "jil@gmail.com",
+                owner: "thomas.maestas@hotmail.com",
                 address: "0xcfCa3FEBAceA3AbB643bA90C670D7c4E6D74b633",
                 chain: "ethereum",
                 blockExplorerUrl: "https://explorer-mainnet.maticvigil.com/address/0xcfCa3FEBAceA3AbB643bA90C670D7c4E6D74b633",
@@ -241,7 +282,7 @@ exports.USERS = [
             {
                 id: 4,
                 description: "NFT - 0x1",
-                owner: "jil@gmail.com",
+                owner: "thomas.maestas@hotmail.com",
                 address: "0x5f7B0DDd217D55bFC4927b3E49E3CbF57FA81834",
                 chain: "polygon",
                 blockExplorerUrl: "https://explorer-mainnet.maticvigil.com/address/0x5f7B0DDd217D55bFC4927b3E49E3CbF57FA81834",
@@ -254,7 +295,7 @@ exports.USERS = [
         id: 2,
         fName: "Walter",
         lName: "White",
-        email: "walter.white@gmail.com",
+        email: "crypto.mavn@gmail.com",
         password: "pass",
         memberSince: "02-04-2020",
         groupType: "Premium",
@@ -264,7 +305,7 @@ exports.USERS = [
             {
                 id: 1,
                 description: "NFT - 0x1",
-                owner: "walter.white@gmail.com",
+                owner: "crypto.mavn@gmail.com",
                 address: "0xcfCa3FEBAceA3AbB643bA90C670D7c4E6D74b633",
                 chain: "binance",
                 blockExplorerUrl: "https://explorer-mainnet.maticvigil.com/address/0xcfCa3FEBAceA3AbB643bA90C670D7c4E6D74b633",
@@ -274,7 +315,7 @@ exports.USERS = [
             {
                 id: 4,
                 description: "NFT - 0x1",
-                owner: "walter.white@gmail.com",
+                owner: "crypto.mavn@gmail.com",
                 address: "0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
                 chain: "binance",
                 blockExplorerUrl: "https://explorer-mainnet.maticvigil.com/address/0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
@@ -284,67 +325,67 @@ exports.USERS = [
         ],
     },
 ];
-exports.NFT_REFS = {
+export const NFT_REFS = {
     "-NKEMZxPfzYObXOMhGvJ": {
         "address": "0xc8d6A88EF3627C7B666117Da5F6d23Ac0B01b156",
         "chain": "avalanche-212",
-        "email": "thomasm1.maestas@gmail.com"
+        "email": "thomas1.maestas@gmail.com"
     },
     "-NKPd8VzgcGjQ3R2FcMD": {
         "address": "0xc8d6A88EF3627C7B666117Da5F6d23Ac0B01b156",
         "chain": "pulsechain23",
-        "email": "thomasm1.maestas@gmail.com"
+        "email": "thomas1.maestas@gmail.com"
     },
     "-NKPdCfqfdZwwRCho-jR": {
         "address": "0xc8d6A88EF3627C7B666117Da5F6d23Ac0B01b156",
         "chain": "pulsechain23",
-        "email": "thomasm1.maestas@gmail.com"
+        "email": "thomas1.maestas@gmail.com"
     },
     "-NKPdDPlAV2on5cNe0X-": {
         "address": "0xc8d6A88EF3627C7B666117Da5F6d23Ac0B01b156",
         "chain": "pulsechain23",
-        "email": "thomasm1.maestas@gmail.com"
+        "email": "thomas1.maestas@gmail.com"
     },
     "-NKPddvcSbmHPtN4j9fR": {
         "address": "0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
         "chain": "ropstein",
-        "email": "thomasm1.maestas@gmail.com"
+        "email": "thomas1.maestas@gmail.com"
     },
     "-NKPdnBQSaiAaFFBLtNd": {
         "address": "0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
         "chain": "rinkeby",
-        "email": "thomasm1.maestas@gmail.com"
+        "email": "thomas1.maestas@gmail.com"
     },
     "-NKPeBEBcT6n1q8jByro": {
         "address": "0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
         "chain": "rinkeby",
-        "email": "thomasm1.maestas@gmail.com"
+        "email": "thomas1.maestas@gmail.com"
     },
     "-NKPeD-QhB5J_Wwe9Obn": {
         "address": "0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
         "chain": "rinkeby",
-        "email": "thomasm1.maestas@gmail.com"
+        "email": "thomas1.maestas@gmail.com"
     },
     "-NKPesZxmixtS5WxSoW_": {
         "address": "0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
         "chain": "fuji",
-        "email": "thomasm1.maestas@gmail.com"
+        "email": "thomas1.maestas@gmail.com"
     },
     "-NKPf17952XsLIaFBCRK": {
         "address": "0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
         "chain": "fuji",
-        "email": "thomasm1.maestas@gmail.com"
+        "email": "thomas1.maestas@gmail.com"
     },
     "-NKPfBg73DGAppuhwvmo": {
         "address": "0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
         "chain": "arbitrum",
-        "email": "thomasm1.maestas@gmail.com"
+        "email": "thomas1.maestas@gmail.com"
     },
     "address": "0xc8d6A88EF3627C7B666117Da5F6d23Ac0B01b156",
     "chain": "mumbai",
-    "email": "thomasm1.maestas@gmail.com"
+    "email": "thomas1.maestas@gmail.com"
 };
-exports.NFTS_ETHEREUM = [
+export const NFTS_ETHEREUM = [
     {
         "0x5f7B0DDd217D55bFC4927b3E49E3CbF57FA81834": {
             native: "0.0687",
@@ -439,7 +480,7 @@ exports.NFTS_ETHEREUM = [
         }
     }
 ];
-exports.NFTS_POLYGON = [
+export const NFTS_POLYGON = [
     {
         "0x5f7B0DDd217D55bFC4927b3E49E3CbF57FA81834": {
             "native": "0.0777",
@@ -537,7 +578,7 @@ exports.NFTS_POLYGON = [
         }
     }
 ];
-exports.NFT_ETH = {
+export const NFT_ETH = {
     native: "0.03435",
     tokens: [
         "12.0 USDC",
@@ -566,7 +607,7 @@ exports.NFT_ETH = {
         }
     ]
 };
-exports.NFT_POLY = {
+export const NFT_POLY = {
     "native": "0.0",
     "tokens": [
         "540.0 BalancerV2.com"
@@ -596,11 +637,10 @@ exports.NFT_POLY = {
         }
     ]
 };
-function findChainById(chainId) {
-    return exports.CHAINS[chainId];
+export function findChainById(chainId) {
+    return CHAINS[chainId];
 }
-exports.findChainById = findChainById;
-function findAddressesForChain(chainId) {
-    return Object.values(exports.ADDRESSES).filter(function (address) { return address.chainId == chainId; });
+export function findAddressesForChain(chainId) {
+    return Object.values(ADDRESSES).filter(address => address.chainId == chainId);
 }
-exports.findAddressesForChain = findAddressesForChain;
+//# sourceMappingURL=db-data.js.map

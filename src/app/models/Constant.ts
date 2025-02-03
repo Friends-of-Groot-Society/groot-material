@@ -6,8 +6,8 @@ export abstract class Constant {
         { id: "5", name: "goerli", description: "Ethereum Goerli", type: "Testnet" },
         { id: "137", name: "polygon", description: "Polygon Mainnet", type: "Mainnet" },
         { id: "80001", name: "mumbai", description: "Polygon Mumbai", type: "Testnet" },
-        { id: "56", name: "bsc", description: "BNB Mainnet", type: "Mainnet" },
-        { id: "97", name: "bsc testnet", description: "BNB Chain Testnet", type: "Testnet" },
+        { id: "56", name: "bsc", description: "BSC Mainnet", type: "Mainnet" },
+        { id: "97", name: "bsc testnet", description: "BSC Chain Testnet", type: "Testnet" },
         { id: "43114", name: "avalanche", description: "Avalanche C-Chain", type: "Mainnet" },
         { id: "43113", name: "fuji", description: "Avalanche Fuji", type: "Testnet" },
         { id: "250", name: "fantom", description: "Fantom", type: "Mainnet" },
@@ -33,7 +33,7 @@ export abstract class Constant {
         { id: 0,
             firstName: "Tom",
             lastName: "Milton",
-            email: "thomasm1.maestas@gmail.com",
+            email: "thomas1.maestas@gmail.com",
             memberSince: "02-04-2020",
             groupType: "Admin",
             addresses: [
@@ -62,7 +62,7 @@ export abstract class Constant {
         { id: 1,
             firstName: "Walter",
             lastName: "White",
-            email: "walter.white@gmail.com",
+            email: "crypto.mavn@gmail.com",
             memberSince: "02-04-2020",
             groupType: "Premium",
             addresses: [

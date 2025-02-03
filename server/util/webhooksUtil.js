@@ -1,32 +1,26 @@
-"use strict";
-exports.__esModule = true;
-exports.validateAlchemySignature = exports.addAlchemyContextToRequest = exports.isValidSignatureForStringBody = exports.isValidSignatureForAlchemyRequest = void 0;
-var crypto = require("crypto");
-function isValidSignatureForAlchemyRequest(request, signingKey) {
+import * as crypto from "crypto";
+export function isValidSignatureForAlchemyRequest(request, signingKey) {
     return isValidSignatureForStringBody(request.alchemy.rawBody, request.alchemy.signature, signingKey);
 }
-exports.isValidSignatureForAlchemyRequest = isValidSignatureForAlchemyRequest;
-function isValidSignatureForStringBody(body, signature, signingKey) {
-    var hmac = crypto.createHmac("sha256", signingKey); // Create a HMAC SHA256 hash using the signing key
+export function isValidSignatureForStringBody(body, signature, signingKey) {
+    const hmac = crypto.createHmac("sha256", signingKey); // Create a HMAC SHA256 hash using the signing key
     hmac.update(body, "utf8"); // Update the token hash with the request body using utf8
-    var digest = hmac.digest("hex");
+    const digest = hmac.digest("hex");
     return signature === digest;
 }
-exports.isValidSignatureForStringBody = isValidSignatureForStringBody;
-function addAlchemyContextToRequest(req, _res, buf, encoding) {
-    var signature = req.headers["x-alchemy-signature"];
+export function addAlchemyContextToRequest(req, _res, buf, encoding) {
+    const signature = req.headers["x-alchemy-signature"];
     // Signature must be validated against the raw string
     var body = buf.toString(encoding || "utf8");
     req.alchemy = {
         rawBody: body,
-        signature: signature
+        signature: signature,
     };
 }
-exports.addAlchemyContextToRequest = addAlchemyContextToRequest;
-function validateAlchemySignature(signingKey) {
-    return function (req, res, next) {
+export function validateAlchemySignature(signingKey) {
+    return (req, res, next) => {
         if (!isValidSignatureForAlchemyRequest(req, signingKey)) {
-            var errMessage = "Signature validation failed, unauthorized!";
+            const errMessage = "Signature validation failed, unauthorized!";
             res.status(403).send(errMessage);
             throw new Error(errMessage);
         }
@@ -35,4 +29,4 @@ function validateAlchemySignature(signingKey) {
         }
     };
 }
-exports.validateAlchemySignature = validateAlchemySignature;
+//# sourceMappingURL=webhooksUtil.js.map

@@ -38,5 +38,3 @@ const openai = new OpenAIApi(configuration);
     });
   }
 };
-
-module.exports = { generateImage };

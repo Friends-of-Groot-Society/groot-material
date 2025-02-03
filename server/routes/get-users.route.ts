@@ -1,6 +1,6 @@
 
 import { Request, Response } from 'express';
-import { USERS } from "../data/db-data";
+import { USERS } from "../data/db-data.js";
 
 
 export function postLogin(req: Request, res: Response) {

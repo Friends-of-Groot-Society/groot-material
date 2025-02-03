@@ -2,7 +2,7 @@
 
 
 import {Request, Response} from 'express';
-import {ADDRESSES} from "../data/db-data";
+import {ADDRESSES} from "../data/db-data.js";
 import {setTimeout} from "timers";
 
 

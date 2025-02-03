@@ -1,10 +1,11 @@
 import Moralis from "moralis";
+import { Network, Alchemy } from 'alchemy-sdk';
 import express from 'express';
-import path from "path";
-import { fileURLToPath } from "url";
+import * as path from 'path';
 import cors from 'cors';
-import * as chains from './data/db-constants.js';
-import * as test from './data/db-data.js';
+import * as chains from './data/db-constants';
+import { getRequiredEnvVar, setDefaultEnvVar } from "./util/envHelpers";
+import { addAlchemyContextToRequest, validateAlchemySignature, } from "./util/webhooksUtil";
 const app = express();
 app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -14,46 +15,44 @@ app.use(function (req, res, next) {
 app.use(cors({ origin: true }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-// const httpsOptions = { 
-//   key: fs.readFileSync('/etc/letsencrypt/live/cryptomaven.xyz/privkey.pem'),
-//   cert: fs.readFileSync('/etc/letsencrypt/live/cryptomaven.xyz/fullchain.pem')
-// };
+const { EvmChain } = require("@moralisweb3/common-evm-utils");
 ///////// TEST DATA METHODS
-import { getAllChains, getChainById } from "./routes/get-chains.route.js";
-import { searchAddresses } from "./routes/search-addresses.route.js";
+import { getAllChains, getChainById } from "./routes/get-chains.route";
+import { searchAddresses } from "./routes/search-addresses.route";
 // searchAddressesByCategory 
-import { saveChain } from './routes/save-chain.route.js';
-import { postLogin, getUsers, getUserById, } from './routes/get-users.route.js';
-import { getOpenai } from './routes/openai.route.js';
-import { getNft, postNft, postNfts, getNftRefs, getNftRefsByName } from './routes/get-nfts.route.js';
+import { saveChain } from './routes/save-chain.route';
+import { postLogin, getUsers, getUserById, } from './routes/get-users.route';
+// import  {getOpenai} from './routes/openai.route';
+import { getNft, postNft, postNfts } from './routes/get-nfts.route';
 /////// LIVE DATA METHODS
-import { getDataController } from './controllers/getDataController.js';
+import { getDataController } from './controllers/getDataController';
 /////////////// CONSTANTS
 const PORT = 9000;
+const ALCHEMY_AUTH_TOKEN = process.env["ALCHEMY_AUTH_TOKEN"];
+const ALCHEMY_ETHEREUM = process.env["ALCHEMY_ETHEREUM"];
+const ALCHEMY_POLYGON = process.env["ALCHEMY_POLYGON"];
 const API_KEY = process.env["MORALIS_API_KEY"];
 let chain = process.env["DEFAULT_CHAIN"] || 'ETHEREUM';
 const addressDEFAULT = process.env["DEFAULT_ADDRESS"];
+const chainPulsechain = process.env["ALCHEMY_PULSECHAIN"];
 //// STATIC FILES
 app.use(express.static(path.join(__dirname, 'public')));
 /// ROUTING
 app.route('/api/chains').get(getAllChains);
 app.route('/api/chains/:id').get(getChainById);
-app.route('/api/nft-refs/:name').get(getNftRefsByName);
 app.route('/api/addresses').get(searchAddresses);
 // app.route('/api/addresses:category').get(searchAddressesByCategory);  
 app.route('/api/chains/:id').put(saveChain);
+// app.route('/api/nft').get(getNft);  
 app.route('/api/login').post(postLogin);
 app.route('/api/users').get(getUsers);
-app.route('/api/users/email/:email').get(getUserById);
-app.route('/api/nft-refs').get(getNftRefs);
+app.route('/api/users/:id').get(getUserById);
 app.route('/api/nft-test').get(getNft);
 app.route('/api/nft-test').post(postNft);
 app.route('/api/nfts-test').post(postNfts);
 /// open-ai stuff
-// app.use('/api/openai', require('./routes/openai.route'));
-app.route('/api/openai').get(getOpenai);
+app.use('/api/openai', require('./routes/openai.route'));
+// app.route('/api/openai').post(getOpenai);
 //// LIVE DATA ROUTES
 app.get("/api/nft", async (req, res) => {
     try {
@@ -68,10 +67,6 @@ app.get("/api/nft", async (req, res) => {
         res.status(500);
         res.json({ error: error.message });
     }
-});
-app.post("/api/nft-test", async (req, res) => {
-    res.status(200);
-    res.json(test.NFTS_ETHEREUM);
 });
 app.post("/api/nft", async (req, res) => {
     const address = req.body.address;
@@ -88,42 +83,54 @@ app.post("/api/nft", async (req, res) => {
     switch (req.body.chain.toUpperCase()) {
         case "ETHEREUM":
             chain = chains.chainETH;
+            ;
             break;
         case "ROPSTEIN":
             chain = chains.chainROPSTEN;
+            ;
             break;
         case "RINKEBY":
             chain = chains.chainRINKEBY;
+            ;
             break;
         case "GOERLI":
             chain = chains.chainGOERLI;
+            ;
             break;
         case "POLYGON":
             chain = chains.chainPOLYGON;
+            ;
             break;
         case "MUMBAI":
             chain = chains.chainMUMBAI;
+            ;
             break;
         case "BSC":
             chain = chains.chainBSC;
+            ;
             break;
         case "BNB_TEST":
             chain = chains.chainBSC_TEST;
+            ;
             break;
         case "AVALANCHE":
             chain = chains.chainAVA;
+            ;
             break;
         case "FUJI":
             chain = chains.chainFUJI;
+            ;
             break;
         case "FANTOM":
             chain = chains.chainFANTOM;
             break;
         case "ARBITRUM":
             chain = chains.chainARBITRUM;
+            ;
             break;
         case "PULSECHAIN":
             chain = chains.chainPULSECHAIN;
+            ;
             break;
         default:
             res.status(400);
@@ -161,14 +168,65 @@ app.get("api/nft/eth/:address", async (req, res) => {
     }
 });
 //// WEBHOOKS
+// polygon
+async function runTest() {
+    app.post(`https://polygon-mainnet.g.alchemy.com/v2/${process.env["ALCHEMY_POLYGON"]}`, async (req, res) => {
+        const settings = {
+            apiKey: ALCHEMY_POLYGON,
+            network: Network.ETH_MAINNET, // Replace with your network.
+        };
+        const alchemy = new Alchemy(settings);
+        async function main() {
+            const latestBlock = await alchemy.core.getBlockNumber();
+            console.log("The latest block number is", latestBlock);
+        }
+        main();
+    });
+}
+// ETHEREUM
+app.post(`https://eth-mainnet.g.alchemy.com/v2/${process.env["ALCHEMY_ETHEREUM"]}`, async (req, res) => {
+    const { Network, Alchemy } = require("alchemy-sdk");
+    const settings = {
+        apiKey: ALCHEMY_ETHEREUM,
+        network: Network.ETH_MAINNET, // Replace with your network.
+    };
+    const alchemy = new Alchemy(settings);
+    async function main() {
+        const latestBlock = await alchemy.core.getBlockNumber();
+        console.log("The latest block number is", latestBlock);
+    }
+});
+async function alchemy() {
+    // setDefaultEnvVar("PORT", "9000");
+    // setDefaultEnvVar("HOST", "127.0.0.1");
+    setDefaultEnvVar("SIGNING_KEY", `${process.env["ALCHEMY_AUTH_TOKEN"]}`);
+    // const port = +getRequiredEnvVar("PORT");
+    // const host = getRequiredEnvVar("HOST");
+    const signingKey = getRequiredEnvVar(`SIGNING_KEY`);
+    // Middleware needed to validate the alchemy signature
+    app.use(express.json({
+        verify: addAlchemyContextToRequest,
+    }));
+    app.use('/api/alchemy', validateAlchemySignature(signingKey));
+    // Register handler for Alchemy Notify webhook events
+    // TODO: update to your own webhook path
+    app.post("/api/alchemy/ethereum", (req, res) => {
+        const webhookEvent = req.body;
+        // Do stuff with with webhook event here!
+        console.log(`Processing webhook event id: ${webhookEvent.id}`);
+        // Be sure to respond with 200 when you successfully process the event
+        res.send("Alchemy Notify is the best!");
+    });
+}
 const startServer = async () => {
     await Moralis.start({
         apiKey: API_KEY,
     });
-    // https.createServer(httpsOptions, app).listen(PORT);
     app.listen(PORT, () => {
         console.log(`HTTP REST API Server listening at http://localhost:${PORT}/api/nft`);
     });
 };
+runTest();
+alchemy();
 startServer();
-//# sourceMappingURL=server.js.map
+//# sourceMappingURL=testAlchemy.js.map

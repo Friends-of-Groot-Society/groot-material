@@ -2,11 +2,11 @@
 import Moralis from "moralis"
 import { Network, Alchemy } from 'alchemy-sdk';
 
-import * as express from 'express';
+import  express from 'express';
 
 import { Application } from "express";
 import * as path from 'path';
-import * as cors from 'cors';
+import  cors from 'cors';
 import * as chains from './data/db-constants'; 
 
 import { getRequiredEnvVar, setDefaultEnvVar } from "./util/envHelpers";
@@ -27,7 +27,7 @@ app.use(cors({ origin: true }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-const { EvmChain } = require("@moralisweb3/evm-utils")
+const { EvmChain } = require("@moralisweb3/common-evm-utils")
 
 
 ///////// TEST DATA METHODS
@@ -51,6 +51,7 @@ const ALCHEMY_POLYGON = process.env["ALCHEMY_POLYGON"];
 const API_KEY = process.env["MORALIS_API_KEY"];
 let chain = process.env["DEFAULT_CHAIN"] || 'ETHEREUM'
 const addressDEFAULT = process.env["DEFAULT_ADDRESS"];
+const chainPulsechain = process.env["ALCHEMY_PULSECHAIN"];
  
 
 
@@ -83,7 +84,7 @@ app.get("/api/nft", async (req, res) => {
 
   try { 
     const address = req.query['address'] || addressDEFAULT;
-    chain = req.query['chain'] || chains.chainETH;
+    chain = (req.query['chain'] as string) || (chains.chainETH as unknown as string);
     const data = await getDataController(address, chain)
     res.status(200)
     res.json(data)
@@ -108,29 +109,31 @@ app.post("/api/nft", async (req, res) => {
   
   switch (req.body.chain.toUpperCase()) {
     case "ETHEREUM":
-      chain = chains.chainETH; break;
+      chain = chains.chainETH as unknown as string; ; break;
     case "ROPSTEIN":
-      chain = chains.chainROPSTEIN; break;
+      chain = chains.chainROPSTEN as unknown as string; ; break;
     case "RINKEBY":
-      chain = chains.chainRINKEBY; break;
+      chain = chains.chainRINKEBY as unknown as string; ; break;
     case "GOERLI":
-      chain = chains.chainGOERLI; break;
+      chain = chains.chainGOERLI as unknown as string; ; break;
     case "POLYGON":
-      chain = chains.chainPOLYGON; break;
+      chain = chains.chainPOLYGON as unknown as string; ; break;
     case "MUMBAI":
-      chain = chains.chainMUMBAI; break;
-    case "BNB":
-      chain = chains.chainBSC; break;
+      chain = chains.chainMUMBAI as unknown as string; ; break;
+    case "BSC":
+      chain = chains.chainBSC as unknown as string; ; break;
     case "BNB_TEST":
-      chain = chains.chainBSC_TEST; break;
+      chain = chains.chainBSC_TEST as unknown as string; ; break;
     case "AVALANCHE":
-      chain = chains.chainAVA; break;
+      chain = chains.chainAVA as unknown as string; ; break;
     case "FUJI":
-      chain = chains.chainFUJI; break;
+      chain = chains.chainFUJI as unknown as string; ; break;
     case "FANTOM":
-      chain = chains.chainFANTOM; break;
+      chain = chains.chainFANTOM as unknown as string; break;
     case "ARBITRUM":
-      chain = chains.chainARBITRUM; break;
+      chain = chains.chainARBITRUM as unknown as string; ; break;
+      case "PULSECHAIN":
+        chain = chains.chainPULSECHAIN as unknown as string; ; break;
     default:
       res.status(400);
       res.json({ error: "chain not supported" })
@@ -221,7 +224,7 @@ async function alchemy(): Promise<void> {
       verify: addAlchemyContextToRequest,
     })
   );
-  app.use(validateAlchemySignature(signingKey));
+  app.use('/api/alchemy', validateAlchemySignature(signingKey));
 
   // Register handler for Alchemy Notify webhook events
   // TODO: update to your own webhook path
