@@ -110,10 +110,10 @@ app.post("/api/nft", async (req, res) => {
   switch (req.body.chain.toUpperCase()) {
     case "ETHEREUM":
       chain = chains.chainETH as unknown as string; ; break;
-    case "ROPSTEIN":
-      chain = chains.chainROPSTEN as unknown as string; ; break;
-    case "RINKEBY":
-      chain = chains.chainRINKEBY as unknown as string; ; break;
+    // case "ROPSTEIN":
+    //   chain = chains.chainROPSTEN as unknown as string; ; break;
+    // case "RINKEBY":
+    //   chain = chains.chainRINKEBY as unknown as string; ; break;
     case "GOERLI":
       chain = chains.chainGOERLI as unknown as string; ; break;
     case "POLYGON":
@@ -126,14 +126,14 @@ app.post("/api/nft", async (req, res) => {
       chain = chains.chainBSC_TEST as unknown as string; ; break;
     case "AVALANCHE":
       chain = chains.chainAVA as unknown as string; ; break;
-    case "FUJI":
-      chain = chains.chainFUJI as unknown as string; ; break;
+    // case "FUJI":
+    //   chain = chains.chainFUJI as unknown as string; ; break;
     case "FANTOM":
       chain = chains.chainFANTOM as unknown as string; break;
     case "ARBITRUM":
       chain = chains.chainARBITRUM as unknown as string; ; break;
-      case "PULSECHAIN":
-        chain = chains.chainPULSECHAIN as unknown as string; ; break;
+      // case "PULSECHAIN":
+      //   chain = chains.chainPULSECHAIN as unknown as string; ; break;
     default:
       res.status(400);
       res.json({ error: "chain not supported" })
@@ -224,7 +224,7 @@ async function alchemy(): Promise<void> {
       verify: addAlchemyContextToRequest,
     })
   );
-  app.use('/api/alchemy', validateAlchemySignature(signingKey));
+  app.use('/api/alchemy', (req, res, next) => validateAlchemySignature(signingKey)(req, res, next));
 
   // Register handler for Alchemy Notify webhook events
   // TODO: update to your own webhook path

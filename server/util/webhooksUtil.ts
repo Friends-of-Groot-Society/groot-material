@@ -1,5 +1,4 @@
-import { NextFunction } from "express";
-import { Request, Response } from "express-serve-static-core";
+import { Request, Response, NextFunction, RequestHandler } from "express";
 
 import * as crypto from "crypto";
 import { IncomingMessage, ServerResponse } from "http";
@@ -48,7 +47,7 @@ export function addAlchemyContextToRequest(
   };
 }
 
-export function validateAlchemySignature(signingKey: string) {
+export function validateAlchemySignature(signingKey: string): RequestHandler {
   return (req: Request, res: Response, next: NextFunction) => {
     if (!isValidSignatureForAlchemyRequest(req as AlchemyRequest, signingKey)) {
       const errMessage = "Signature validation failed, unauthorized!";
