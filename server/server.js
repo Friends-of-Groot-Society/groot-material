@@ -85,51 +85,47 @@ app.post("/api/nft", async (req, res) => {
         res.json({ error: "Invalid chain" });
     }
     ;
-    switch (req.body.chain.toUpperCase()) {
-        case "ETHEREUM":
-            chain = chains.chainETH;
-            break;
-        case "ROPSTEIN":
-            chain = chains.chainROPSTEN;
-            break;
-        case "RINKEBY":
-            chain = chains.chainRINKEBY;
-            break;
-        case "GOERLI":
-            chain = chains.chainGOERLI;
-            break;
-        case "POLYGON":
-            chain = chains.chainPOLYGON;
-            break;
-        case "MUMBAI":
-            chain = chains.chainMUMBAI;
-            break;
-        case "BSC":
-            chain = chains.chainBSC;
-            break;
-        case "BNB_TEST":
-            chain = chains.chainBSC_TEST;
-            break;
-        case "AVALANCHE":
-            chain = chains.chainAVA;
-            break;
-        case "FUJI":
-            chain = chains.chainFUJI;
-            break;
-        case "FANTOM":
-            chain = chains.chainFANTOM;
-            break;
-        case "ARBITRUM":
-            chain = chains.chainARBITRUM;
-            break;
-        case "PULSECHAIN":
-            chain = chains.chainPULSECHAIN;
-            break;
-        default:
-            res.status(400);
-            res.json({ error: "chain not supported" });
-    }
     try {
+        switch (req.body.chain.toUpperCase()) {
+            case "ETHEREUM":
+                chain = chains.chainETH;
+                break;
+            // case "ROPSTEIN":
+            //   chain = chains.chainROPSTEN; break;
+            // case "RINKEBY":
+            //   chain = chains.chainRINKEBY; break;
+            case "GOERLI":
+                chain = chains.chainGOERLI;
+                break;
+            case "POLYGON":
+                chain = chains.chainPOLYGON;
+                break;
+            case "MUMBAI":
+                chain = chains.chainMUMBAI;
+                break;
+            case "BSC":
+                chain = chains.chainBSC;
+                break;
+            case "BNB_TEST":
+                chain = chains.chainBSC_TEST;
+                break;
+            case "AVALANCHE":
+                chain = chains.chainAVA;
+                break;
+            // case "FUJI":
+            //   chain = chains.chainFUJI; break;
+            case "FANTOM":
+                chain = chains.chainFANTOM;
+                break;
+            case "ARBITRUM":
+                chain = chains.chainARBITRUM;
+                break;
+            // case "PULSECHAIN":
+            //   chain = chains.chainPULSECHAIN; break;
+            default:
+                res.status(400);
+                res.json({ error: "chain not supported" });
+        }
         const data = await getDataController(address, chain);
         res.status(200);
         res.json(data);
@@ -166,7 +162,7 @@ const startServer = async () => {
         apiKey: API_KEY,
     });
     // https.createServer(httpsOptions, app).listen(PORT);
-    app.listen(PORT, () => {
+    app.listen(PORT, '0.0.0.0', () => {
         console.log(`HTTP REST API Server listening at http://localhost:${PORT}/api/nft`);
     });
 };

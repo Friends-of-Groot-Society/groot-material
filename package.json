@@ -30,6 +30,7 @@
     "@angular/router": "^14.0.0",
     "@ngrx/store": "^14.3.2",
     "@techiediaries/ngx-qrcode": "^9.1.0",
+    "alchemy-sdk": "^3.5.1",
     "bootstrap": "^3.4.1",
     "day": "0.0.2",
     "firebase": "^11.2.0",
