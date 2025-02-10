@@ -35,8 +35,8 @@ public class NftServiceImpl implements NftService {
         return true;
     }
 
-    public NftDto getNft(int id) {
-        Nft nft = nftRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("not found", "not found", Integer.toString(id)));
+    public NftDto getNft(Long id) {
+        Nft nft = nftRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("not found", "not found", Long.toString(id)));
         return nftMapper.toDto(nft);
     }
 
@@ -66,7 +66,7 @@ public class NftServiceImpl implements NftService {
         }
     }
 
-    public boolean deleteNft(int id) {
+    public boolean deleteNft(Long id) {
   try {
             nftRepository.deleteById(id);
             return true;

@@ -16,13 +16,13 @@ import java.util.Map;
 @NoArgsConstructor
 @Entity
 @Table(name = "NFT_REF")
-public class NftRef    {
+public class NftRef  extends AbstractDomainClass   {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    private int id;
-    private String name;
+    private Long id;
+  private String name;
     private String owner;
     private String email;
     private String address;

@@ -30,7 +30,7 @@ public class AddressesController {
         return new ResponseEntity<>(addressesService.createAddress(c), HttpStatus.CREATED);
     }
     @GetMapping(value = "/{id}")
-    public AddressDto getAddress(@PathVariable("id") int id) {
+    public AddressDto getAddress(@PathVariable("id") Long id) {
 
         return addressesService.getAddress(id);
     }
@@ -46,7 +46,7 @@ public class AddressesController {
         return addressesService.updateAddress(change);
     }
     @DeleteMapping(value = "/{addressId}")
-    public boolean deleteAddress(@PathVariable("addressId") int addressId) {
+    public boolean deleteAddress(@PathVariable("addressId") Long addressId) {
         return addressesService.deleteAddress(addressId);
     }
 

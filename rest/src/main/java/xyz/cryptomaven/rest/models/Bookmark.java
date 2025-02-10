@@ -2,17 +2,18 @@ package xyz.cryptomaven.rest.models;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
-//@NoArgsConstructor
+@NoArgsConstructor
 @Data
-public class Bookmark implements Serializable {
+public abstract class Bookmark  extends AbstractDomainClass{
 
 	private static final long serialVersionUID = 1L;
  	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 	private String title;
 
 	@Column(name="profileurl")
@@ -22,6 +23,10 @@ public class Bookmark implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "shared_by_userid")
 	private User sharedBy;
+
+  public abstract String getItemData();
+
+  public abstract boolean isWeb3Link();
 
 //
 //	public Bookmark(long id, String title, String profileUrl) {

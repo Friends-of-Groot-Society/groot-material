@@ -13,19 +13,20 @@ import lombok.RequiredArgsConstructor;
 @AllArgsConstructor
 @RequiredArgsConstructor
 @Table(name = "NFT")
-public class Nft {
+public class Nft extends AbstractDomainClass {
 
-	@GeneratedValue(strategy = GenerationType.AUTO)
+  private static final long serialVersionUID = 1L;
+
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
-	int id;
-	String name;
-  double amount;
+  private Long id;
+	private String name;
+  private double amount;
 
 //	@OneToOne
 //	@JoinColumn(name = "metadata_metaid")
-  String metadata;
-
-	String nftAddress;
+  private String metadata;
+	private String nftAddress;
 
 
 }

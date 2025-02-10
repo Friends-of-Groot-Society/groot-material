@@ -12,13 +12,15 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @AllArgsConstructor
 @Table(name = "METADATA")
-public class Metadata {
+public class Metadata  extends AbstractDomainClass {
+
+  private static final long serialVersionUID = 1L;
 
   @Id
-  int metaid;
-  String name;
-  String description;
-  String image;
+  private Long id;
+  private String name;
+  private String description;
+  private String image;
   //    @OneToOne(mappedBy = "metadata")
 //    @JoinColumn(name = "nft_id")
   String nft;

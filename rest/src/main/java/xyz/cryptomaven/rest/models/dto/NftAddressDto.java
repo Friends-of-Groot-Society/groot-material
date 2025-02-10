@@ -14,7 +14,7 @@ import java.util.List;
 @Data
 @Builder
 public class NftAddressDto implements Serializable {
-    private  int id;
+    private  Long id;
     private  String address;
     private  Double nativeToken;
 //    @JsonProperty("tokens")

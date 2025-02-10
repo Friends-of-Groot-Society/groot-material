@@ -1,13 +1,28 @@
 package xyz.cryptomaven.rest.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import xyz.cryptomaven.rest.exception.ChainApiException;
+import xyz.cryptomaven.rest.exception.EmailAlreadyExistsException;
+import xyz.cryptomaven.rest.models.Role;
+import xyz.cryptomaven.rest.models.dto.LoginDto;
+import xyz.cryptomaven.rest.models.dto.RegisterDto;
 import xyz.cryptomaven.rest.models.dto.UserDto;
 import xyz.cryptomaven.rest.exception.ResourceNotFoundException;
 import xyz.cryptomaven.rest.mapper.UserMapper;
-import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Service;
 import xyz.cryptomaven.rest.models.User;
+import xyz.cryptomaven.rest.repositories.RoleRepository;
 import xyz.cryptomaven.rest.repositories.UsersRepository;
 import org.springframework.util.StringUtils;
+import xyz.cryptomaven.rest.security.JwtTokenProvider;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,230 +30,292 @@ import java.util.Optional;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
 
-@NoArgsConstructor
+import java.util.*;
+
 @Service
 public class UsersServiceImpl implements UsersService {
 
+  private static final Logger log = LoggerFactory.getLogger(UsersServiceImpl.class);
+  private final JwtTokenProvider jwtTokenProvider;
+  private AuthenticationManager authenticationManager;
+  private PasswordEncoder passwordEncoder;
 
-    private  UsersRepository usersRepository;
-    private UserMapper userMapper;
+  public UsersRepository usersRepository;
+  private RoleRepository roleRepository;
+  private UserMapper userMapper;
+  @Autowired
+  public UsersServiceImpl(
+    AuthenticationManager authenticationManager,
+    PasswordEncoder passwordEncoder,
+    RoleRepository roleRepository,
+    UsersRepository usersRepository,
+    UserMapper userMapper,
+    JwtTokenProvider jwtTokenProvider) {
+    this.authenticationManager = authenticationManager;
+    this.passwordEncoder = passwordEncoder;
+    this.roleRepository = roleRepository;
+    this.userMapper = userMapper;
+    this.usersRepository = usersRepository;
+    this.jwtTokenProvider = jwtTokenProvider;
+  }
 
-    public UsersServiceImpl(UsersRepository usersRepository) {
-        this.usersRepository = usersRepository;
-    }
+  public UsersServiceImpl(JwtTokenProvider jwtTokenProvider) {
+    this.jwtTokenProvider = jwtTokenProvider;
+  }
 
-
-    /**
-     * @param registerDto
-     */
-//    @Override
-//    public void registerUser(RegisterDto registerDto) {
-//
-//        UserDto newUser = new UserDto();
-//        newUser.setUsername(registerDto.getUsername());
-//        newUser.setPassword(registerDto.getPassword());
-//        newUser.setLastName(registerDto.getLastName());
-//        newUser.setFirstName(registerDto.getFirstName());
-//        /// TODO: MOVE LOGIC TO REGISTERDTO
-//        newUser.setUserType(2);
-//        newUser.setEmail(registerDto.getEmail());
-//        newUser.setOrganizationCode("1234567890");
-////        newUser.setRole(registerDto.getRole()); //  registerDto.setRole("USER");
-//
-//        User u = usersRepository.save(userMapper.toEntity(newUser));
-//        userMapper.toDto(u);
-//    }
-
-    /**
-     * @param usernameOrEmail
-     * @param password
-     * @return
-     */
-//    @Override
-//    public UserDto loginUser(String usernameOrEmail, String password) {
-//        User  u = usersRepository.findByUsernameOrEmail(usernameOrEmail, usernameOrEmail).orElseThrow(() -> new ResourceNotFoundException("not found", "not found", usernameOrEmail));
-//
-//        if ( u.getPassword().equals(password)) {
-//            return userMapper.toDto(u) ;
-//        } else {
-//            return null;
-//        }
-//    }
-    /**
-     * @param user
-     * @return
-     */
-    @Override
-    public UserDto createUser(UserDto user) {
-        User u = usersRepository.save(userMapper.toEntity(user));
+  /**
+   * @param username;
+   * @param password;
+   * @return UserDto
+   */
+  @Override
+  public UserDto loginUser(String username, String password){
+    Optional<User> optionalUser = usersRepository.findByUsernameOrEmail(username, username);
+    if(optionalUser.isPresent()) {
+      User u = optionalUser.get();
+      if (passwordEncoder.matches(password, u.getPassword())) {
         return userMapper.toDto(u);
+      }
+    } else {
+      throw new ResourceNotFoundException("User", "username", username);
+    }
+    return userMapper.toDto(optionalUser.get());
+  }
+  /**
+   * @param loginDto;
+   * @return String
+   */
+  @Override
+  public String login(LoginDto loginDto) {
+    Authentication authentication = authenticationManager.authenticate(
+      new UsernamePasswordAuthenticationToken(
+        loginDto.getUsernameOrEmail(),
+        loginDto.getPassword()));
+
+    SecurityContextHolder.getContext().setAuthentication(authentication);
+    return jwtTokenProvider.generateToken(authentication);
+  }
+
+  /**
+   * @param userDto;
+   * @return UserDto
+   */
+  @Override
+  public UserDto createUser(UserDto userDto) {
+    Optional<User> optionalUser = usersRepository.findByEmail(userDto.getEmail());
+    if(optionalUser.isPresent()) {
+      throw new EmailAlreadyExistsException("User already exists");
+    }
+    User user = userMapper.toEntity(userDto);
+    user.setPassword(passwordEncoder.encode(user.getPassword()));
+    Role role = roleRepository.findByName("ROLE_USER").orElseThrow(() -> new ResourceNotFoundException("Role", "name", "ROLE_USER"));
+
+    user.setRoles(Collections.singleton(role));
+    User u = usersRepository.save(user);
+    return userMapper.toDto(u);
+  }
+
+  /**
+   * @param registerDto;
+   * @return String
+   */
+  @Override
+  public String register(RegisterDto registerDto) {
+    if(usersRepository.existsByEmail(registerDto.getEmail())){
+      throw new ChainApiException(HttpStatus.BAD_REQUEST, "Email  already exists!.");
+    }
+    User user = new User();
+    user.setEmail(registerDto.getEmail());
+    user.setPassword(passwordEncoder.encode(registerDto.getPassword()));
+
+    Set<Role> roles = new HashSet<>();
+    Optional<Role> userRole = Optional.ofNullable(roleRepository.findByName("ROLE_USER")
+      .orElseThrow(() -> new ResourceNotFoundException("Role", "name", "ROLE_USER")));
+    roles.add(userRole.get());
+    user.setRoles(roles);
+    User u =  usersRepository.save(user);
+    return   registerDto.getEmail() + ": User registered successfully!";
+  }
+
+
+  /**
+   * @param id
+   * @return UserDto
+   */
+  @Override
+  public Optional<UserDto> getUser(Long id) {
+    try {
+      return Optional.ofNullable(userMapper
+        .toDto(usersRepository.findById(id).orElse(null)));
+    } catch (Exception e) {
+      return null;
+    }
+  }
+
+  /**
+   * @param email;
+   * @return UserDto
+   */
+  @Override
+  public Optional<UserDto> getUser(String email) {
+    try {
+      User u = usersRepository.findByEmail(email).orElseThrow(
+        () -> new ResourceNotFoundException("not found", "not found", email)
+      );
+      return Optional.ofNullable(userMapper.toDto(u));
+    } catch (Exception e) {
+      return null;
+    }
+  }
+
+  /**
+   * @return List<UserDto>
+   */
+  @Override
+  public List<UserDto> getUsers() {
+    List<UserDto> userDtos =null;
+    try {
+      List<User> users = usersRepository.findAll();
+      if (users == null) {
+        throw new ResourceNotFoundException("not found", "not found", "not found");
+      }   else {
+        return users.stream().map(userMapper::toDto).collect(Collectors.toList());
+      }
+    } catch (NullPointerException e) {
+      e.printStackTrace();
+      return new ArrayList<>();
     }
 
-    /**
-     * @param id;
-     * @return Optional<UserDto>
-     */
-    @Override
-    public Optional<UserDto> getUser(int id) {
-        try {
-            User u = usersRepository.findById(id).get();
-            return Optional.ofNullable(userMapper.toDto(u));
-        } catch (Exception e) {
-            return null;
-        }
-    }
-
-    /**
-     * @param id;
-     * @return Optional<UserDto>
-     */
-    public static Optional<UserDto> getUserCli(int id) {
-        try {
-       System.out.println("id is "+id);
-            return Optional.ofNullable(UserDto.builder()
-                    .username("uname").email("email").firstName("fname").lastName("lname").build());
-        } catch (Exception e) {
-            return null;
-        }
-    }
-    /**
-     * @param email;
-     * @return Optional<UserDto>
-     */
-    @Override
-    public Optional<UserDto> getUser(String email) {
-        Optional<UserDto> result;
-        try {
-            User u = usersRepository.findByEmail(email).orElseThrow(() -> new ResourceNotFoundException("not found", "not found", email));
-            result = Optional.ofNullable(userMapper.toDto(u));
-        } catch (Exception e) {
-            result = null;
-        }
-        return result;
-    }
-
-    /**
-     * @return List<UserDto>
-     */
-    @Override
-    public List<UserDto> getUsers() {
-        List<UserDto> userDtos =null;
-        try {
-            List<User> users = usersRepository.findAll();
-            if (users == null) {
-                throw new ResourceNotFoundException("not found", "not found", "not found");
-            }   else {
-                return users.stream().map(userMapper::toDto).collect(Collectors.toList());
-            }
-        } catch (NullPointerException e) {
-            e.printStackTrace();
-            return new ArrayList<>();
-        }
-
-    }
-
-    @Override
-    public Optional<UserDto> getUserByEmailAndPassword(String email, String pw) {
-        User u;
-        try {
-            u = usersRepository.findByEmailAndPassword(email,pw).orElseThrow(() -> new ResourceNotFoundException("not found", "not found", email));
+  }
+  /**
+   * @param email;
+   * @param pw;
+   * @return UserDto
+   */
+  @Override
+  public UserDto getUserByEmailAndPassword(String email, String pw) {
+    User u;
+    try {
+      u = usersRepository.findByEmailAndPassword(email,pw).orElseThrow(() -> new ResourceNotFoundException("not found", "not found", email));
 //                return usersRepository.findByEmailAndPassword(email, pw).get();
-        } catch (Exception e) {
-            return null;
-        }
-        return Optional.ofNullable(userMapper.toDto(u));
+    } catch (Exception e) {
+      return null;
     }
-
-    public UserDto getUserByEmail(String email) {
-        User u;
-        try {
-
-            u = usersRepository.findByEmail(email).orElseThrow(() -> new ResourceNotFoundException("not found", "not found", email));
-        } catch (Exception e) {
-            return null;
-        }
-        return userMapper.toDto(u);
+    return userMapper.toDto(u);
+  }
+  /**
+   * @param email;
+   * @return UserDto
+   */
+  public Optional<UserDto> getUserByEmail(String email) {
+    User u;
+    try {
+      u = usersRepository.findByEmail(email).orElseThrow(() -> new ResourceNotFoundException("not found", "not found", email));
+    } catch (Exception e) {
+      return null;
     }
+    return Optional.ofNullable(userMapper.toDto(u));
+  }
+
+//    public List<User> getUsersWithCoins() {
+//        if (usersRepository.findAll().size() == 0) return null;
+//        return usersRepository.findAll()
+//                .stream()
+//                .filter(u ->
+//                        u.getAddresses().size() > 0 && u.getIsActive() != 0
+//                )
+//                .collect(Collectors.toList());
+//    }
 
 
+  /**
+   * @param change;
+   * @return UserDto
+   */
+  @Override
+  public Optional<UserDto> updateUser(UserDto change) {
+    User existingUser = usersRepository.findByEmail(change.getEmail()).orElseThrow(
+      () -> new ResourceNotFoundException("User", "email", change.getEmail())
+    );
+    User uEntity = userMapper.toEntity(change);
+    User uDone = usersRepository.save(uEntity);
 
-    /**
-     * @param username
-     * @param password
-     * @return
-     */
-    @Override
-    public Optional<UserDto> getUserByPassword(String username, String password) {
-        return null;
+    return Optional.ofNullable(userMapper.toDto(uDone));
+  }
+  /**
+   * @param userId;
+   * @param user;
+   */
+  @Override
+  public Optional<UserDto> updateUserById(Integer userId, UserDto user) {
+    AtomicReference<Optional<UserDto>> atomicReference = new AtomicReference<>();
+
+    usersRepository.findById(userId).ifPresentOrElse(foundUser -> {
+      foundUser.setUsername(user.getUsername());
+      atomicReference.set(Optional.of(userMapper
+        .toDto(usersRepository.save(foundUser))));
+    }, () -> {
+      atomicReference.set(Optional.empty());
+    });
+
+    return atomicReference.get();
+  }
+  /**
+   * @param userId;
+   * @param user;
+   * @return UserDto
+   */
+  @Override
+  public Optional<UserDto> patchUserById(Integer userId, UserDto user) {
+    AtomicReference<Optional<UserDto>> atomicReference = new AtomicReference<>();
+
+    usersRepository.findById(userId).ifPresentOrElse(foundUser -> {
+      if (StringUtils.hasText(user.getUsername())){
+        foundUser.setUsername(user.getUsername());
+      }
+      if (StringUtils.hasText(user.getEmail())){
+        foundUser.setEmail(user.getEmail());
+      }
+      atomicReference.set(Optional.of(userMapper
+        .toDto(usersRepository.save(foundUser))));
+    }, () -> {
+      atomicReference.set(Optional.empty());
+    });
+
+    return atomicReference.get();
+  }
+  /**
+   * @param email;
+   * @return boolean
+   */
+  @Override
+  public boolean deleteUser(String email) {
+    try {
+      User u = usersRepository.findByEmail(email).get();
+      usersRepository.delete(u);
+    } catch (IllegalArgumentException e) {
+      e.printStackTrace();
+      return false;
     }
+    return true;
+  }
 
-    /**
-     * @param change
-     * @return
-     */
-    @Override
-    public Optional<UserDto> updateUser(UserDto change) {
-        try {
-            User uEntity = userMapper.toEntity(change);
-            User uDone = usersRepository.save(uEntity);
+  /**
+   * @param user;
+   * @return boolean
+   */
+  @Override
+  public boolean deleteUser(UserDto user) {
 
-            return Optional.of(userMapper.toDto(uDone));
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return Optional.ofNullable(change);
+    try {
+      User u = usersRepository.findByEmail(user.getEmail()).get();
+      usersRepository.delete(u);
+    } catch (IllegalArgumentException e) {
+      e.printStackTrace();
+      return false;
     }
-    @Override
-    public Optional<UserDto> patchUserById(Integer userId, UserDto user) {
-        AtomicReference<Optional<UserDto>> atomicReference = new AtomicReference<>();
+    return true;
+  }
 
-        usersRepository.findById(userId).ifPresentOrElse(foundUser -> {
-            if (StringUtils.hasText(user.getUsername())){
-                foundUser.setUsername(user.getUsername());
-            }
-            if (StringUtils.hasText(user.getEmail())){
-                foundUser.setEmail(user.getEmail());
-            }
-            atomicReference.set(Optional.of(userMapper
-                    .toDto(usersRepository.save(foundUser))));
-        }, () -> {
-            atomicReference.set(Optional.empty());
-        });
-
-        return atomicReference.get();
-    }
-    /**
-     * @param email
-     * @return
-     */
-    @Override
-    public boolean deleteUser(String email) {
-        try {
-            User u = usersRepository.findByEmail(email).get();
-            usersRepository.delete(u);
-        } catch (IllegalArgumentException e) {
-            e.printStackTrace();
-            return false;
-        }
-        return true;
-    }
-
-    /**
-     * @param user
-     * @return
-     */
-    @Override
-    public boolean deleteUser(UserDto user) {
-
-        try {
-            User u = usersRepository.findByEmail(user.getEmail()).get();
-            usersRepository.delete(u);
-        } catch (IllegalArgumentException e) {
-            e.printStackTrace();
-            return false;
-        }
-        return true;
-    }
 
 }

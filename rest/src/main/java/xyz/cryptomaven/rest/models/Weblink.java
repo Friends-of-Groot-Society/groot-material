@@ -1,20 +1,19 @@
 package xyz.cryptomaven.rest.models;
 
-import xyz.cryptomaven.rest.util.Shareable;
-import lombok.*;
-
 import jakarta.persistence.*;
 
 
 @Entity
 @Table(name = "WEBLINKS")
-public class Weblink extends Bookmark implements Shareable {
+public class Weblink extends Bookmark   {
+
+  private static final long serialVersionUID = 1L;
 	@Id
 //	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "ID_MAKER" )
 //	@SequenceGenerator(name = "ID_MAKER", sequenceName = "ID_MAKER", allocationSize = 1)
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="ID")
-	private long id;
+	private Long id;
 	@Column(name="URL")
 	private String url;
 	@Column(name="HOST")

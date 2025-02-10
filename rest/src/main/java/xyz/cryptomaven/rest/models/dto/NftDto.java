@@ -15,7 +15,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 public class NftDto implements Serializable {
-  private int id;
+  private Long id;
   private String name;
   private int amount;
   private String metadata;

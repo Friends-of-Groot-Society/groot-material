@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.proxy.HibernateProxy;
 
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -13,54 +14,38 @@ import java.util.Set;
 @Builder
 @AllArgsConstructor
 @RequiredArgsConstructor
-@Table(name = "ADDRESS")
+@Table(name = "ADDRESSES")
 public class Address extends AbstractDomainClass {
   private static final long serialVersionUID = 1L;
 
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO, generator = "ID_MAKER")
+  @GeneratedValue(strategy = GenerationType.IDENTITY )
   @Column(name = "id", nullable = false)
-  private int id;
-  private String description;
+  private Long id;
 
+  private String description;
   private String owner;
-  @Column(name = "address" )
   private String address;
+  @Column(name = "icon_url")
+  private String iconUrl;
+  @Column(name = "block_explorer_url")
+  private String blockExplorerUrl;
+  private String nftAddress;
 
   @OneToMany(mappedBy = "address", cascade = CascadeType.ALL, orphanRemoval = true)
   private Set<Chain> chains;
 
-
-  @Column(name = "icon_url")
-  private String iconUrl;
-
-  @Column(name = "block_explorer_url")
-  private String blockExplorerUrl;
-
-//  @ManyToOne(fetch = FetchType.EAGER)
-//  @JoinColumn(name = "userid", foreignKey = @ForeignKey(name = "userid"))
-//  private User user;
-
-  @Column(name = "chain_id")
-  private int chainId;
-
-  //    @ManyToOne( fetch = FetchType.EAGER, cascade=CascadeType.ALL)
-//    @JoinColumn(name ="address")//, foreignKey = @ForeignKey(name = "nft_address_id"))
-  private String nftAddress;
-
   @Override
-  public final boolean equals(Object o) {
+  public boolean equals(Object o) {
     if (this == o) return true;
-    if (o == null) return false;
-    Class<?> oEffectiveClass = o instanceof HibernateProxy ? ((HibernateProxy) o).getHibernateLazyInitializer().getPersistentClass() : o.getClass();
-    Class<?> thisEffectiveClass = this instanceof HibernateProxy ? ((HibernateProxy) this).getHibernateLazyInitializer().getPersistentClass() : this.getClass();
-    if (thisEffectiveClass != oEffectiveClass) return false;
-    Address address = (Address) o;
-    return false;
+    if (o == null || getClass() != o.getClass()) return false;
+    if (!super.equals(o)) return false;
+    Address address1 = (Address) o;
+    return Objects.equals(id, address1.id) && Objects.equals(description, address1.description) && Objects.equals(owner, address1.owner) && Objects.equals(address, address1.address) && Objects.equals(iconUrl, address1.iconUrl) && Objects.equals(blockExplorerUrl, address1.blockExplorerUrl) && Objects.equals(nftAddress, address1.nftAddress) && Objects.equals(chains, address1.chains);
   }
 
   @Override
-  public final int hashCode() {
-    return this instanceof HibernateProxy ? ((HibernateProxy) this).getHibernateLazyInitializer().getPersistentClass().hashCode() : getClass().hashCode();
+  public int hashCode() {
+    return Objects.hash(super.hashCode(), id, description, owner, address, iconUrl, blockExplorerUrl, nftAddress, chains);
   }
 }

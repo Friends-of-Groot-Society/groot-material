@@ -8,13 +8,14 @@ import java.util.List;
 public interface AddressesService {
     public AddressDto createAddress(AddressDto addr);
 
-    public AddressDto getAddress(int id);
+    public AddressDto getAddress(Long id);
 
-    public List<AddressDto> getAllAddresses();
+
+  public List<AddressDto> getAllAddresses();
 
     public AddressDto updateAddress(AddressDto change);
 
-    public boolean deleteAddress(int id);
+    public boolean deleteAddress(Long id);
 
     /////////////////////////
     NftDto createNft(NftDto nftDto);

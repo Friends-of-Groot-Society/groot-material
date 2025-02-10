@@ -1,6 +1,8 @@
 package xyz.cryptomaven.rest.models;
 
-public class UserNftbuy {
+public class UserNftbuy  extends AbstractDomainClass {
+
+  private static final long serialVersionUID = 1L;
     private User user;
     private Nft nft;
     public User getUser() {

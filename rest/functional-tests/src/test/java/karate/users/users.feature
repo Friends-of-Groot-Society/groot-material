@@ -39,7 +39,7 @@ Feature:  users karate test script
   "photoPath": '#(photoPath)',
   "isActive": 0,
   "contactType": 1,
-  "roles": [
+  "ROLES": [
   {
   "id": 2,
   "name": "ROLE_ADMIN"
@@ -100,7 +100,7 @@ Feature:  users karate test script
       "photoPath": '#(photoPath)',
       "isActive": 0,
       "contactType": 1,
-      "roles": [
+      "ROLES": [
             {
                 "id": 1,
                 "name": "ROLE_USER"
@@ -146,7 +146,7 @@ Feature:  users karate test script
     "photoPath":'##string',
     "isActive":'#number',
     "contactType":'##number',
-    "roles": '#array'
+    "ROLES": '#array'
     }
     """
 #    [{"id":1,"name":"ROLE_USER"}]

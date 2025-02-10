@@ -17,4 +17,8 @@ public class PasswordGeneratorEncoder {
         System.out.println(passwordEncoder.encode("admin"));
         log.info(passwordEncoder.encode("admin"));
     }
+  public static String encode(String password) {
+    PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+    return passwordEncoder.encode(password);
+  }
 }

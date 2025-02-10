@@ -28,7 +28,7 @@ public class NftController {
         return new ResponseEntity<>(nftService.createNft(n), HttpStatus.CREATED);
     }
     @GetMapping(value = "/{id}")
-    public ResponseEntity<NftDto>  getNft(@PathVariable("id") int id) {
+    public ResponseEntity<NftDto>  getNft(@PathVariable("id") Long id) {
 
         return new ResponseEntity<>(nftService.getNft(id), HttpStatus.OK);
     }
@@ -44,7 +44,7 @@ public class NftController {
     }
 
     @DeleteMapping(value = "/{id}")
-    public ResponseEntity<Boolean> deleteNft(@PathVariable("id") int addressId) {
+    public ResponseEntity<Boolean> deleteNft(@PathVariable("id") Long addressId) {
         return new ResponseEntity<>(nftService.deleteNft(addressId), HttpStatus.OK);
     }
 

@@ -15,7 +15,7 @@ import java.io.Serializable;
 public class AddressResponse implements Serializable {
     static long serialVersionUID = 1L;
 
-    private int id;
+    private Long id;
 
     private String email;
     private String chain;

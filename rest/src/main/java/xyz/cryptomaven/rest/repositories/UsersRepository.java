@@ -1,30 +1,49 @@
 package xyz.cryptomaven.rest.repositories;
 
+import jakarta.validation.constraints.NotNull;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import xyz.cryptomaven.rest.models.User;
 
 import java.util.List;
 import java.util.Optional;
 
-//@RepositoryRestResource(collectionResourceRel="user", path="user")
-@Repository
-public interface UsersRepository extends JpaRepository<User, Integer> {
 
-    List<User> findAll();
-    User findByUsernameAndPassword(String username, String password);
+@RepositoryRestResource(collectionResourceRel = "user", path = "user")
+public interface UsersRepository extends JpaRepository<User, Long> {
 
-    boolean existsByUsername(String username);
+  // MULTIPLE
+  Page<User> findAllByUserType(Integer userType, Pageable pageable);
 
-    boolean existsByEmail(String email);
+  // SINGULAR
+  Optional<User> findById(@NotNull Integer id);
 
-    Optional<User> findByEmail(String email);
+  boolean existsByUsername(String username);
 
-    Optional<User> findByEmailAndPassword(String email, String password);
+  boolean existsByEmail(String email);
 
-    User findByUsername(String username);
+  Optional<User> findByEmail(String email);
 
-    Optional<User> findByUsernameOrEmail(String usernameOrEmail, String usernameOrEmail1);
+  Optional<User> findByEmailAndPassword(String email, String password);
 
+  Optional<User> findByUsernameOrEmail(String usernameOrEmail, String usernameOrEmail1);
 
+  //    // SQL /////////////////////
+  @Query(nativeQuery = true, value = "SELECT * FROM USERS where FIRSTNAME = :firstName")
+  List<User> findUsersByFirstName(@Param("firstName") String firstName);
+
+  // JPQL  ///////////////////
+  @Query("SELECT u FROM User u WHERE u.firstName LIKE %?1% OR u.lastName LIKE %?1%")
+  List<User> search(String keyword);
+
+  List<User> findByFirstNameOrderByLastNameAsc(String firstName);
+
+  //  // JPQL
+  @Query("SELECT u FROM User u WHERE UPPER(u.firstName) LIKE CONCAT('%',UPPER(?1), '%')")
+  List<User> findByFirstNameContainingIgnoreCase(String firstName);
+//
 }

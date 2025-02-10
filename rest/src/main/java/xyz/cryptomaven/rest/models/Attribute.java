@@ -14,9 +14,10 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @Builder
 @Table(name = "ATTRIBUTE")
-public class Attribute {
+public class Attribute  extends AbstractDomainClass {
+  private static final long serialVersionUID = 1L;
     @Id
-    int attrid;
+    Long attrid;
     String attribute_value;
     String trait_type;
 

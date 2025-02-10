@@ -7,7 +7,7 @@ import java.util.List;
 public interface NftRefService {
     NftRefDto createNftRef(NftRefDto c);
 
-    NftRefDto getNftRef(int id) ;
+    NftRefDto getNftRef(Long id) ;
 
     List<NftRefDto> getAllNftRefsIOwn(String username);
 
@@ -15,6 +15,6 @@ public interface NftRefService {
 
     boolean updateNftRef(NftRefDto change);
 
-    boolean deleteNftRef(int id) ;
+    boolean deleteNftRef(Long id) ;
 
 }

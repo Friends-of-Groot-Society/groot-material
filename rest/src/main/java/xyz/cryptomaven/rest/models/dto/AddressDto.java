@@ -14,7 +14,7 @@ import java.util.Set;
 @Builder
 @Data
 public class AddressDto implements Serializable {
-  private int id;
+  private Long id;
 
   private String description;
 

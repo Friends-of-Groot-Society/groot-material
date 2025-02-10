@@ -17,15 +17,15 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name = "RAW_TOKEN")
-public class RawToken implements Serializable {
-    @Serial
-    private static final long serialVersionUID = 1L;
+public class RawToken  extends AbstractDomainClass {
 
-    @GeneratedValue(strategy = GenerationType.AUTO)
+  private static final long serialVersionUID = 1L;
+
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    private Integer id;
+    private Long id;
 
-    @Column(name = "RAW_TOKEN")
+  @Column(name = "RAW_TOKEN")
     private String rawToken;
 
     @ManyToOne

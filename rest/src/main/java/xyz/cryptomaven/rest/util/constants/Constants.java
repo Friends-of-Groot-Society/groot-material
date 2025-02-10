@@ -41,6 +41,6 @@ public class Constants {
     public static final String FILE_OUT_USER = "src/data/files/fileOutUser.txt" ;
     public static final String FILE_OUT_ARRAY = "src/data/files/fileOutArray.txt" ;
 
-    public static final String FILE_IN_GROUPS = "src/data/files/fileInGroups.txt";
+    public static final String FILE_IN_USERTYPE = "src/data/files/fileInUserType.txt";
 
 }

@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -43,8 +44,8 @@ public ChainsServiceImpl() {
     }
 
     @Override
-    public   ChainDto getChain(int id) {
-        Chain chain = chainsRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("not found", "not found", Integer.toString(id)));
+    public   ChainDto getChain(Long id) {
+        Chain chain = chainsRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("not found", "not found", Long.toString(id)));
             return chainMapper.toOneDto(chain);
     }
     /**
@@ -53,9 +54,8 @@ public ChainsServiceImpl() {
     @Override
     public List<ChainDto> getAllChains() {
         List<Chain> chains = chainsRepository.findAll();
-        List<ChainDto> content = chains.stream().map(chainMapper::toOneDto).collect(Collectors.toList());
 
-        return content;
+      return chains.stream().map(chainMapper::toOneDto).collect(Collectors.toList());
     }
 
     /**
@@ -64,15 +64,18 @@ public ChainsServiceImpl() {
     @Override
     public  ChainDto  getChainByName(String name) {
 
-        Chain c = chainsRepository.findByName(name);
-        return chainMapper.toOneDto(c);
+      assert chainsRepository != null;
+      Optional<Chain> c = chainsRepository.findByName(name);
+      assert chainMapper != null;
+      return chainMapper.toOneDto(c.orElse(null));
     }
 
     public ChainDto updateChain(ChainDto change) {
         try {
             Chain chainUpdate = chainMapper.toEntity(change);
 
-            chainUpdate = chainsRepository.findById(change.getId()).get();
+          assert chainsRepository != null;
+            chainUpdate = chainsRepository.findById(Long.valueOf(change.getId())).get();
             chainUpdate.setName(change.getName());
             chainUpdate.setSymbol(change.getSymbol());
             chainUpdate.setDescription(change.getDescription());
@@ -94,7 +97,7 @@ public ChainsServiceImpl() {
 
     }
     @Override
-    public   boolean deleteChain(int id) {
+    public   boolean deleteChain(Long id) {
         try {
             chainsRepository.deleteById(id);
             return true;

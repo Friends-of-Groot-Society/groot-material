@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 import java.util.Date;
 
 @Data
+@MappedSuperclass
 public class AbstractDomainClass implements Serializable {
 
 

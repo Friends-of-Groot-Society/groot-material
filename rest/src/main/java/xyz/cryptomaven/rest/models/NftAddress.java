@@ -16,11 +16,13 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 @Table(name = "NFT_ADDRESS") /// ANGULAR's NFT.ts
-public class NftAddress {
+public class NftAddress extends AbstractDomainClass {
+
+  private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id", nullable = false)
-	int id;
+  private Long id;
 
   @Column(name = "address")
   String  address;

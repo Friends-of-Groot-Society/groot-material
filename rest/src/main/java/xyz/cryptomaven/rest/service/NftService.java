@@ -7,7 +7,7 @@ import java.util.List;
 public interface NftService {
     boolean createNft(NftDto c);
 
-    NftDto getNft(int id) ;
+    NftDto getNft(Long id) ;
 
     List<NftDto> getAllNftsIOwn(String username);
 
@@ -15,7 +15,7 @@ public interface NftService {
 
     boolean updateNft(NftDto change);
 
-    boolean deleteNft(int id) ;
+    boolean deleteNft(Long id) ;
 
     void nftlotViewAll();
 }

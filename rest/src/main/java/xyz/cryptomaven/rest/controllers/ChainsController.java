@@ -33,7 +33,7 @@ public class ChainsController {
     }
 
     @GetMapping(value = "/chains/{id}")
-    public ChainDto getChain(@PathVariable("id") int id) {
+    public ChainDto getChain(@PathVariable("id") Long id) {
 
         return chainsService.getChain(id);
     }
@@ -51,7 +51,7 @@ public class ChainsController {
         return new ResponseEntity<>(chainsService.updateChain(change), HttpStatus.OK);
     }
     @DeleteMapping(value = "/chains/{id}")
-    public boolean deleteChain(@PathVariable("id") int id) {
+    public boolean deleteChain(@PathVariable("id") Long id) {
 
         return chainsService.deleteChain(id);
     }

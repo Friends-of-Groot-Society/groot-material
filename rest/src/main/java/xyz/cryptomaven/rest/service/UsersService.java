@@ -1,6 +1,11 @@
 package xyz.cryptomaven.rest.service;
 
+import xyz.cryptomaven.rest.models.dto.LoginDto;
+import xyz.cryptomaven.rest.models.dto.RegisterDto;
 import xyz.cryptomaven.rest.models.dto.UserDto;
+
+import java.util.List;
+import java.util.Optional;
 
 import java.util.List;
 import java.util.Optional;
@@ -8,31 +13,27 @@ import java.util.Optional;
 
 public interface UsersService {
 
-	static UserDto deleteUserCli(String s) {return null;
-	}
+  UserDto loginUser(String username, String password);
+  String login(LoginDto loginDto);
+  public UserDto createUser(UserDto user);
+  String register(RegisterDto registerDto);
+  public Optional<UserDto> getUser(Long id);
+  public Optional<UserDto> getUser(String username );
+  public List<UserDto> getUsers();
 
-	static UserDto getUserCli(String s) { return null;
-	}
+  public Optional<UserDto> updateUser(UserDto change);
 
-	public UserDto createUser(UserDto user);
+  UserDto getUserByEmailAndPassword(String email, String pw);
 
-	public static UserDto createUserCli(UserDto user) {
-		return null;
-	}
+//	public List<User> getUsersWithCoins();
 
-	public Optional<UserDto> getUser(int id);
-	public Optional<UserDto>  getUser(String username );
-	public List<UserDto> getUsers();
+  Optional<UserDto> updateUserById(Integer userId, UserDto user);
 
-	public Optional<UserDto> updateUser(UserDto change);
+  Optional<UserDto> patchUserById(Integer userId, UserDto user);
 
-	public Optional<UserDto> getUserByEmailAndPassword(String email, String pw);
+  public boolean deleteUser(String username);
 
-	public Optional<UserDto> getUserByPassword(String username, String password);
+  boolean deleteUser(UserDto user);
 
-	Optional<UserDto> patchUserById(Integer userId, UserDto user);
-
-	public boolean deleteUser(String username);
-
-	boolean deleteUser(UserDto user);
+  Optional<UserDto> getUserByEmail(String email);
 }

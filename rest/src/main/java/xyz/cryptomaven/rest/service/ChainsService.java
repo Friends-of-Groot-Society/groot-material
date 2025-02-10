@@ -12,7 +12,7 @@ public interface ChainsService {
 
     ChainDto createChain(ChainDto cd);
 
-    ChainDto getChain(int id);
+    ChainDto getChain(Long id);
 
     //    @Autowired
     //    public List<Chain> getAllChainsIOwn(String username) {
@@ -25,7 +25,7 @@ public interface ChainsService {
 
     ChainDto updateChain(ChainDto change);
 
-    boolean deleteChain(int id);
+    boolean deleteChain(Long id);
 
     void createChainCLI(ChainDto createdChain);
 }

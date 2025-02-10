@@ -36,8 +36,8 @@ public class NftRefServiceImpl implements NftRefService {
         return newNftRefDto;
     }
 
-    public NftRefDto getNftRef(int id) {
-        NftRef nftRef = nftRefRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("not found", "not found", Integer.toString(id)));
+    public NftRefDto getNftRef(Long id) {
+        NftRef nftRef = nftRefRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("not found", "not found", Long.toString(id)));
         return nftRefMapper.toDto(nftRef);
     }
 
@@ -66,7 +66,7 @@ public class NftRefServiceImpl implements NftRefService {
         }
     }
 
-    public boolean deleteNftRef(int id) {
+    public boolean deleteNftRef(Long id) {
   try {
             nftRefRepository.deleteById(id);
             return true;
