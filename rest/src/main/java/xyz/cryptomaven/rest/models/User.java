@@ -59,17 +59,17 @@ public class User extends AbstractDomainClass {
     private String id;
 
 //     parent of many
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "address", cascade = CascadeType.ALL, orphanRemoval = true)
     @ToString.Exclude
     private List<Address> addresses;
 
   @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
   @JoinTable(
-    name = "USERS_ROLES",
-    joinColumns = {@JoinColumn(name = "userid", referencedColumnName = "userid")},
-    inverseJoinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "id")}
+    name = "users_roles",  // This should match the expected table name
+    joinColumns = @JoinColumn(name = "user_id"),
+    inverseJoinColumns = @JoinColumn(name = "role_id")
   )
-  private Set<Role> roles;
+  private Set<Role> roles = new HashSet<>();
 
 //    public User( String username, String password, String lastName, String firstName, int userType, String organizationCode, String email, String cusUrl, String photoPath, String dashboardCode, int isActive, int contactType, String id, List<Address> user) {
 //        super();
@@ -106,7 +106,7 @@ public class User extends AbstractDomainClass {
 //        this.password = password;
 //    }
 //
-//    // overloaded for OFFER/ Groups must be multi-purpose
+//    // overloaded for OFFER/ UserType must be multi-purpose
 //    public User(int userId, String username, String password, int groups, int userType) {
 //        super();
 //        this.userId = userId;
@@ -158,7 +158,6 @@ public class User extends AbstractDomainClass {
 //    this.lastName = lastName;
 //    this.firstName = firstName;
 //    this.userType = userType;
-//    this.groups = groups;
 //    this.email = email;
 //    this.organizationCode = organizationCode;
 //    this.cusUrl = cusUrl;

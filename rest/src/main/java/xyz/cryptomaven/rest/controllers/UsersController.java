@@ -19,7 +19,6 @@ import java.util.Optional;
 
 
 @CrossOrigin(origins = "*")
-//@RequestMapping("/rest")
 @RestController
 @Tag(
         name = "CRUD REST APIs for User Resource",

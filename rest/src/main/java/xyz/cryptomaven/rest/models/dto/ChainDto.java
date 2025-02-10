@@ -24,7 +24,7 @@ public class ChainDto implements Serializable {
     private String rpcUrl;
     private Integer chainId;
     private String blockExplorerUrl;
-    private Address address;
+    private Address chainAddress;
 
     public String getChainToken() {
         return symbol;

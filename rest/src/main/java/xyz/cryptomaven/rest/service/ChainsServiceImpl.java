@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -53,9 +54,8 @@ public ChainsServiceImpl() {
     @Override
     public List<ChainDto> getAllChains() {
         List<Chain> chains = chainsRepository.findAll();
-        List<ChainDto> content = chains.stream().map(chainMapper::toOneDto).collect(Collectors.toList());
 
-        return content;
+      return chains.stream().map(chainMapper::toOneDto).collect(Collectors.toList());
     }
 
     /**
@@ -64,14 +64,17 @@ public ChainsServiceImpl() {
     @Override
     public  ChainDto  getChainByName(String name) {
 
-        Chain c = chainsRepository.findByName(name);
-        return chainMapper.toOneDto(c);
+      assert chainsRepository != null;
+      Optional<Chain> c = chainsRepository.findByName(name);
+      assert chainMapper != null;
+      return chainMapper.toOneDto(c.orElse(null));
     }
 
     public ChainDto updateChain(ChainDto change) {
         try {
             Chain chainUpdate = chainMapper.toEntity(change);
 
+          assert chainsRepository != null;
             chainUpdate = chainsRepository.findById(change.getId()).get();
             chainUpdate.setName(change.getName());
             chainUpdate.setSymbol(change.getSymbol());

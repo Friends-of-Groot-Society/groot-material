@@ -33,13 +33,14 @@ public class AddressesServiceImpl implements AddressesService {
     public AddressDto createAddress(AddressDto addrDto) {
         Address address = addressMapper.addressDtoToAddress(addrDto);
 
-        if (address != null && (address.getChainId() == 0)) {
-            address.setChainId(addrDto.getChainId());
+        if (address != null && (address.getChains().isEmpty())) {
+            address.setChains(addrDto.getChains());
         }
         if (address != null && (address.getOwner() == null || address.getOwner() == "")) {
             address.setOwner(addrDto.getOwner());
         }
-        Address newAddress = addressesRepository.save(address);
+      assert address != null;
+      Address newAddress = addressesRepository.save(address);
         AddressDto newAddressDto = addressMapper.addressToAddressDto(newAddress);
         return newAddressDto;
     }
@@ -73,7 +74,7 @@ public class AddressesServiceImpl implements AddressesService {
        addUpdate.setChains(change.getChains());
        addUpdate.setOwner(change.getOwner());
        addUpdate.setBlockExplorerUrl(change.getBlockExplorerUrl());
-       addUpdate.setChainId(change.getChainId());
+       addUpdate.setChains(change.getChains());
        addUpdate.setNftAddress(change.getNftAddress());
 
        Address newAddress = addressesRepository.save(addUpdate);

@@ -34,7 +34,7 @@ public class UserDto  implements Serializable {
 
     private String id; // id
 
-  private Set<Role> roles;
+  private Set<Role> ROLES;
     private List<Address> addresses ;
 
     public String getPassword() {

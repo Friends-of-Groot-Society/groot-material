@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.proxy.HibernateProxy;
 
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -21,32 +22,19 @@ public class Address extends AbstractDomainClass {
   @GeneratedValue(strategy = GenerationType.AUTO, generator = "ID_MAKER")
   @Column(name = "id", nullable = false)
   private int id;
+
   private String description;
-
   private String owner;
-  @Column(name = "address" )
+  @Column(name = "address_id")
   private String address;
-
-  @OneToMany(mappedBy = "address", cascade = CascadeType.ALL, orphanRemoval = true)
-  private Set<Chain> chains;
-
-
   @Column(name = "icon_url")
   private String iconUrl;
-
   @Column(name = "block_explorer_url")
   private String blockExplorerUrl;
-
-//  @ManyToOne(fetch = FetchType.EAGER)
-//  @JoinColumn(name = "userid", foreignKey = @ForeignKey(name = "userid"))
-//  private User user;
-
-  @Column(name = "chain_id")
-  private int chainId;
-
-  //    @ManyToOne( fetch = FetchType.EAGER, cascade=CascadeType.ALL)
-//    @JoinColumn(name ="address")//, foreignKey = @ForeignKey(name = "nft_address_id"))
   private String nftAddress;
+
+  @OneToMany(mappedBy = "chainAddress", cascade = CascadeType.ALL, orphanRemoval = true)
+  private Set<Chain> chains = new HashSet<>();
 
   @Override
   public final boolean equals(Object o) {
