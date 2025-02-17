@@ -1,3 +1,5 @@
+
+commit;
 CREATE TABLE addresses
 (
   id                 BIGINT AUTO_INCREMENT NOT NULL,
@@ -8,6 +10,7 @@ CREATE TABLE addresses
   time_updated       datetime              NULL,
   `description`      VARCHAR(255)          NULL,
   owner              VARCHAR(255)          NULL,
+  email              VARCHAR(255)          NULL,
   address            VARCHAR(255)          NULL,
   icon_url           VARCHAR(255)          NULL,
   block_explorer_url VARCHAR(255)          NULL,
@@ -177,6 +180,10 @@ CREATE TABLE weblinks
   CONSTRAINT pk_weblinks PRIMARY KEY (id)
 );
 
+-- custom adds V2
+
+-- added by Hibernnate IntellJ below
+
 ALTER TABLE nft_address_stamp_nfts
   ADD CONSTRAINT uc_nft_address_stamp_nfts_nfts UNIQUE (nfts_id);
 
@@ -206,37 +213,3 @@ ALTER TABLE users_roles
 
 ALTER TABLE users_roles
   ADD CONSTRAINT fk_userol_on_user FOREIGN KEY (user_id) REFERENCES users (userid);
-
-
-
--- 1) ADDRESSES: 3 rows
-INSERT INTO addresses (
-  id, version, date_created, time_created, last_updated, time_updated,
-  description, owner, address, icon_url, block_explorer_url, nft_address
-)
-VALUES
-  (1, 1, '2025-02-14 10:00:00', '2025-02-14 10:00:00', '2025-02-14 10:00:00', '2025-02-14 10:00:00',
-   'Main address', 'Alice', '0x12345...', 'https://icons.example.com/icon1.png', 'https://explorer1.com', '0xabc...'),
-  (2, 1, '2025-02-14 11:00:00', '2025-02-14 11:00:00', '2025-02-14 11:00:00', '2025-02-14 11:00:00',
-   'Backup address', 'Bob', '0x67890...', 'https://icons.example.com/icon2.png', 'https://explorer2.com', '0xdef...'),
-  (3, 1, '2025-02-14 12:00:00', '2025-02-14 12:00:00', '2025-02-14 12:00:00', '2025-02-14 12:00:00',
-   'Spare address', 'Charlie', '0x55555...', 'https://icons.example.com/icon3.png', 'https://explorer3.com', '0x123abc...');
-
--- 1) ATTRIBUTE: 3 rows (no FKs)
-INSERT INTO attribute (
-  attrid, version, date_created, time_created, last_updated, time_updated,
-  attribute_value, trait_type
-)
-VALUES
-  (1, 1, '2025-02-14', '2025-02-14', '2025-02-14', '2025-02-14', 'Red', 'Color'),
-  (2, 1, '2025-02-14', '2025-02-14', '2025-02-14', '2025-02-14', 'XL', 'Size'),
-  (3, 1, '2025-02-14', '2025-02-14', '2025-02-14', '2025-02-14', 'Sharp', 'Quality');
-
--- 1) CATEGORIES: 3 rows
-INSERT INTO categories (
-  id, name, description
-)
-VALUES
-  (1, 'Tech', 'Technology news'),
-  (2, 'Health', 'Health & wellness'),
-  (3, 'Sports', 'Sports updates');

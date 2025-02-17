@@ -13,6 +13,7 @@ import java.io.Serializable;
 @Setter
 public class LoginDto  implements Serializable {
     static long serialVersionUID = 1L;
+    private String email;
     private String usernameOrEmail;
     private String password;
 
@@ -22,6 +23,4 @@ public class LoginDto  implements Serializable {
     }
 
 
-    public void setEmail(String mail) {
-    }
 }

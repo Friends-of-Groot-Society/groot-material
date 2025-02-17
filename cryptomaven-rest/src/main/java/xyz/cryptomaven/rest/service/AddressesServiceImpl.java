@@ -1,12 +1,14 @@
 package xyz.cryptomaven.rest.service;
 
 
+import xyz.cryptomaven.rest.mapper.ChainMapper;
 import xyz.cryptomaven.rest.models.Nft;
 import xyz.cryptomaven.rest.models.dto.AddressDto;
 import xyz.cryptomaven.rest.mapper.AddressMapper;
 import xyz.cryptomaven.rest.models.Address;
 import xyz.cryptomaven.rest.mapper.NftMapper;
 
+import xyz.cryptomaven.rest.models.dto.ChainDto;
 import xyz.cryptomaven.rest.models.dto.NftDto;
 import xyz.cryptomaven.rest.repositories.NftRepository;
 import xyz.cryptomaven.rest.repositories.AddressesRepository;
@@ -28,14 +30,16 @@ public class AddressesServiceImpl implements AddressesService {
 
     @Autowired
     private NftMapper nftMapper;
+  @Autowired
+  private ChainMapper chainMapper;
 
-    @Override
+  @Override
     public AddressDto createAddress(AddressDto addrDto) {
         Address address = addressMapper.addressDtoToAddress(addrDto);
 
-        if (address != null && (address.getChains().isEmpty())) {
-            address.setChains(addrDto.getChains());
-        }
+//        if (address != null && (address.getChains().isEmpty())) {
+//            address.setChains(addrDto.getChains());
+//        }
         if (address != null && (address.getOwner() == null || address.getOwner() == "")) {
             address.setOwner(addrDto.getOwner());
         }
@@ -72,10 +76,9 @@ public class AddressesServiceImpl implements AddressesService {
        addUpdate.setDescription(change.getDescription());
        addUpdate.setIconUrl(change.getIconUrl());
 //       addUpdate.setUser(change.getUser());
-       addUpdate.setChains(change.getChains());
        addUpdate.setOwner(change.getOwner());
        addUpdate.setBlockExplorerUrl(change.getBlockExplorerUrl());
-       addUpdate.setChains(change.getChains());
+//       addUpdate.setChains(() -> chainMapper.toEntity((ChainDto) change.getChains()));
        addUpdate.setNftAddress(change.getNftAddress());
 
        Address newAddress = addressesRepository.save(addUpdate);

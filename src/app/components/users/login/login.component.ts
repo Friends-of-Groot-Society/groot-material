@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
     //   this.router.navigate(['/']);
     // }
     this.loginForm = formBuilder.group({
-      email: [this.user.email, 
+      email: [this.user.usernameOrEmail, 
         [Validators.required, Validators.email]],
       password: [this.user.password, 
         [Validators.required,Validators.minLength(4),Validators.maxLength(30)]]
@@ -62,6 +62,7 @@ export class LoginComponent implements OnInit {
     this.adminService.login(val.email, val.password)
       .subscribe(
         () => {
+          
           localStorage.setItem('email', val.email); 
           this.router.navigateByUrl(`/admin/users/${val.email}`); 
           },
@@ -82,6 +83,7 @@ export class LoginComponent implements OnInit {
       .subscribe(
         () => { 
           localStorage.setItem('email', val.email); 
+          
           this.router.navigateByUrl(`/users/${val.email}`)  
           },
           err => {

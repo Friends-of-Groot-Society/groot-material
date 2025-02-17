@@ -10,10 +10,10 @@ import java.util.Optional;
 
 public interface UsersService {
 
-  UserDto loginUser(String username, String password);
+  UserDto loginNoToken(String username, String password);
   String login(LoginDto loginDto);
   public UserDto createUser(UserDto user);
-  String register(RegisterDto registerDto);
+  UserDto register(RegisterDto registerDto);
   public Optional<UserDto> getUser(Long id);
   public Optional<UserDto> getUser(String username );
   public List<UserDto> getUsers();
@@ -28,7 +28,11 @@ public interface UsersService {
 
   Optional<UserDto> patchUserById(Integer userId, UserDto user);
 
-  public boolean deleteUser(String username);
+  public boolean deleteUser(Integer userId);
+
+
+  public boolean deleteUserByEmail(String email);
+
 
   boolean deleteUser(UserDto user);
 

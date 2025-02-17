@@ -8,6 +8,7 @@ CREATE TABLE addresses
   time_updated       datetime              NULL,
   `description`      VARCHAR(255)          NULL,
   owner              VARCHAR(255)          NULL,
+  email              VARCHAR(255)          NULL,
   address            VARCHAR(255)          NULL,
   icon_url           VARCHAR(255)          NULL,
   block_explorer_url VARCHAR(255)          NULL,

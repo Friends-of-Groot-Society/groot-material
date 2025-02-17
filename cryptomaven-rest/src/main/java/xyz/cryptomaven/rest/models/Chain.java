@@ -36,7 +36,6 @@ public class Chain extends AbstractDomainClass {
 
   @ManyToOne (fetch = FetchType.LAZY)
   @JoinColumn(name = "chain_address_id" )
-//  @ToString.Exclude
   private Address address;
 
   @Override

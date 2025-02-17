@@ -63,6 +63,7 @@ export class NftAddComponent implements OnInit {
     console.log( this.nftsService.getNftData())  
     if(form.valid) {
       this.nftData =  this.dataStore.savePersistedNfts(form.value.chain, form.value.address)  
+      console.log(this.nftData);
        } 
     } 
     

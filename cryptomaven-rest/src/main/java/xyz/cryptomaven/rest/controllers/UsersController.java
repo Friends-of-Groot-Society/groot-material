@@ -12,6 +12,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import xyz.cryptomaven.rest.exception.ResourceNotFoundException;
 import xyz.cryptomaven.rest.mapper.UserMapper;
+import xyz.cryptomaven.rest.models.User;
 import xyz.cryptomaven.rest.models.dto.JWTAuthResponse;
 import xyz.cryptomaven.rest.models.dto.LoginDto;
 import xyz.cryptomaven.rest.models.dto.RegisterDto;
@@ -82,6 +83,7 @@ public class UsersController {
         return new ResponseEntity<>(usersService.getUser((long) userId).get(), HttpStatus.OK);
     }
 
+
     @Operation(
             summary = "Get User By EMAIL REST API",
             description = "Get User By EMAIL REST API is used to get a single user from the database"
@@ -127,14 +129,15 @@ public class UsersController {
             description = "HTTP Status 201 SUCCESS"
     )
     @PostMapping({USER_PATH+"/auth/register", USER_PATH+"/auth/signup"})
-    public ResponseEntity<String> register(@RequestBody RegisterDto registerDto) {
-        String response = usersService.register(registerDto);
+    public ResponseEntity<UserDto> register(@RequestBody RegisterDto registerDto) {
+      UserDto response = usersService.register(registerDto);
 
         HttpHeaders headers = new HttpHeaders();
         headers.add("Location", USER_PATH + "/" + registerDto.getEmail());
 
         return new ResponseEntity<>(response, headers, HttpStatus.CREATED);
     }
+
     // Build Login REST API
     @Operation(
             summary = "Login User REST API",
@@ -150,6 +153,8 @@ public class UsersController {
 
         JWTAuthResponse jwtAuthResponse = new JWTAuthResponse();
         jwtAuthResponse.setAccessToken(token);
+      jwtAuthResponse.setIdToken(token);
+      jwtAuthResponse.setEmail(loginDto.getUsernameOrEmail());
 
         return ResponseEntity.ok(jwtAuthResponse);
     }
@@ -162,7 +167,6 @@ public class UsersController {
             responseCode = "200",
             description = "HTTP Status 200 SUCCESS"
     )
-
     @PutMapping(value = {USER_PATH + "/{email}",USER_PATH}, consumes = "application/json")  // userId in body
     public ResponseEntity<UserDto> updateUser(@PathVariable("email") String email, @RequestBody UserDto userDto) {
         Optional<UserDto> updated = usersService.updateUser(userDto);
@@ -204,12 +208,12 @@ public class UsersController {
     @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping(value = USER_PATH_ID)
     public ResponseEntity<Boolean> deleteUser(@PathVariable("userId") int userId) {
-        Boolean boolSuccess = null;
+        Boolean boolSuccess = false;
 
         Optional<UserDto> tempUser = usersService.getUser((long) userId);
         if (tempUser == null) throw new ResourceNotFoundException("User " + userId + "not found to delete");
         try {
-            boolSuccess = usersService.deleteUser(String.valueOf(tempUser));
+            boolSuccess = usersService.deleteUser(userId);
             if (boolSuccess) {
                 return new ResponseEntity<>(boolSuccess, HttpStatus.OK);
             }

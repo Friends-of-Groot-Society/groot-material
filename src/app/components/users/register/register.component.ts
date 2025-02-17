@@ -52,10 +52,10 @@ export class RegisterComponent implements OnInit {
         Validators.maxLength(30) 
       ]],
       firstName: [this.user.firstName, [
-        Validators.required
+         
       ]],
       lastName: [this.user.lastName, [
-        Validators.required
+        
       ]]
     });
   } 

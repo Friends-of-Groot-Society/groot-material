@@ -1,5 +1,7 @@
 package xyz.cryptomaven.rest.controllers;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import xyz.cryptomaven.rest.models.dto.NftDto;
 import xyz.cryptomaven.rest.service.NftService;
 import xyz.cryptomaven.rest.util.constants.Constants;
@@ -17,36 +19,47 @@ import java.util.List;
 @RestController
 public class NftController {
 
-    private static final Logger log = LoggerFactory.getLogger(NftController.class);
-    @Autowired
-    private NftService nftService;
+  private static final Logger log = LoggerFactory.getLogger(NftController.class);
+  @Autowired
+  private NftService nftService;
+
+  @Operation(summary = "Create a new NFT")
+  @ApiResponse(responseCode = "201", description = "NFT created")
+  @RequestMapping(value = "", method = RequestMethod.POST, consumes = "application/json")
+  public ResponseEntity<Boolean> createNft(@RequestBody NftDto n) {
+
+    return new ResponseEntity<>(nftService.createNft(n), HttpStatus.CREATED);
+  }
+
+  @Operation(summary = "Get NFT by ID")
+  @ApiResponse(responseCode = "200", description = "NFT found")
+  @GetMapping(value = "/{id}")
+  public ResponseEntity<NftDto> getNft(@PathVariable("id") Long id) {
+
+    return new ResponseEntity<>(nftService.getNft(id), HttpStatus.OK);
+  }
+
+  @Operation(summary = "Get all NFTs")
+  @ApiResponse(responseCode = "200", description = "NFTs found")
+  @GetMapping(value = "")
+  public ResponseEntity<List<NftDto>> getAllNfts() {
+    return new ResponseEntity<>(nftService.getAllNfts(), HttpStatus.OK);
+  }
 
 
-    @RequestMapping(value = "", method = RequestMethod.POST, consumes = "application/json")
-    public ResponseEntity<Boolean> createNft(@RequestBody NftDto n) {
+  @Operation(summary = "Update NFT")
+  @ApiResponse(responseCode = "201", description = "NFT updated")
+  @PutMapping(value = "", consumes = "application/json")
+  public ResponseEntity<Boolean> updateNft(@RequestBody NftDto change) {
+    return new ResponseEntity<>(nftService.updateNft(change), HttpStatus.CREATED);
+  }
 
-        return new ResponseEntity<>(nftService.createNft(n), HttpStatus.CREATED);
-    }
-    @GetMapping(value = "/{id}")
-    public ResponseEntity<NftDto>  getNft(@PathVariable("id") Long id) {
-
-        return new ResponseEntity<>(nftService.getNft(id), HttpStatus.OK);
-    }
-
-    @GetMapping(value = "")
-    public ResponseEntity<List<NftDto>> getAllNfts() {
-        return  new ResponseEntity<>(nftService.getAllNfts(), HttpStatus.OK);
-    }
-
-    @PutMapping(value = "", consumes = "application/json")
-    public ResponseEntity<Boolean> updateNft(@RequestBody NftDto change) {
-        return new ResponseEntity<>(nftService.updateNft(change), HttpStatus.CREATED);
-    }
-
-    @DeleteMapping(value = "/{id}")
-    public ResponseEntity<Boolean> deleteNft(@PathVariable("id") Long addressId) {
-        return new ResponseEntity<>(nftService.deleteNft(addressId), HttpStatus.OK);
-    }
+  @Operation(summary = "Delete NFT")
+  @ApiResponse(responseCode = "200", description = "NFT deleted  ResponseEntity<Boolean> ")
+  @DeleteMapping(value = "/{id}")
+  public ResponseEntity<Boolean> deleteNft(@PathVariable("id") Long addressId) {
+    return new ResponseEntity<>(nftService.deleteNft(addressId), HttpStatus.OK);
+  }
 
 
 }

@@ -1,6 +1,7 @@
 package xyz.cryptomaven.rest.service;
 
 
+import org.springframework.context.annotation.Primary;
 import xyz.cryptomaven.rest.models.dto.ChainDto;
 import xyz.cryptomaven.rest.exception.ResourceNotFoundException;
 import xyz.cryptomaven.rest.models.Chain;
@@ -12,17 +13,14 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-
+@Primary
 @Service
 public class ChainsServiceImpl implements ChainsService {
 
 private final ChainsRepository chainsRepository;
 
 private final ChainMapper chainMapper;
-public ChainsServiceImpl() {
-        chainsRepository = null;
-        chainMapper = null;
-}
+
     public ChainsServiceImpl(ChainsRepository chainsRepository, ChainMapper chainMapper) {
         this.chainsRepository = chainsRepository;
         this.chainMapper = chainMapper;

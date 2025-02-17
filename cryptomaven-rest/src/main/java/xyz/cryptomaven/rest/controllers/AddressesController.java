@@ -1,5 +1,7 @@
 package xyz.cryptomaven.rest.controllers;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import xyz.cryptomaven.rest.mapper.NftAddressMapper;
 
 import xyz.cryptomaven.rest.models.dto.AddressDto;
@@ -22,24 +24,29 @@ public class AddressesController {
     @Autowired
     private NftAddressMapper nftAddressMapper;
 
-
+@ApiResponse(responseCode = "201", description = "Address created")
+@Operation(summary = "Create a new address")
     @RequestMapping(value = "", method = RequestMethod.POST, consumes = "application/json")
     public ResponseEntity<AddressDto> createAddress(@RequestBody AddressDto c) {
 
         return new ResponseEntity<>(addressesService.createAddress(c), HttpStatus.CREATED);
     }
+    @Operation(summary = "Get an address by id")
+    @ApiResponse(responseCode = "200", description = "Address found")
     @GetMapping(value = "/{id}")
     public AddressDto getAddress(@PathVariable("id") Long id) {
 
         return addressesService.getAddress(id);
     }
-
+@Operation(summary = "Get all addresses")
+    @ApiResponse(responseCode = "200", description = "Addresses found")
     @GetMapping(value = "")
     public List<AddressDto> getAllAddresses() {
         return addressesService.getAllAddresses();
     }
 
-
+  @Operation(summary = "Update an address")
+    @ApiResponse(responseCode = "200", description = "Address updated")
     @PutMapping(value = "", consumes = "application/json")
     public AddressDto updateAddress(@RequestBody AddressDto change) {
         return addressesService.updateAddress(change);
@@ -50,13 +57,15 @@ public class AddressesController {
     }
 
     /////////
-
+    @Operation(summary = "Create a new NFT")
+    @ApiResponse(responseCode = "201", description = "NFT created")
     @RequestMapping(value = "/nfts", method = RequestMethod.POST, consumes = "application/json")
     public ResponseEntity<NftDto> createNft(@RequestBody NftDto n) {
 
         return new ResponseEntity<>(addressesService.createNft(n), HttpStatus.CREATED);
     }
-
+    @Operation(summary = "Get an NFT by id")
+    @ApiResponse(responseCode = "200", description = "NFT found")
     @GetMapping(value = "/nfts")
     public ResponseEntity<List<NftDto>> getAllNFTs() {
         return new ResponseEntity<>(addressesService.getAllNFTs(), HttpStatus.OK);

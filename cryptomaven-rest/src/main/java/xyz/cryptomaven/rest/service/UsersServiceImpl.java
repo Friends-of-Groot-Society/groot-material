@@ -69,7 +69,7 @@ public class UsersServiceImpl implements UsersService {
    * @return UserDto
    */
   @Override
-  public UserDto loginUser(String username, String password){
+  public UserDto loginNoToken(String username, String password){
     Optional<User> optionalUser = usersRepository.findByUsernameOrEmail(username, username);
     if(optionalUser.isPresent()) {
       User u = optionalUser.get();
@@ -120,21 +120,22 @@ public class UsersServiceImpl implements UsersService {
    * @return String
    */
   @Override
-  public String register(RegisterDto registerDto) {
+  public UserDto register(RegisterDto registerDto) {
     if(usersRepository.existsByEmail(registerDto.getEmail())){
       throw new ChainApiException(HttpStatus.BAD_REQUEST, "Email  already exists!.");
     }
     User user = new User();
     user.setEmail(registerDto.getEmail());
+    user.setUsername(registerDto.getEmail());
     user.setPassword(passwordEncoder.encode(registerDto.getPassword()));
 
     Set<Role> roles = new HashSet<>();
-    Optional<Role> userRole = Optional.ofNullable(roleRepository.findByName("ROLE_USER")
-      .orElseThrow(() -> new ResourceNotFoundException("Role", "name", "ROLE_USER")));
+    Optional<Role> userRole = Optional.ofNullable(roleRepository.findByName("ROLE_ADMIN")
+      .orElseThrow(() -> new ResourceNotFoundException("Role", "name", "ROLE_ADMIN")));
     roles.add(userRole.get());
     user.setRoles(roles);
     User u =  usersRepository.save(user);
-    return   registerDto.getEmail() + ": User registered successfully!";
+    return  userMapper.toDto(u);
   }
 
 
@@ -284,14 +285,31 @@ public class UsersServiceImpl implements UsersService {
 
     return atomicReference.get();
   }
+
+
   /**
    * @param email;
    * @return boolean
    */
   @Override
-  public boolean deleteUser(String email) {
+  public boolean deleteUserByEmail(String email) {
     try {
       User u = usersRepository.findByEmail(email).get();
+      usersRepository.delete(u);
+    } catch (IllegalArgumentException e) {
+      e.printStackTrace();
+      return false;
+    }
+    return true;
+  }
+  /**
+   * @param userId;
+   * @return boolean
+   */
+  @Override
+  public boolean deleteUser(Integer userId) {
+    try {
+      User u = usersRepository.findById(userId).get();
       usersRepository.delete(u);
     } catch (IllegalArgumentException e) {
       e.printStackTrace();

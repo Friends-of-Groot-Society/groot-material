@@ -38,14 +38,11 @@ export interface GrootAuth extends FireBaseAuthResponseData {
   userId?: string;
   username: string;
   lastName?: string;
-  firstName?: string;
-  groups?: number;
+  firstName?: string; 
   userType?: number;
   email?: string;
   phone?: string;
-  cusUrl?: string;
-  photoPath?: string;
-  userGroup?: string;
+  cusUrl?: string;  
   isActive?: number; // 0 = inactive, 1 = active
   groupType?: string;
   id?: number;
@@ -71,15 +68,15 @@ export class AdminAuthenticationService {
 
   }
   //////////////////////////////   8080/users/register  //////////////////////////////
-  register({ email, password, firstName, lastName }) {
-    localStorage.setItem('email', email);
+  register({ email,  password, firstName, lastName }) {
+    localStorage.setItem('email', email); 
     localStorage.setItem('firstName', firstName);
     localStorage.setItem('lastName', lastName);
     return this.http
       .post<GrootAuth>(
-        `${environment.nft_url}/users/register`,
+        `${environment.nft_url}/users/auth/register`,
         {
-          email: email,
+          usernameOrEmail: email,
           password: password,
           firstName: firstName,
           lastName: lastName
@@ -91,6 +88,12 @@ export class AdminAuthenticationService {
           localStorage.setItem('email', resData.email);
           localStorage.setItem('userId', resData.userId);
           localStorage.setItem('token', resData.idToken);
+          localStorage.setItem('userType', resData?.userType.toString());
+          localStorage.setItem('cusUrl', resData?.cusUrl);
+          localStorage.setItem('isActive', resData.isActive?.toString()); 
+          localStorage.setItem('id', resData.id?.toString());
+ 
+      
         }),
         tap(resData => {
           this.executeAuthenticationService(
@@ -102,7 +105,7 @@ export class AdminAuthenticationService {
       )
   }
   //////////////////////////////   FIREBASE_GROOT   
-  registerAdmin({ email, password }) {
+  registerFirebase({ email, password }) {
     return this.http
       .post<FireBaseAuthResponseData>(
         `https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=${environment.FIREBASE_GROOT} `,
@@ -124,12 +127,12 @@ export class AdminAuthenticationService {
       )
   }
   //////////////////////////////   8080/users/login  //////////////////////////////
-  login(email: string, password: string) {
+  login(usernameOrEmail: string, password: string) {
     return this.http
       .post<GrootAuth>(
-        `${environment.nft_url}/users/login`,
+        `${environment.nft_url}/users/auth/login`,
         {
-          email: email,
+          usernameOrEmail: usernameOrEmail,
           password: password,
           returnSecureToken: true
         }
@@ -152,12 +155,12 @@ export class AdminAuthenticationService {
   }
 
   //////////////////////////////   FIREBASE_GROOT   
-  loginAdmin(email: string, password: string) {
+  loginFirebase(usernameOrEmail: string, password: string) {
     return this.http
       .post<FireBaseAuthResponseData>(
         `https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=${environment.FIREBASE_GROOT}`,
         {
-          email: email,
+          email: usernameOrEmail,
           password: password,
           returnSecureToken: true
         }
@@ -208,8 +211,8 @@ export class AdminAuthenticationService {
     user.idToken = token;
 
     this.uAdminSubject$.next(user);
-    localStorage.setItem('AUTH_ADMIN', JSON.stringify(user));
-    localStorage.setItem('AUTH_DATA', JSON.stringify(user));
+    localStorage.setItem('ROLE_ADMIN', JSON.stringify(user));
+    localStorage.setItem('ROLE_USER', JSON.stringify(user));
 
   }
 

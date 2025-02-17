@@ -2,9 +2,7 @@ package xyz.cryptomaven.rest.models;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.proxy.HibernateProxy;
 
-import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -25,6 +23,8 @@ public class Address extends AbstractDomainClass {
 
   private String description;
   private String owner;
+  @Column(name = "email")
+  private String email;
   private String address;
   @Column(name = "icon_url")
   private String iconUrl;
