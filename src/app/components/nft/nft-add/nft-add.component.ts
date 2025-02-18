@@ -4,8 +4,8 @@ import { MatMenuTrigger } from '@angular/material/menu';
 import { Observable, Subject, Subscription , of} from 'rxjs';
 import { NftsService } from '../nfts.service';
 import { Store } from '@ngrx/store';
-import { AuthStore } from 'src/app/services/auth/auth-store.service';
-import { AdminAuthenticationService } from 'src/app/services/auth/admin-authentication.service';
+import { AuthStore } from 'src/app/services/auth/auth-aws-store.service';
+import { AuthFirebaseStoreService } from 'src/app/services/auth/auth-firebase-store.service';
 import { DataStorageService } from 'src/app/services/data-storage.service'; 
 import { Constant } from '../../../models/Constant';
 import { Chain } from '../../../models/Chain';
@@ -46,7 +46,7 @@ export class NftAddComponent implements OnInit {
     private nftsService: NftsService,
     public authStore: AuthStore,
     // private store: Store<fromChains.State>
-    public adminAuthenticationService: AdminAuthenticationService,
+    public adminAuthenticationService: AuthFirebaseStoreService,
     private dataStore: DataStorageService,
   ) {   
     this.chains$ = of(Constant.MORALIS_CHAINS)
@@ -60,7 +60,7 @@ export class NftAddComponent implements OnInit {
    
    saveForm(form: { valid: any; value: { chain: string, address: string; }; }) { 
     console.log("saveForm")
-    console.log( this.nftsService.getNftData())  
+    console.log( this.nftsService.getNftCoin())  
     if(form.valid) {
       this.nftData =  this.dataStore.savePersistedNfts(form.value.chain, form.value.address)  
       console.log(this.nftData);

@@ -1,9 +1,9 @@
 package xyz.cryptomaven.rest.service;
 
-import xyz.cryptomaven.rest.models.dto.NftDto;
+import xyz.cryptomaven.rest.models.NftCoin;
+import xyz.cryptomaven.rest.models.dto.NftCoinDto;
 import xyz.cryptomaven.rest.exception.ResourceNotFoundException;
 import xyz.cryptomaven.rest.mapper.NftMapper;
-import xyz.cryptomaven.rest.models.Nft;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -23,42 +23,42 @@ public class NftServiceImpl implements NftService {
         this.nftMapper = nftMapper;
     }
 
-    public boolean createNft(NftDto nftDto) {
-        Nft nft = nftMapper.toEntity(nftDto);
+    public boolean createNft(NftCoinDto nftCoinDto) {
+        NftCoin coin = nftMapper.toEntity(nftCoinDto);
 
-//    if (nft != null && (nft.getChainId() == 0)) {
-//        nft.setChainId(nftDto.getChainId());
+//    if (coin != null && (coin.getChainId() == 0)) {
+//        coin.setChainId(nftCoinDto.getChainId());
 //    }
 
-        Nft newNft = nftRepository.save(nft);
-        NftDto newNftDto = nftMapper.toDto(newNft);
+        NftCoin newCoin = nftRepository.save(coin);
+        NftCoinDto newNftCoinDto = nftMapper.toDto(newCoin);
         return true;
     }
 
-    public NftDto getNft(Long id) {
-        Nft nft = nftRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("not found", "not found", Long.toString(id)));
-        return nftMapper.toDto(nft);
+    public NftCoinDto getNft(Long id) {
+        NftCoin coin = nftRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("not found", "not found", Long.toString(id)));
+        return nftMapper.toDto(coin);
     }
 
-    public List<NftDto> getAllNftsIOwn(String username) {
-        List<Nft> nfts = nftRepository.findAll();
-        List<NftDto> content = nfts.stream().map(nftMapper::toDto).collect(Collectors.toList());
+    public List<NftCoinDto> getAllNftsIOwn(String username) {
+        List<NftCoin> coins = nftRepository.findAll();
+        List<NftCoinDto> content = coins.stream().map(nftMapper::toDto).collect(Collectors.toList());
     return content;
 
     }
 
-    public List<NftDto> getAllNfts() {
-        List<Nft> adds = nftRepository.findAll();
-        List<NftDto> nftDtos = adds.stream().map(nftMapper::toDto).collect(Collectors.toList());
-        return nftDtos;
+    public List<NftCoinDto> getAllNfts() {
+        List<NftCoin> adds = nftRepository.findAll();
+        List<NftCoinDto> nftCoinDtos = adds.stream().map(nftMapper::toDto).collect(Collectors.toList());
+        return nftCoinDtos;
     }
 
 
-    public boolean updateNft(NftDto change) {
+    public boolean updateNft(NftCoinDto change) {
         try {
-            Nft nft = nftMapper.toEntity(change);
-            Nft newNft = nftRepository.save(nft);
-            NftDto newNftDto = nftMapper.toDto(newNft);
+            NftCoin coin = nftMapper.toEntity(change);
+            NftCoin newCoin = nftRepository.save(coin);
+            NftCoinDto newNftCoinDto = nftMapper.toDto(newCoin);
             return true;
 
         } catch (Exception e) {

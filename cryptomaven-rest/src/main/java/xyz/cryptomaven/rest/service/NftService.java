@@ -1,19 +1,19 @@
 package xyz.cryptomaven.rest.service;
 
-import xyz.cryptomaven.rest.models.dto.NftDto;
+import xyz.cryptomaven.rest.models.dto.NftCoinDto;
 
 import java.util.List;
 
 public interface NftService {
-    boolean createNft(NftDto c);
+    boolean createNft(NftCoinDto c);
 
-    NftDto getNft(Long id) ;
+    NftCoinDto getNft(Long id) ;
 
-    List<NftDto> getAllNftsIOwn(String username);
+    List<NftCoinDto> getAllNftsIOwn(String username);
 
-    List<NftDto> getAllNfts();
+    List<NftCoinDto> getAllNfts();
 
-    boolean updateNft(NftDto change);
+    boolean updateNft(NftCoinDto change);
 
     boolean deleteNft(Long id) ;
 

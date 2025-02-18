@@ -86,8 +86,8 @@ create table address
   chain_id NUMBER,
   primary key (id)
 );
--- drop table nft CASCADE  CONSTRAINTS;
-create table nft
+-- drop table coin CASCADE  CONSTRAINTS;
+create table coin
 (
   id NUMBER not null,
   amount NUMBER,
@@ -181,7 +181,7 @@ create table METADATA
 --     add constraint FKik918ybmves03ibw6l10jj8d2 foreign key (metadata_metadata_id) references metadata;
 --
 -- alter table metadata
---     add constraint FK7xw0e76t7gnn5x9a254683a8 foreign key (nft_id) references nft;
+--     add constraint FK7xw0e76t7gnn5x9a254683a8 foreign key (nft_id) references coin;
 --
 --  -- MANY TO MANY
 -- alter table chain_users

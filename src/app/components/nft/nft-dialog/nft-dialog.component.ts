@@ -5,7 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DataStorageService } from 'src/app/services/data-storage.service'; 
 import { LoaderService } from '../../layout/loader/loader.service';  
 import { Observable } from 'rxjs'; 
-import { Nft } from 'src/app/models/Nft';
+import { Coin } from 'src/app/models/Coin';
 
 
 @Component({
@@ -46,7 +46,7 @@ export class NftDialogComponent implements OnInit {
   }
 }
 
-export function openEditNftRefDialog(dialog: MatDialog, nft:Nft) {
+export function openEditNftRefDialog(dialog: MatDialog, nft:Coin): Observable<any> {
 
   const config = new MatDialogConfig();
 

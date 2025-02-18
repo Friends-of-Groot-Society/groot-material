@@ -3,8 +3,6 @@ package xyz.cryptomaven.rest.models;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.Builder;
-import org.mapstruct.*;
-import xyz.cryptomaven.rest.models.dto.NftAddressDto;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -34,21 +32,9 @@ public class  AddressCategories {
     @Column(name = "description")
     private String description;
 
-    // A category can have many News items
-    @OneToMany(mappedBy = "address", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    private List< NftAddress>  news;
-
     // A category can have many PostEntity items
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private LinkedList<Chain> chainsByChainId;
 
-    @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING)
-    public static interface NftAddressMapper {
-        NftAddress toEntity(NftAddressDto nftAddressDto);
 
-        NftAddressDto toDto(NftAddress nftAddress);
-
-        @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-        NftAddress partialUpdate(NftAddressDto nftAddressDto, @MappingTarget NftAddress nftAddress);
-    }
 }

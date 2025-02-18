@@ -35,17 +35,4 @@ public class Address extends AbstractDomainClass {
   @OneToMany(mappedBy = "address", cascade = CascadeType.ALL, orphanRemoval = true)
   private Set<Chain> chains;
 
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-    if (!super.equals(o)) return false;
-    Address address1 = (Address) o;
-    return Objects.equals(id, address1.id) && Objects.equals(description, address1.description) && Objects.equals(owner, address1.owner) && Objects.equals(address, address1.address) && Objects.equals(iconUrl, address1.iconUrl) && Objects.equals(blockExplorerUrl, address1.blockExplorerUrl) && Objects.equals(nftAddress, address1.nftAddress) && Objects.equals(chains, address1.chains);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(super.hashCode(), id, description, owner, address, iconUrl, blockExplorerUrl, nftAddress, chains);
-  }
 }

@@ -1,4 +1,4 @@
-import { Nft } from "./Nft";
+import { Coin } from "./Coin";
 
 export interface NftRef {
     name?: string;
@@ -6,5 +6,5 @@ export interface NftRef {
     email?: string;
     address?: string;
     chain?: string;
-    nft?: Nft;
+    nftCoins?: Array<Coin>;
 }

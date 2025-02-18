@@ -14,6 +14,7 @@ import java.io.Serializable;
 public class LoginDto  implements Serializable {
     static long serialVersionUID = 1L;
     private String email;
+    private Boolean returnSecureToken = true;
     private String usernameOrEmail;
     private String password;
 

@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { AdminAuthenticationService } from './admin-authentication.service';
+import { AuthFirebaseStoreService } from './auth-firebase-store.service';
 
-describe('AdminAuthenticationService', () => {
-  let service: AdminAuthenticationService;
+describe('AuthFirebaseStoreService', () => {
+  let service: AuthFirebaseStoreService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(AdminAuthenticationService);
+    service = TestBed.inject(AuthFirebaseStoreService);
   });
 
   it('should be created', () => {

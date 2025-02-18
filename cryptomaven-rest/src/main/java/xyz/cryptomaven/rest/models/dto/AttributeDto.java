@@ -13,5 +13,5 @@ public class AttributeDto implements Serializable {
     private final int attrid;
     private final String attribute_value;
     private final String trait_type;
-    private final MetadataDto metadata;
+
 }

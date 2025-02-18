@@ -10,15 +10,15 @@ import {
 import { pipe } from 'rxjs';
 import { take } from 'rxjs/operators';
  
-import { AdminAuthenticationService } from './admin-authentication.service';
-import { AuthStore } from './auth-store.service'
+import { AuthFirebaseStoreService } from './auth-firebase-store.service';
+import { AuthStore } from './auth-aws-store.service'
 // import { Store } from '@ngrx/store';
 import * as fromRoot from '../../reducers/app.reducer';
 
 @Injectable()
 export class UserGuardService implements CanActivate, CanLoad {
   constructor(
-    private adminAuthService: AdminAuthenticationService, 
+    private adminAuthService: AuthFirebaseStoreService, 
     // private Store: Store<fromRoot.State>,
     private auth: AuthStore,
     private router: Router

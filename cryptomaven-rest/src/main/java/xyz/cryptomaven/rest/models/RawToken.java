@@ -30,7 +30,7 @@ public class RawToken  extends AbstractDomainClass {
 
     @ManyToOne
     @JoinColumn(name = "NFTADDRESS_ID")
-    private NftAddress nftAddress;
+    private Coin nftAddress;
 
 
 }

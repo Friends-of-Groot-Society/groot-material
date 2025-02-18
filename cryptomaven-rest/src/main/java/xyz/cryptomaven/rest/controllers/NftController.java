@@ -2,7 +2,7 @@ package xyz.cryptomaven.rest.controllers;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import xyz.cryptomaven.rest.models.dto.NftDto;
+import xyz.cryptomaven.rest.models.dto.NftCoinDto;
 import xyz.cryptomaven.rest.service.NftService;
 import xyz.cryptomaven.rest.util.constants.Constants;
 import org.slf4j.Logger;
@@ -26,7 +26,7 @@ public class NftController {
   @Operation(summary = "Create a new NFT")
   @ApiResponse(responseCode = "201", description = "NFT created")
   @RequestMapping(value = "", method = RequestMethod.POST, consumes = "application/json")
-  public ResponseEntity<Boolean> createNft(@RequestBody NftDto n) {
+  public ResponseEntity<Boolean> createNft(@RequestBody NftCoinDto n) {
 
     return new ResponseEntity<>(nftService.createNft(n), HttpStatus.CREATED);
   }
@@ -34,7 +34,7 @@ public class NftController {
   @Operation(summary = "Get NFT by ID")
   @ApiResponse(responseCode = "200", description = "NFT found")
   @GetMapping(value = "/{id}")
-  public ResponseEntity<NftDto> getNft(@PathVariable("id") Long id) {
+  public ResponseEntity<NftCoinDto> getNft(@PathVariable("id") Long id) {
 
     return new ResponseEntity<>(nftService.getNft(id), HttpStatus.OK);
   }
@@ -42,7 +42,7 @@ public class NftController {
   @Operation(summary = "Get all NFTs")
   @ApiResponse(responseCode = "200", description = "NFTs found")
   @GetMapping(value = "")
-  public ResponseEntity<List<NftDto>> getAllNfts() {
+  public ResponseEntity<List<NftCoinDto>> getAllNfts() {
     return new ResponseEntity<>(nftService.getAllNfts(), HttpStatus.OK);
   }
 
@@ -50,7 +50,7 @@ public class NftController {
   @Operation(summary = "Update NFT")
   @ApiResponse(responseCode = "201", description = "NFT updated")
   @PutMapping(value = "", consumes = "application/json")
-  public ResponseEntity<Boolean> updateNft(@RequestBody NftDto change) {
+  public ResponseEntity<Boolean> updateNft(@RequestBody NftCoinDto change) {
     return new ResponseEntity<>(nftService.updateNft(change), HttpStatus.CREATED);
   }
 

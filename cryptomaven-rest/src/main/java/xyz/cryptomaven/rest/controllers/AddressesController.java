@@ -2,11 +2,11 @@ package xyz.cryptomaven.rest.controllers;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import xyz.cryptomaven.rest.mapper.NftAddressMapper;
 
+import xyz.cryptomaven.rest.mapper.CoinMapper;
 import xyz.cryptomaven.rest.models.dto.AddressDto;
 
-import xyz.cryptomaven.rest.models.dto.NftDto;
+import xyz.cryptomaven.rest.models.dto.NftCoinDto;
 import xyz.cryptomaven.rest.service.AddressesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,7 +22,7 @@ public class AddressesController {
     @Autowired
     private AddressesService addressesService;
     @Autowired
-    private NftAddressMapper nftAddressMapper;
+    private CoinMapper nftAddressMapper;
 
 @ApiResponse(responseCode = "201", description = "Address created")
 @Operation(summary = "Create a new address")
@@ -60,14 +60,14 @@ public class AddressesController {
     @Operation(summary = "Create a new NFT")
     @ApiResponse(responseCode = "201", description = "NFT created")
     @RequestMapping(value = "/nfts", method = RequestMethod.POST, consumes = "application/json")
-    public ResponseEntity<NftDto> createNft(@RequestBody NftDto n) {
+    public ResponseEntity<NftCoinDto> createNft(@RequestBody NftCoinDto n) {
 
         return new ResponseEntity<>(addressesService.createNft(n), HttpStatus.CREATED);
     }
     @Operation(summary = "Get an NFT by id")
     @ApiResponse(responseCode = "200", description = "NFT found")
     @GetMapping(value = "/nfts")
-    public ResponseEntity<List<NftDto>> getAllNFTs() {
+    public ResponseEntity<List<NftCoinDto>> getAllNFTs() {
         return new ResponseEntity<>(addressesService.getAllNFTs(), HttpStatus.OK);
     }
 }

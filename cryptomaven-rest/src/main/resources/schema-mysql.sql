@@ -1,215 +1,200 @@
-
-commit;
-CREATE TABLE addresses
+create table if not exists addresses
 (
-  id                 BIGINT AUTO_INCREMENT NOT NULL,
-  version            INT                   NULL,
-  date_created       datetime              NULL,
-  time_created       datetime              NULL,
-  last_updated       datetime              NULL,
-  time_updated       datetime              NULL,
-  `description`      VARCHAR(255)          NULL,
-  owner              VARCHAR(255)          NULL,
-  email              VARCHAR(255)          NULL,
-  address            VARCHAR(255)          NULL,
-  icon_url           VARCHAR(255)          NULL,
-  block_explorer_url VARCHAR(255)          NULL,
-  nft_address        VARCHAR(255)          NULL,
-  CONSTRAINT pk_addresses PRIMARY KEY (id)
+  id                 bigint auto_increment
+    primary key,
+  version            int          null,
+  date_created       datetime     null,
+  time_created       datetime     null,
+  last_updated       datetime     null,
+  time_updated       datetime     null,
+  description        varchar(255) null,
+  owner              varchar(255) null,
+  address            varchar(255) null,
+  icon_url           varchar(255) null,
+  block_explorer_url varchar(255) null,
+  nft_address        varchar(255) null,
+  email              varchar(255) null
 );
 
-CREATE TABLE attribute
+create table if not exists attribute
 (
-  attrid          BIGINT       NOT NULL,
-  version         INT          NULL,
-  date_created    datetime     NULL,
-  time_created    datetime     NULL,
-  last_updated    datetime     NULL,
-  time_updated    datetime     NULL,
-  attribute_value VARCHAR(255) NULL,
-  trait_type      VARCHAR(255) NULL,
-  CONSTRAINT pk_attribute PRIMARY KEY (attrid)
+  attrid          bigint       not null
+    primary key,
+  version         int          null,
+  date_created    datetime     null,
+  time_created    datetime     null,
+  last_updated    datetime     null,
+  time_updated    datetime     null,
+  attribute_value varchar(255) null,
+  trait_type      varchar(255) null
 );
 
-CREATE TABLE categories
+create table if not exists categories
 (
-  id            BIGINT AUTO_INCREMENT NOT NULL,
-  name          VARCHAR(255)          NULL,
-  `description` VARCHAR(255)          NULL,
-  CONSTRAINT pk_categories PRIMARY KEY (id)
+  id          bigint auto_increment
+    primary key,
+  name        varchar(255) null,
+  description varchar(255) null
 );
 
-CREATE TABLE chain
+create table if not exists chain
 (
-  id                 BIGINT AUTO_INCREMENT NOT NULL,
-  version            INT                   NULL,
-  date_created       datetime              NULL,
-  time_created       datetime              NULL,
-  last_updated       datetime              NULL,
-  time_updated       datetime              NULL,
-  name               VARCHAR(255)          NULL,
-  symbol             VARCHAR(255)          NULL,
-  `description`      VARCHAR(255)          NULL,
-  long_description   VARCHAR(255)          NULL,
-  icon_url           VARCHAR(255)          NULL,
-  category           VARCHAR(255)          NULL,
-  chain_list_icon    VARCHAR(255)          NULL,
-  rpc_url            VARCHAR(255)          NULL,
-  chain_id           INT                   NULL,
-  block_explorer_url VARCHAR(255)          NULL,
-  chain_address_id   BIGINT                NULL,
-  CONSTRAINT pk_chain PRIMARY KEY (id)
+  id                 bigint auto_increment
+    primary key,
+  version            int          null,
+  date_created       datetime     null,
+  time_created       datetime     null,
+  last_updated       datetime     null,
+  time_updated       datetime     null,
+  name               varchar(255) null,
+  symbol             varchar(255) null,
+  description        varchar(255) null,
+  long_description   varchar(255) null,
+  icon_url           varchar(255) null,
+  category           varchar(255) null,
+  chain_list_icon    varchar(255) null,
+  rpc_url            varchar(255) null,
+  chain_id           int          null,
+  block_explorer_url varchar(255) null,
+  chain_address_id   bigint       null,
+  constraint FK_CHAIN_ON_CHAIN_ADDRESS
+    foreign key (chain_address_id) references addresses (id)
 );
 
-CREATE TABLE metadata
+create table if not exists metadata
 (
-  id            BIGINT       NOT NULL,
-  version       INT          NULL,
-  date_created  datetime     NULL,
-  time_created  datetime     NULL,
-  last_updated  datetime     NULL,
-  time_updated  datetime     NULL,
-  name          VARCHAR(255) NULL,
-  `description` VARCHAR(255) NULL,
-  image         VARCHAR(255) NULL,
-  nft           VARCHAR(255) NULL,
-  CONSTRAINT pk_metadata PRIMARY KEY (id)
+  id           bigint       not null
+    primary key,
+  version      int          null,
+  date_created datetime     null,
+  time_created datetime     null,
+  last_updated datetime     null,
+  time_updated datetime     null,
+  name         varchar(255) null,
+  description  varchar(255) null,
+  image        varchar(255) null,
+  nft          varchar(255) null
 );
 
-CREATE TABLE news
+create table if not exists news
 (
-  id          BIGINT AUTO_INCREMENT NOT NULL,
-  title       VARCHAR(255)          NULL,
-  url         VARCHAR(255)          NULL,
-  category_id BIGINT                NULL,
-  CONSTRAINT pk_news PRIMARY KEY (id)
+  id          bigint auto_increment
+    primary key,
+  title       varchar(255) null,
+  url         varchar(255) null,
+  category_id bigint       null,
+  constraint FK_NEWS_ON_CATEGORY
+    foreign key (category_id) references categories (id)
 );
 
-CREATE TABLE nft
+create table if not exists nft_address_stamp
 (
-  id           BIGINT AUTO_INCREMENT NOT NULL,
-  version      INT                   NULL,
-  date_created datetime              NULL,
-  time_created datetime              NULL,
-  last_updated datetime              NULL,
-  time_updated datetime              NULL,
-  name         VARCHAR(255)          NULL,
-  amount       DOUBLE                NOT NULL,
-  metadata     VARCHAR(255)          NULL,
-  nft_address  VARCHAR(255)          NULL,
-  nft_id       BIGINT                NULL,
-  CONSTRAINT pk_nft PRIMARY KEY (id)
+  id                bigint auto_increment
+    primary key,
+  version           int          null,
+  date_created      datetime     null,
+  time_created      datetime     null,
+  last_updated      datetime     null,
+  time_updated      datetime     null,
+  nft_address_stamp varchar(255) null,
+  native_token      double       null,
+  nft_token         double       null
 );
 
-CREATE TABLE nft_address_stamp
+create table if not exists nft
 (
-  id                BIGINT AUTO_INCREMENT NOT NULL,
-  version           INT                   NULL,
-  date_created      datetime              NULL,
-  time_created      datetime              NULL,
-  last_updated      datetime              NULL,
-  time_updated      datetime              NULL,
-  nft_address_stamp VARCHAR(255)          NULL,
-  native_token      DOUBLE                NULL,
-  nft_token         DOUBLE                NULL,
-  CONSTRAINT pk_nft_address_stamp PRIMARY KEY (id)
+  id           bigint auto_increment
+    primary key,
+  version      int          null,
+  date_created datetime     null,
+  time_created datetime     null,
+  last_updated datetime     null,
+  time_updated datetime     null,
+  name         varchar(255) null,
+  amount       double       not null,
+  metadata     varchar(255) null,
+  nft_address  varchar(255) null,
+  nft_id       bigint       null,
+  constraint FK_NFT_ON_NFT
+    foreign key (nft_id) references nft_address_stamp (id)
 );
 
-CREATE TABLE nft_address_stamp_nfts
+create table if not exists nft_address_stamp_nfts
 (
-  nft_address_id BIGINT NOT NULL,
-  nfts_id        BIGINT NOT NULL
+  nft_address_id bigint not null,
+  nfts_id        bigint not null,
+  constraint uc_nft_address_stamp_nfts_nfts
+    unique (nfts_id),
+  constraint fk_nftaddstanft_on_nft
+    foreign key (nfts_id) references nft (id),
+  constraint fk_nftaddstanft_on_nft_address
+    foreign key (nft_address_id) references nft_address_stamp (id)
 );
 
-CREATE TABLE raw_token
+create table if not exists raw_token
 (
-  id            BIGINT AUTO_INCREMENT NOT NULL,
-  version       INT                   NULL,
-  date_created  datetime              NULL,
-  time_created  datetime              NULL,
-  last_updated  datetime              NULL,
-  time_updated  datetime              NULL,
-  raw_token     VARCHAR(255)          NULL,
-  nftaddress_id BIGINT                NULL,
-  CONSTRAINT pk_raw_token PRIMARY KEY (id)
+  id            bigint auto_increment
+    primary key,
+  version       int          null,
+  date_created  datetime     null,
+  time_created  datetime     null,
+  last_updated  datetime     null,
+  time_updated  datetime     null,
+  raw_token     varchar(255) null,
+  coin_id bigint       null,
+  constraint FK_RAW_TOKEN_ON_NFTADDRESS
+    foreign key (coin_id) references nft_address_stamp (id)
 );
 
-CREATE TABLE roles
+create table if not exists roles
 (
-  id   BIGINT AUTO_INCREMENT NOT NULL,
-  name VARCHAR(255)          NOT NULL,
-  CONSTRAINT pk_roles PRIMARY KEY (id)
+  id   bigint auto_increment
+    primary key,
+  name varchar(255) not null,
+  constraint uc_roles_name
+    unique (name)
 );
 
-CREATE TABLE users
+create table if not exists users
 (
-  userid           BIGINT AUTO_INCREMENT NOT NULL,
-  username         VARCHAR(255)          NULL,
-  password         VARCHAR(255)          NULL,
-  lastname         VARCHAR(255)          NULL,
-  firstname        VARCHAR(255)          NULL,
-  usertype         INT                   NULL,
-  email            VARCHAR(255)          NOT NULL,
-  organizationcode VARCHAR(255)          NULL,
-  cusurl           VARCHAR(255)          NULL,
-  dashboardcode    VARCHAR(255)          NULL,
-  isactive         INT                   NULL,
-  contacttype      INT                   NULL,
-  CONSTRAINT pk_users PRIMARY KEY (userid)
+  userid           bigint auto_increment
+    primary key,
+  username         varchar(255) null,
+  password         varchar(255) null,
+  lastname         varchar(255) null,
+  firstname        varchar(255) null,
+  usertype         int          null,
+  email            varchar(255) not null,
+  organizationcode varchar(255) null,
+  cusurl           varchar(255) null,
+  dashboardcode    varchar(255) null,
+  isactive         int          null,
+  contacttype      int          null
 );
 
-CREATE TABLE users_roles
+create table if not exists users_roles
 (
-  role_id BIGINT NOT NULL,
-  user_id BIGINT NOT NULL,
-  CONSTRAINT pk_users_roles PRIMARY KEY (role_id, user_id)
+  role_id bigint not null,
+  user_id bigint not null,
+  primary key (role_id, user_id),
+  constraint fk_userol_on_role
+    foreign key (role_id) references roles (id),
+  constraint fk_userol_on_user
+    foreign key (user_id) references users (userid)
 );
 
-CREATE TABLE weblinks
+create table if not exists weblinks
 (
-  id             BIGINT AUTO_INCREMENT NOT NULL,
-  version        INT                   NULL,
-  date_created   datetime              NULL,
-  time_created   datetime              NULL,
-  last_updated   datetime              NULL,
-  time_updated   datetime              NULL,
-  url            VARCHAR(255)          NULL,
-  host           VARCHAR(255)          NULL,
-  htmlpage       VARCHAR(255)          NULL,
-  downloadstatus SMALLINT              NULL,
-  CONSTRAINT pk_weblinks PRIMARY KEY (id)
+  id             bigint auto_increment
+    primary key,
+  version        int          null,
+  date_created   datetime     null,
+  time_created   datetime     null,
+  last_updated   datetime     null,
+  time_updated   datetime     null,
+  url            varchar(255) null,
+  host           varchar(255) null,
+  htmlpage       varchar(255) null,
+  downloadstatus smallint     null
 );
 
--- custom adds V2
-
--- added by Hibernnate IntellJ below
-
-ALTER TABLE nft_address_stamp_nfts
-  ADD CONSTRAINT uc_nft_address_stamp_nfts_nfts UNIQUE (nfts_id);
-
-ALTER TABLE roles
-  ADD CONSTRAINT uc_roles_name UNIQUE (name);
-
-ALTER TABLE chain
-  ADD CONSTRAINT FK_CHAIN_ON_CHAIN_ADDRESS FOREIGN KEY (chain_address_id) REFERENCES addresses (id);
-
-ALTER TABLE news
-  ADD CONSTRAINT FK_NEWS_ON_CATEGORY FOREIGN KEY (category_id) REFERENCES categories (id);
-
-ALTER TABLE nft
-  ADD CONSTRAINT FK_NFT_ON_NFT FOREIGN KEY (nft_id) REFERENCES nft_address_stamp (id);
-
-ALTER TABLE raw_token
-  ADD CONSTRAINT FK_RAW_TOKEN_ON_NFTADDRESS FOREIGN KEY (nftaddress_id) REFERENCES nft_address_stamp (id);
-
-ALTER TABLE nft_address_stamp_nfts
-  ADD CONSTRAINT fk_nftaddstanft_on_nft FOREIGN KEY (nfts_id) REFERENCES nft (id);
-
-ALTER TABLE nft_address_stamp_nfts
-  ADD CONSTRAINT fk_nftaddstanft_on_nft_address FOREIGN KEY (nft_address_id) REFERENCES nft_address_stamp (id);
-
-ALTER TABLE users_roles
-  ADD CONSTRAINT fk_userol_on_role FOREIGN KEY (role_id) REFERENCES roles (id);
-
-ALTER TABLE users_roles
-  ADD CONSTRAINT fk_userol_on_user FOREIGN KEY (user_id) REFERENCES users (userid);

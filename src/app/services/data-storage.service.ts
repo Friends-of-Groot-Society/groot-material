@@ -4,11 +4,11 @@ import { map, tap, take, exhaustMap, catchError } from 'rxjs/operators';
 
 import { Chain } from 'src/app/models/Chain';
 import { NftRef } from '../models/NftRef';
-import { Nft } from '../models/Nft';
+import { Coin } from '../models/Coin';
 import { User } from '../models/User';
 import { NftsService } from '../components/nft/nfts.service';
-import { AuthStore } from './auth/auth-store.service';
-import { AdminAuthenticationService } from './auth/admin-authentication.service';
+import { AuthStore } from './auth/auth-aws-store.service';
+import { AuthFirebaseStoreService } from './auth/auth-firebase-store.service';
 import { Subject, throwError } from 'rxjs';
 import { shareReplay } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
@@ -21,27 +21,49 @@ export class DataStorageService {
   email:string;
   nftData:any;
 
-  nftRefs = [];
+  nftRefs: NftRef[];
   subjectNftRef = new Subject<NftRef>();
 
+  nftCoins: Coin[];
+  subjectNftCoin = new Subject<Coin>();
   constructor(
     private httpClient: HttpClient,
     private authStore: AuthStore,
-    private adminAuth: AdminAuthenticationService,
+    private adminAuth: AuthFirebaseStoreService,
     private nftService: NftsService,
   ) {
 
     this.email = localStorage.getItem('email');
    }
+   saveNftsToAws(chain: string, address: string ) {
+    // this.currUser  = this.authStore.currentUserValue;
+    this.email = localStorage.getItem('email');
+    this.nftData = this.nftService.getNftCoin();
+    console.log("nftData", this.nftData);
+    this.nftRef = {chain, address, email: this.email, nftCoins: this.nftData}
+    this.httpClient.post<NftRef>(
+      `${environment.nft_url}/coinNft`,
+      // 'https://friends-of-groot-default-rtdb.firebaseio.com/api/nft.json',
+      this.nftRef
+    )
+    .pipe(
+      tap(response => {
+        this.nftRef.name = response.name;
+        console.log(this.nftRef);
+        this.nftService.nftsUpdated.next([this.nftRef]);
+      })
+    )
+    .subscribe();
 
+  }
   savePersistedNfts(chain: string, address: string ) {
     // this.currUser  = this.authStore.currentUserValue;
     this.email = localStorage.getItem('email');
-    this.nftData = this.nftService.getNftData();
+    this.nftData = this.nftService.getNftCoin();
     console.log("nftData", this.nftData);
-    this.nftRef = {chain, address, email: this.email, nft: this.nftData}
+    this.nftRef = {chain, address, email: this.email, nftCoins: this.nftRefs.map(nftRef => nftRef.nftCoins).flat()}
     this.httpClient.post<NftRef>(
-      `${environment.nft_url}/addresses`,
+      `${environment.nft_url}/coinNft`,
       // 'https://friends-of-groot-default-rtdb.firebaseio.com/api/nft.json',
       this.nftRef
     )
@@ -58,9 +80,9 @@ export class DataStorageService {
   editPersistedNftRef(name: string, changes) {
     // const nft = this.nftService.getNftData();
     const nftRefs = this.nftRefs;
-    const nftRef  = nftRefs.find(nftRef => nftRef.name === name);
+    const nftRef  = nftRefs.find(nftRef => nftRef === name);
     const newNftRef: NftRef = {
-      ...nftRef,
+      ...nftRefs,
       ...changes
     };
     // const newNftRefs: NftRef[] = nftRefs.map(nftRef => {
@@ -119,7 +141,7 @@ export class DataStorageService {
   }
   getAllNfts(id:string) {
     const Nfts = this.httpClient
-      .get<Nft[]>(
+      .get<Coin[]>(
         'https://friends-of-groot-default-rtdb.firebaseio.com/api/nft.json'
       )
       .pipe(

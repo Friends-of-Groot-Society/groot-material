@@ -22,7 +22,7 @@ public class FileDataStore extends ReadWriteFile {
 	// DATA SOURCES
 	private static int COIN_COUNT = 1;
 
-	public static List<Nft> nftsStatic = new ArrayList<>();
+	public static List<NftCoin> nftsStatic = new ArrayList<>();
 
 	public static int getCoinInventory() {
 		return COIN_COUNT;
@@ -70,7 +70,7 @@ public class FileDataStore extends ReadWriteFile {
 		userNftbuys.add( userNftbuy);
 	}
 
-	public static List<Nft> getNfts() {
+	public static List<NftCoin> getNfts() {
 		return nftsStatic;
 	}
 

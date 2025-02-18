@@ -1,7 +1,7 @@
 package xyz.cryptomaven.rest.service;
 
 import xyz.cryptomaven.rest.models.dto.AddressDto;
-import xyz.cryptomaven.rest.models.dto.NftDto;
+import xyz.cryptomaven.rest.models.dto.NftCoinDto;
 
 import java.util.List;
 
@@ -18,7 +18,7 @@ public interface AddressesService {
     public boolean deleteAddress(Long id);
 
     /////////////////////////
-    NftDto createNft(NftDto nftDto);
+    NftCoinDto createNft(NftCoinDto nftCoinDto);
 
-    List<NftDto> getAllNFTs();
+    List<NftCoinDto> getAllNFTs();
 }

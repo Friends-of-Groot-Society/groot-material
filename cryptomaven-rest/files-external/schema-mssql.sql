@@ -130,10 +130,10 @@ alter table attribute
   add constraint FKik918ybmves03ibw6l10jj8d2 foreign key (metadata_metadata_id) references metadata;
 
 alter table metadata
-  add constraint FK7xw0e76t7gnn5x9a254683a8 foreign key (nft_id) references nft;
-alter table nft
+  add constraint FK7xw0e76t7gnn5x9a254683a8 foreign key (nft_id) references coin;
+alter table coin
   add constraint FK7w00r1rprr2020ho6cbmwc5kh foreign key (metadata_id) references metadata;
-alter table nft
+alter table coin
   add constraint FKav9aho8kdsp9rh22jdlocuy7r foreign key (id) references NFTADDRESS;
 
 -- MANY TO MANY

@@ -21,6 +21,11 @@ public class Attribute  extends AbstractDomainClass {
     String attribute_value;
     String trait_type;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "metadata_coin_id")
+    Metadata metadata;
+
+
 
 
 }

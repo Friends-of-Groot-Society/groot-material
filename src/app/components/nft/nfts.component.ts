@@ -1,7 +1,7 @@
  
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { map, Observable, Subject, Subscription, tap } from 'rxjs';
-import { Nft } from 'src/app/models/Nft';
+import { Coin } from 'src/app/models/Coin';
 import { NftsService } from './nfts.service';
 import { LoaderService } from '../../components/layout/loader/loader.service';
 
@@ -46,7 +46,7 @@ export class NftsComponent implements OnInit, OnDestroy {
     private store: ChainStore
   ) {
 
-    this.nfts = this.loadNfts();
+    this.nfts = this.loadNftsFromChain();
     this.nftRefs = this.loadNftRefs();
     this.nftData = this.showChainData();
   }
@@ -56,12 +56,12 @@ export class NftsComponent implements OnInit, OnDestroy {
     //  console.log("init",this.chains$)
  
     this.nftDataSubscription = this.nftsService.nftDataUpdated.subscribe(() => {
-      this.nftData = this.nftsService.getNftData();
+      this.nftData = this.nftsService.collectNftsFromChain();
      }
      );
  
      this.nftSubscription = this.nftsService.nftsUpdated.subscribe(() => {
-       this.nfts = this.nftsService.collectNfts();
+       this.nfts = this.nftsService.collectNftsFromChain();
      });
  
      this.nftRefSubscription = this.nftsService.nftRefsUpdated.subscribe(() => {
@@ -105,8 +105,8 @@ export class NftsComponent implements OnInit, OnDestroy {
     ).subscribe();
   };
 
-  loadNfts() {
-    this.nfts = this.nftsService.collectNfts()
+  loadNftsFromChain() {
+    this.nfts = this.nftsService.collectNftsFromChain()
       .subscribe((data: any) => {
         if (data != undefined) {
           this.nftData = data;

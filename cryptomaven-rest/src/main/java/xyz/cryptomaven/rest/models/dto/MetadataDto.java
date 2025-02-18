@@ -16,6 +16,6 @@ public class MetadataDto implements Serializable {
   private final String name;
   private final String description;
   private final String image;
-  private final String nft;
+  private String external_url;
   private final List<AttributeDto> attributes;
 }

@@ -6,8 +6,8 @@ import { Router } from '@angular/router';
 import { first, tap } from 'rxjs/operators';
 import {UserService} from '../user.service';
 import { AlertService } from '../../../services';
-import { AdminAuthenticationService } from 'src/app/services/auth/admin-authentication.service';
-import { AuthStore } from 'src/app/services/auth/auth-store.service';
+import { AuthFirebaseStoreService } from 'src/app/services/auth/auth-firebase-store.service';
+import { AuthStore } from 'src/app/services/auth/auth-aws-store.service';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -29,7 +29,7 @@ export class RegisterComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
     private authStore: AuthStore,
-    private adminAuthenticationService: AdminAuthenticationService,
+    private authFirebaseStoreService: AuthFirebaseStoreService,
     private userService: UserService,
     private alertService: AlertService
   ) {
@@ -61,14 +61,14 @@ export class RegisterComponent implements OnInit {
   } 
   
   get f() { return this.registerForm.controls; }
-  onAdminRegister() {
+  onFirebaseRegister() {
     this.submitted = true;
     this.alertService.clear();
 
     console.log("submitted: "+this.user.firstName + ' ' + this.user.lastName + ' ' + this.user.email  );
     this.loading = true;
     console.log("registerForm.value "+ this.registerForm.value);
-    this.adminAuthenticationService.register(this.registerForm.value)
+    this.authFirebaseStoreService.registerFirebase(this.registerForm.value)
       .pipe(first())
       .subscribe(
         data => {
@@ -80,7 +80,7 @@ export class RegisterComponent implements OnInit {
           this.loading = false;
         });
   } 
-  onRegisterSubmit() {
+  onAwsRegister() {
     this.submitted = true;
     this.alertService.clear();
 

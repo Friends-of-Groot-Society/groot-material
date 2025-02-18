@@ -2,14 +2,13 @@ package xyz.cryptomaven.rest.service;
 
 
 import xyz.cryptomaven.rest.mapper.ChainMapper;
-import xyz.cryptomaven.rest.models.Nft;
+import xyz.cryptomaven.rest.models.NftCoin;
 import xyz.cryptomaven.rest.models.dto.AddressDto;
 import xyz.cryptomaven.rest.mapper.AddressMapper;
 import xyz.cryptomaven.rest.models.Address;
 import xyz.cryptomaven.rest.mapper.NftMapper;
 
-import xyz.cryptomaven.rest.models.dto.ChainDto;
-import xyz.cryptomaven.rest.models.dto.NftDto;
+import xyz.cryptomaven.rest.models.dto.NftCoinDto;
 import xyz.cryptomaven.rest.repositories.NftRepository;
 import xyz.cryptomaven.rest.repositories.AddressesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,8 +39,8 @@ public class AddressesServiceImpl implements AddressesService {
 //        if (address != null && (address.getChains().isEmpty())) {
 //            address.setChains(addrDto.getChains());
 //        }
-        if (address != null && (address.getOwner() == null || address.getOwner() == "")) {
-            address.setOwner(addrDto.getOwner());
+        if (address != null && (address.getOwner() == null || address.getOwner().isEmpty())) {
+            address.setOwner(addrDto.getEmail());
         }
       assert address != null;
       Address newAddress = addressesRepository.save(address);
@@ -102,25 +101,25 @@ public class AddressesServiceImpl implements AddressesService {
 
     /////////////////////////
 @Override
-public NftDto createNft(NftDto nftDto) {
-    Nft nft = nftMapper.toEntity(nftDto);
+public NftCoinDto createNft(NftCoinDto nftCoinDto) {
+    NftCoin coin = nftMapper.toEntity(nftCoinDto);
 
-//    if (nft != null && (nft.getChainId() == 0)) {
-//        nft.setChainId(nftDto.getChainId());
+//    if (coin != null && (coin.getChainId() == 0)) {
+//        coin.setChainId(nftCoinDto.getChainId());
 //    }
 
-    Nft newNft = nftRepository.save(nft);
-    NftDto newNftDto = nftMapper.toDto(newNft);
-    return newNftDto;
+    NftCoin newCoin = nftRepository.save(coin);
+    NftCoinDto newNftCoinDto = nftMapper.toDto(newCoin);
+    return newNftCoinDto;
 }
     /**
      * @return
      */
     @Override
-    public List<NftDto> getAllNFTs() {
+    public List<NftCoinDto> getAllNFTs() {
 
-        List<Nft> adds = nftRepository.findAll();
-        List<NftDto> nftDtos = adds.stream().map(nftMapper::toDto).collect(Collectors.toList());
-        return nftDtos;
+        List<NftCoin> adds = nftRepository.findAll();
+        List<NftCoinDto> nftCoinDtos = adds.stream().map(nftMapper::toDto).collect(Collectors.toList());
+        return nftCoinDtos;
     }
 }

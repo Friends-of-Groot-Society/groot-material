@@ -5,7 +5,7 @@ import {
   RouterStateSnapshot,
   Router
 } from '@angular/router'; 
-import { AdminAuthenticationService } from './admin-authentication.service';
+import { AuthFirebaseStoreService } from './auth-firebase-store.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +15,7 @@ import { AdminAuthenticationService } from './admin-authentication.service';
 export class AdminGuardService implements CanActivate {
 
   constructor(
-    private adminAuthService: AdminAuthenticationService,
+    private adminAuthService: AuthFirebaseStoreService,
     private router: Router
   ) { }
 

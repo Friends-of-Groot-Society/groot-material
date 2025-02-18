@@ -1,4 +1,4 @@
-import { Nft } from "./Nft";
+import { Coin } from "./Coin";
 
 export interface Address { 
     id?:  number;
@@ -11,5 +11,5 @@ export interface Address {
     blockExplorerUrl?:  string;
     ownerId?:  number;
     chainId?: number;
-    nft?:  Nft;
+    nft?:  Array<Coin>;
 }

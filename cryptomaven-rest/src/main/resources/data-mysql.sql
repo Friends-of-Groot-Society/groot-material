@@ -1,141 +1,150 @@
-
-
-
-INSERT IGNORE  INTO addresses (
+INSERT INTO addresses (
   id, version, date_created, time_created, last_updated, time_updated,
-  description, owner, email, address, icon_url, block_explorer_url, nft_address
+  description, owner, address, icon_url, block_explorer_url, nft_address, email
 )
 VALUES
-  (1, 1, '2025-02-14 10:00:00', '2025-02-14 10:00:00', '2025-02-14 10:00:00', '2025-02-14 10:00:00',
-   'Main wallet', 'Alice', 'alice@wallet.com', '0xAAA123...', 'https://icons.example.com/icon1.png', 'https://blockexplorer1.com', '0xabc123...'),
-  (2, 1, '2025-02-14 11:00:00', '2025-02-14 11:00:00', '2025-02-14 11:00:00', '2025-02-14 11:00:00',
-   'Backup wallet', 'Bob', 'bob@wallet.com', '0xBBB456...', 'https://icons.example.com/icon2.png', 'https://blockexplorer2.com', '0xdef456...'),
-  (3, 1, '2025-02-14 12:00:00', '2025-02-14 12:00:00', '2025-02-14 12:00:00', '2025-02-14 12:00:00',
-   'Test wallet', 'Charlie', 'charlie@wallet.com', '0xCCC789...', 'https://icons.example.com/icon3.png', 'https://blockexplorer3.com', '0xghi789...');
-
-INSERT IGNORE  INTO attribute (
-  attrid, version, date_created, time_created, last_updated, time_updated,
-  attribute_value, trait_type
-)
+  (
+    1,                         -- Manually assigning ID=1
+    1,                         -- version
+    '2025-02-15 10:00:00',     -- date_created
+    '2025-02-15 10:00:00',     -- time_created
+    '2025-02-15 10:00:00',     -- last_updated
+    '2025-02-15 10:00:00',     -- time_updated
+    'Main ETH wallet',         -- description
+    'Alice',                   -- owner
+    '0xAbC12345def...',        -- address (typical crypto address)
+    'https://icons.example/eth.png',    -- icon_url
+    'https://etherscan.io',            -- block_explorer_url
+    '0xAbC12345def...',                -- nft_address (can match address, if needed)
+    'alice@crypto.com'                 -- email
+  );
+INSERT INTO categories (id, name, description)
 VALUES
-  (1, 1, '2025-02-14', '2025-02-14', '2025-02-14', '2025-02-14', 'Red', 'Color'),
-  (2, 1, '2025-02-14', '2025-02-14', '2025-02-14', '2025-02-14', 'XL', 'Size'),
-  (3, 1, '2025-02-14', '2025-02-14', '2025-02-14', '2025-02-14', 'Sparkly', 'Effect');
-
-INSERT IGNORE  INTO categories (id, name, description)
-VALUES
-  (1, 'Tech', 'Technology news'),
-  (2, 'Health', 'Health & wellness'),
-  (3, 'Sports', 'Sports updates');
-
-INSERT IGNORE  INTO nft_address_stamp (
-  id, version, date_created, time_created, last_updated, time_updated,
-  nft_address_stamp, native_token, nft_token
-)
-VALUES
-  (1, 1, '2025-02-14 13:00:00', '2025-02-14 13:00:00', '2025-02-14 13:00:00', '2025-02-14 13:00:00',
-   'StampOne', 10.5, 2.0),
-  (2, 1, '2025-02-14 13:15:00', '2025-02-14 13:15:00', '2025-02-14 13:15:00', '2025-02-14 13:15:00',
-   'StampTwo', 0.0, 100.0),
-  (3, 1, '2025-02-14 13:30:00', '2025-02-14 13:30:00', '2025-02-14 13:30:00', '2025-02-14 13:30:00',
-   'StampThree', 50.0, 50.0);
-
-
-INSERT IGNORE  INTO roles (id, name)
-VALUES
-  (1, 'ROLE_ADMIN'),
-  (2, 'ROLE_USER'),
-  (3, 'ROLE_MANAGER');
-
-
-INSERT IGNORE  INTO users (
-  userid, username, `password`, lastname, firstname, usertype, email,
-  organizationcode, cusurl, dashboardcode, isactive, contacttype
-)
-VALUES
-  (1, 'alice', 'passAlice', 'Wonderland', 'Alice', 1, 'alice@example.com', 'ORG001', 'https://example.com/alice', 'DASH-1', 1, 101),
-  (2, 'bob', 'passBob', 'Marley', 'Bob', 2, 'bob@example.com', 'ORG002', 'https://example.com/bob', 'DASH-2', 1, 102),
-  (3, 'charlie', 'passCharlie', 'Brown', 'Charlie', 3, 'charlie@example.com', 'ORG003', 'https://example.com/charlie', 'DASH-3', 0, 103);
-
-INSERT IGNORE  INTO users_roles (role_id, user_id)
-VALUES
-  (1, 1), -- 'alice' has ROLE_ADMIN
-  (2, 1), -- 'bob' has ROLE_USER
-  (3, 1); -- 'charlie' has ROLE_MANAGER
-
-
-INSERT IGNORE  INTO weblinks (
-  id, version, date_created, time_created, last_updated, time_updated,
-  url, host, htmlpage, downloadstatus
-)
-VALUES
-  (1, 1, '2025-02-14 14:00:00', '2025-02-14 14:00:00', '2025-02-14 14:00:00', '2025-02-14 14:00:00',
-   'https://example.com', 'example.com', '<html>Page1</html>', 1),
-  (2, 1, '2025-02-14 14:05:00', '2025-02-14 14:05:00', '2025-02-14 14:05:00', '2025-02-14 14:05:00',
-   'https://foo.com', 'foo.com', '<html>Page2</html>', 0),
-  (3, 1, '2025-02-14 14:10:00', '2025-02-14 14:10:00', '2025-02-14 14:10:00', '2025-02-14 14:10:00',
-   'https://bar.com', 'bar.com', '<html>Page3</html>', 1);
-
-
-INSERT IGNORE  INTO metadata (
-  id, version, date_created, time_created, last_updated, time_updated,
-  name, description, image, nft
-)
-VALUES
-  (1, 1, '2025-02-14', '2025-02-14', '2025-02-14', '2025-02-14', 'MetaOne', 'DescriptionOne', 'https://images.example.com/meta1.png', 'NFT-One'),
-  (2, 1, '2025-02-14', '2025-02-14', '2025-02-14', '2025-02-14', 'MetaTwo', 'DescriptionTwo', 'https://images.example.com/meta2.png', 'NFT-Two'),
-  (3, 1, '2025-02-14', '2025-02-14', '2025-02-14', '2025-02-14', 'MetaThree', 'DescriptionThree', 'https://images.example.com/meta3.png', 'NFT-Three');
-
-INSERT IGNORE  INTO chain (
+  (
+    1,
+    'DeFi',
+    'Decentralized Finance protocols and news'
+  );
+INSERT INTO chain (
   id, version, date_created, time_created, last_updated, time_updated,
   name, symbol, description, long_description, icon_url, category,
   chain_list_icon, rpc_url, chain_id, block_explorer_url, chain_address_id
 )
 VALUES
-  (1, 1, '2025-02-14 15:00:00', '2025-02-14 15:00:00', '2025-02-14 15:00:00', '2025-02-14 15:00:00',
-   'Ethereum', 'ETH', 'Ethereum mainnet', 'Extended info', 'https://icons.example.com/eth.png',
-   'DeFi', 'https://icons.example.com/ethlist.png', 'https://rpc.eth.com', 1, 'https://explorer.eth.com', 1),
-  (2, 1, '2025-02-14 15:05:00', '2025-02-14 15:05:00', '2025-02-14 15:05:00', '2025-02-14 15:05:00',
-   'Polygon', 'MATIC', 'Polygon sidechain', 'Extended info2', 'https://icons.example.com/matic.png',
-   'Layer2', 'https://icons.example.com/maticlist.png', 'https://rpc.matic.com', 137, 'https://explorer.matic.com', 2),
-  (3, 1, '2025-02-14 15:10:00', '2025-02-14 15:10:00', '2025-02-14 15:10:00', '2025-02-14 15:10:00',
-   'BSC', 'BNB', 'Binance Smart Chain', 'Extended info3', 'https://icons.example.com/bnb.png',
-   'Exchange', 'https://icons.example.com/bnblist.png', 'https://rpc.bsc.com', 56, 'https://explorer.bsc.com', 3);
-
-INSERT IGNORE  INTO news (id, title, url, category_id)
-VALUES
-  (1, 'AI Breakthrough', 'https://example.com/ai', 1),
-  (2, 'Health Discovery', 'https://example.com/health', 2),
-  (3, 'Championship Roundup', 'https://example.com/sports', 3);
-
-
-INSERT IGNORE  INTO nft (
-  id, version, date_created, time_created, last_updated, time_updated,
-  name, amount, metadata, nft_address, nft_id
+  (
+    1,
+    1,
+    '2025-02-15 11:00:00',
+    '2025-02-15 11:00:00',
+    '2025-02-15 11:00:00',
+    '2025-02-15 11:00:00',
+    'Ethereum Mainnet',
+    'ETH',
+    'Layer-1 Proof-of-Stake chain',
+    'Used for DeFi, NFTs, and more',
+    'https://icons.example/eth-chain.png',
+    'DeFi',                     -- Just a string category, not a FK
+    'https://icons.example/eth-list.png',
+    'https://rpc.ethereum.org', -- Example RPC
+    1,                          -- chain_id
+    'https://etherscan.io',     -- block_explorer_url
+    1                           -- chain_address_id -> references addresses(id=1)
+  );
+INSERT INTO attribute (
+  attrid, version, date_created, time_created, last_updated, time_updated,
+  attribute_value, trait_type
 )
 VALUES
-  (1, 1, '2025-02-14 16:00:00', '2025-02-14 16:00:00', '2025-02-14 16:00:00', '2025-02-14 16:00:00',
-   'NFT One', 10.0, 'MetaRefOne', '0xnft1', 1),
-  (2, 1, '2025-02-14 16:05:00', '2025-02-14 16:05:00', '2025-02-14 16:05:00', '2025-02-14 16:05:00',
-   'NFT Two', 20.5, 'MetaRefTwo', '0xnft2', 2),
-  (3, 1, '2025-02-14 16:10:00', '2025-02-14 16:10:00', '2025-02-14 16:10:00', '2025-02-14 16:10:00',
-   'NFT Three', 5.0, 'MetaRefThree', '0xnft3', 3);
+  (1, 1, '2025-02-16 09:00:00', '2025-02-16 09:00:00', '2025-02-16 09:00:00', '2025-02-16 09:00:00', 'Gold', 'Rarity'),
+  (2, 1, '2025-02-16 09:10:00', '2025-02-16 09:10:00', '2025-02-16 09:10:00', '2025-02-16 09:10:00', 'Immune', 'Buff'),
+  (3, 1, '2025-02-16 09:20:00', '2025-02-16 09:20:00', '2025-02-16 09:20:00', '2025-02-16 09:20:00', 'Sparkling', 'Effect');
 
+INSERT INTO metadata (
+  id, version, date_created, time_created, last_updated, time_updated,
+  name, description, image, nft
+)
+VALUES
+  (1, 1, '2025-02-16 10:00:00', '2025-02-16 10:00:00', '2025-02-16 10:00:00', '2025-02-16 10:00:00',
+   'MetaOne', 'First NFT metadata', 'https://images.example.com/meta1.png', 'NFT-One'),
+  (2, 1, '2025-02-16 10:05:00', '2025-02-16 10:05:00', '2025-02-16 10:05:00', '2025-02-16 10:05:00',
+   'MetaTwo', 'Second NFT data', 'https://images.example.com/meta2.png', 'NFT-Two'),
+  (3, 1, '2025-02-16 10:10:00', '2025-02-16 10:10:00', '2025-02-16 10:10:00', '2025-02-16 10:10:00',
+   'MetaThree', 'Third NFT data', 'https://images.example.com/meta3.png', 'NFT-Three');
 
-INSERT IGNORE  INTO raw_token (
+INSERT INTO weblinks (
+  id, version, date_created, time_created, last_updated, time_updated,
+  url, host, htmlpage, downloadstatus
+)
+VALUES
+  (1, 1, '2025-02-16 11:00:00', '2025-02-16 11:00:00', '2025-02-16 11:00:00', '2025-02-16 11:00:00',
+   'https://cryptoexample.com', 'cryptoexample.com', '<html>Crypto Content</html>', 1),
+  (2, 1, '2025-02-16 11:10:00', '2025-02-16 11:10:00', '2025-02-16 11:10:00', '2025-02-16 11:10:00',
+   'https://definance.org', 'definance.org', '<html>DeFi Info</html>', 0),
+  (3, 1, '2025-02-16 11:20:00', '2025-02-16 11:20:00', '2025-02-16 11:20:00', '2025-02-16 11:20:00',
+   'https://nftshowcase.io', 'nftshowcase.io', '<html>NFT Showcase</html>', 1);
+INSERT INTO roles (id, name)
+VALUES
+  (1, 'ROLE_ADMIN'),
+  (2, 'ROLE_USER'),
+  (3, 'ROLE_MANAGER');
+INSERT INTO users (
+  userid, username, password, lastname, firstname,
+  usertype, email, organizationcode, cusurl,
+  dashboardcode, isactive, contacttype
+)
+VALUES
+  (1, 'satoshi', 'pass123', 'Nakamoto', 'Satoshi', 1, 'satoshi@bitcoin.org', 'ORG-BTC', 'https://bitcoin.org', 'DASH-SAT', 1, 101),
+  (2, 'vitalik', 'pass456', 'Buterin', 'Vitalik', 2, 'vitalik@ethereum.org', 'ORG-ETH', 'https://ethereum.org', 'DASH-VIT', 1, 102),
+  (3, 'charles', 'pass789', 'Hoskinson', 'Charles', 3, 'charles@cardano.org', 'ORG-ADA', 'https://cardano.org', 'DASH-CHAR', 1, 103);
+
+INSERT INTO users_roles (role_id, user_id)
+VALUES
+  (1, 1),  -- Satoshi is ROLE_ADMIN
+  (2, 2),  -- Vitalik is ROLE_USER
+  (3, 3);  -- Charles is ROLE_MANAGER
+INSERT INTO news (id, title, url, category_id)
+VALUES
+  (1, 'BTC Surges', 'https://cryptoexample.com/btc-surges', 1),
+  (2, 'Healthy Mining Rigs', 'https://cryptoexample.com/healthy-mining', 2),
+  (3, 'eSports Gains', 'https://cryptoexample.com/esports', 3);
+
+INSERT INTO nft_address_stamp (
+  id, version, date_created, time_created, last_updated, time_updated,
+  nft_address_stamp, native_token, nft_token
+)
+VALUES
+  (1, 1, '2025-02-16 12:00:00', '2025-02-16 12:00:00', '2025-02-16 12:00:00', '2025-02-16 12:00:00',
+   'StampAlpha', 10.0, 3.0),
+  (2, 1, '2025-02-16 12:05:00', '2025-02-16 12:05:00', '2025-02-16 12:05:00', '2025-02-16 12:05:00',
+   'StampBeta', 0.0, 100.0),
+  (3, 1, '2025-02-16 12:10:00', '2025-02-16 12:10:00', '2025-02-16 12:10:00', '2025-02-16 12:10:00',
+   'StampGamma', 50.0, 5.0);
+
+INSERT INTO nft_address_stamp (
+  id, version, date_created, time_created, last_updated, time_updated,
+  nft_address_stamp, native_token, nft_token
+)
+VALUES
+  (1, 1, '2025-02-16 12:00:00', '2025-02-16 12:00:00', '2025-02-16 12:00:00', '2025-02-16 12:00:00',
+   'StampAlpha', 10.0, 3.0),
+  (2, 1, '2025-02-16 12:05:00', '2025-02-16 12:05:00', '2025-02-16 12:05:00', '2025-02-16 12:05:00',
+   'StampBeta', 0.0, 100.0),
+  (3, 1, '2025-02-16 12:10:00', '2025-02-16 12:10:00', '2025-02-16 12:10:00', '2025-02-16 12:10:00',
+   'StampGamma', 50.0, 5.0);
+
+INSERT INTO raw_token (
   id, version, date_created, time_created, last_updated, time_updated,
   raw_token, nftaddress_id
 )
 VALUES
-  (1, 1, '2025-02-14 16:20:00', '2025-02-14 16:20:00', '2025-02-14 16:20:00', '2025-02-14 16:20:00',
-   'RawOne', 1),
-  (2, 1, '2025-02-14 16:25:00', '2025-02-14 16:25:00', '2025-02-14 16:25:00', '2025-02-14 16:25:00',
-   'RawTwo', 2),
-  (3, 1, '2025-02-14 16:30:00', '2025-02-14 16:30:00', '2025-02-14 16:30:00', '2025-02-14 16:30:00',
-   'RawThree', 3);
+  (1, 1, '2025-02-16 12:35:00', '2025-02-16 12:35:00', '2025-02-16 12:35:00', '2025-02-16 12:35:00',
+   'RAWTOKEN-ALPHA', 1),
+  (2, 1, '2025-02-16 12:40:00', '2025-02-16 12:40:00', '2025-02-16 12:40:00', '2025-02-16 12:40:00',
+   'RAWTOKEN-BETA', 2),
+  (3, 1, '2025-02-16 12:45:00', '2025-02-16 12:45:00', '2025-02-16 12:45:00', '2025-02-16 12:45:00',
+   'RAWTOKEN-GAMMA', 3);
 
-
-INSERT IGNORE  INTO nft_address_stamp_nfts (nft_address_id, nfts_id)
+INSERT INTO nft_address_stamp_nfts (nft_address_id, nfts_id)
 VALUES
   (1, 1),
   (2, 2),

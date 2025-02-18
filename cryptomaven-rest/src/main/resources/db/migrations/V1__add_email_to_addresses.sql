@@ -70,7 +70,7 @@ CREATE TABLE metadata
   name          VARCHAR(255) NULL,
   `description` VARCHAR(255) NULL,
   image         VARCHAR(255) NULL,
-  nft           VARCHAR(255) NULL,
+  coin           VARCHAR(255) NULL,
   CONSTRAINT pk_metadata PRIMARY KEY (id)
 );
 
@@ -83,7 +83,7 @@ CREATE TABLE news
   CONSTRAINT pk_news PRIMARY KEY (id)
 );
 
-CREATE TABLE nft
+CREATE TABLE coin
 (
   id           BIGINT AUTO_INCREMENT NOT NULL,
   version      INT                   NULL,
@@ -128,7 +128,7 @@ CREATE TABLE raw_token
   last_updated  datetime              NULL,
   time_updated  datetime              NULL,
   raw_token     VARCHAR(255)          NULL,
-  nftaddress_id BIGINT                NULL,
+  coin_id BIGINT                NULL,
   CONSTRAINT pk_raw_token PRIMARY KEY (id)
 );
 
@@ -190,14 +190,14 @@ ALTER TABLE chain
 ALTER TABLE news
   ADD CONSTRAINT FK_NEWS_ON_CATEGORY FOREIGN KEY (category_id) REFERENCES categories (id);
 
-ALTER TABLE nft
+ALTER TABLE coin
   ADD CONSTRAINT FK_NFT_ON_NFT FOREIGN KEY (nft_id) REFERENCES nft_address_stamp (id);
 
 ALTER TABLE raw_token
-  ADD CONSTRAINT FK_RAW_TOKEN_ON_NFTADDRESS FOREIGN KEY (nftaddress_id) REFERENCES nft_address_stamp (id);
+  ADD CONSTRAINT FK_RAW_TOKEN_ON_NFTADDRESS FOREIGN KEY (coin_id) REFERENCES nft_address_stamp (id);
 
 ALTER TABLE nft_address_stamp_nfts
-  ADD CONSTRAINT fk_nftaddstanft_on_nft FOREIGN KEY (nfts_id) REFERENCES nft (id);
+  ADD CONSTRAINT fk_nftaddstanft_on_nft FOREIGN KEY (nfts_id) REFERENCES coin (id);
 
 ALTER TABLE nft_address_stamp_nfts
   ADD CONSTRAINT fk_nftaddstanft_on_nft_address FOREIGN KEY (nft_address_id) REFERENCES nft_address_stamp (id);

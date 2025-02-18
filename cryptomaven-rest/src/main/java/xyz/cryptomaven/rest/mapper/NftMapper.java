@@ -1,15 +1,15 @@
 package xyz.cryptomaven.rest.mapper;
 
 import org.mapstruct.*;
-import xyz.cryptomaven.rest.models.Nft;
-import xyz.cryptomaven.rest.models.dto.NftDto;
+import xyz.cryptomaven.rest.models.NftCoin;
+import xyz.cryptomaven.rest.models.dto.NftCoinDto;
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = "spring")
 public interface NftMapper {
-    Nft toEntity(NftDto nftDto);
+    NftCoin toEntity(NftCoinDto nftCoinDto);
 
-    NftDto toDto(Nft nft);
+    NftCoinDto toDto(NftCoin coin);
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-    Nft partialUpdate(NftDto nftDto, @MappingTarget Nft nft);
+    NftCoin partialUpdate(NftCoinDto nftCoinDto, @MappingTarget NftCoin coin);
 }

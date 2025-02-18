@@ -25,5 +25,5 @@ Feature: chains feature api
       | users | GET   | 200   |   |   |   |
       | users | GET   | 200   | /211    |   |   |
 
-      | nfts | GET   | 200   |   |   |   |
-      | nfts | GET   | 200   | /4002   |   |   |
+      | coins | GET   | 200   |   |   |   |
+      | coins | GET   | 200   | /4002   |   |   |

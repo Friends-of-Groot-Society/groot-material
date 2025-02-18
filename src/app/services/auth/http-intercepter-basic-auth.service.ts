@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpInterceptor, HttpHandler, HttpRequest } from '@angular/common/http';
-import { AdminAuthenticationService } from './admin-authentication.service';
+import { AuthFirebaseStoreService } from './auth-firebase-store.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +9,7 @@ import { AdminAuthenticationService } from './admin-authentication.service';
 export class HttpIntercepterBasicAuthService implements HttpInterceptor {
 
   constructor(
-    private adminAuthenticationService: AdminAuthenticationService
+    private adminAuthenticationService: AuthFirebaseStoreService
   ) { }
 
   intercept(request: HttpRequest<any>, next: HttpHandler) {

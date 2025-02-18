@@ -4,7 +4,7 @@ public class Constants {
 
 
     public static final String API_ADDRESSES = "/api/addresses";
-    public static final String API_NFTS = "/api/nfts";
+    public static final String API_NFTS = "/api/coins";
     public static final String API_CHAINS = "/api/chains";
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_BLACK = "\u001B[30m";
@@ -28,7 +28,7 @@ public class Constants {
 
   public static final String API_KEYS = "/api/keys";
   // FILES
- 
+
     public static final String SRC_DATA_STARTUP_TEXT_ADMIN_TXT  = "src/data/STARTUP_TEXT_ADMIN.txt" ;;
     public static final String SRC_DATA_STARTUP_TEXT_TXT = "src/data/STARTUP_TEXT.txt" ;;
     public static final String LOCAL_SCANNER_TXT = "src/data/scannertext.txt" ;

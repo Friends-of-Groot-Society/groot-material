@@ -1,22 +1,25 @@
 package xyz.cryptomaven.rest.models;
 
+import jakarta.persistence.FetchType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import lombok.Getter;
+import lombok.Setter;
 public class UserNftbuy  extends AbstractDomainClass {
 
   private static final long serialVersionUID = 1L;
+    @Getter
+    @Setter
+    @ManyToOne (fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id")
     private User user;
-    private Nft nft;
-    public User getUser() {
-        return user;
-    }
-    public void setUser(User user) {
-        this.user = user;
-    }
-    public Nft getNft() {
-        return nft;
-    }
-    public void setNft(Nft nft) {
-        this.nft = nft;
-    }
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "nft_id")
+    private NftCoin coin;
+
+
+
 
 
 }
