@@ -3,7 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { map, tap, take, exhaustMap, catchError } from 'rxjs/operators';
 
 import { Chain } from 'src/app/models/Chain';
-import { NftRef } from '../models/NftRef';
+import { Address } from '../models/Address';
 import { Coin } from '../models/Coin';
 import { User } from '../models/User';
 import { NftsService } from '../components/nft/nfts.service';
@@ -17,12 +17,12 @@ import { environment } from 'src/environments/environment';
 })
 export class DataStorageService {
   currUser : User;
-  nftRef: NftRef;
+  nftRef: Address;
   email:string;
   nftData:any;
 
-  nftRefs: NftRef[];
-  subjectNftRef = new Subject<NftRef>();
+  nftRefs: Address[];
+  subjectNftRef = new Subject<Address>();
 
   nftCoins: Coin[];
   subjectNftCoin = new Subject<Coin>();
@@ -41,14 +41,14 @@ export class DataStorageService {
     this.nftData = this.nftService.getNftCoin();
     console.log("nftData", this.nftData);
     this.nftRef = {chain, address, email: this.email, nftCoins: this.nftData}
-    this.httpClient.post<NftRef>(
+    this.httpClient.post<Coin>(
       `${environment.nft_url}/coinNft`,
       // 'https://friends-of-groot-default-rtdb.firebaseio.com/api/nft.json',
       this.nftRef
     )
     .pipe(
       tap(response => {
-        this.nftRef.name = response.name;
+        this.nftRef.id = response.id;  
         console.log(this.nftRef);
         this.nftService.nftsUpdated.next([this.nftRef]);
       })
@@ -62,14 +62,14 @@ export class DataStorageService {
     this.nftData = this.nftService.getNftCoin();
     console.log("nftData", this.nftData);
     this.nftRef = {chain, address, email: this.email, nftCoins: this.nftRefs.map(nftRef => nftRef.nftCoins).flat()}
-    this.httpClient.post<NftRef>(
-      `${environment.nft_url}/coinNft`,
+    this.httpClient.post<Address>(
+      `${environment.nft_url}/addresses`,
       // 'https://friends-of-groot-default-rtdb.firebaseio.com/api/nft.json',
       this.nftRef
     )
     .pipe(
       tap(response => {
-        this.nftRef.name = response.name;
+        this.nftRef.id = response.id;
         console.log(this.nftRef);
         this.nftService.nftsUpdated.next([this.nftRef]);
       })
@@ -81,7 +81,7 @@ export class DataStorageService {
     // const nft = this.nftService.getNftData();
     const nftRefs = this.nftRefs;
     const nftRef  = nftRefs.find(nftRef => nftRef === name);
-    const newNftRef: NftRef = {
+    const newNftRef: Address = {
       ...nftRefs,
       ...changes
     };
@@ -92,14 +92,14 @@ export class DataStorageService {
     //     return nftRef;
     //   }
     // });
-  const  newNftRefs: NftRef[] = nftRefs.slice(0);
+  const  newNftRefs: Address[] = nftRefs.slice(0);
     newNftRefs.splice(nftRefs.indexOf(nftRef), 1, newNftRef);
     this.subjectNftRef.next(newNftRef);
     this.nftRefs = newNftRefs;
 
 
     return this.httpClient
-    .put<NftRef>(
+    .put<Address>(
       `${environment.nft_url}/addresses`,
       // `https://friends-of-groot-default-rtdb.firebaseio.com/api/nft/${name}.json`,
       changes)
@@ -108,7 +108,7 @@ export class DataStorageService {
           return throwError(err);
         }),
         tap(nftRef => {
-          this.nftService.nftRefsUpdated.next(nftRef);
+          this.nftService.addressUpdated.next(nftRef);
         }),
         // shareReplay()
       )
@@ -139,10 +139,12 @@ export class DataStorageService {
         })
       )
   }
-  getAllNfts(id:string) {
+ 
+  getNftById(id:string) {
     const Nfts = this.httpClient
       .get<Coin[]>(
-        'https://friends-of-groot-default-rtdb.firebaseio.com/api/nft.json'
+        `${environment.nft_url}/coin/${id}`,
+        // 'https://friends-of-groot-default-rtdb.firebaseio.com/api/nft.json'
       )
       .pipe(
         map(nfts => {

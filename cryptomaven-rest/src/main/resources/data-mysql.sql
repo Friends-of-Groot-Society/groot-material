@@ -108,9 +108,9 @@ VALUES
   (2, 'Healthy Mining Rigs', 'https://cryptoexample.com/healthy-mining', 2),
   (3, 'eSports Gains', 'https://cryptoexample.com/esports', 3);
 
-INSERT INTO nft_address_stamp (
+INSERT INTO coin (
   id, version, date_created, time_created, last_updated, time_updated,
-  nft_address_stamp, native_token, nft_token
+  coin, native_token, nft_token
 )
 VALUES
   (1, 1, '2025-02-16 12:00:00', '2025-02-16 12:00:00', '2025-02-16 12:00:00', '2025-02-16 12:00:00',
@@ -120,9 +120,9 @@ VALUES
   (3, 1, '2025-02-16 12:10:00', '2025-02-16 12:10:00', '2025-02-16 12:10:00', '2025-02-16 12:10:00',
    'StampGamma', 50.0, 5.0);
 
-INSERT INTO nft_address_stamp (
+INSERT INTO coin (
   id, version, date_created, time_created, last_updated, time_updated,
-  nft_address_stamp, native_token, nft_token
+  coin, native_token, nft_token
 )
 VALUES
   (1, 1, '2025-02-16 12:00:00', '2025-02-16 12:00:00', '2025-02-16 12:00:00', '2025-02-16 12:00:00',

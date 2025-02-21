@@ -11,5 +11,5 @@ export interface Address {
     blockExplorerUrl?:  string;
     ownerId?:  number;
     chainId?: number;
-    nft?:  Array<Coin>;
+    nftCoins?:  Array<Coin>;
 }

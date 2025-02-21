@@ -153,8 +153,8 @@ public class UsersController {
 
         JWTAuthResponse jwtAuthResponse = new JWTAuthResponse();
         jwtAuthResponse.setAccessToken(token);
-      jwtAuthResponse.setIdToken(token);
-      jwtAuthResponse.setEmail(loginDto.getUsernameOrEmail());
+//      jwtAuthResponse.setIdToken(token);
+//      jwtAuthResponse.setEmail(loginDto.getUsernameOrEmail());
 
         return ResponseEntity.ok(jwtAuthResponse);
     }

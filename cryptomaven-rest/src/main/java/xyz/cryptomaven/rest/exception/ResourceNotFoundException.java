@@ -33,4 +33,5 @@ public class ResourceNotFoundException extends RuntimeException{
   public ResourceNotFoundException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
     super(String.format("%s not %s found with %s : '%s'", message, cause, enableSuppression, writableStackTrace));
   }
+
 }

@@ -15,8 +15,8 @@ import { UsersComponent } from './components/users/users.component';
 import { HomeComponent } from './components/layout/home.component';
 import { UserGuardService } from './services/auth/user-guard.service'
 import { AdminGuardService } from './services/auth/admin-guard.service';
-import { NftRefResolver } from './components/nft/nft-ref-resolver';
-import { NftRefComponent } from './components/nft/nft-ref/nft-ref.component';
+import { AddressResolver } from './components/nft/address-resolver';
+import { AddressComponent } from './components/nft/address/address.component';
 import { AdminuserComponent } from './components/users/adminuser.component';
 
 const routes: Routes = [
@@ -32,9 +32,9 @@ const routes: Routes = [
 
   { path: 'nfts', component: NftsComponent },
   {
-    path: 'nft-ref/:name', component: NftRefComponent,
+    path: 'nft-ref/:name', component: AddressComponent,
     resolve: {
-      nftRef: NftRefResolver
+      nftRef: AddressResolver
     }
   },
   { path: 'contact', component: ContactusComponent },

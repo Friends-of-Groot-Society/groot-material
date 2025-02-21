@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import xyz.cryptomaven.rest.models.Role;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -16,7 +17,9 @@ import java.util.Set;
 @ToString
 @Entity
 @Table(name = "users")
-public class User {
+public class User implements Serializable {
+
+  private static final long serialVersionUID = 1L;
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -59,6 +62,9 @@ public class User {
   @Transient
   private String id;
 
+  @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+  private Set<Address> addresses = new HashSet<>();
+
   @ManyToMany(fetch = FetchType.LAZY)
   @JoinTable(
     name = "users_roles",
@@ -84,6 +90,7 @@ public class User {
     this.isActive = isActive;
     this.contactType = contactType;
     this.id = id;
+
   }
 
   // Constructor for minimal user data

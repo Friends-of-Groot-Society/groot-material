@@ -21,6 +21,7 @@ public class CoinDto implements Serializable {
   Timestamp timeUpdated;
   Long id;
   Double nativeToken;
-  char[] tokens;
+ List<RawTokenDto> tokens;
   List<NftCoinDto> nfts;
+
 }

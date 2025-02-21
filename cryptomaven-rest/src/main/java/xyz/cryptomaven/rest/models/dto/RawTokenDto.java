@@ -17,6 +17,7 @@ import java.io.Serializable;
 @Accessors(chain = true)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class RawTokenDto implements Serializable {
+
     private Integer id;
     private String rawToken;
 }

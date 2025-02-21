@@ -1,11 +1,18 @@
 package xyz.cryptomaven.rest.models;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
-
+@Getter
+@SuperBuilder
 @Entity
+@AllArgsConstructor
+@RequiredArgsConstructor
 @Table(name = "WEBLINKS")
-public class Weblink extends Bookmark   {
+public class Weblink extends AbstractDomainClass implements Bookmark   {
 
   private static final long serialVersionUID = 1L;
 	@Id
@@ -23,7 +30,13 @@ public class Weblink extends Bookmark   {
 	@Column(name="DOWNLOADSTATUS")
 	private DownloadStatus downloadStatus = DownloadStatus.NOT_ATTEMPTED;
 
+  @ManyToOne
+  @JoinColumn(name = "shared_by_userid")
+  private User sharedBy;
 
+  String getTitle() {
+    return this.title;
+  }
 
 	public enum DownloadStatus {
 		NOT_ATTEMPTED,
@@ -31,7 +44,7 @@ public class Weblink extends Bookmark   {
 		FAILED,
 		NOT_ELIGIBLE;
 	}
-	@Override
+
 	public String getItemData() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("<item>");
@@ -42,7 +55,7 @@ public class Weblink extends Bookmark   {
 		builder.append("</item>");
 		return builder.toString();
 	}
-	@Override
+
 	public boolean isWeb3Link() {
 		return true;
 	}

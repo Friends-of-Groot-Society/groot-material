@@ -1,18 +1,18 @@
 <h3>NFT_DIALOG</h3>
-<h3 mat-dialog-title>{{nftRef.address | slice:-10:-1}}</h3>
+<h3 mat-dialog-title>{{address.address | slice:-10:-1}}</h3>
 
 <app-loader></app-loader>
 <mat-dialog-content [formGroup]="form">
 
     <mat-form-field>
-        <input matInput placeholder="nftRef chain " formControlName="chain">
+        <input matInput placeholder="address chain " formControlName="chain">
     </mat-form-field>
     <mat-form-field>
-        <input matInput placeholder="nftRef email" formControlName="owner">
+        <input matInput placeholder="address email" formControlName="owner">
     </mat-form-field>
 
     <mat-form-field>
-        <input matInput placeholder="nftRef address" formControlName="address">
+        <input matInput placeholder="address address" formControlName="address">
     </mat-form-field>
 
 </mat-dialog-content>

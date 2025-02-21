@@ -34,7 +34,7 @@ import { ChaindataComponent } from './components/nft/chaindata/chaindata.compone
 import { LoaderService } from './components/layout/loader/loader.service';
 import { LoaderComponent } from './components/layout/loader/loader.component'; 
 import { UsersComponent } from './components/users/users.component';
-import { AddressComponent } from './components/chain/address/address.component';
+import { AddressComponent } from './components/nft/address/address.component';
 import { SearchAddressesComponent } from './components/chain/search-addresses/search-addresses.component';
 
 import { PipeUppercase } from './utility/pipe-uppercase.pipe';
@@ -46,9 +46,8 @@ import { provideDatabase,getDatabase } from '@angular/fire/database';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { provideFunctions,getFunctions } from '@angular/fire/functions';
 import { NftCardListComponent } from './components/nft/nft-card-list/nft-card-list.component';
-import { NftDialogComponent } from './components/nft/nft-dialog/nft-dialog.component';
-import { NftRefComponent } from './components/nft/nft-ref/nft-ref.component';
-import { NftRefResolver } from './components/nft/nft-ref-resolver';
+import { NftDialogComponent } from './components/nft/nft-dialog/nft-dialog.component'; 
+import { AddressResolver } from './components/nft/address-resolver';
 import { UserGuardService } from './services/auth/user-guard.service';
 import { AdminuserComponent } from './components/users/adminuser.component';
 @NgModule({
@@ -76,7 +75,7 @@ import { AdminuserComponent } from './components/users/adminuser.component';
     PipeUppercase, 
     NftCardListComponent,
     NftDialogComponent,
-    NftRefComponent,
+    AddressComponent,
     AdminuserComponent, 
     SafeHtmlPipe,
   ],
@@ -91,7 +90,7 @@ import { AdminuserComponent } from './components/users/adminuser.component';
   providers: [  
     LoaderService,
     UpperCasePipe,
-    NftRefResolver,
+    AddressResolver,
     UserGuardService,
     SafeHtmlPipe,
   ],

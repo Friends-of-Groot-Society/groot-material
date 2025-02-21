@@ -1,18 +1,18 @@
 package xyz.cryptomaven.rest.models;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 
 import jakarta.persistence.*;
-import lombok.RequiredArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 @Data
 @Entity
 @AllArgsConstructor
 @RequiredArgsConstructor
-@Builder
+@EqualsAndHashCode(callSuper = true)
+@SuperBuilder
 @Table(name = "attribute")
 public class Attribute  extends AbstractDomainClass {
   private static final long serialVersionUID = 1L;
@@ -21,6 +21,7 @@ public class Attribute  extends AbstractDomainClass {
     String attribute_value;
     String trait_type;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "metadata_coin_id")
     Metadata metadata;

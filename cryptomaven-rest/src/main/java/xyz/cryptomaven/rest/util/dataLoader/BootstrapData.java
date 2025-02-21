@@ -99,31 +99,31 @@ public class BootstrapData {
       Chain chain2 = Chain.builder()
         .name("Ethereum")
         .symbol("ETH")
-        .address(null)
+        .addressChain(null)
         .build();
 
       Chain chain3 = Chain.builder()
         .name("Solana")
         .symbol("SOL")
-        .address(null)
+        .addressChain(null)
         .build();
 
       Chain chain4 = Chain.builder()
         .name("Avalanche")
         .symbol("AVAX")
-        .address(null)
+        .addressChain(null)
         .build();
 
       Chain chain5 = Chain.builder()
         .name("Polygon")
         .symbol("MATIC")
-        .address(null)
+        .addressChain(null)
         .build();
 
       Chain chain6 = Chain.builder()
         .name("Fantom")
         .symbol("FTM")
-        .address(null)
+        .addressChain(null)
         .build();
 
       chains.addAll(Arrays.asList(chain1, chain2, chain3, chain4, chain5, chain6));

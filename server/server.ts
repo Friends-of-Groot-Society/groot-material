@@ -67,8 +67,8 @@ app.route('/api/users').get(getUsers);
 app.route('/api/users/email/:email').get(getUserById);
 app.route('/api/nft-refs').get(getNftRefs);
 
-app.route('/api/nft-test').get(getNft);
-app.route('/api/nft-test').post(postNft);
+app.route('/api/nft').get(getNft);
+app.route('/api/nft-post').post(postNft);
 
 app.route('/api/nfts-test').post(postNfts);
 /// open-ai stuff
@@ -92,6 +92,7 @@ app.get("/api/nft", async (req, res) => {
     res.json({ error: error.message })
   }
 })
+
 app.post("/api/nft-test", async (req, res) => {
 
   res.status(200)

@@ -87,7 +87,7 @@ create table if not exists news
     foreign key (category_id) references categories (id)
 );
 
-create table if not exists nft_address_stamp
+create table if not exists coin
 (
   id                bigint auto_increment
     primary key,
@@ -96,7 +96,7 @@ create table if not exists nft_address_stamp
   time_created      datetime     null,
   last_updated      datetime     null,
   time_updated      datetime     null,
-  nft_address_stamp varchar(255) null,
+  coin varchar(255) null,
   native_token      double       null,
   nft_token         double       null
 );
@@ -116,19 +116,19 @@ create table if not exists nft
   nft_address  varchar(255) null,
   nft_id       bigint       null,
   constraint FK_NFT_ON_NFT
-    foreign key (nft_id) references nft_address_stamp (id)
+    foreign key (nft_id) references coin (id)
 );
 
-create table if not exists nft_address_stamp_nfts
+create table if not exists coin_nfts
 (
   nft_address_id bigint not null,
   nfts_id        bigint not null,
-  constraint uc_nft_address_stamp_nfts_nfts
+  constraint uc_coin_nfts_nfts
     unique (nfts_id),
   constraint fk_nftaddstanft_on_nft
     foreign key (nfts_id) references nft (id),
   constraint fk_nftaddstanft_on_nft_address
-    foreign key (nft_address_id) references nft_address_stamp (id)
+    foreign key (nft_address_id) references coin (id)
 );
 
 create table if not exists raw_token
@@ -143,7 +143,7 @@ create table if not exists raw_token
   raw_token     varchar(255) null,
   coin_id bigint       null,
   constraint FK_RAW_TOKEN_ON_NFTADDRESS
-    foreign key (coin_id) references nft_address_stamp (id)
+    foreign key (coin_id) references coin (id)
 );
 
 create table if not exists roles

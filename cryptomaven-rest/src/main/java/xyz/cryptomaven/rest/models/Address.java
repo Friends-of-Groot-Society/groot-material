@@ -2,14 +2,18 @@ package xyz.cryptomaven.rest.models;
 
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
 @Getter
 @Setter
 @Entity
-@Builder
+@EqualsAndHashCode(callSuper = true)
+@SuperBuilder
 @AllArgsConstructor
 @RequiredArgsConstructor
 @Table(name = "addresses")
@@ -32,7 +36,12 @@ public class Address extends AbstractDomainClass {
   private String blockExplorerUrl;
   private String nftAddress;
 
-  @OneToMany(mappedBy = "address", cascade = CascadeType.ALL, orphanRemoval = true)
-  private Set<Chain> chains;
+  @OneToMany(mappedBy = "addressChain", cascade = CascadeType.ALL, orphanRemoval = true)
+  private Set<Chain> chains = new HashSet<>();
 
+  @OneToMany(mappedBy = "addressCoin", cascade = CascadeType.ALL, orphanRemoval = true)
+  private Set<Coin> Coins = new HashSet<>();
+
+  @ManyToOne(fetch = FetchType.LAZY)
+  private User user;
 }

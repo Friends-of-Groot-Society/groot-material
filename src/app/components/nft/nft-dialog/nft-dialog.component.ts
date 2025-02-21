@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef, MatDialogConfig, MatDialog } from '@angular/material/dialog';     
-import {NftRef} from '../../../models/NftRef';
+import {Address} from '../../../models/Address';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DataStorageService } from 'src/app/services/data-storage.service'; 
 import { LoaderService } from '../../layout/loader/loader.service';  
@@ -16,26 +16,26 @@ import { Coin } from 'src/app/models/Coin';
 })
 export class NftDialogComponent implements OnInit {
   form: FormGroup;
-  nftRef: NftRef;
+  address: Address;
 
   constructor(
     private formBuilder: FormBuilder,
     private dialogRef: MatDialogRef<NftDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) nftRef: NftRef,
+    @Inject(MAT_DIALOG_DATA) address: Address,
     private data: DataStorageService
 
   ) { 
-    this.nftRef = nftRef;
+    this.address = address;
     this.form = this.formBuilder.group({
-      name: [nftRef.name, Validators.required],
-      owner: [nftRef.owner, Validators.required],
-      address: [nftRef.address, Validators.required],
-      chain: [nftRef.chain, Validators.required]
+      name: [address.id, Validators.required],
+      owner: [address.owner, Validators.required],
+      address: [address.address, Validators.required],
+      chain: [address.chain, Validators.required]
   });
   }
   save() {
     const changes = this.form.value;
-    this.data.editPersistedNftRef(this.nftRef.name, changes).subscribe();
+    this.data.editPersistedNftRef(this.address.id.toString(), changes).subscribe();
   }
 
   close() {

@@ -1,17 +1,16 @@
 package xyz.cryptomaven.rest.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 
 import jakarta.persistence.*;
-import lombok.RequiredArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 import java.util.List;
 
 @Data
 @Entity
-@Builder
+@EqualsAndHashCode(callSuper = true)
+@SuperBuilder
 @RequiredArgsConstructor
 @AllArgsConstructor
 @Table(name = "metadata")

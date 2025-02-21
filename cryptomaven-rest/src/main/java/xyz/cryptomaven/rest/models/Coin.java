@@ -2,32 +2,36 @@ package xyz.cryptomaven.rest.models;
 
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@EqualsAndHashCode(callSuper = true)
+@SuperBuilder
 @Data
 @Entity
-@Builder
 @AllArgsConstructor
-@RequiredArgsConstructor
+@NoArgsConstructor
 @Table(name = "coin")
 public class Coin extends AbstractDomainClass {
+
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-
-  @Column(name="native_token")
+  @Column(name = "native_token")
   private Double nativeToken;
 
-  @Column(name="nft_token")
-  private char[] tokens ;
+  @OneToMany(mappedBy = "coin", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+  @Builder.Default
+  private List<RawToken> tokens = new ArrayList<>();
 
-  // One Coin can have many NftCoins
-  @OneToMany(mappedBy ="coin", cascade=CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-  private  List<NftCoin> nfts = new ArrayList<>();
+  @OneToMany(mappedBy = "coin", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+  @Builder.Default
+  private List<NftCoin> nfts = new ArrayList<>();
 
-
-  // equals, hashCode, etc.
+  @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+  @JoinColumn(name = "address_id") // ✅ Fixed foreign key name
+  private Address addressCoin;
 }

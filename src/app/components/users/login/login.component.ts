@@ -64,6 +64,7 @@ export class LoginComponent implements OnInit {
       .subscribe(
         () => {
           localStorage.setItem('usernameOrEmail', val.usernameOrEmail);
+        
 
           this.router.navigateByUrl(`/`)
         },
