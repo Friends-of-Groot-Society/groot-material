@@ -68,9 +68,9 @@ export class NftAddComponent implements OnInit {
     } 
     
     chainCheckNft(form: { valid: any; value: { chain: string, address: string}; }) { 
-      console.log(form.value.chain, form.value.address);
       if(form.valid) {
-     this.nftData =  this.nftsService.chainNftData(form.value.chain, form.value.address )  
+     this.nftData =  this.nftsService.chainNftData(form.value.chain, form.value.address );
+     console.log(form.value.chain, form.value.address);
       } 
     } 
   // onAddNft(form: { valid: any; value: { nftAddress: string; }; }) {

@@ -40,7 +40,7 @@ export class DataStorageService {
     this.email = localStorage.getItem('email');
     this.nftData = this.nftService.getNftCoin();
     console.log("nftData", this.nftData);
-    this.nftRef = {chain, address, email: this.email, nftCoins: this.nftData}
+    this.nftRef = {chain, address, email: this.email, coins: this.nftData}
     this.httpClient.post<Coin>(
       `${environment.nft_url}/coinNft`,
       // 'https://friends-of-groot-default-rtdb.firebaseio.com/api/nft.json',
@@ -61,7 +61,7 @@ export class DataStorageService {
     this.email = localStorage.getItem('email');
     this.nftData = this.nftService.getNftCoin();
     console.log("nftData", this.nftData);
-    this.nftRef = {chain, address, email: this.email, nftCoins: this.nftRefs.map(nftRef => nftRef.nftCoins).flat()}
+    this.nftRef = {chain, address, email: this.email, coins: this.nftRefs.map(nftRef => nftRef.coins).flat()}
     this.httpClient.post<Address>(
       `${environment.nft_url}/addresses`,
       // 'https://friends-of-groot-default-rtdb.firebaseio.com/api/nft.json',
@@ -130,6 +130,7 @@ export class DataStorageService {
               this.nftRefs.push({ ...res[key]});//, id: key });
             }
           }
+          console.log( this.nftRefs);
           return this.nftRefs;
         }
         ),

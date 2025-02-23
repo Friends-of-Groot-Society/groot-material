@@ -16,7 +16,7 @@
 
         <div class="col col-6" id="button">
           <button mat-raised-button  class="mat-elevation-z8"  mat-icon-button color="accent" type="submit">
-            <mat-icon>add</mat-icon>
+            <mat-icon>search</mat-icon>
           </button>
           <button mat-raised-button  class="mat-elevation-z8"  mat-icon-button color="accent"  
           (click)="saveForm(f)" >
@@ -28,7 +28,7 @@
 
         <mat-form-field style="min-width:375px" appearance="outline">
           <mat-label>Ethereum Address</mat-label>
-          <input matInput type="text" name="address" ngModel placeholder="NFT" minlength="42" required />
+          <input matInput type="text" name="address" #address ngModel placeholder="NFT" minlength="42" required />
         </mat-form-field>
 
       </div> 

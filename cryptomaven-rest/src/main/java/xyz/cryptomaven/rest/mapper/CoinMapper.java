@@ -4,8 +4,12 @@ import org.mapstruct.*;
 import xyz.cryptomaven.rest.models.Coin;
 import xyz.cryptomaven.rest.models.dto.CoinDto;
 
+import java.util.Set;
+
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING, uses = {NftMapper.class})
 public interface CoinMapper {
+
+  Set<Coin> toEntities(Set<CoinDto> coinDto);
   Coin toEntity(CoinDto coinDto);
 
   @AfterMapping

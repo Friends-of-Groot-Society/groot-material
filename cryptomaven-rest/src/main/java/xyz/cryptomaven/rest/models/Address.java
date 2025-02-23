@@ -40,7 +40,7 @@ public class Address extends AbstractDomainClass {
   private Set<Chain> chains = new HashSet<>();
 
   @OneToMany(mappedBy = "addressCoin", cascade = CascadeType.ALL, orphanRemoval = true)
-  private Set<Coin> Coins = new HashSet<>();
+  private Set<Coin> coins = new HashSet<>();
 
   @ManyToOne(fetch = FetchType.LAZY)
   private User user;

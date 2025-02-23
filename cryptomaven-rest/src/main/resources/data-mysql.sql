@@ -1,151 +1,178 @@
-INSERT INTO addresses (
-  id, version, date_created, time_created, last_updated, time_updated,
-  description, owner, address, icon_url, block_explorer_url, nft_address, email
+INSERT INTO roles (id, name)
+VALUES
+  (1, 'ROLE_ADMIN'),
+  (2, 'ROLE_USER');
+
+
+INSERT INTO users (
+  userid, username, password, lastname, firstname, usertype, email,
+  organizationcode, cusurl, dashboardcode, isactive, contacttype
 )
 VALUES
-  (
-    1,                         -- Manually assigning ID=1
-    1,                         -- version
-    '2025-02-15 10:00:00',     -- date_created
-    '2025-02-15 10:00:00',     -- time_created
-    '2025-02-15 10:00:00',     -- last_updated
-    '2025-02-15 10:00:00',     -- time_updated
-    'Main ETH wallet',         -- description
-    'Alice',                   -- owner
-    '0xAbC12345def...',        -- address (typical crypto address)
-    'https://icons.example/eth.png',    -- icon_url
-    'https://etherscan.io',            -- block_explorer_url
-    '0xAbC12345def...',                -- nft_address (can match address, if needed)
-    'alice@crypto.com'                 -- email
-  );
-INSERT INTO categories (id, name, description)
+  (10, 'thomas1@gmail.com', 'pass1', 'Maestas', 'Thomas1', 0, 'thomas1@gmail.com',
+   'ORG1', 'https://example.com/thomas1', 'DASH1', 1, 101),
+  (11, 'thomas2@gmail.com', 'pass2', 'Maestas', 'Thomas2', 1, 'thomas2@gmail.com',
+   'ORG2', 'https://example.com/thomas2', 'DASH2', 1, 102),
+  (12, 'thomas3@gmail.com', 'pass3', 'Maestas', 'Thomas3', 2, 'thomas3@gmail.com',
+   'ORG3', 'https://example.com/thomas3', 'DASH3', 0, 103),
+  (13, 'thomas4@gmail.com', 'pass4', 'Maestas', 'Thomas4', 3, 'thomas4@gmail.com',
+   'ORG4', 'https://example.com/thomas4', 'DASH4', 0, 104),
+  (14, 'thomas5@gmail.com', 'pass5', 'Maestas', 'Thomas5', 3, 'thomas5@gmail.com',
+   'ORG5', 'https://example.com/thomas5', 'DASH5', 0, 105);
+
+
+INSERT INTO users_roles (role_id, user_id)
 VALUES
-  (
-    1,
-    'DeFi',
-    'Decentralized Finance protocols and news'
-  );
+  (1, 10),  -- user #10 => ROLE_ADMIN
+  (2, 11),  -- user #11 => ROLE_USER
+  (1, 12),  -- user #12 => ROLE_ADMIN
+  (2, 13),  -- user #13 => ROLE_USER
+  (1, 14);  -- user #14 => ROLE_ADMIN
+
+
+INSERT INTO addresses (
+  id, version, date_created, time_created, last_updated, time_updated,
+  description, owner, email, address, icon_url, block_explorer_url,
+  nft_address, user_userid
+)
+VALUES
+  (20, 1, '2025-04-01', '2025-04-01', '2025-04-01', '2025-04-01',
+   'ETH: Ethereum', 'Thomas1@gmail.com', 'thomas1@gmail.com', '0xAAA111...',
+   'https://s3.amazonaws.com/tmm.net/images/crypto/eth.png', 'https://etherscan.io', '0xAAA111...', 10),
+  (21, 1, '2025-04-01', '2025-04-01', '2025-04-01', '2025-04-01',
+   'BSC: Binance', 'Thomas2@gmail.com', 'thomas2@gmail.com', '0xBBB222...',
+   'https://s3.amazonaws.com/tmm.net/images/crypto/bsc.png', 'https://bscscan.com', '0xBBB222...', 11),
+  (22, 1, '2025-04-01', '2025-04-01', '2025-04-01', '2025-04-01',
+   'MATIC: Polygon', 'Thomas3@gmail.com', 'thomas3@gmail.com', '0xCCC333...',
+   'https://s3.amazonaws.com/tmm.net/images/crypto/matic.png', 'https://polygonscan.com', '0xCCC333...', 12),
+  (23, 1, '2025-04-01', '2025-04-01', '2025-04-01', '2025-04-01',
+   'AVAX: Avalanche', 'Thomas4@gmail.com', 'thomas4@gmail.com', '0xDDD444...',
+   'https://s3.amazonaws.com/tmm.net/images/crypto/eth.png', 'https://snowtrace.io', '0xDDD444...', 13),
+  (24, 1, '2025-04-01', '2025-04-01', '2025-04-01', '2025-04-01',
+   'PLS: PulseChain', 'Thomas4@gmail.com', 'thomas4@gmail.com', '0xEEE555...',
+   'https://s3.amazonaws.com/tmm.net/images/crypto/pls.png', 'https://scan.pulsechain.com', '0xEEE555...', 14);
+
+
 INSERT INTO chain (
   id, version, date_created, time_created, last_updated, time_updated,
   name, symbol, description, long_description, icon_url, category,
   chain_list_icon, rpc_url, chain_id, block_explorer_url, chain_address_id
 )
 VALUES
-  (
-    1,
-    1,
-    '2025-02-15 11:00:00',
-    '2025-02-15 11:00:00',
-    '2025-02-15 11:00:00',
-    '2025-02-15 11:00:00',
-    'Ethereum Mainnet',
-    'ETH',
-    'Layer-1 Proof-of-Stake chain',
-    'Used for DeFi, NFTs, and more',
-    'https://icons.example/eth-chain.png',
-    'DeFi',                     -- Just a string category, not a FK
-    'https://icons.example/eth-list.png',
-    'https://rpc.ethereum.org', -- Example RPC
-    1,                          -- chain_id
-    'https://etherscan.io',     -- block_explorer_url
-    1                           -- chain_address_id -> references addresses(id=1)
-  );
-INSERT INTO attribute (
-  attrid, version, date_created, time_created, last_updated, time_updated,
-  attribute_value, trait_type
+  (30, 1, '2025-04-01', '2025-04-01', '2025-04-01', '2025-04-01',
+   'Ethereum', 'ETH', 'Layer1', 'Mainnet', 'https://s3.amazonaws.com/tmm.net/images/crypto/eth.png',
+   'DeFi', null, 'https://mainnet.ethereum.org', 1, 'https://etherscan.io', 20),
+  (31, 1, '2025-04-01', '2025-04-01', '2025-04-01', '2025-04-01',
+   'BSC', 'BNB', 'BinanceChain', 'Mainnet', 'https://s3.amazonaws.com/tmm.net/images/crypto/bsc.png',
+   'DeFi', null, 'https://bsc-dataseed.binance.org', 56, 'https://bscscan.com', 21),
+  (32, 1, '2025-04-01', '2025-04-01', '2025-04-01', '2025-04-01',
+   'Polygon', 'MATIC', 'Sidechain', 'Mainnet', 'https://s3.amazonaws.com/tmm.net/images/crypto/matic.png',
+   'DeFi', null, 'https://rpc-mainnet.maticvigil.com', 137, 'https://polygonscan.com', 22),
+  (33, 1, '2025-04-01', '2025-04-01', '2025-04-01', '2025-04-01',
+   'Avalanche', 'AVAX', 'C-Chain', 'Mainnet', 'https://s3.amazonaws.com/tmm.net/images/crypto/avax.png',
+   'DeFi', null, 'https://api.avax.network', 43114, 'https://snowtrace.io', 23),
+  (34, 1, '2025-04-01', '2025-04-01', '2025-04-01', '2025-04-01',
+   'PulseChain', 'PLS', 'Fork of ETH', 'Mainnet', 'https://s3.amazonaws.com/tmm.net/images/crypto/pls.png',
+   'DeFi', null, 'https://rpc.pulsechain.io', 369, 'https://scan.pulsechain.com', 24);
+
+INSERT INTO coin (
+  id, version, date_created, time_created, last_updated, time_updated,
+  native_token, address_id
 )
 VALUES
-  (1, 1, '2025-02-16 09:00:00', '2025-02-16 09:00:00', '2025-02-16 09:00:00', '2025-02-16 09:00:00', 'Gold', 'Rarity'),
-  (2, 1, '2025-02-16 09:10:00', '2025-02-16 09:10:00', '2025-02-16 09:10:00', '2025-02-16 09:10:00', 'Immune', 'Buff'),
-  (3, 1, '2025-02-16 09:20:00', '2025-02-16 09:20:00', '2025-02-16 09:20:00', '2025-02-16 09:20:00', 'Sparkling', 'Effect');
+  (40, 1, '2025-04-01', '2025-04-01', '2025-04-01', '2025-04-01',
+   2.5, 20),
+  (41, 1, '2025-04-01', '2025-04-01', '2025-04-01', '2025-04-01',
+   0.1, 21),
+  (42, 1, '2025-04-01', '2025-04-01', '2025-04-01', '2025-04-01',
+   10.0, 22),
+  (43, 1, '2025-04-01', '2025-04-01', '2025-04-01', '2025-04-01',
+   0.05, 23),
+  (44, 1, '2025-04-01', '2025-04-01', '2025-04-01', '2025-04-01',
+   999.999, 24);
+
 
 INSERT INTO metadata (
   id, version, date_created, time_created, last_updated, time_updated,
-  name, description, image, nft
+  name, description, image, external_url
 )
 VALUES
-  (1, 1, '2025-02-16 10:00:00', '2025-02-16 10:00:00', '2025-02-16 10:00:00', '2025-02-16 10:00:00',
-   'MetaOne', 'First NFT metadata', 'https://images.example.com/meta1.png', 'NFT-One'),
-  (2, 1, '2025-02-16 10:05:00', '2025-02-16 10:05:00', '2025-02-16 10:05:00', '2025-02-16 10:05:00',
-   'MetaTwo', 'Second NFT data', 'https://images.example.com/meta2.png', 'NFT-Two'),
-  (3, 1, '2025-02-16 10:10:00', '2025-02-16 10:10:00', '2025-02-16 10:10:00', '2025-02-16 10:10:00',
-   'MetaThree', 'Third NFT data', 'https://images.example.com/meta3.png', 'NFT-Three');
+  (50, 1, '2025-04-01', '2025-04-01', '2025-04-01', '2025-04-01',
+   'MetaOne', 'ancient science', 'https://s3.amazonaws.com/tmm.net/images/ancientscience.jpg', 'https://example.com/meta1'),
+  (51, 1, '2025-04-01', '2025-04-01', '2025-04-01', '2025-04-01',
+   'MetaTwo', 'Some aston martin ', 'https://s3.amazonaws.com/tmm.net/images/crypto/astonmartinwired.jpg', 'https://example.com/meta2'),
+  (52, 1, '2025-04-01', '2025-04-01', '2025-04-01', '2025-04-01',
+   'MetaThree', 'cryptocurrency metadata', 'https://s3.amazonaws.com/tmm.net/images/crypto/cryptocurrency.jpg', 'https://example.com/meta3'),
+  (53, 1, '2025-04-01', '2025-04-01', '2025-04-01', '2025-04-01',
+   'MetaFour', 'bitcoin_paper', 'https://s3.amazonaws.com/tmm.net/images/crypto/bitcoin_paper.png', 'https://example.com/meta4'),
+  (54, 1, '2025-04-01', '2025-04-01', '2025-04-01', '2025-04-01',
+   'MetaFive', '  huracan', 'https://s3.amazonaws.com/tmm.net/images/crypto/huracan.jpg', 'https://example.com/meta5');
 
-INSERT INTO weblinks (
+
+INSERT INTO attribute (
+  attrid, version, date_created, time_created, last_updated, time_updated,
+  attribute_value, trait_type, metadata_coin_id
+)
+VALUES
+  (60, 1, '2025-04-01', '2025-04-01', '2025-04-01', '2025-04-01',
+   'Gold', 'Color', 50),
+  (61, 1, '2025-04-01', '2025-04-01', '2025-04-01', '2025-04-01',
+   'Sparkling', 'Effect', 51),
+  (62, 1, '2025-04-01', '2025-04-01', '2025-04-01', '2025-04-01',
+   'XL', 'Size', 52),
+  (63, 1, '2025-04-01', '2025-04-01', '2025-04-01', '2025-04-01',
+   'Diamond', 'Rarity', 53),
+  (64, 1, '2025-04-01', '2025-04-01', '2025-04-01', '2025-04-01',
+   'Holographic', 'Texture', 54);
+
+
+INSERT INTO nft (
   id, version, date_created, time_created, last_updated, time_updated,
-  url, host, htmlpage, downloadstatus
+  name, amount, metadata_id, coin_id
 )
 VALUES
-  (1, 1, '2025-02-16 11:00:00', '2025-02-16 11:00:00', '2025-02-16 11:00:00', '2025-02-16 11:00:00',
-   'https://cryptoexample.com', 'cryptoexample.com', '<html>Crypto Content</html>', 1),
-  (2, 1, '2025-02-16 11:10:00', '2025-02-16 11:10:00', '2025-02-16 11:10:00', '2025-02-16 11:10:00',
-   'https://definance.org', 'definance.org', '<html>DeFi Info</html>', 0),
-  (3, 1, '2025-02-16 11:20:00', '2025-02-16 11:20:00', '2025-02-16 11:20:00', '2025-02-16 11:20:00',
-   'https://nftshowcase.io', 'nftshowcase.io', '<html>NFT Showcase</html>', 1);
-INSERT INTO roles (id, name)
-VALUES
-  (1, 'ROLE_ADMIN'),
-  (2, 'ROLE_USER'),
-  (3, 'ROLE_MANAGER');
-INSERT INTO users (
-  userid, username, password, lastname, firstname,
-  usertype, email, organizationcode, cusurl,
-  dashboardcode, isactive, contacttype
-)
-VALUES
-  (1, 'satoshi', 'pass123', 'Nakamoto', 'Satoshi', 1, 'satoshi@bitcoin.org', 'ORG-BTC', 'https://bitcoin.org', 'DASH-SAT', 1, 101),
-  (2, 'vitalik', 'pass456', 'Buterin', 'Vitalik', 2, 'vitalik@ethereum.org', 'ORG-ETH', 'https://ethereum.org', 'DASH-VIT', 1, 102),
-  (3, 'charles', 'pass789', 'Hoskinson', 'Charles', 3, 'charles@cardano.org', 'ORG-ADA', 'https://cardano.org', 'DASH-CHAR', 1, 103);
+  (70, 1, '2025-04-01', '2025-04-01', '2025-04-01', '2025-04-01',
+   'NFTOne', 1.0, 50, 40),
+  (71, 1, '2025-04-01', '2025-04-01', '2025-04-01', '2025-04-01',
+   'NFTTwo', 2.5, 51, 41),
+  (72, 1, '2025-04-01', '2025-04-01', '2025-04-01', '2025-04-01',
+   'NFTThree', 3.75, 52, 42),
+  (73, 1, '2025-04-01', '2025-04-01', '2025-04-01', '2025-04-01',
+   'NFTFour', 10.0, 53, 43),
+  (74, 1, '2025-04-01', '2025-04-01', '2025-04-01', '2025-04-01',
+   'NFTFive', 50.0, 54, 44);
 
-INSERT INTO users_roles (role_id, user_id)
-VALUES
-  (1, 1),  -- Satoshi is ROLE_ADMIN
-  (2, 2),  -- Vitalik is ROLE_USER
-  (3, 3);  -- Charles is ROLE_MANAGER
-INSERT INTO news (id, title, url, category_id)
-VALUES
-  (1, 'BTC Surges', 'https://cryptoexample.com/btc-surges', 1),
-  (2, 'Healthy Mining Rigs', 'https://cryptoexample.com/healthy-mining', 2),
-  (3, 'eSports Gains', 'https://cryptoexample.com/esports', 3);
-
-INSERT INTO coin (
-  id, version, date_created, time_created, last_updated, time_updated,
-  coin, native_token, nft_token
-)
-VALUES
-  (1, 1, '2025-02-16 12:00:00', '2025-02-16 12:00:00', '2025-02-16 12:00:00', '2025-02-16 12:00:00',
-   'StampAlpha', 10.0, 3.0),
-  (2, 1, '2025-02-16 12:05:00', '2025-02-16 12:05:00', '2025-02-16 12:05:00', '2025-02-16 12:05:00',
-   'StampBeta', 0.0, 100.0),
-  (3, 1, '2025-02-16 12:10:00', '2025-02-16 12:10:00', '2025-02-16 12:10:00', '2025-02-16 12:10:00',
-   'StampGamma', 50.0, 5.0);
-
-INSERT INTO coin (
-  id, version, date_created, time_created, last_updated, time_updated,
-  coin, native_token, nft_token
-)
-VALUES
-  (1, 1, '2025-02-16 12:00:00', '2025-02-16 12:00:00', '2025-02-16 12:00:00', '2025-02-16 12:00:00',
-   'StampAlpha', 10.0, 3.0),
-  (2, 1, '2025-02-16 12:05:00', '2025-02-16 12:05:00', '2025-02-16 12:05:00', '2025-02-16 12:05:00',
-   'StampBeta', 0.0, 100.0),
-  (3, 1, '2025-02-16 12:10:00', '2025-02-16 12:10:00', '2025-02-16 12:10:00', '2025-02-16 12:10:00',
-   'StampGamma', 50.0, 5.0);
 
 INSERT INTO raw_token (
   id, version, date_created, time_created, last_updated, time_updated,
-  raw_token, nftaddress_id
+  raw_token, coin_id
 )
 VALUES
-  (1, 1, '2025-02-16 12:35:00', '2025-02-16 12:35:00', '2025-02-16 12:35:00', '2025-02-16 12:35:00',
-   'RAWTOKEN-ALPHA', 1),
-  (2, 1, '2025-02-16 12:40:00', '2025-02-16 12:40:00', '2025-02-16 12:40:00', '2025-02-16 12:40:00',
-   'RAWTOKEN-BETA', 2),
-  (3, 1, '2025-02-16 12:45:00', '2025-02-16 12:45:00', '2025-02-16 12:45:00', '2025-02-16 12:45:00',
-   'RAWTOKEN-GAMMA', 3);
+  (80, 1, '2025-04-01', '2025-04-01', '2025-04-01', '2025-04-01',
+   'RawAlpha', 40),
+  (81, 1, '2025-04-01', '2025-04-01', '2025-04-01', '2025-04-01',
+   'RawBeta', 41),
+  (82, 1, '2025-04-01', '2025-04-01', '2025-04-01', '2025-04-01',
+   'RawGamma', 42),
+  (83, 1, '2025-04-01', '2025-04-01', '2025-04-01', '2025-04-01',
+   'RawDelta', 43),
+  (84, 1, '2025-04-01', '2025-04-01', '2025-04-01', '2025-04-01',
+   'RawEpsilon', 44);
 
-INSERT INTO nft_address_stamp_nfts (nft_address_id, nfts_id)
+
+INSERT INTO weblinks (
+  id, version, date_created, time_created, last_updated, time_updated,
+  url, host, htmlpage, downloadstatus, shared_by_userid
+)
 VALUES
-  (1, 1),
-  (2, 2),
-  (3, 3);
+  (90, 1, '2025-04-01', '2025-04-01', '2025-04-01', '2025-04-01',
+   'https://thomasmaestas.com', 'thomasmaestas.com', '<html>thomasmaestas.com</html>', 1, 10),
+  (91, 1, '2025-04-01', '2025-04-01', '2025-04-01', '2025-04-01',
+   'https://thomasmaestas.net', 'thomasmaestas.net', '<html>  thomasmaestas</html>', 1, 11),
+  (92, 1, '2025-04-01', '2025-04-01', '2025-04-01', '2025-04-01',
+   'https://ourdailytech.net', 'ourdailytech.net', '<html>ourdailytech page</html>', 0, 12),
+  (93, 1, '2025-04-01', '2025-04-01', '2025-04-01', '2025-04-01',
+   'https://cryptomaven.xyz', 'cryptomaven.xyz', '<html>cryptomaven page</html>', 0, 13),
+  (94, 1, '2025-04-01', '2025-04-01', '2025-04-01', '2025-04-01',
+   'https://cryptomaven.xyz:9000', 'cryptomaven.xyz', '<html>cryptomaven page</html>', 1, 14);
+

@@ -2,19 +2,26 @@ package xyz.cryptomaven.rest.service;
 
 
 import xyz.cryptomaven.rest.mapper.ChainMapper;
+import xyz.cryptomaven.rest.mapper.CoinMapper;
+import xyz.cryptomaven.rest.models.Chain;
+import xyz.cryptomaven.rest.models.Coin;
 import xyz.cryptomaven.rest.models.NftCoin;
 import xyz.cryptomaven.rest.models.dto.AddressDto;
 import xyz.cryptomaven.rest.mapper.AddressMapper;
 import xyz.cryptomaven.rest.models.Address;
 import xyz.cryptomaven.rest.mapper.NftMapper;
 
+import xyz.cryptomaven.rest.models.dto.ChainDto;
+import xyz.cryptomaven.rest.models.dto.CoinDto;
 import xyz.cryptomaven.rest.models.dto.NftCoinDto;
 import xyz.cryptomaven.rest.repositories.NftRepository;
 import xyz.cryptomaven.rest.repositories.AddressesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -31,6 +38,8 @@ public class AddressesServiceImpl implements AddressesService {
     private NftMapper nftMapper;
   @Autowired
   private ChainMapper chainMapper;
+  @Autowired
+  private CoinMapper coinMapper;
 
   @Override
     public AddressDto createAddress(AddressDto addrDto) {
@@ -77,10 +86,11 @@ public class AddressesServiceImpl implements AddressesService {
 //       addUpdate.setUser(change.getUser());
        addUpdate.setOwner(change.getOwner());
        addUpdate.setBlockExplorerUrl(change.getBlockExplorerUrl());
-//       addUpdate.setChains(() -> chainMapper.toEntity((ChainDto) change.getChains()));
        addUpdate.setNftAddress(change.getNftAddress());
-
        Address newAddress = addressesRepository.save(addUpdate);
+       addUpdate.setCoins(Collections.singleton((Coin) coinMapper.toEntities((Set<CoinDto>) change.getCoins())));
+
+       addUpdate.setChains(Collections.singleton(chainMapper.toEntity((ChainDto) change.getChains())));
 
          return addressMapper.addressToAddressDto(newAddress);
      } catch (Exception e) {
@@ -101,25 +111,25 @@ public class AddressesServiceImpl implements AddressesService {
 
     /////////////////////////
 @Override
-public NftCoinDto createNft(NftCoinDto nftCoinDto) {
-    NftCoin coin = nftMapper.toEntity(nftCoinDto);
+public AddressDto createNft(AddressDto nftCoinDto) {
+  Address coin = addressMapper.addressDtoToAddress(nftCoinDto);
 
 //    if (coin != null && (coin.getChainId() == 0)) {
 //        coin.setChainId(nftCoinDto.getChainId());
 //    }
 
-    NftCoin newCoin = nftRepository.save(coin);
-    NftCoinDto newNftCoinDto = nftMapper.toDto(newCoin);
+  Address newCoin = addressesRepository.save(coin);
+  AddressDto newNftCoinDto = addressMapper.addressToAddressDto(newCoin);
     return newNftCoinDto;
 }
     /**
      * @return
      */
     @Override
-    public List<NftCoinDto> getAllNFTs() {
+    public List<AddressDto> getAllNFTs() {
 
-        List<NftCoin> adds = nftRepository.findAll();
-        List<NftCoinDto> nftCoinDtos = adds.stream().map(nftMapper::toDto).collect(Collectors.toList());
+        List<Address> adds = addressesRepository.findAll();
+        List<AddressDto> nftCoinDtos = adds.stream().map(addressMapper::addressToAddressDto).collect(Collectors.toList());
         return nftCoinDtos;
     }
 }

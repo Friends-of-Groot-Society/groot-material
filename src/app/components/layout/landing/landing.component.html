@@ -1,0 +1,21 @@
+
+<app-places-container title="Coins of the Land">
+  <div *ngIf="coins.length > 0; else noPlaces">
+   
+    <ul>
+      <div *ngFor="let coin of coins" class="place-item">
+        <li class="place-item
+        ">
+          <button (click)="onSelectCoin(coin)">
+            <img [src]="coin.nfts[0].metadata.image" [alt]="coin.nfts[0].name" />
+            <h3>{{ coin.nfts[0].metadata.image}} </h3>  
+          </button>
+        </li>
+      </div>
+    </ul>
+  </div>  
+</app-places-container>
+
+<ng-template #noPlaces>
+  <p>No places available.</p>
+</ng-template>

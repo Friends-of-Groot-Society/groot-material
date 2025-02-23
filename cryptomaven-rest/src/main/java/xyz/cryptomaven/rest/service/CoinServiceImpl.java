@@ -11,6 +11,7 @@ import xyz.cryptomaven.rest.repositories.CoinRepository;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Primary
@@ -34,7 +35,7 @@ private final CoinMapper coinMapper;
     @Override
     public   CoinDto createCoin(CoinDto cd) {
 
-        Coin coin = coinMapper.toEntity(cd);
+       Coin coin = coinMapper.toEntity(cd);
         Coin newCoin = coinRepository.save(coin);
 
         CoinDto newCoinDto = coinMapper.toDto(newCoin);

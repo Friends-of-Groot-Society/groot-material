@@ -6,19 +6,19 @@ import xyz.cryptomaven.rest.models.dto.NftCoinDto;
 import java.util.List;
 
 public interface AddressesService {
-    public AddressDto createAddress(AddressDto addr);
+    AddressDto createAddress(AddressDto addr);
 
-    public AddressDto getAddress(Long id);
+    AddressDto getAddress(Long id);
 
 
-  public List<AddressDto> getAllAddresses();
+    List<AddressDto> getAllAddresses();
 
-    public AddressDto updateAddress(AddressDto change);
+    AddressDto updateAddress(AddressDto change);
 
-    public boolean deleteAddress(Long id);
+    boolean deleteAddress(Long id);
 
     /////////////////////////
-    NftCoinDto createNft(NftCoinDto nftCoinDto);
+    AddressDto createNft(AddressDto nftCoinDto);
 
-    List<NftCoinDto> getAllNFTs();
+    List<AddressDto> getAllNFTs();
 }

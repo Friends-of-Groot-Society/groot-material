@@ -36,7 +36,7 @@ import { LoaderComponent } from './components/layout/loader/loader.component';
 import { UsersComponent } from './components/users/users.component';
 import { AddressComponent } from './components/nft/address/address.component';
 import { SearchAddressesComponent } from './components/chain/search-addresses/search-addresses.component';
-
+import { PlacesContainerComponent } from './components/layout/landing/places-container/places-container.component';
 import { PipeUppercase } from './utility/pipe-uppercase.pipe';
 import { SafeHtmlPipe } from './utility/safe-html.pipe';
 import { UpperCasePipe } from '@angular/common';
@@ -52,6 +52,7 @@ import { UserGuardService } from './services/auth/user-guard.service';
 import { AdminuserComponent } from './components/users/adminuser.component';
 @NgModule({
   declarations: [
+    // PlacesContainerComponent,
     AppComponent,  
     LoginComponent,
     RegisterComponent,   

@@ -30,7 +30,7 @@ public class NftConfig {
     public Metadata newMetadata() {
         String name = "_new_metadata_";
         String description = "_new_desc_";
-        String image = "https://s3.amazonaws.com/tmm.net/img/ether.png";
+        String image = "https://s3.amazonaws.com/tmm.net/images/crypto/ether.png";
       List<Attribute> attributes= new ArrayList<>();
                             // metadataId, name, description, image, nft, attributes[]
 

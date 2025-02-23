@@ -1,5 +1,6 @@
 package xyz.cryptomaven.rest.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
@@ -22,6 +23,7 @@ public class NftCoin extends AbstractDomainClass {
   private double amount;
 
   @OneToOne
+  @JsonIgnore
   @JoinColumn(name = "metadata_id") // ✅ Fixed foreign key name
   private Metadata metadata;
 

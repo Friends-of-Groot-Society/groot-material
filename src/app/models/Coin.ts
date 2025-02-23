@@ -1,6 +1,6 @@
 export interface Coin 
 {
-  id: number,
+  id?: number,
   native?: string,
   tokens?: [
     string,

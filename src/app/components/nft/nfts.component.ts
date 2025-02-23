@@ -3,7 +3,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { map, Observable, Subject, Subscription, tap } from 'rxjs';
  
 import { NftsService } from './nfts.service';
-import { LoaderService } from '../../components/layout/loader/loader.service';
+import { LoaderService } from '../layout/loader/loader.service';
 
 // import { Chain } from '../../models/Chain';
 import { ChainStore } from 'src/app/services/chain-store.service';

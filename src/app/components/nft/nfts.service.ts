@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { KeyService } from '../../services/auth/key.service';
 import { HttpHeaders, HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { environment  as env  }from "src/environments/environment";
-import { catchError, Observable, throwError } from "rxjs";
+import { catchError, Observable, throwError, tap } from "rxjs";
 // import Moralis from 'moralis'.default();
 // import { EvmChain } from '@moralisweb3/evm-utils'
 import { AuthStore } from 'src/app/services/auth/auth-aws-store.service';
@@ -25,7 +25,7 @@ export class NftsService {
   nftCoins: Coin[] = [];
 
   nftsUpdated = new Subject<any[]>();
-  nftDataUpdated = new Subject<any>();
+  nftDataUpdated = new Subject<Coin>();
  addressUpdated = new Subject<Address>();
  
 
@@ -39,7 +39,23 @@ export class NftsService {
 
   }
 /////////////////////// NFT REF  
- 
+ ngOnInit() {
+  const address = this.findAddressById("1").subscribe({
+    next: (address: Address) => { 
+      this.addressUpdated.next(address);
+    }
+  });
+  const nftRefs = this.nftRefsUpdated().subscribe({ 
+    next: (nftRefs: Address) => {
+      this.addressUpdated.next(nftRefs);
+    }
+  });
+  this.loaderService.showLoaderUntilCompleted(new Observable<unknown>()); 
+  // this.currUser = this.authStore.currentUserValue;
+  
+  this.currUser = this.authStore.currentUserValue;
+  }
+
 
   findAddressById(id:string): Observable<Address> {
     return this.http.get<Address>(`${env.nft_url}/nfts/${id}`) 
@@ -55,7 +71,15 @@ export class NftsService {
       }))
      
   }
- 
+  nftUpdated(): Observable<any> {
+    return this.http.get(`${env.nft_url}/nfts`)
+    // return this.http.get(`${env.nftsURL}/api/nft-refs${env.test_env}`)
+    .pipe(
+      catchError(err => {
+        throw 'error in source. Details: ' + err;
+      }))
+     
+  }
   getNftCoin() { 
     return this.coin;
   }
@@ -106,15 +130,19 @@ export class NftsService {
       .pipe(
         catchError(err => {
           throw 'error in source. Details: ' + err;
-        }))
-      .subscribe((data: any) => {
-        this.coin = data;
-        console.log(this.coin);
-        this.nftDataUpdated.next(this.coin); 
-        
-        this.nftCoins.push(this.coin);
-        this.nftsUpdated.next([...this.nftCoins]);
-      }) 
+        }),
+        tap((data: any) => {
+          this.coin = data;
+          console.log(this.coin);
+          this.nftDataUpdated.next(this.coin); 
+          
+          this.nftCoins.push(this.coin);
+          this.nftsUpdated.next([...this.nftCoins]);
+        })
+      ) 
   }
  
+
+
+  
 }

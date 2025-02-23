@@ -22,8 +22,5 @@ public class NftCoinDto implements Serializable {
   private String name;
   private double amount;
 
-  @OneToOne
-  @JoinColumn(name = "metadata_metaid")
-  private Metadata metadata;
 
 }

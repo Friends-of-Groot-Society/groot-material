@@ -2,6 +2,8 @@ package xyz.cryptomaven.rest.models.dto;
 
 import lombok.Builder;
 import lombok.Data;
+import xyz.cryptomaven.rest.models.Coin;
+import xyz.cryptomaven.rest.models.User;
 
 import java.io.Serializable;
 import java.util.Set;
@@ -25,11 +27,11 @@ public class AddressDto implements Serializable {
   private String iconUrl;
 
   private String blockExplorerUrl;
-
-  private Set<Integer> chainId;
+  private String nftAddress;
 
   private Set<ChainDto> chains;
 
-  private String nftAddress;
+  private Set<CoinDto> coins;
 
+//  private User user;
 }
