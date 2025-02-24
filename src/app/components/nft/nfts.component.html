@@ -9,6 +9,7 @@
         <mat-card>
             <section> 
               <app-nft-add>
+                <!-- NFT-ADD -->
               </app-nft-add>
             </section> 
       </mat-card>
@@ -16,12 +17,14 @@
       <div class="nfts">
             <section>
               <div fxLayout="row" fxLayoutAlign="center center" *ngIf="nftData">
+                <!-- CHAINDATA -->
                 <app-chaindata [nftData]="nftData"></app-chaindata>
               </div>
             </section>  
         <app-loader></app-loader>
           <section>
             <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="1px" *ngIf="nfts">
+              <!-- NFT -->
               <app-nft *ngFor="let nft of nftData.nfts" [inputNft]="nft" [nftData]="nftData"></app-nft>
         
             </div>

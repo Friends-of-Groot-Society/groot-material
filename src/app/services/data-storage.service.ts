@@ -16,13 +16,13 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class DataStorageService {
-  currUser : User;
-  nftRef: Address;
-  email:string;
-  nftData:any;
+  currUser: User;
+  address: Address;
+  email: string;
+  nftData: any;
 
-  nftRefs: Address[];
-  subjectNftRef = new Subject<Address>();
+  addresses: Address[];
+  subjectAddress = new Subject<Address>();
 
   nftCoins: Coin[];
   subjectNftCoin = new Subject<Coin>();
@@ -34,81 +34,80 @@ export class DataStorageService {
   ) {
 
     this.email = localStorage.getItem('email');
-   }
-   saveNftsToAws(chain: string, address: string ) {
+  }
+  saveNftsToAws(chain: string, address: string) {
     // this.currUser  = this.authStore.currentUserValue;
     this.email = localStorage.getItem('email');
     this.nftData = this.nftService.getNftCoin();
     console.log("nftData", this.nftData);
-    this.nftRef = {chain, address, email: this.email, coins: this.nftData}
+    this.address = { chain, address, email: this.email, coins: this.nftData }
     this.httpClient.post<Coin>(
       `${environment.nft_url}/coinNft`,
       // 'https://friends-of-groot-default-rtdb.firebaseio.com/api/nft.json',
-      this.nftRef
+      this.address
     )
-    .pipe(
-      tap(response => {
-        this.nftRef.id = response.id;  
-        console.log(this.nftRef);
-        this.nftService.nftsUpdated.next([this.nftRef]);
-      })
-    )
-    .subscribe();
+      .pipe(
+        tap(response => {
+          this.address.id = response.id;
+          console.log(this.address);
+          this.nftService.nftsUpdated.next([this.address]);
+        })
+      )
+      .subscribe();
 
   }
-  savePersistedNfts(chain: string, address: string ) {
+  savePersistedNfts(chain: string, address: string) {
     // this.currUser  = this.authStore.currentUserValue;
     this.email = localStorage.getItem('email');
     this.nftData = this.nftService.getNftCoin();
     console.log("nftData", this.nftData);
-    this.nftRef = {chain, address, email: this.email, coins: this.nftRefs.map(nftRef => nftRef.coins).flat()}
+    this.address = { chain, address, email: this.email, coins: this.addresses.map(add => add.coins).flat() }
     this.httpClient.post<Address>(
       `${environment.nft_url}/addresses`,
       // 'https://friends-of-groot-default-rtdb.firebaseio.com/api/nft.json',
-      this.nftRef
+      this.address
     )
-    .pipe(
-      tap(response => {
-        this.nftRef.id = response.id;
-        console.log(this.nftRef);
-        this.nftService.nftsUpdated.next([this.nftRef]);
-      })
-    )
-    .subscribe();
+      .pipe(
+        tap(response => {
+          this.address.id = response.id;
+          console.log(this.address);
+          this.nftService.nftsUpdated.next([this.address]);
+        })
+      )
+      .subscribe();
 
   }
-  editPersistedNftRef(name: string, changes) {
+  editPersistedAddress(id: number, changes) {
     // const nft = this.nftService.getNftData();
-    const nftRefs = this.nftRefs;
-    const nftRef  = nftRefs.find(nftRef => nftRef === name);
-    const newNftRef: Address = {
-      ...nftRefs,
+    const addresses = this.addresses;
+    const addressId = addresses.find(address => address.id === id);
+    const newAddress: Address = {
       ...changes
     };
-    // const newNftRefs: NftRef[] = nftRefs.map(nftRef => {
-    //   if (nftRef.name === name) {
-    //     return newNftRef;
+    // const newAddresss: Address[] = addresss.map(address => {
+    //   if (address.name === name) {
+    //     return newAddress;
     //   } else {
-    //     return nftRef;
+    //     return address;
     //   }
     // });
-  const  newNftRefs: Address[] = nftRefs.slice(0);
-    newNftRefs.splice(nftRefs.indexOf(nftRef), 1, newNftRef);
-    this.subjectNftRef.next(newNftRef);
-    this.nftRefs = newNftRefs;
+    const newAddresses: Address[] = addresses.slice(0);
+    newAddresses.splice(addresses.indexOf(addressId), 1, newAddress);
+    this.subjectAddress.next(newAddress);
+    this.address = newAddress;
 
 
     return this.httpClient
-    .put<Address>(
-      `${environment.nft_url}/addresses`,
-      // `https://friends-of-groot-default-rtdb.firebaseio.com/api/nft/${name}.json`,
-      changes)
+      .put<Address>(
+        `${environment.nft_url}/addresses`,
+        // `https://friends-of-groot-default-rtdb.firebaseio.com/api/nft/${name}.json`,
+        changes)
       .pipe(
         catchError(err => {
           return throwError(err);
         }),
-        tap(nftRef => {
-          this.nftService.addressUpdated.next(nftRef);
+        tap(address => {
+          this.nftService.addressUpdated.next(address);
         }),
         // shareReplay()
       )
@@ -117,8 +116,8 @@ export class DataStorageService {
     // } );
   }
 
-  getAllNftRefs() {
-    return  this.httpClient
+  getAllAddresss() {
+    return this.httpClient
       .get(
         `${environment.nft_url}/addresses`,
         // 'https://friends-of-groot-default-rtdb.firebaseio.com/api/nft.json'
@@ -127,21 +126,21 @@ export class DataStorageService {
         map(res => {
           for (const key in res) {
             if (res.hasOwnProperty(key)) {
-              this.nftRefs.push({ ...res[key]});//, id: key });
+              this.addresses.push({ ...res[key] });//, id: key });
             }
           }
-          console.log( this.nftRefs);
-          return this.nftRefs;
+          console.log(this.addresses);
+          return this.addresses;
         }
         ),
-        tap(nftRefs => {
-          console.log(nftRefs)
-          this.nftService.nftsUpdated.next(nftRefs);
+        tap(addresss => {
+          console.log(this.addresses)
+          this.nftService.nftsUpdated.next(this.addresses);
         })
       )
   }
- 
-  getNftById(id:string) {
+
+  getNftById(id: string) {
     const Nfts = this.httpClient
       .get<Coin[]>(
         `${environment.nft_url}/coin/${id}`,
@@ -152,7 +151,7 @@ export class DataStorageService {
           return nfts.map(nft => {
             return {
               nft
-              ,tokens: nft.tokens ? nft.tokens : []
+              , tokens: nft.tokens ? nft.tokens : []
             };
           });
         }

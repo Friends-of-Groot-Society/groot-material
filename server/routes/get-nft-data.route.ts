@@ -59,6 +59,7 @@ async function getData(address:any, chain:any) {
 app.get("/nft", async(req:Request, res:Response) => {
 
 try {
+    
     const address = req.query['address'] || addressDEFAULT;
     const chain = req.query['chain'] || chainETH;
     const data = await getData(address, chain)    
@@ -106,13 +107,13 @@ app.get("/nft/eth/:address", async(req:Request, res:Response) => {
         res.json({error: "error.500" })
     }
     })
-const startServer = async() => {
-    await Moralis.start({
-        apiKey: API_KEY,
-    })
-    app.listen(PORT, () => {
-        console.log(`Example app listening at http://localhost:${PORT}`)
-    })
-}
-startServer();
+// const startServer = async() => {
+//     await Moralis.start({
+//         apiKey: API_KEY,
+//     })
+//     app.listen(PORT, () => {
+//         console.log(`Example app listening at http://localhost:${PORT}`)
+//     })
+// }
+// startServer();
     

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { NftsComponent } from './components/nft/nfts.component'; 
 import { ChainComponent } from './components/chain/chain/chain.component';
+import { LandingComponent } from './components/layout/landing/landing.component';
 
 import { SearchAddressesComponent } from './components/chain/search-addresses/search-addresses.component';
 import { MaterialModule } from './material.module';
@@ -18,21 +19,28 @@ import { AdminGuardService } from './services/auth/admin-guard.service';
 import { AddressResolver } from './components/nft/address-resolver';
 import { AddressComponent } from './components/nft/address/address.component';
 import { AdminuserComponent } from './components/users/adminuser.component';
+import { ProtoCoinsComponent } from './components/dashboard/proto-coins/proto-coins.component';
 
 const routes: Routes = [
 
-  { path: '', component: NftsComponent },
+  { path: '', component: ProtoCoinsComponent }, 
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
 
-  { path: 'chains', component: HomeComponent },
-  { path: "search-addresses", component: SearchAddressesComponent }, 
+  { path: 'chains', component: ChainComponent },
   { path: 'chains/:id', component: ChainComponent },
 
+  { path: 'LandingComponent', component: LandingComponent },
+  { path: 'LandingComponent/:id', component: LandingComponent },
+
+
+  { path: 'home', component: HomeComponent },
 
   { path: 'nfts', component: NftsComponent },
+  { path: "search-addresses", component: SearchAddressesComponent }, 
+ { path: 'addresses', component: AddressComponent}, 
   {
-    path: 'nft-ref/:name', component: AddressComponent,
+    path: 'addresses/:name', component: AddressComponent,
     resolve: {
       nftRef: AddressResolver
     }

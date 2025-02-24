@@ -49,11 +49,43 @@ import { NftCardListComponent } from './components/nft/nft-card-list/nft-card-li
 import { NftDialogComponent } from './components/nft/nft-dialog/nft-dialog.component'; 
 import { AddressResolver } from './components/nft/address-resolver';
 import { UserGuardService } from './services/auth/user-guard.service';
+import { ErrorService } from './shared/error.service';
 import { AdminuserComponent } from './components/users/adminuser.component';
+import { AvailableChainsComponent } from './components/layout/landing/available-chains/available-chains.component';
+import { UserCoinsComponent } from './components/layout/landing/user-coins/user-coins.component';
+ import {ErrorModalComponent} from './shared/modal/error-modal/error-modal.component';
+
 @NgModule({
-  declarations: [
-    // PlacesContainerComponent,
+  declarations: [ 
+    // AvailableChainsComponent,
+    // UserCoinsComponent,
+    UsersComponent, 
     AppComponent,  
+    LoginComponent,
+    RegisterComponent,   
+    SidenavListComponent,
+    MenuComponent,
+    ContactusComponent, 
+    FooterComponent,  
+    AlertComponent, 
+    ChainComponent, 
+    NftsComponent,
+    NftComponent,
+    NftAddComponent,
+    ChaindataComponent,
+    LoaderComponent,
+    HomeComponent,
+    ChainsCardListComponent,
+    ChainDialogComponent,
+    AddressComponent,
+    SearchAddressesComponent,
+    PipeUppercase, 
+    NftCardListComponent,
+    NftDialogComponent,
+    AdminuserComponent, 
+    SafeHtmlPipe,
+    UsersComponent, 
+    AppComponent,   
     LoginComponent,
     RegisterComponent,   
     SidenavListComponent,
@@ -85,6 +117,19 @@ import { AdminuserComponent } from './components/users/adminuser.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule, 
+    AvailableChainsComponent, UserCoinsComponent, ErrorModalComponent,
+    BrowserAnimationsModule, 
+    provideFirebaseApp(() => initializeApp(environment.firebase)), 
+    provideAuth(() => getAuth()), 
+    provideDatabase(() => getDatabase()), 
+    provideFirestore(() => getFirestore()), 
+    provideFunctions(() => getFunctions()),
+    // StoreModule.forRoot( reducers ),
+    AppComponent, 
+    MaterialModule,
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule, 
     BrowserAnimationsModule, provideFirebaseApp(() => initializeApp(environment.firebase)), provideAuth(() => getAuth()), provideDatabase(() => getDatabase()), provideFirestore(() => getFirestore()), provideFunctions(() => getFunctions()),
     // StoreModule.forRoot( reducers ),
   ],
@@ -94,6 +139,8 @@ import { AdminuserComponent } from './components/users/adminuser.component';
     AddressResolver,
     UserGuardService,
     SafeHtmlPipe,
+    LoaderService, 
+    ErrorService
   ],
   bootstrap: [AppComponent],
   entryComponents: [ MatDialogModule]

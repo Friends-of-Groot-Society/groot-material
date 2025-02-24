@@ -1,7 +1,9 @@
 
 import Moralis from "moralis"
 import express from 'express';
-import * as fs from 'fs';
+// import * as fs from 'fs';
+import fs from "node:fs/promises";
+
 import * as https from 'https';
 
 import { Application } from "express";
@@ -13,8 +15,9 @@ import * as test from './data/db-data.js';
  
 
 const app: Application = express();
-app.use(function (req, res, next) {
+app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
@@ -31,13 +34,15 @@ import { EvmChain } from "@moralisweb3/common-evm-utils";
 // };
 
 ///////// TEST DATA METHODS
-import { getAllChains, getChainById } from "./routes/get-chains.route.js";
-import { searchAddresses } from "./routes/search-addresses.route.js";
+import { getAllChains, getChainById } from "./routes/chains.route.js";
+import { getAllCoins, getCoinById } from "./routes/coins.route.js";
+
+import { searchAddresses, getAllAddresses, getAddresses, getAddressesByName } from "./routes/addresses.route";
 // searchAddressesByCategory 
-import { saveChain } from './routes/save-chain.route.js';
+import { saveChain } from './routes/chains.route.js';
 import { postLogin, getUsers, getUserById, } from './routes/get-users.route.js';
 import  {getOpenai} from './routes/openai.route.js';
-import { getNft, postNft, postNfts, getNftData, postNftData, getNftRefs,getNftRefsByName } from './routes/get-nfts.route.js';
+import { getNft, postNft, postNfts, getNftData, postNftData,  } from './routes/get-nfts.route.js';
 
 /////// LIVE DATA METHODS
 import { getDataController } from './controllers/getDataController.js';
@@ -54,18 +59,23 @@ const addressDEFAULT = process.env["DEFAULT_ADDRESS"];
 
 //// STATIC FILES
 app.use(express.static(path.join(__dirname, 'public')));
-/// ROUTING
+app.use(express.static("images"));
+/// ROUTING 
+/// CHAINS
 app.route('/api/chains').get(getAllChains);
 app.route('/api/chains/:id').get(getChainById);
-app.route('/api/nft-refs/:name').get(getNftRefsByName);  
-
+/// COINS 
+app.route('/api/coins').get(getAllCoins);
+app.route('/api/coins/:id').get(getCoinById);
+/// ADDRESSES
+app.route('/api/nft-refs/:name').get(getAddressesByName);  
 app.route('/api/addresses').get(searchAddresses);
 // app.route('/api/addresses:category').get(searchAddressesByCategory);  
 app.route('/api/chains/:id').put(saveChain);
 app.route('/api/login').post(postLogin);
 app.route('/api/users').get(getUsers);
 app.route('/api/users/email/:email').get(getUserById);
-app.route('/api/nft-refs').get(getNftRefs);
+app.route('/api/addresses').get(getAddresses);
 
 app.route('/api/nft').get(getNft);
 app.route('/api/nft-post').post(postNft);
@@ -172,7 +182,12 @@ app.get("api/nft/eth/:address", async (req, res) => {
   }
 })
 
-
+app.use((req, res, next) => {
+  if (req.method === "OPTIONS") {
+    return next();
+  }
+  res.status(404).json({ message: "404 - Not Found" });
+});
 //// WEBHOOKS
 
 

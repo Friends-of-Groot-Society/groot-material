@@ -1,19 +1,20 @@
-import { Injectable, signal } from '@angular/core';
+import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ErrorService {
-  private _error = signal('');
+  _error: Subject<Error> = new Subject<Error>();
 
-  error = this._error.asReadonly();
+  error = this._error;
 
   showError(message: string) {
     console.log(message);
-    this._error.set(message);
+    this._error.next(new Error(message));
   }
 
   clearError() {
-    this._error.set('');
+    this._error.next(null);
   }
 }

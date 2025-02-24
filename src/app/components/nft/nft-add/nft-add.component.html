@@ -6,9 +6,9 @@
     
       <div class="row"  fxFlex fxLayout="row" fxAlign="flex-center">
         <div class="col col-6">
-          <mat-form-field class="        " > 
+          <mat-form-field class="full-width" appearance="outline"> 
             <mat-label>Select Chain</mat-label>
-            <mat-select ngModel name="chain"   >
+            <mat-select ngModel id="chain" name="chain" required #chain>   >
               <mat-option *ngFor="let c of chains$ | async" [value]="c.name">{{c.name | uppercase}} | {{c.type}}</mat-option> 
             </mat-select> 
           </mat-form-field>
@@ -27,8 +27,8 @@
       </div>
 
         <mat-form-field style="min-width:375px" appearance="outline">
-          <mat-label>Ethereum Address</mat-label>
-          <input matInput type="text" name="address" #address ngModel placeholder="NFT" minlength="42" required />
+          <mat-label>Address {{f.value.chain}} </mat-label>
+          <input matInput type="text" id="address" name="address" #address ngModel placeholder="NFT" minlength="42" required />
         </mat-form-field>
 
       </div> 

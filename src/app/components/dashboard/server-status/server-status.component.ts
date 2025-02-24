@@ -8,5 +8,10 @@ import { Component } from '@angular/core';
   styleUrls:[ './server-status.component.css']
 })
 export class ServerStatusComponent {
-  currentStatus = 'online';
+  chainConnection = 'online';
+
+  constructor() { }
+
+
+  
 }

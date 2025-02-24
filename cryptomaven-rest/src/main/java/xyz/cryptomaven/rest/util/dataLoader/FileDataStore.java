@@ -37,12 +37,12 @@ public class FileDataStore extends ReadWriteFile {
 
 
 	public static void loadData() throws FileNotFoundException, UnsupportedEncodingException {
-		loadUsers();
+    loadUsersFromCsv();
 
 	}
 
 
-		static List<User> loadUsers() throws FileNotFoundException, UnsupportedEncodingException {
+		static List<User> loadUsersFromCsv() throws FileNotFoundException, UnsupportedEncodingException {
 //		users[0] = UserManager.getInstance().registerUser(500,  "user0", "password", "Smith", "Tom", UserType.MALE,  UserType.USER, "user0@cryptomaven.xyz",  "5055087707" ,"http://www.dailytech.net", "1000");
  	List<String> data = new ArrayList<>();
 			ReadWriteFile.readFromFilename(data,  FILE_IN_USERS);
@@ -62,6 +62,8 @@ public class FileDataStore extends ReadWriteFile {
          users.add(user);
 				TEST_USERS = users.size();
 			}
+      log.info("TEST_USERS SIZE::::::: "+TEST_USERS);
+      log.info("TEST_USERS  ::::::: "+users);
 			return users;
 		}
 

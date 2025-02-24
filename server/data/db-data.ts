@@ -648,8 +648,11 @@ export const NFT_POLY = {
 }
 
 export function findChainById(chainId: number) {
+    console.log(CHAINS[chainId])
     return CHAINS[chainId];
 }
 export function findAddressesForChain(chainId: number) {
-    return Object.values(ADDRESSES).filter(address => address.chainId == chainId);
+    const obj =  Object.values(ADDRESSES).filter(address => address.chainId == chainId);
+    console.dir(obj)
+    return obj;
 }

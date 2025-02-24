@@ -21,7 +21,7 @@ import { PlacesContainerComponent } from './places-container/places-container.co
   providers: [AddressService],
 })
  
-export class AddressComponent {
+export class LandingComponent {
   @Input()
   landings: Address[] | undefined;
 

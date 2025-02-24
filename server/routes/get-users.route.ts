@@ -11,6 +11,9 @@ export function postLogin(req: Request, res: Response) {
   let password = data.password;
   let user = null;
   let users: any = Object.values(USERS)
+
+
+  
   for (let u of users) {
     if (u.email == email && u.password == password) {
       user = u

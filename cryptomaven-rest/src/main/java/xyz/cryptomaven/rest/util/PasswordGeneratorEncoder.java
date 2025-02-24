@@ -9,7 +9,7 @@ public class PasswordGeneratorEncoder {
     private static final Logger log =
             LoggerFactory.getLogger(PasswordGeneratorEncoder.class);
 
-    public static void mainRunner(String[] args) {
+    public static void mainRunner (String[] args) {
         PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         System.out.println(passwordEncoder.encode("password"));
         log.info(passwordEncoder.encode("password"));

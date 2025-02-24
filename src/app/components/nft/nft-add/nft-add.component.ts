@@ -56,7 +56,6 @@ export class NftAddComponent implements OnInit {
       // this.chains$ = this.store.select(fromChains.getAvailableChains)
     
     }
- 
    
    saveForm(form: { valid: any; value: { chain: string, address: string; }; }) { 
     console.log("saveForm")

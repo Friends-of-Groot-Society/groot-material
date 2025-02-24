@@ -9,16 +9,11 @@ INSERT INTO users (
   organizationcode, cusurl, dashboardcode, isactive, contacttype
 )
 VALUES
-  (10, 'thomas1@gmail.com', 'pass1', 'Maestas', 'Thomas1', 0, 'thomas1@gmail.com',
-   'ORG1', 'https://example.com/thomas1', 'DASH1', 1, 101),
-  (11, 'thomas2@gmail.com', 'pass2', 'Maestas', 'Thomas2', 1, 'thomas2@gmail.com',
-   'ORG2', 'https://example.com/thomas2', 'DASH2', 1, 102),
-  (12, 'thomas3@gmail.com', 'pass3', 'Maestas', 'Thomas3', 2, 'thomas3@gmail.com',
-   'ORG3', 'https://example.com/thomas3', 'DASH3', 0, 103),
-  (13, 'thomas4@gmail.com', 'pass4', 'Maestas', 'Thomas4', 3, 'thomas4@gmail.com',
-   'ORG4', 'https://example.com/thomas4', 'DASH4', 0, 104),
-  (14, 'thomas5@gmail.com', 'pass5', 'Maestas', 'Thomas5', 3, 'thomas5@gmail.com',
-   'ORG5', 'https://example.com/thomas5', 'DASH5', 0, 105);
+  (10, 'thomas1@gmail.com', '$2a$10$4IjU5vHSf/oB8yyU/vTN2evgS8r9HBksZ9Eq8Aq4LN2LqnrvFX9jC', 'Maestas', 'Thomas1', 0, 'thomas1@gmail.com',  'ORG1', 'https://s3.amazonaws.com/tmm.net/images/people/random_pf1', 'DASH1', 1, 101),
+  (11, 'thomas2@gmail.com', '$2a$10$4IjU5vHSf/oB8yyU/vTN2evgS8r9HBksZ9Eq8Aq4LN2LqnrvFX9jC', 'Maestas', 'Thomas2', 1, 'thomas2@gmail.com',  'ORG2', 'https://s3.amazonaws.com/tmm.net/images/people/random_pf2', 'DASH2', 1, 102),
+  (12, 'thomas3@gmail.com', '$2a$10$4IjU5vHSf/oB8yyU/vTN2evgS8r9HBksZ9Eq8Aq4LN2LqnrvFX9jC', 'Maestas', 'Thomas3', 2, 'thomas3@gmail.com',  'ORG3', 'https://s3.amazonaws.com/tmm.net/images/people/random_pf3', 'DASH3', 0, 103),
+  (13, 'thomas4@gmail.com', '$2a$10$4IjU5vHSf/oB8yyU/vTN2evgS8r9HBksZ9Eq8Aq4LN2LqnrvFX9jC', 'Maestas', 'Thomas4', 3, 'thomas4@gmail.com',  'ORG4', 'https://s3.amazonaws.com/tmm.net/images/people/random_pf4', 'DASH4', 0, 104),
+  (14, 'thomas5@gmail.com', '$2a$10$4IjU5vHSf/oB8yyU/vTN2evgS8r9HBksZ9Eq8Aq4LN2LqnrvFX9jC', 'Maestas', 'Thomas5', 3, 'thomas5@gmail.com',  'ORG5', 'https://s3.amazonaws.com/tmm.net/images/people/random_pf5', 'DASH5', 0, 105);
 
 
 INSERT INTO users_roles (role_id, user_id)
@@ -141,8 +136,7 @@ VALUES
    'NFTFour', 10.0, 53, 43),
   (74, 1, '2025-04-01', '2025-04-01', '2025-04-01', '2025-04-01',
    'NFTFive', 50.0, 54, 44);
-
-
+ 
 INSERT INTO raw_token (
   id, version, date_created, time_created, last_updated, time_updated,
   raw_token, coin_id

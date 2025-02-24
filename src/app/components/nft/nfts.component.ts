@@ -8,6 +8,7 @@ import { LoaderService } from '../layout/loader/loader.service';
 // import { Chain } from '../../models/Chain';
 import { ChainStore } from 'src/app/services/chain-store.service';
 import { Address } from 'src/app/models/Address';
+
 @Component({
   selector: 'app-nfts',
   templateUrl: './nfts.component.html',
@@ -20,8 +21,7 @@ import { Address } from 'src/app/models/Address';
   ],
   providers: [LoaderService]
   
-})
-
+}) 
 export class NftsComponent implements OnInit, OnDestroy { 
    
   chain: string = 'ethereum'; // default chain
@@ -45,10 +45,11 @@ export class NftsComponent implements OnInit, OnDestroy {
     private nftsService: NftsService,
     private store: ChainStore
   ) {
+    // this.nftData = this.showChainData();
+    // this.nfts = this.loadNftsFromChain();
+    // this.addresses = this.loadNftRefs();
 
-    this.nfts = this.loadNftsFromChain();
-    this.addresses = this.loadNftRefs();
-    this.nftData = this.showChainData();
+    
   }
 
   ngOnInit(): void { 
@@ -65,7 +66,8 @@ export class NftsComponent implements OnInit, OnDestroy {
      });
  
      this.addressSubscription = this.nftsService.addressUpdated.subscribe(() => {
-      this.addresses = this.nftsService.collectNftRefs();
+      this.addresses = this.nftsService.collectAddresses();
+   
     });
   }
   showChainData() {
@@ -78,7 +80,7 @@ export class NftsComponent implements OnInit, OnDestroy {
   //   return this.chains$
   // }
   loadNftRefs() {
- this.nftsService.collectNftRefs() 
+ this.nftsService.collectAddresses() 
     .pipe( 
       map(res => { 
         console.log("res")

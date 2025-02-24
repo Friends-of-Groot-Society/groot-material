@@ -3,7 +3,7 @@ server.port: 8080
 spring.application.name: REST-CRYPTOMAVEN
 #spring.config.import: optional:configserver:http://localhost:8888
 #eureka.instance.client.serverUrl.defaultZone: http://localhost:8761/eureka/
-spring.profiles.active: local  #  mysql #
+spring.profiles.active: mysql # local  #
 
 
 ## Configuring info endpoint
@@ -29,7 +29,7 @@ spring.rabbitmq.password: guest
 
 app:
   jwt-secret: e037837c23ab0fe4f59e203ece8c0ddda2c70bfd5b5319fce2af9647be43b704
-  jwt-expiration-milliseconds: 604800000
+  jwt-expiration-milliseconds: 604800000 # 1 week
 
 
 #spring.mvc.view.prefix=/WEB-INF/jsp

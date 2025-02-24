@@ -20,15 +20,15 @@ export class NftsService {
 
   currUser : User;
   key: string = '';
-  chain: string = 'ethereum';
+  chainStr: string = 'ethereum';
+  addressStr: string =   '0x900bE021E38B8d08435A03c05657C8cFA837cAeF';
   coin: Coin; 
   nftCoins: Coin[] = [];
 
   nftsUpdated = new Subject<any[]>();
   nftDataUpdated = new Subject<Coin>();
- addressUpdated = new Subject<Address>();
+  addressUpdated = new Subject<Address>();
  
-
   constructor(
     private http: HttpClient,
     private keyService: KeyService,
@@ -40,7 +40,7 @@ export class NftsService {
   }
 /////////////////////// NFT REF  
  ngOnInit() {
-  const address = this.findAddressById("1").subscribe({
+   this.findAddressById("1").subscribe({
     next: (address: Address) => { 
       this.addressUpdated.next(address);
     }
@@ -58,7 +58,7 @@ export class NftsService {
 
 
   findAddressById(id:string): Observable<Address> {
-    return this.http.get<Address>(`${env.nft_url}/nfts/${id}`) 
+    return this.http.get<Address>(`${env.nft_url}/addresses/${id}`) 
     // return this.http.get<NftRef>(`${env.nftsURL}/api/nft-refs/${name}${env.test_env}`)
   }
   
@@ -71,8 +71,10 @@ export class NftsService {
       }))
      
   }
-  nftUpdated(): Observable<any> {
-    return this.http.get(`${env.nft_url}/nfts`)
+  
+  nftMockUpdated(): Observable<any> {  
+    
+    return this.http.post(`${env.nft_url}/nfts`, { chain: this.chainStr, address: this.addressStr })
     // return this.http.get(`${env.nftsURL}/api/nft-refs${env.test_env}`)
     .pipe(
       catchError(err => {
@@ -85,7 +87,7 @@ export class NftsService {
   }
 
 
-  collectNftRefs() {
+  collectAddresses() {
     return this.http.get(`${env.nft_url}/addresses${env.test_env}`)
     .pipe(
       catchError(err => {
@@ -117,11 +119,11 @@ export class NftsService {
       })) 
   } 
 
-  chainNftData(chain: string, address: string) {
-    if (!chain) {
-      chain = this.chain;
-    }
-    this.http.post<Coin>(`${env.nftFromChain}/nft${env.test_env}`, { chain: chain, address: address },
+  chainNftData(chain: string, address: string): Observable<any> {
+    if (!chain) {      chain = this.chainStr;   }
+    if (!address) {      address = this.chainStr;   }
+
+  return  this.http.post<Coin>(`${env.nftFromChain}/nft${env.test_env}`, { chain: chain, address: address },
       {
         headers: new HttpHeaders({
           Accept: 'application/json'
