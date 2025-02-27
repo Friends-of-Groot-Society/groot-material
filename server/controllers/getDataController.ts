@@ -1,5 +1,10 @@
 import Moralis  from "moralis" 
-
+// Moralis.start({
+//     apiKey: "YOUR_API_KEY",
+//     formatEvmAddress: "checksum",
+//     formatEvmChainId: "decimal",
+//     logLevel: "verbose",
+//   });
 export async function getDataController(address, chain) {
     // GET NATIVE BAL
     const nativeBal = await Moralis.EvmApi.balance.getNativeBalance({

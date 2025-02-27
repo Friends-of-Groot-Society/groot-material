@@ -2,6 +2,7 @@ package xyz.cryptomaven.rest.controllers;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import xyz.cryptomaven.rest.models.dto.AddressDto;
 import xyz.cryptomaven.rest.models.dto.NftCoinDto;
 import xyz.cryptomaven.rest.service.NftService;
 import xyz.cryptomaven.rest.util.constants.Constants;
@@ -23,13 +24,7 @@ public class NftController {
   @Autowired
   private NftService nftService;
 
-  @Operation(summary = "Create a new NFT")
-  @ApiResponse(responseCode = "201", description = "NFT created")
-  @RequestMapping(value = "", method = RequestMethod.POST, consumes = "application/json")
-  public ResponseEntity<Boolean> createNft(@RequestBody NftCoinDto n) {
 
-    return new ResponseEntity<>(nftService.createNft(n), HttpStatus.CREATED);
-  }
 
   @Operation(summary = "Get NFT by ID")
   @ApiResponse(responseCode = "200", description = "NFT found")
@@ -41,15 +36,24 @@ public class NftController {
 
   @Operation(summary = "Get all NFTs")
   @ApiResponse(responseCode = "200", description = "NFTs found")
-  @GetMapping(value = "")
+  @GetMapping(value = {"", "/"})
   public ResponseEntity<List<NftCoinDto>> getAllNfts() {
-    return new ResponseEntity<>(nftService.getAllNfts(), HttpStatus.OK);
+    return new ResponseEntity<>(nftService.getAllNFTs(), HttpStatus.OK);
+  }
+
+
+  @Operation(summary = "Create a new NFT")
+  @ApiResponse(responseCode = "201", description = "NFT created")
+  @RequestMapping(value  = {"", "/"}, method = RequestMethod.POST, consumes = "application/json")
+  public ResponseEntity<NftCoinDto> createNft(@RequestBody NftCoinDto n) {
+
+    return new ResponseEntity<>(nftService.createNft(n), HttpStatus.CREATED);
   }
 
 
   @Operation(summary = "Update NFT")
   @ApiResponse(responseCode = "201", description = "NFT updated")
-  @PutMapping(value = "", consumes = "application/json")
+  @PutMapping(value   = {"", "/"}, consumes = "application/json")
   public ResponseEntity<Boolean> updateNft(@RequestBody NftCoinDto change) {
     return new ResponseEntity<>(nftService.updateNft(change), HttpStatus.CREATED);
   }

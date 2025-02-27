@@ -35,6 +35,6 @@ public class RegisterDto implements Serializable {
     return email;
   }
 
-  public void setRoles(Set<Role> roleUser) {
+  public void setRoles(Set<RoleDto> roleUser) {
   }
 }

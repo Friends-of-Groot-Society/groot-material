@@ -37,7 +37,7 @@ import { EvmChain } from "@moralisweb3/common-evm-utils";
 import { getAllChains, getChainById } from "./routes/chains.route.js";
 import { getAllCoins, getCoinById } from "./routes/coins.route.js";
 
-import { searchAddresses, getAllAddresses, getAddresses, getAddressesByName } from "./routes/addresses.route";
+import { searchAddresses, getAllAddresses, getAddresses, getAddressesByName } from "./routes/addresses.route.js";
 // searchAddressesByCategory 
 import { saveChain } from './routes/chains.route.js';
 import { postLogin, getUsers, getUserById, } from './routes/get-users.route.js';

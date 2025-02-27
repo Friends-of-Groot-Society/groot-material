@@ -24,7 +24,7 @@ const __dirname = path.dirname(__filename);
 ///////// TEST DATA METHODS
 import { getAllChains, getChainById } from "./routes/chains.route.js";
 import { getAllCoins, getCoinById } from "./routes/coins.route.js";
-import { searchAddresses, getAddresses, getAddressesByName } from "./routes/addresses.route";
+import { searchAddresses, getAddresses, getAddressesByName } from "./routes/addresses.route.js";
 // searchAddressesByCategory 
 import { saveChain } from './routes/chains.route.js';
 import { postLogin, getUsers, getUserById, } from './routes/get-users.route.js';

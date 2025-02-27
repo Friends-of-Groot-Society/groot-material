@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import static xyz.cryptomaven.rest.util.constants.Constants.API_CHAINS;
+
 @CrossOrigin(origins = "*")
-@RequestMapping("/api")
+@RequestMapping(API_CHAINS)
 @RestController
 public class ChainsController {
   @Autowired
@@ -27,7 +29,7 @@ public class ChainsController {
   @Operation(summary = "Create a new chain")
 
   @ApiResponse(responseCode = "201", description = "Chain created")
-  @RequestMapping(value = "/chains", method = RequestMethod.POST, consumes = "application/json")
+  @RequestMapping(value = {"","/"}, method = RequestMethod.POST, consumes = "application/json")
   @SecurityRequirement(
     name = "Bearer Authentication"
   )
@@ -39,26 +41,26 @@ public class ChainsController {
 
   @Operation(summary = "Get all chains")
   @ApiResponse(responseCode = "200", description = "All chains returned")
-  @GetMapping(value = "/chains")
+  @GetMapping(value = {"","/"}, produces = "application/json")
   public ResponseEntity<List<ChainDto>> getAllChains() {
     return new ResponseEntity<>(chainsService.getAllChains(), HttpStatus.OK);
   }
 
   @Operation(summary = "Get a chain by id")
   @ApiResponse(responseCode = "200", description = "Chain returned")
-  @GetMapping(value = "/chains/{id}")
+  @GetMapping(value = "/{id}"   )
   public ChainDto getChain(@PathVariable("id") Long id) {
 
     return chainsService.getChain(id);
   }
 
-  //    @GetMapping(value = "/chains/{username}")
+  //    @GetMapping(value = "/{username}")
 //    public List<Chain> getAllChainsIOwn(@PathVariable("username") String username) {
 //        return null; // chainsService.getAllChainsIOwn(username);
 //    }
   @Operation(summary = "Get a chain by name")
   @ApiResponse(responseCode = "200", description = "Chain returned")
-  @GetMapping(value = "/chains/name/{name}")
+  @GetMapping(value = "/name/{name}")
   public ResponseEntity<ChainDto> getChainByName(@PathVariable("name") String name) {
     return new ResponseEntity<>(chainsService.getChainByName(name), HttpStatus.OK);
   }
@@ -69,7 +71,7 @@ public class ChainsController {
   @PreAuthorize("hasRole('ADMIN')")
   @Operation(summary = "Update a chain")
   @ApiResponse(responseCode = "200", description = "Chain updated")
-  @PutMapping(value = "/chains", consumes = "application/json")
+  @PutMapping(value =  {"","/"},  consumes = "application/json")
   public ResponseEntity<ChainDto> updateChain(@RequestBody ChainDto change) {
     return new ResponseEntity<>(chainsService.updateChain(change), HttpStatus.OK);
   }
@@ -80,7 +82,7 @@ public class ChainsController {
   @PreAuthorize("hasRole('ADMIN')")
   @Operation(summary = "Delete a chain")
   @ApiResponse(responseCode = "200", description = "Chain deleted")
-  @DeleteMapping(value = "/chains/{id}")
+  @DeleteMapping(value = "/{id}")
   public boolean deleteChain(@PathVariable("id") Long id) {
 
     return chainsService.deleteChain(id);

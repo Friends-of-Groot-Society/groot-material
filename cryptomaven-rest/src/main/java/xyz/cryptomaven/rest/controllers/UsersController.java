@@ -29,6 +29,7 @@ import static xyz.cryptomaven.rest.util.constants.Constants.USER_PATH_ID;
 
 @CrossOrigin(origins = "*")
 @RestController
+@RequestMapping(USER_PATH)
 @Tag(
         name = "CRUD REST APIs for User Resource",
         description = "CRUD REST APIs - Create User, Update User, Get User, Get All Users, Delete User"
@@ -53,7 +54,7 @@ public class UsersController {
             description = "HTTP Status 200 SUCCESS"
     )
 
-    @GetMapping({USER_PATH, USER_PATH+"/"})
+    @GetMapping(value = {"","/"})
     public ResponseEntity<List<UserDto>> getUsers() {
         List<UserDto> users = new ArrayList<>();
         try {
@@ -75,7 +76,7 @@ public class UsersController {
     )
     // build get user by id REST API
     // http://localhost:8080/api/users/1
-    @GetMapping(value = USER_PATH_ID)
+    @GetMapping(value = "/{userId}")
     public ResponseEntity<UserDto> getUser(@PathVariable("userId") int userId) {
         if (usersService.getUser((long) userId).isEmpty()) {
             throw new ResourceNotFoundException("User " + userId + "not found");
@@ -92,7 +93,7 @@ public class UsersController {
             responseCode = "200",
             description = "HTTP Status 200 SUCCESS"
     )
-    @GetMapping(value = USER_PATH + "/email/{email}")
+    @GetMapping(value = "/email/{email}")
     public ResponseEntity<UserDto> getUserByEmail(@PathVariable("email") String email) {
         if (usersService.getUserByEmail(email).isEmpty()) {
             throw new ResourceNotFoundException("User " + email + "not found");
@@ -109,12 +110,12 @@ public class UsersController {
             responseCode = "201",
             description = "HTTP Status 201 SUCCESS"
     )
-    @PostMapping(USER_PATH)
+    @PostMapping({"","/"})
     public ResponseEntity<UserDto> createUser(@RequestBody UserDto user) {
         UserDto savedUser = usersService.createUser(user);
 
         HttpHeaders headers = new HttpHeaders();
-        headers.add("Location", USER_PATH + "/" + savedUser.getUserId());
+        headers.add("Location",  "/" + savedUser.getUserId());
 
         return new ResponseEntity<>(savedUser, headers, HttpStatus.CREATED);
     }
@@ -128,7 +129,7 @@ public class UsersController {
             responseCode = "201",
             description = "HTTP Status 201 SUCCESS"
     )
-    @PostMapping({USER_PATH+"/auth/register", USER_PATH+"/auth/signup"})
+    @PostMapping({"/auth/register", "/auth/signup"})
     public ResponseEntity<UserDto> register(@RequestBody RegisterDto registerDto) {
       UserDto response = usersService.register(registerDto);
 
@@ -147,7 +148,7 @@ public class UsersController {
             responseCode = "200",
             description = "HTTP Status 200 SUCCESS"
     )
-    @PostMapping(value = {USER_PATH+"/auth/login", USER_PATH+"/auth/signin"})
+    @PostMapping(value = {"/auth/login", "/auth/signin"})
     public ResponseEntity<JWTAuthResponse> login(@RequestBody LoginDto loginDto){
         String token = usersService.login(loginDto);
 
@@ -167,7 +168,7 @@ public class UsersController {
             responseCode = "200",
             description = "HTTP Status 200 SUCCESS"
     )
-    @PutMapping(value = {USER_PATH + "/{email}",USER_PATH}, consumes = "application/json")  // userId in body
+    @PutMapping(value = { "/email/{email}"}, consumes = "application/json")  // userId in body
     public ResponseEntity<UserDto> updateUser(@PathVariable("email") String email, @RequestBody UserDto userDto) {
         Optional<UserDto> updated = usersService.updateUser(userDto);
         return updated.map(dto -> new ResponseEntity<>(
@@ -184,7 +185,7 @@ public class UsersController {
             responseCode = "200",
             description = "HTTP Status 200 SUCCESS"
     )
-    @PatchMapping(USER_PATH_ID)
+    @PatchMapping("/{userId}")
     public ResponseEntity<UserDto> patchUserById(@PathVariable("userId") Integer userId,
                                                  @RequestBody UserDto user) {
 

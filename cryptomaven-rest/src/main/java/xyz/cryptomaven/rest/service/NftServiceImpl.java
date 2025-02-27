@@ -1,6 +1,8 @@
 package xyz.cryptomaven.rest.service;
 
+import xyz.cryptomaven.rest.models.Address;
 import xyz.cryptomaven.rest.models.NftCoin;
+import xyz.cryptomaven.rest.models.dto.AddressDto;
 import xyz.cryptomaven.rest.models.dto.NftCoinDto;
 import xyz.cryptomaven.rest.exception.ResourceNotFoundException;
 import xyz.cryptomaven.rest.mapper.NftMapper;
@@ -23,31 +25,30 @@ public class NftServiceImpl implements NftService {
         this.nftMapper = nftMapper;
     }
 
-    public boolean createNft(NftCoinDto nftCoinDto) {
+    public NftCoinDto createNft(NftCoinDto nftCoinDto) {
         NftCoin coin = nftMapper.toEntity(nftCoinDto);
-
 //    if (coin != null && (coin.getChainId() == 0)) {
 //        coin.setChainId(nftCoinDto.getChainId());
 //    }
-
         NftCoin newCoin = nftRepository.save(coin);
         NftCoinDto newNftCoinDto = nftMapper.toDto(newCoin);
-        return true;
+        return newNftCoinDto;
     }
+
 
     public NftCoinDto getNft(Long id) {
         NftCoin coin = nftRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("not found", "not found", Long.toString(id)));
         return nftMapper.toDto(coin);
     }
 
-    public List<NftCoinDto> getAllNftsIOwn(String username) {
+    public List<NftCoinDto> getAllNFTsByName(String name) {
         List<NftCoin> coins = nftRepository.findAll();
         List<NftCoinDto> content = coins.stream().map(nftMapper::toDto).collect(Collectors.toList());
     return content;
 
     }
 
-    public List<NftCoinDto> getAllNfts() {
+    public List<NftCoinDto> getAllNFTs() {
         List<NftCoin> adds = nftRepository.findAll();
         List<NftCoinDto> nftCoinDtos = adds.stream().map(nftMapper::toDto).collect(Collectors.toList());
         return nftCoinDtos;

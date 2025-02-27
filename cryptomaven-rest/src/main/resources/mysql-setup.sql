@@ -1,36 +1,24 @@
--- cardholder database
-DROP DATABASE IF EXISTS cryptomaven;
-DROP USER IF EXISTS `admin`@`%`;
-DROP USER IF EXISTS `user`@`%`;
-CREATE DATABASE IF NOT EXISTS cryptomaven CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-CREATE USER IF NOT EXISTS `admin`@`%` IDENTIFIED WITH mysql_native_password BY 'abc123!!';
-GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, REFERENCES, INDEX, ALTER, EXECUTE, CREATE VIEW, SHOW VIEW,
-CREATE ROUTINE, ALTER ROUTINE, EVENT, TRIGGER ON `cryptomaven`.* TO `admin`@`%`;
-CREATE USER IF NOT EXISTS `user`@`%` IDENTIFIED WITH mysql_native_password BY 'abc123!!';
-GRANT SELECT, INSERT, UPDATE, DELETE, SHOW VIEW ON `cryptomaven`.* TO `user`@`%`;
-FLUSH PRIVILEGES;
-
-
--- card database
--- DROP DATABASE IF EXISTS card;
--- DROP USER IF EXISTS `cardadmin`@`%`;
--- DROP USER IF EXISTS `carduser`@`%`;
--- CREATE DATABASE IF NOT EXISTS card CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
--- CREATE USER IF NOT EXISTS `cardadmin`@`%` IDENTIFIED WITH mysql_native_password BY 'password';
+-- -- cryptomav3n database
+-- DROP DATABASE IF EXISTS cryptomav3n;
+-- DROP USER IF EXISTS `mav3nadmin`@`%`;
+-- DROP USER IF EXISTS `user`@`%`;
+-- CREATE DATABASE IF NOT EXISTS cryptomav3n CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+-- CREATE USER IF NOT EXISTS `mav3nadmin`@`%` IDENTIFIED WITH mysql_native_password BY 'abc123!!';
 -- GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, REFERENCES, INDEX, ALTER, EXECUTE, CREATE VIEW, SHOW VIEW,
--- CREATE ROUTINE, ALTER ROUTINE, EVENT, TRIGGER ON `card`.* TO `cardadmin`@`%`;
--- CREATE USER IF NOT EXISTS `carduser`@`%` IDENTIFIED WITH mysql_native_password BY 'password';
--- GRANT SELECT, INSERT, UPDATE, DELETE, SHOW VIEW ON `card`.* TO `carduser`@`%`;
+-- CREATE ROUTINE, ALTER ROUTINE, EVENT, TRIGGER ON `cryptomav3n`.* TO `admin`@`%`;
+-- CREATE USER IF NOT EXISTS `mav3nuser`@`%` IDENTIFIED WITH mysql_native_password BY 'abc123!!';
+-- GRANT SELECT, INSERT, UPDATE, DELETE, SHOW VIEW ON `cryptomav3n`.* TO `user`@`%`;
 -- FLUSH PRIVILEGES;
 
--- card PAN database
--- DROP DATABASE IF EXISTS pan;
--- DROP USER IF EXISTS `panadmin`@`%`;
--- DROP USER IF EXISTS `panuser`@`%`;
--- CREATE DATABASE IF NOT EXISTS pan CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
--- CREATE USER IF NOT EXISTS `panadmin`@`%` IDENTIFIED WITH mysql_native_password BY 'password';
+
+-- -- card database
+-- DROP DATABASE IF EXISTS dailytechdb;
+-- DROP USER IF EXISTS `dailyadmin`@`%`;
+-- DROP USER IF EXISTS `dailyuser`@`%`;
+-- CREATE DATABASE IF NOT EXISTS dailytech CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+-- CREATE USER IF NOT EXISTS `dailyadmin`@`%` IDENTIFIED WITH mysql_native_password BY 'abc123!!';
 -- GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, REFERENCES, INDEX, ALTER, EXECUTE, CREATE VIEW, SHOW VIEW,
--- CREATE ROUTINE, ALTER ROUTINE, EVENT, TRIGGER ON `pan`.* TO `panadmin`@`%`;
--- CREATE USER IF NOT EXISTS `panuser`@`%` IDENTIFIED WITH mysql_native_password BY 'password';
--- GRANT SELECT, INSERT, UPDATE, DELETE, SHOW VIEW ON `pan`.* TO `panuser`@`%`;
+-- CREATE ROUTINE, ALTER ROUTINE, EVENT, TRIGGER ON `dailytech`.* TO `dailyadmin`@`%`;
+-- CREATE USER IF NOT EXISTS `dailyuser`@`%` IDENTIFIED WITH mysql_native_password BY 'abc123!!';
+-- GRANT SELECT, INSERT, UPDATE, DELETE, SHOW VIEW ON `dailytech`.* TO `dailyuser`@`%`;
 -- FLUSH PRIVILEGES;

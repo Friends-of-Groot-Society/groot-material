@@ -187,7 +187,7 @@ export const ADDRESSES = {
         blockExplorerUrl: "https://explorer-mainnet.maticvigil.com/address/0x900bE021E38B8d08435A03c05657C8cFA837cAeF",
         ownerId: 2,
         chainId: 369
-    },
+    }
 }
 export const LOGIN = [
     {email:"thomas1.maestas@gmail.com",

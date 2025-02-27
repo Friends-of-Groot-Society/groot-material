@@ -31,11 +31,7 @@ public class AddressesServiceImpl implements AddressesService {
     private AddressesRepository addressesRepository;
     @Autowired
     private AddressMapper addressMapper;
-    @Autowired
-    private NftRepository nftRepository;
 
-    @Autowired
-    private NftMapper nftMapper;
   @Autowired
   private ChainMapper chainMapper;
   @Autowired
@@ -73,6 +69,7 @@ public class AddressesServiceImpl implements AddressesService {
 
         List<Address> adds = addressesRepository.findAll();
         List<AddressDto> addressDtos = adds.stream().map(addressMapper::addressToAddressDto).collect(Collectors.toList());
+
         return addressDtos;
     }
 
@@ -108,28 +105,4 @@ public class AddressesServiceImpl implements AddressesService {
             }
     }
 
-
-    /////////////////////////
-@Override
-public AddressDto createNft(AddressDto nftCoinDto) {
-  Address coin = addressMapper.addressDtoToAddress(nftCoinDto);
-
-//    if (coin != null && (coin.getChainId() == 0)) {
-//        coin.setChainId(nftCoinDto.getChainId());
-//    }
-
-  Address newCoin = addressesRepository.save(coin);
-  AddressDto newNftCoinDto = addressMapper.addressToAddressDto(newCoin);
-    return newNftCoinDto;
-}
-    /**
-     * @return
-     */
-    @Override
-    public List<AddressDto> getAllNFTs() {
-
-        List<Address> adds = addressesRepository.findAll();
-        List<AddressDto> nftCoinDtos = adds.stream().map(addressMapper::addressToAddressDto).collect(Collectors.toList());
-        return nftCoinDtos;
-    }
 }

@@ -1,9 +1,9 @@
 package xyz.cryptomaven.rest.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
-import xyz.cryptomaven.rest.models.Role;
-
+import lombok.experimental.SuperBuilder;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -13,8 +13,7 @@ import java.util.Set;
 @AllArgsConstructor
 @Getter
 @Setter
-@Builder
-@ToString
+@SuperBuilder  // ✅ Changed from @Builder to @SuperBuilder for JPA compatibility
 @Entity
 @Table(name = "users")
 public class User implements Serializable {
@@ -57,14 +56,19 @@ public class User implements Serializable {
   private int isActive;
 
   @Column(name = "contacttype")
-  private int contactType; // ContactType contactType
+  private int contactType;
 
   @Transient
   private String id;
 
-  @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+  @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+  @ToString.Exclude  // ✅ Prevents infinite recursion
+  @EqualsAndHashCode.Exclude // ✅ Avoids issues with hashCode()
   private Set<Address> addresses = new HashSet<>();
 
+
+  @ToString.Exclude  // ✅ Prevents infinite recursion
+  @EqualsAndHashCode.Exclude // ✅ Avoids issues with hashCode()
   @ManyToMany(fetch = FetchType.LAZY)
   @JoinTable(
     name = "users_roles",
@@ -73,51 +77,4 @@ public class User implements Serializable {
   )
   private Set<Role> roles = new HashSet<>();
 
-
-  // Constructor for full user creation
-  public User(Long userId, String username, String password, String lastName, String firstName, int userType,
-              String organizationCode, String email, String cusUrl, String dashboardCode, int isActive, int contactType, String id) {
-    this.userId = userId;
-    this.username = username;
-    this.password = password;
-    this.lastName = lastName;
-    this.firstName = firstName;
-    this.userType = userType;
-    this.email = email;
-    this.organizationCode = organizationCode;
-    this.cusUrl = cusUrl;
-    this.dashboardCode = dashboardCode;
-    this.isActive = isActive;
-    this.contactType = contactType;
-    this.id = id;
-
-  }
-
-  // Constructor for minimal user data
-  public User(Long userId, String username) {
-    this.userId = userId;
-    this.username = username;
-  }
-
-  // Constructor for authentication
-  public User(String username, String password) {
-    this.username = username;
-    this.password = password;
-  }
-
-  // Constructor for profile updates
-  public User(String password, String lastName, String firstName, int userType, String organizationCode,
-              String email, String cusUrl, String dashboardCode, int isActive, int contactType, String id) {
-    this.password = password;
-    this.lastName = lastName;
-    this.firstName = firstName;
-    this.userType = userType;
-    this.organizationCode = organizationCode;
-    this.email = email;
-    this.cusUrl = cusUrl;
-    this.dashboardCode = dashboardCode;
-    this.isActive = isActive;
-    this.contactType = contactType;
-    this.id = id;
-  }
 }

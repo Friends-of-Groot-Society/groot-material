@@ -1,5 +1,6 @@
 package xyz.cryptomaven.rest.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
@@ -25,13 +26,19 @@ public class Coin extends AbstractDomainClass {
 
   @OneToMany(mappedBy = "coin", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
   @Builder.Default
+  @ToString.Exclude  // ✅ Prevents infinite recursion
+  @EqualsAndHashCode.Exclude // ✅ Avoids issues with hashCode()
   private List<RawToken> tokens = new ArrayList<>();
 
   @OneToMany(mappedBy = "coin", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
   @Builder.Default
+  @ToString.Exclude  // ✅ Prevents infinite recursion
+  @EqualsAndHashCode.Exclude // ✅ Avoids issues with hashCode()
   private List<NftCoin> nfts = new ArrayList<>();
 
-  @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-  @JoinColumn(name = "address_id") // ✅ Fixed foreign key name
+  @ManyToOne (cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+  @JoinColumn(name = "address_id" ) // ✅ Fixed foreign key name
+  @ToString.Exclude
+  @JsonIgnore
   private Address addressCoin;
 }

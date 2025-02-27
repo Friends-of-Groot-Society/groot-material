@@ -1,5 +1,6 @@
 package xyz.cryptomaven.rest.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -25,6 +26,8 @@ public class Role implements Serializable {
     @Column(name = "name", nullable = false, unique = true)
     private String name;
 
+  @ToString.Exclude  // ✅ Prevents infinite recursion
+  @EqualsAndHashCode.Exclude // ✅ Avoids issues with hashCode()
     @ManyToMany(mappedBy = "roles", fetch = FetchType.EAGER)
     private Set<User> users = new HashSet<>();
 

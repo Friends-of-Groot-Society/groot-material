@@ -26,7 +26,9 @@ public class RawToken extends AbstractDomainClass {
   @Column(name = "raw_token")
   private String rawToken;
 
+
+  @ToString.Exclude
   @JsonIgnore
-  @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
+  @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
   private Coin coin;
 }

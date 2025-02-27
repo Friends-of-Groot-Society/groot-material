@@ -11,7 +11,7 @@ import xyz.cryptomaven.rest.models.dto.AddressDto;
 public interface AddressMapper {
     AddressMapper INSTANCE = Mappers.getMapper(AddressMapper.class);
 
-    @Mapping(source = "id", target = "id")
+//    @Mapping(source = "id", target = "id")
 //    @Mapping(source = "userDto", target = "user")
     Address addressDtoToAddress(AddressDto addressDto);
 

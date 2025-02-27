@@ -14,10 +14,11 @@ import xyz.cryptomaven.rest.service.CoinService;
 
 import java.util.List;
 
+import static xyz.cryptomaven.rest.util.constants.Constants.API_COINS;
 
 
 @CrossOrigin(origins = "*")
-@RequestMapping("/api")
+@RequestMapping(API_COINS)
 @RestController
 public class CoinController {
   @Autowired
@@ -26,10 +27,26 @@ public class CoinController {
   @Autowired
   private CoinMapper coinMapper;
 
-  @Operation(summary = "Create a new coin")
 
+  @Operation(summary = "Get all coin")
+  @ApiResponse(responseCode = "200", description = "All coin returned")
+  @GetMapping(value = {"", "/"}, produces = "application/json")
+  public ResponseEntity<List<CoinDto>> getAllCoin() {
+    return new ResponseEntity<>(coinService.getAllCoin(), HttpStatus.OK);
+  }
+
+
+  @Operation(summary = "Get a coin by id")
+  @ApiResponse(responseCode = "200", description = "Coin returned")
+  @GetMapping(value = "/{id}")
+  public ResponseEntity<CoinDto> getCoinById(@PathVariable("id") String id) {
+    return new ResponseEntity<>(coinService.getCoinById(Long.valueOf(id)), HttpStatus.OK);
+  }
+
+
+  @Operation(summary = "Create a new coin")
   @ApiResponse(responseCode = "201", description = "Coin created")
-  @RequestMapping(value = "/coin", method = RequestMethod.POST, consumes = "application/json")
+  @RequestMapping(value = {"", "/"}, method = RequestMethod.POST, consumes = "application/json")
   @SecurityRequirement(
     name = "Bearer Authentication"
   )
@@ -39,28 +56,14 @@ public class CoinController {
     return new ResponseEntity<>(response, HttpStatus.CREATED);
   }
 
-  @Operation(summary = "Get all coin")
-  @ApiResponse(responseCode = "200", description = "All coin returned")
-  @GetMapping(value = "/coin")
-  public ResponseEntity<List<CoinDto>> getAllCoin() {
-    return new ResponseEntity<>(coinService.getAllCoin(), HttpStatus.OK);
-  }
-
-
-  @Operation(summary = "Get a coin by id")
-  @ApiResponse(responseCode = "200", description = "Coin returned")
-  @GetMapping(value = "/coin/{id}")
-  public ResponseEntity<CoinDto> getCoinById(@PathVariable("id") String id) {
-    return new ResponseEntity<>(coinService.getCoinById(Long.valueOf(id)), HttpStatus.OK);
-  }
 
   @SecurityRequirement(
     name = "Bearer Authentication"
   )
   @PreAuthorize("hasRole('ADMIN')")
   @Operation(summary = "Update a coin")
-  @ApiResponse(responseCode = "200", description = "Coin updated")
-  @PutMapping(value = "/coin", consumes = "application/json")
+  @ApiResponse(responseCode = "201", description = "Coin updated")
+  @PutMapping(value = {"", "/"}, consumes = "application/json")
   public ResponseEntity<CoinDto> updateCoin(@RequestBody CoinDto change) {
     return new ResponseEntity<>(coinService.updateCoin(change), HttpStatus.OK);
   }
@@ -71,7 +74,7 @@ public class CoinController {
   @PreAuthorize("hasRole('ADMIN')")
   @Operation(summary = "Delete a coin")
   @ApiResponse(responseCode = "200", description = "Coin deleted")
-  @DeleteMapping(value = "/coin/{id}")
+  @DeleteMapping(value = "/{id}")
   public boolean deleteCoin(@PathVariable("id") Long id) {
 
     return coinService.deleteCoin(id);
