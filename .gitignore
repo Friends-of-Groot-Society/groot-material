@@ -17,6 +17,7 @@ env
 /.env
 .env
 /env
+env
 /src/environments
 # IDEs and editors
 .idea/

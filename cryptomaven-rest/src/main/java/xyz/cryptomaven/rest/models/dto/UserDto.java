@@ -23,7 +23,7 @@ import java.util.Set;
 public class UserDto implements Serializable {
 
 
-  private int userId; // userId
+  private Long userId; // userId
   @Schema(description = "User First Name")
   @NotEmpty(message = "User last name should not be null or empty")
   private String username;

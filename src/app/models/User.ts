@@ -7,10 +7,8 @@ export class User {
     username: string;
     lastName?: string;
     firstName?: string; 
-    email?: string; 
-    phone?: string;
-    cusUrl?: string;
-    photoPath?: string;
+    email?: string;  
+    cusUrl?: string; 
     userGroup?: string;
     isActive?: number; // 0 = inactive, 1 = active 
     id?: number;
@@ -21,8 +19,6 @@ export class User {
     getIdToken() {
         return this.idToken;
     }
-    getFullName() {
-        return this.firstName + ' ' + this.lastName;
-    }
+  
 
 }

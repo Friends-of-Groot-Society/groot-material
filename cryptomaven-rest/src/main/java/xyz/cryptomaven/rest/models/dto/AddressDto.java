@@ -1,15 +1,16 @@
 package xyz.cryptomaven.rest.models.dto;
 
-import lombok.Builder;
-import lombok.Data;
-import xyz.cryptomaven.rest.models.User;
-
+import lombok.*;
 import java.io.Serializable;
 import java.util.Set;
 
 
+@Getter
+@Setter
 @Builder
-@Data
+@AllArgsConstructor
+@NoArgsConstructor(force = true)
+@Value
 public class AddressDto implements Serializable {
 
   private static final long serialVersionUID = 1L;
@@ -32,4 +33,6 @@ public class AddressDto implements Serializable {
 
   private Set<CoinDto> coins;
   private UserDto user;
+
+
 }

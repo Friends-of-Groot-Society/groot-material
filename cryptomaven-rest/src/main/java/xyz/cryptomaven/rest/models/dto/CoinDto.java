@@ -1,6 +1,6 @@
 package xyz.cryptomaven.rest.models.dto;
 
-import lombok.Value;
+import lombok.*;
 import xyz.cryptomaven.rest.models.Coin;
 
 import java.io.Serializable;
@@ -12,6 +12,11 @@ import java.util.List;
 /**
  * DTO for {@link Coin}
  */
+@Getter
+@Setter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor(force = true)
 @Value
 public class CoinDto implements Serializable {
   Integer version;

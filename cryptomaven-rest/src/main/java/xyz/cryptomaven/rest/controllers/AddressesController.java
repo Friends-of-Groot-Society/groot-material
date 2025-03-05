@@ -3,12 +3,11 @@ package xyz.cryptomaven.rest.controllers;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 
-import xyz.cryptomaven.rest.mapper.CoinMapper;
 import xyz.cryptomaven.rest.models.dto.AddressDto;
 
 import xyz.cryptomaven.rest.models.dto.ChainDto;
 import xyz.cryptomaven.rest.models.dto.CoinDto;
-import xyz.cryptomaven.rest.service.AddressesService;
+import xyz.cryptomaven.rest.services.AddressesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

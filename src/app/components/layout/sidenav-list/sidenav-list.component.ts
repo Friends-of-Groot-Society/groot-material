@@ -4,8 +4,8 @@ import { Observable, Subscription } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
  
 import { ActivatedRoute } from '@angular/router';
-import { AuthStore } from 'src/app/services/auth/auth-aws-store.service';
-import { AuthFirebaseStoreService } from 'src/app/services/auth/auth-firebase-store.service';
+import { AuthStore } from 'cryptomaven-ui/src/app/services/auth/auth-aws-store.service';
+import { AuthFirebaseStoreService } from 'cryptomaven-ui/src/app/services/auth/auth-firebase-store.service';
 
 
 @Component({

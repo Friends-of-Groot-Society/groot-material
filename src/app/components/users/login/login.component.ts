@@ -3,11 +3,11 @@ import { LoginModel } from '../../../models/LoginModel';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators, } from '@angular/forms';
 import { first } from 'rxjs/operators';
-import { AlertService } from '../../../services';
+import { AlertService } from '../../../../../cryptomaven-ui/src/app/services';
 import { User } from 'src/app/models/User';
 import { environment } from 'src/environments/environment';
-import { AuthFirebaseStoreService } from 'src/app/services/auth/auth-firebase-store.service';
-import { AuthStore } from 'src/app/services/auth/auth-aws-store.service';
+import { AuthFirebaseStoreService } from 'cryptomaven-ui/src/app/services/auth/auth-firebase-store.service';
+import { AuthStore } from 'cryptomaven-ui/src/app/services/auth/auth-aws-store.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-login',

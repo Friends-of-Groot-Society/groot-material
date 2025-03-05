@@ -2,16 +2,18 @@ package xyz.cryptomaven.rest.models.dto;
 
 import com.opencsv.bean.CsvBindByName;
 import jakarta.persistence.Column;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 /**
 *
  */
-@Data
-@NoArgsConstructor
+
+@Getter
+@Setter
+@Builder
 @AllArgsConstructor
+@NoArgsConstructor(force = true)
+@Value
 public class ChainCSVRecord {
 
     @CsvBindByName

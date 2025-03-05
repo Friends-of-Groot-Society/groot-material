@@ -3,10 +3,10 @@ import { NewProtoCoinComponent } from "./new-proto-coin/new-proto-coin.component
 
 @Component({
     selector: 'app-proto-coins',
-    standalone: true,
+    // standalone: true,
     templateUrl: './proto-coins.component.html',
-    styleUrls: ['./proto-coins.component.css'],
-    imports: [NewProtoCoinComponent]
+    styleUrls: ['./proto-coins.component.css'], 
+    // imports: []
 })
 export class ProtoCoinsComponent {
 

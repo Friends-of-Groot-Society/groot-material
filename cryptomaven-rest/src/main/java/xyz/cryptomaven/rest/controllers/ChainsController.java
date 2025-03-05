@@ -6,7 +6,7 @@ import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.security.access.prepost.PreAuthorize;
 import xyz.cryptomaven.rest.models.dto.ChainDto;
 import xyz.cryptomaven.rest.mapper.ChainMapper;
-import xyz.cryptomaven.rest.service.ChainsService;
+import xyz.cryptomaven.rest.services.ChainsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

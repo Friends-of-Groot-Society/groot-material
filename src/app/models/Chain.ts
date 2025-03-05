@@ -1,6 +1,6 @@
 export interface Chain {
+    id: string;
     category?: string;
-    id?: string;
     chainId?: number;
     type:string;
     name?: string;

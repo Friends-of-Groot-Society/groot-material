@@ -7,26 +7,29 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
+import org.springframework.stereotype.Repository;
 import xyz.cryptomaven.rest.models.User;
+import xyz.cryptomaven.rest.models.dto.UserDto;
 
 import java.util.List;
 import java.util.Optional;
 
 
 @RepositoryRestResource(collectionResourceRel = "user", path = "user")
+@Repository
 public interface UsersRepository extends JpaRepository<User, Long> {
 
-  User save(User user);
   // MULTIPLE
   Page<User> findAllByUserType(Integer userType, Pageable pageable);
 
+  User save(User user);
+  // MULTIPLE
   // SINGULAR
-  Optional<User> findById(@NotNull Integer id);
+  Optional<User> findById(@NotNull Long id);
 
   boolean existsByUsername(String username);
 
   boolean existsByEmail(String email);
-
 
   Optional<User> findByEmail(String email);
 
@@ -47,5 +50,5 @@ public interface UsersRepository extends JpaRepository<User, Long> {
   //  // JPQL
   @Query("SELECT u FROM User u WHERE UPPER(u.firstName) LIKE CONCAT('%',UPPER(?1), '%')")
   List<User> findByFirstNameContainingIgnoreCase(String firstName);
-
+//
 }

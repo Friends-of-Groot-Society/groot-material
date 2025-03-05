@@ -1,14 +1,20 @@
 package xyz.cryptomaven.rest.models.dto;
 
+import lombok.*;
 import xyz.cryptomaven.rest.models.Attribute;
-import lombok.Data;
 
 import java.io.Serializable;
 
 /**
  * A Dto for the {@link Attribute} entity
  */
-@Data
+
+@Getter
+@Setter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor(force = true)
+@Value
 public class AttributeDto implements Serializable {
     private final int attrid;
     private final String attribute_value;

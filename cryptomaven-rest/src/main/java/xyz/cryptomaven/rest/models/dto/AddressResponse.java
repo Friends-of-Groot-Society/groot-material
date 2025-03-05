@@ -7,11 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.io.Serializable;
 
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 @Getter
 @Setter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor(force = true)
+@Value
 public class AddressResponse implements Serializable {
     static long serialVersionUID = 1L;
 

@@ -1,7 +1,7 @@
 package xyz.cryptomaven.rest.controllers;
 
 import xyz.cryptomaven.rest.models.Weblink;
-import xyz.cryptomaven.rest.service.WeblinksService;
+import xyz.cryptomaven.rest.services.WeblinksService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

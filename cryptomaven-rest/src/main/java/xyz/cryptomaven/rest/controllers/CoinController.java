@@ -10,7 +10,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import xyz.cryptomaven.rest.mapper.CoinMapper;
 import xyz.cryptomaven.rest.models.dto.CoinDto;
-import xyz.cryptomaven.rest.service.CoinService;
+import xyz.cryptomaven.rest.services.CoinService;
 
 import java.util.List;
 

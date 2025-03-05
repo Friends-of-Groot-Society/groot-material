@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { KeyService } from '../../services/auth/key.service';
+import { KeyService } from '../../../../cryptomaven-ui/src/app/services/auth/key.service';
 import { HttpHeaders, HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { environment  as env  }from "src/environments/environment";
 import { catchError, Observable, throwError, tap } from "rxjs";
 // import Moralis from 'moralis'.default();
 // import { EvmChain } from '@moralisweb3/evm-utils'
-import { AuthStore } from 'src/app/services/auth/auth-aws-store.service';
+import { AuthStore } from 'cryptomaven-ui/src/app/services/auth/auth-aws-store.service';
 import { Subject } from 'rxjs';
 import { LoaderService } from '../layout/loader/loader.service';
 import { Coin } from 'src/app/models/Coin';

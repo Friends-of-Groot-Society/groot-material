@@ -15,7 +15,7 @@ import {
 } from 'rxjs/operators';
 import {merge, fromEvent, Observable, concat} from 'rxjs';
 import {Address} from '../../../models/Address';
-import {ChainService} from '../../../services/chain-service';
+import {ChainService} from '../../../../../cryptomaven-ui/src/app/services/chain-service';
 
 
 @Component({

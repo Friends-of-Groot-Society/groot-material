@@ -3,7 +3,7 @@ import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import {ChainDialogComponent} from '../chain-dialog/chain-dialog.component';
 import {Chain} from '../../../models/Chain';
 import {filter, tap} from 'rxjs/operators';
-import { ChainService } from 'src/app/services/chain-service';
+import { ChainService } from 'cryptomaven-ui/src/app/services/chain-service';
 
 
 @Component({

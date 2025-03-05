@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ChainComponent } from './chain.component';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { ChainService } from '../../../services/chain-service';
+import { ChainService } from '../../../../../cryptomaven-ui/src/app/services/chain-service';
 import { ActivatedRoute } from '@angular/router';
 
 describe('ChainComponent', () => {

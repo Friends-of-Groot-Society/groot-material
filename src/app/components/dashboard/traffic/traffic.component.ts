@@ -2,13 +2,13 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-traffic',
-  standalone: true,
-  imports: [],
+  // standalone: true,
+  // imports: [],
   templateUrl: './traffic.component.html',
   styleUrls: ['./traffic.component.css']
 })
 export class TrafficComponent {
-  dummyTrafficData = [
+  trafficData = [
     {
       id: 'd1',
       value: 433,
@@ -38,5 +38,5 @@ export class TrafficComponent {
       value: 589,
     },
   ];
-  maxTraffic = Math.max(...this.dummyTrafficData.map((data) => data.value));
+  maxTraffic = Math.max(...this.trafficData.map((data) => data.value));
 }

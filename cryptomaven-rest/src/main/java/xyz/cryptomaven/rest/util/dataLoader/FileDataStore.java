@@ -1,7 +1,6 @@
 package xyz.cryptomaven.rest.util.dataLoader;
 
 import org.springframework.context.annotation.Profile;
-import xyz.cryptomaven.rest.models.dto.UserNftbuy;
 import xyz.cryptomaven.rest.models.*;
 import xyz.cryptomaven.rest.util.ReadWriteFile;
 import org.slf4j.Logger;
@@ -29,7 +28,7 @@ public class FileDataStore extends ReadWriteFile {
 	}
 
 	private static int TEST_USERS;
-	public static List<UserNftbuy> userNftbuys = new ArrayList<>();
+
 	private static List<User> users = new ArrayList<>();
 	public static List<User> getUsers() {
 		return users;
@@ -68,9 +67,6 @@ public class FileDataStore extends ReadWriteFile {
 		}
 
 // TABLE JOIN
-	public static void add(UserNftbuy userNftbuy) {
-		userNftbuys.add( userNftbuy);
-	}
 
 	public static List<NftCoin> getNfts() {
 		return nftsStatic;

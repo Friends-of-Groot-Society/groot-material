@@ -1,32 +1,27 @@
 import { Component, Input, Output, Inject } from '@angular/core';
+import { Subject } from 'rxjs';
 import { CommonModule, NgFor } from '@angular/common';
 import { Address } from '../../../models/Address';
-import { AddressService } from '../../../services/address.service';
-import { Coin } from '../../../models/Coin';
-import { Chain } from '../../../models/Chain';
-import { EventEmitter } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { map, tap } from 'rxjs/operators';
-import { BehaviorSubject, Subject } from 'rxjs';
-import { environment } from 'src/environments/environment';
-import { PlacesContainerComponent } from './places-container/places-container.component';
-
+import { AddressService } from '../../../../../cryptomaven-ui/src/app/services/address.service';
+import { Coin } from '../../../models/Coin';  
+import { environment } from 'src/environments/environment'; 
 
 @Component({
   selector: 'app-places',
-  standalone: true,
-  imports: [CommonModule, PlacesContainerComponent],
+  // standalone: true,
+  // imports: [],
   templateUrl: './landing.component.html',
   styleUrls: ['./landing.component.css'],
-  providers: [AddressService],
+  // providers: [AddressService],
 })
  
 export class LandingComponent {
   @Input()
   landings: Address[] | undefined;
 
-  @Output()
-  selectedLanding: EventEmitter<Address> = new EventEmitter<Address>();
+  @Output()x
+  selectedLanding: Address | undefined;
+  // selectedLanding: EventEmitter<Address> = new EventEmitter<Address>();
 
   userCoins: Subject<Coin[]> = new Subject<Coin[]>();
   baseUrl: string;

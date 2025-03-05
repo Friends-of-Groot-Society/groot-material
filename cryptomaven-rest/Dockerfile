@@ -1,8 +1,9 @@
-FROM openjdk:17-jdk-slim
+FROM eclipse-temurin:17
 
-LABEL maintainer=thomas1.maestas@gmail.com
+LABEL maintainer="thomas1.maestas@gmail.com"
 
-COPY target/cryptomaven-rest-0.0.1-SNAPSHOT.jar cryptomaven.jar
+WORKDIR /app
 
-ENTRYPOINT ["java", "-jar", "cryptomaven.jar"]
+COPY target/mapl-data-1.2.0.war /app/mapl-data.war
 
+ENTRYPOINT ["java", "-jar", "mapl-data.war"]

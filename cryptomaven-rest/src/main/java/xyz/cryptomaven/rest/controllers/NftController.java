@@ -2,9 +2,8 @@ package xyz.cryptomaven.rest.controllers;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import xyz.cryptomaven.rest.models.dto.AddressDto;
 import xyz.cryptomaven.rest.models.dto.NftCoinDto;
-import xyz.cryptomaven.rest.service.NftService;
+import xyz.cryptomaven.rest.services.NftService;
 import xyz.cryptomaven.rest.util.constants.Constants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
