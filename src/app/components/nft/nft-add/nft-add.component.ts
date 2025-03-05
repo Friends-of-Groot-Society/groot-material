@@ -1,12 +1,12 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { MatMenuTrigger } from '@angular/material/menu';
+ 
  
 import { Observable, Subject, Subscription , of} from 'rxjs';
 import { NftsService } from '../nfts.service';
-import { Store } from '@ngrx/store';
-import { AuthStore } from 'src/app/services/auth/auth-aws-store.service';
-import { AuthFirebaseStoreService } from 'src/app/services/auth/auth-firebase-store.service';
-import { DataStorageService } from 'src/app/services/data-storage.service'; 
+ 
+import { AuthStore } from 'cryptomaven-ui/src/app/services/auth/auth-aws-store.service';
+import { AuthFirebaseStoreService } from 'cryptomaven-ui/src/app/services/auth/auth-firebase-store.service';
+import { DataStorageService } from 'cryptomaven-ui/src/app/services/data-storage.service'; 
 import { Constant } from '../../../models/Constant';
 import { Chain } from '../../../models/Chain';
 import * as fromChains from '../../../reducers/chain.reducer';

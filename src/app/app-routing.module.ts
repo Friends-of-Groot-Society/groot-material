@@ -14,12 +14,12 @@ import { RegisterComponent } from './components/users/register/register.componen
 
 import { UsersComponent } from './components/users/users.component';
 import { HomeComponent } from './components/layout/home.component';
-import { UserGuardService } from './services/auth/user-guard.service'
-import { AdminGuardService } from './services/auth/admin-guard.service';
+ 
 import { AddressResolver } from './components/nft/address-resolver';
 import { AddressComponent } from './components/nft/address/address.component';
 import { AdminuserComponent } from './components/users/adminuser.component';
 import { ProtoCoinsComponent } from './components/dashboard/proto-coins/proto-coins.component';
+import { DashboardItemComponent } from './components/dashboard/dashboard-item/dashboard-item.component';
 
 const routes: Routes = [
 
@@ -29,6 +29,12 @@ const routes: Routes = [
 
   { path: 'chains', component: ChainComponent },
   { path: 'chains/:id', component: ChainComponent },
+
+
+  
+  { path: "proto-coins", component: ProtoCoinsComponent }, 
+ { path: 'proto-coins/new', component: DashboardItemComponent}, 
+ ,
 
   { path: 'LandingComponent', component: LandingComponent },
   { path: 'LandingComponent/:id', component: LandingComponent },
@@ -40,7 +46,7 @@ const routes: Routes = [
   { path: "search-addresses", component: SearchAddressesComponent }, 
  { path: 'addresses', component: AddressComponent}, 
   {
-    path: 'addresses/:name', component: AddressComponent,
+    path: 'addresses/:name ', component: AddressComponent,
     resolve: {
       nftRef: AddressResolver
     }
@@ -59,7 +65,7 @@ const routes: Routes = [
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes),
-    CommonModule,
+    // CommonModule,
     MaterialModule
   ],
   exports: [RouterModule],

@@ -1,8 +1,8 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 // import {DestroyRef} from '@angular/common';
 import { ChainComponent } from '../../../chain/chain/chain.component';
 import { PlacesContainerComponent } from '../places-container/places-container.component';
-import { AddressService } from '../../../../services/address.service';
+import { AddressService } from '../../../../../../cryptomaven-ui/src/app/services/address.service';
 // import { CoinService } from '../../../../services/address.service';
 
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
@@ -11,24 +11,32 @@ import { Coin } from '../../../../models/Coin'; // Adjust the import path as nec
 import { tap } from 'rxjs/operators';
 @Component({
   selector: 'app-user-coins',
-  standalone: true,
-  imports: [PlacesContainerComponent],
+  // standalone: true,
+
+  // PlacesContainerComponent
+  imports: [],
   templateUrl: './user-coins.component.html',
   styleUrls: ['./user-coins.component.css'],
-  providers: [AddressService,]
+  // providers: [AddressService,]
 })
-export class UserCoinsComponent implements OnInit {
+export class UserCoinsComponent implements OnInit, OnDestroy {
   isFetching = new BehaviorSubject<boolean>(false);
   placeSelected: BehaviorSubject<Coin[]> = new BehaviorSubject<Coin[]>([]);
   error: BehaviorSubject<string> = new BehaviorSubject<string>('');
-  private addressService = inject(AddressService);
+  // private addressService = inject(AddressService);
   // private destroyed = inject(DestroyRef);
-  constructor() { 
-    this.addressService = inject(AddressService);
+  constructor(private addressService: AddressService)  {
+    // this.addressService = inject(AddressService);
     // this.destroyed = inject(DestroyRef);
 
   }
-  landingsSubscription: Subject<Coin[]> = new Subject<Coin[]>();
+  landingsSubscription: any;
+
+  ngOnDestroy(): void {
+    if (this.landingsSubscription) {
+      this.landingsSubscription.unsubscribe();
+    }
+  }
   
   ngOnInit(): void {
     this.isFetching.next(true);
@@ -44,10 +52,7 @@ export class UserCoinsComponent implements OnInit {
       }
     )
   }
-  // ngBeforeDestroy() {
-  //   this.subscription.unsubscribe();
-  //   // this.destroyed();
-  // }
+ 
 
   loadUserCoins(): Observable<Coin[]> {
     // Logic to load user coins, this could be an API call or some other logic
@@ -59,17 +64,6 @@ export class UserCoinsComponent implements OnInit {
     );
   }
 
-  onSelectChain(chain: Chain) {
-    const subscription = this.addressService.addChainToUserCoins(chain, "1").subscribe({
-      next: (chain) => {
-        console.log('chain added to user coins');
-        console.log(chain);
-      },
-      error: (error) => {
-        console.log('error adding chain to user coins');
-      }
-    });
 
-  }
 }
 

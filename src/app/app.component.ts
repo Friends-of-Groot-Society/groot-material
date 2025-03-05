@@ -20,12 +20,12 @@ export class AppComponent {
   title = 'Friends of Groot Society';
   showLoadingIndicator = true;
 
-  private errorService = inject(ErrorService);
-
+  private errorService = inject(ErrorService); 
   error = this.errorService.error;
 
 
   constructor(
+
     // private store: Store<any>,
   ) {
     // store.pipe(select('menuState'))

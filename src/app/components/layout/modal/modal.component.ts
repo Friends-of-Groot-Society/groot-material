@@ -2,7 +2,7 @@ import { AfterViewInit, Component, ElementRef,ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-modal',
-  standalone: true,
+  // standalone: true,
   imports: [],
   templateUrl: './modal.component.html',
   styleUrls: ['./modal.component.css']

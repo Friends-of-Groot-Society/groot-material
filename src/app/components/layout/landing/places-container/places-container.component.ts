@@ -2,16 +2,11 @@ import { Component, Input } from '@angular/core';
 import { Coin } from 'src/app/models/Coin'; // Replace 'path-to-coin' with the actual path to the Coin type or interface
 import { Subject } from 'rxjs';
 import {NgFor, NgIf} from '@angular/common';
-import { AddressService } from 'src/app/services/address.service';
-import { Address } from 'src/app/models/Address';
-import { Chain } from 'src/app/models/Chain';
-import { ChainService } from 'src/app/services/chain-service';
-import { AddressComponent } from 'src/app/components/nft/address/address.component'; 
-
+ 
 @Component({
   selector: 'app-places-container',
-  standalone: true,
-  imports: [NgIf, NgFor],
+  // standalone: true,
+  // imports: [NgIf, NgFor],
   templateUrl: './places-container.component.html',
   styleUrls: ['./places-container.component.css']
 })
@@ -27,19 +22,19 @@ export class PlacesContainerComponent {
   ngOnInit() {
     this.coins();
   }
-  onSelectCoin(coin: Coin) {
-    console.log('coin selected', coin);
-    const subscription = this.addressService.editCoinFromUserCoins(coin, "1").subscribe({
-      next: (coin) => {
-        console.log('coin edited from user coins');
-        console.log(coin);
-        return coin;
-      },
-      error: (error) => {
-        console.log('error adding coin to user coins');
-      }
-    });
-  } ss
+  // onSelectCoin(coin: Coin) {
+  //   console.log('coin selected', coin);
+  //   const subscription = this.addressService.editCoinFromUserCoins(coin, "1").subscribe({
+  //     next: (coin) => {
+  //       console.log('coin edited from user coins');
+  //       console.log(coin);
+  //       return coin;
+  //     },
+  //     error: (error) => {
+  //       console.log('error adding coin to user coins');
+  //     }
+  //   });
+  // } 
  
   constructor() { }
   coins() {

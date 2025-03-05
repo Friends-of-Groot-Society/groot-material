@@ -4,10 +4,10 @@ import { ErrorService } from '../../error.service';
 
 @Component({
     selector: 'app-error-modal',
-    standalone: true,
+    // standalone: true,
     templateUrl: './error-modal.component.html',
     styleUrls: ['./error-modal.component.css'],
-    imports: [ModalComponent]
+    // imports: [ModalComponent]
 })
 export class ErrorModalComponent {
   @Input() title: string;

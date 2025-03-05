@@ -5,9 +5,9 @@ import { FormGroup, FormBuilder,  FormControl, FormArray, Validators } from '@an
 import { Router } from '@angular/router';
 import { first, tap } from 'rxjs/operators';
 import {UserService} from '../user.service';
-import { AlertService } from '../../../services';
-import { AuthFirebaseStoreService } from 'src/app/services/auth/auth-firebase-store.service';
-import { AuthStore } from 'src/app/services/auth/auth-aws-store.service';
+import { AlertService } from '../../../../../cryptomaven-ui/src/app/services';
+import { AuthFirebaseStoreService } from 'cryptomaven-ui/src/app/services/auth/auth-firebase-store.service';
+import { AuthStore } from 'cryptomaven-ui/src/app/services/auth/auth-aws-store.service';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',

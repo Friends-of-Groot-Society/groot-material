@@ -3,21 +3,20 @@ import { Component, Inject,   } from '@angular/core';
 import { Chain } from 'src/app/models/Chain';  
 import { PlacesContainerComponent } from '../places-container/places-container.component';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { ChainService } from '../../../../services/chain-service';
-import { ChainStore } from 'src/app/services/chain-store.service';
-import { AddressService } from 'src/app/services/address.service';
+import { ChainService } from '../../../../../../cryptomaven-ui/src/app/services/chain-service';
+import { ChainStore } from 'cryptomaven-ui/src/app/services/chain-store.service';
+import { AddressService } from 'cryptomaven-ui/src/app/services/address.service';
 import { Address } from '../../../../models/Address';
-import { AddressComponent } from 'src/app/components/nft/address/address.component';
 @Component({
   selector: 'app-available-chains',
-  standalone: true,
+  // standalone: true,
   templateUrl: './available-chains.component.html',
   styleUrls: ['./available-chains.component.css'],
-  imports: [PlacesContainerComponent],
-  providers: [
-    ChainService, 
-    ChainStore, AddressService
-  ],
+  // imports: [PlacesContainerComponent],
+  // providers: [
+  //   ChainService, 
+  //   ChainStore, AddressService
+  // ],
 })
 export class AvailableChainsComponent {
   isFetching = new BehaviorSubject<boolean>(false);

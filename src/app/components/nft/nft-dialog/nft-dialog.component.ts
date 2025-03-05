@@ -2,7 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef, MatDialogConfig, MatDialog } from '@angular/material/dialog';     
 import {Address} from '../../../models/Address';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { DataStorageService } from 'src/app/services/data-storage.service'; 
+import { DataStorageService } from 'cryptomaven-ui/src/app/services/data-storage.service'; 
 import { LoaderService } from '../../layout/loader/loader.service';  
 import { Observable } from 'rxjs'; 
 import { Coin } from 'src/app/models/Coin';
@@ -35,7 +35,7 @@ export class NftDialogComponent implements OnInit {
   }
   save() {
     const changes = this.form.value;
-    this.data.editPersistedNftRef(this.address.id.toString(), changes).subscribe();
+    this.data.editPersistedAddress(this.address.id, changes).subscribe();
   }
 
   close() {

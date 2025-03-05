@@ -9,8 +9,7 @@ import { environment } from '../environments/environment';
 import { MatDialogModule } from '@angular/material/dialog'; 
  
 // SERVICES
-import { StoreModule } from '@ngrx/store';
- 
+import { StoreModule } from '@ngrx/store'; 
 // LAYOUT  
 import { ContactusComponent } from './components/layout/contactus/contactus.component';
 import { FooterComponent } from './components/layout/footer.component';
@@ -48,17 +47,27 @@ import { provideFunctions,getFunctions } from '@angular/fire/functions';
 import { NftCardListComponent } from './components/nft/nft-card-list/nft-card-list.component';
 import { NftDialogComponent } from './components/nft/nft-dialog/nft-dialog.component'; 
 import { AddressResolver } from './components/nft/address-resolver';
-import { UserGuardService } from './services/auth/user-guard.service';
+import { UserGuardService } from '../../cryptomaven-ui/src/app/services/auth/user-guard.service';
 import { ErrorService } from './shared/error.service';
 import { AdminuserComponent } from './components/users/adminuser.component';
 import { AvailableChainsComponent } from './components/layout/landing/available-chains/available-chains.component';
 import { UserCoinsComponent } from './components/layout/landing/user-coins/user-coins.component';
  import {ErrorModalComponent} from './shared/modal/error-modal/error-modal.component';
+ import {NewProtoCoinComponent} from './components/dashboard/proto-coins/new-proto-coin/new-proto-coin.component';
 
+import { ModalComponent } from './shared/modal/modal.component';
+import { ControlComponent } from './shared/control/control.component';
+import { ButtonComponent } from './shared/button/button.component';
+ 
+ 
 @NgModule({
   declarations: [ 
-    // AvailableChainsComponent,
-    // UserCoinsComponent,
+    ModalComponent, 
+    ControlComponent , 
+    ButtonComponent,
+    AvailableChainsComponent,
+    UserCoinsComponent,
+    NewProtoCoinComponent,
     UsersComponent, 
     AppComponent,  
     LoginComponent,
@@ -124,16 +133,12 @@ import { UserCoinsComponent } from './components/layout/landing/user-coins/user-
     provideDatabase(() => getDatabase()), 
     provideFirestore(() => getFirestore()), 
     provideFunctions(() => getFunctions()),
-    // StoreModule.forRoot( reducers ),
-    AppComponent, 
-    MaterialModule,
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule, 
-    BrowserAnimationsModule, provideFirebaseApp(() => initializeApp(environment.firebase)), provideAuth(() => getAuth()), provideDatabase(() => getDatabase()), provideFirestore(() => getFirestore()), provideFunctions(() => getFunctions()),
-    // StoreModule.forRoot( reducers ),
+    // StoreModule.forRoot( reducers ),    
   ],
   providers: [  
+    // ChainService, 
+    //   ChainStore,
+    //    AddressService,
     LoaderService,
     UpperCasePipe,
     AddressResolver,

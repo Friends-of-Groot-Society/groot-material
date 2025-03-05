@@ -6,7 +6,7 @@ import { NftsService } from './nfts.service';
 import { LoaderService } from '../layout/loader/loader.service';
 
 // import { Chain } from '../../models/Chain';
-import { ChainStore } from 'src/app/services/chain-store.service';
+import { ChainStore } from 'cryptomaven-ui/src/app/services/chain-store.service';
 import { Address } from 'src/app/models/Address';
 
 @Component({
