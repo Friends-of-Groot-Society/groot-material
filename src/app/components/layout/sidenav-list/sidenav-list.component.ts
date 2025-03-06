@@ -4,8 +4,8 @@ import { Observable, Subscription } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
  
 import { ActivatedRoute } from '@angular/router';
-import { AuthStore } from 'src/app/services/auth/auth-store.service';
-import { AdminAuthenticationService } from 'src/app/services/auth/admin-authentication.service';
+import { AuthStore } from 'cryptomaven-ui/src/app/services/auth/auth-aws-store.service';
+import { AuthFirebaseStoreService } from 'cryptomaven-ui/src/app/services/auth/auth-firebase-store.service';
 
 
 @Component({
@@ -29,7 +29,7 @@ export class SidenavListComponent implements OnInit { // }, OnDestroy {
     private breakpointObserver: BreakpointObserver,
     private route: ActivatedRoute,  
     public authStore: AuthStore,
-    public adminAuth: AdminAuthenticationService
+    public adminAuth: AuthFirebaseStoreService
     ) { }
 
   ngOnInit() {

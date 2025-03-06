@@ -3,7 +3,7 @@ import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import {filter, tap} from 'rxjs/operators';
 
 import {NftDialogComponent} from '../nft-dialog/nft-dialog.component';
-import {NftRef} from '../../../models/NftRef';
+import {Address} from '../../../models/Address';
 
 
 @Component({
@@ -19,7 +19,7 @@ import {NftRef} from '../../../models/NftRef';
   changeDetection: ChangeDetectionStrategy.OnPush // less greedy/requires 
 })
 export class NftCardListComponent implements OnInit {
-  @Input() nftRefs: NftRef[]  ;
+  @Input() addresses: Address[]  ;
    
   @Output() 
   private nftChanged = new EventEmitter();
@@ -29,21 +29,21 @@ export class NftCardListComponent implements OnInit {
   ngOnInit() {
   }
 
-  editNftRef(nftRef: NftRef) {
-    console.log(nftRef);
+  editAddress(address: Address) {
+    console.log(address);
     
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
-    dialogConfig.data = nftRef;
+    dialogConfig.data = address;
     dialogConfig.width = '400px';
 
     const dialogRef = this.dialog.open(NftDialogComponent, dialogConfig);
 
     dialogRef.afterClosed()
     .pipe(
-      filter(nftRef => !!nftRef),
-      tap(nftRef => console.log(nftRef)),
+      filter(address => !!address),
+      tap(address => console.log(address)),
       tap(() => this.nftChanged.emit())
     )
     .subscribe();

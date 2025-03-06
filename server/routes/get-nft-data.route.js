@@ -101,14 +101,14 @@ app.get("/nft/eth/:address", async (req, res) => {
         res.json({ error: "error.500" });
     }
 });
-const startServer = async () => {
-    await Moralis.start({
-        apiKey: API_KEY,
-    });
-    app.listen(PORT, () => {
-        console.log(`Example app listening at http://localhost:${PORT}`);
-    });
-};
-startServer();
 export {};
+// const startServer = async() => {
+//     await Moralis.start({
+//         apiKey: API_KEY,
+//     })
+//     app.listen(PORT, () => {
+//         console.log(`Example app listening at http://localhost:${PORT}`)
+//     })
+// }
+// startServer();
 //# sourceMappingURL=get-nft-data.route.js.map

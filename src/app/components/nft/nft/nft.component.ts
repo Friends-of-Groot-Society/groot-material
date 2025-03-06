@@ -10,18 +10,20 @@ import { NftsService } from '../nfts.service';
 })
 
 export class NftComponent implements OnInit { 
+  @Output() nftDeleted = new EventEmitter();
   @Input('inputNft') nft: any;  
   @Input() nftData: any;
 
   @Input()
   chains: Chain[];
-
-  @Output() nftDeleted = new EventEmitter();
+name: any;
+  
   viewNft() {} 
     constructor(private nftsService: NftsService) { }
 
   ngOnInit(): void {
-    // this.nft = this.nftsService.getNft(this.name);
+   this.name  = this.nftData.nftName;
+    // this.nft = this.nftsService.nftUpdated();
             }
   onClicked() {
     // this.nftDeleted.emit(this.name);
@@ -34,33 +36,6 @@ export class NftComponent implements OnInit {
     price: 0.01,
     owner: '0x0f0c0000f0',
     contract: '0x00000000',
-    idToken: 0,
-    isForSale: false,
-    isForAuction: false,
-    isForSwap: false,
-    isForTrade: false,
-    isForRent: false,
-    isForLease: false,
-    isForGift: false,
-    isForLend: false,
-    isForBorrow: false,
-    isForDonate: false,
-    isForExchange: false,
-    isForBarter: false,
-    isForPay: false,  
-    isForTip: false,
-    isForReward: false,
-    isForRefund: false,
-    isForReimburse: false,
-    isForCompensate: false,
-    isForBuy: false,
-    isForSell: false,
-    isForRentOut: false,
-    isForLeaseOut: false,
-    isForLendOut: false,
-    isForBorrowOut: false,
-    isForDonateOut: false,
-    isForExchangeOut: false,
-    isForBarterOut: false,
+    idToken: 0
   };
 }

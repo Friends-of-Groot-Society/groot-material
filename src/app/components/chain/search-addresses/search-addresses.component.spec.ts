@@ -1,7 +1,7 @@
 
 import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { SearchAddressesComponent } from './search-addresses.component';
-import { ChainService } from '../../../services/chain-service'; 
+import { ChainService } from '../../../../../cryptomaven-ui/src/app/services/chain-service'; 
 import { of } from 'rxjs';
 import { Address } from 'src/app/models/Address';
 

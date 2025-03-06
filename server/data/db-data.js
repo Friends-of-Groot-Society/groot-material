@@ -5,7 +5,7 @@ export const CHAINS = {
         symbol: "eth",
         description: "Ethereum Mainnet",
         longDescription: "Ethereum is the pioneering smart contract platform that enables developers to build decentralized applications (dapps) on a permissionless blockchain. It supports smart contracts, decentralized finance (DeFi), and a broad array of token standards, including ERC-20 and ERC-721. Ethereum’s consensus mechanism transitioned from Proof of Work (PoW) to Proof of Stake (PoS) with the Ethereum 2.0 upgrade, making it more energy-efficient. As the largest smart contract platform by market capitalization and developer activity, Ethereum remains a leader in the blockchain space.",
-        iconUrl: "https://s3.amazonaws.com/tmm.net/img/ether.png",
+        iconUrl: "https://s3.amazonaws.com/tmm.net/images/crypto/ether.png",
         category: "Mainnet",
         chainListIcon: "https://friends-of-groot-society.s3.amazonaws.com/assets/android-chrome-384x384.png",
         rpcUrl: "https://mainnet.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161",
@@ -17,7 +17,7 @@ export const CHAINS = {
         symbol: "matic",
         description: "Polygon Mainnet",
         longDescription: "Polygon is a Layer 2 scaling solution for Ethereum, offering faster transactions with lower fees while still benefiting from Ethereum’s security. Polygon aims to improve the user experience and developer experience by enabling decentralized applications (dapps) to scale efficiently. With a robust ecosystem and a growing set of tools, Polygon has become a popular choice for DeFi, NFTs, and gaming applications.",
-        iconUrl: "https://s3.amazonaws.com/tmm.net/img/polygon.jpg",
+        iconUrl: "https://s3.amazonaws.com/tmm.net/images/crypto/polygon.jpg",
         category: "Mainnet",
         chainListIcon: "https://friends-of-groot-society.s3.amazonaws.com/assets/android-chrome-384x384.png",
         rpcUrl: " https://rpc-mainnet.maticvigil.com/",
@@ -28,7 +28,7 @@ export const CHAINS = {
         symbol: "bsc",
         description: "BSC Mainnet",
         longDescription: "Binance Smart Chain (BSC) is a high-performance blockchain designed for decentralized applications (dApps) and digital asset transactions. It supports smart contracts and offers lower transaction fees and faster confirmation times compared to Ethereum. BSC is compatible with the Ethereum Virtual Machine (EVM), allowing developers to migrate dApps and assets between Ethereum and BSC seamlessly. BSC has gained significant adoption, especially in the DeFi and NFT ecosystems.",
-        iconUrl: "https://s3.amazonaws.com/tmm.net/img/bnb.png",
+        iconUrl: "https://s3.amazonaws.com/tmm.net/images/crypto/bnb.png",
         category: "Mainnet",
         chainListIcon: "https://friends-of-groot-society.s3.amazonaws.com/assets/android-chrome-384x384.png",
         rpcUrl: " https://bsc-dataseed.binance.org/",
@@ -40,7 +40,7 @@ export const CHAINS = {
         symbol: "sol",
         description: "solana Mainnet",
         longDescription: "NFT - 0x1",
-        iconUrl: "https://s3.amazonaws.com/tmm.net/img/solana.jpg",
+        iconUrl: "https://s3.amazonaws.com/tmm.net/images/crypto/solana.jpg",
         category: "Mainnet",
         chainListIcon: "https://friends-of-groot-society.s3.amazonaws.com/assets/android-chrome-384x384.png",
         rpcUrl: "https://api.mainnet-beta.solana.com",
@@ -52,7 +52,7 @@ export const CHAINS = {
         symbol: "pls",
         description: "Pulsechain Mainnet",
         longDescription: "NFT - 0x1: Pulsechain is a high-performance blockchain that provides a fast and cost-effective platform for decentralized applications and token transactions. With its focus on scalability and efficiency, Pulsechain offers developers an innovative environment for building blockchain-based solutions.",
-        iconUrl: "https://s3.amazonaws.com/tmm.net/img/pulsechain.png",
+        iconUrl: "https://s3.amazonaws.com/tmm.net/images/crypto/pulsechain.png",
         category: "Mainnet",
         chainListIcon: "https://friends-of-groot-society.s3.amazonaws.com/assets/android-chrome-384x384.png",
         rpcUrl: "https://rpc.pulsechain.com",
@@ -64,7 +64,7 @@ export const CHAINS = {
         symbol: "avax",
         description: "Avalanche C-Chain",
         longDescription: "Avalanche is a high-performance, scalable, and secure blockchain platform that is compatible with Ethereum's smart contracts. Known for its low fees and fast transaction times, Avalanche provides an environment for decentralized applications (dApps), DeFi, and NFT projects. Avalanche aims to solve many of the scalability and congestion issues seen on other blockchains while maintaining decentralization and security.",
-        iconUrl: "https://s3.amazonaws.com/tmm.net/img/avax.png",
+        iconUrl: "https://s3.amazonaws.com/tmm.net/images/crypto/avax.png",
         category: "Mainnet",
         chainListIcon: "https://friends-of-groot-society.s3.amazonaws.com/assets/android-chrome-384x384.png",
         rpcUrl: "https://api.avax.network/ext/bc/C/rpc",
@@ -76,7 +76,7 @@ export const CHAINS = {
         symbol: "ftm",
         description: "Fantom Chain",
         longDescription: "Fantom is a highly scalable and decentralized Layer 1 blockchain platform designed for dApps and digital assets. Fantom is known for its high speed and low transaction fees, making it ideal for DeFi applications. It provides a highly customizable and EVM-compatible environment for developers.",
-        iconUrl: "https://s3.amazonaws.com/tmm.net/img/fantom.png",
+        iconUrl: "https://s3.amazonaws.com/tmm.net/images/crypto/fantom.png",
         category: "Mainnet",
         chainListIcon: "https://friends-of-groot-society.s3.amazonaws.com/assets/android-chrome-384x384.png",
         rpcUrl: "https://rpcapi.fantom.network",
@@ -638,9 +638,12 @@ export const NFT_POLY = {
     ]
 };
 export function findChainById(chainId) {
+    console.log(CHAINS[chainId]);
     return CHAINS[chainId];
 }
 export function findAddressesForChain(chainId) {
-    return Object.values(ADDRESSES).filter(address => address.chainId == chainId);
+    const obj = Object.values(ADDRESSES).filter(address => address.chainId == chainId);
+    console.dir(obj);
+    return obj;
 }
 //# sourceMappingURL=db-data.js.map

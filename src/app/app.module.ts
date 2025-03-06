@@ -9,8 +9,7 @@ import { environment } from '../environments/environment';
 import { MatDialogModule } from '@angular/material/dialog'; 
  
 // SERVICES
-import { StoreModule } from '@ngrx/store';
- 
+import { StoreModule } from '@ngrx/store'; 
 // LAYOUT  
 import { ContactusComponent } from './components/layout/contactus/contactus.component';
 import { FooterComponent } from './components/layout/footer.component';
@@ -34,9 +33,9 @@ import { ChaindataComponent } from './components/nft/chaindata/chaindata.compone
 import { LoaderService } from './components/layout/loader/loader.service';
 import { LoaderComponent } from './components/layout/loader/loader.component'; 
 import { UsersComponent } from './components/users/users.component';
-import { AddressComponent } from './components/chain/address/address.component';
+import { AddressComponent } from './components/nft/address/address.component';
 import { SearchAddressesComponent } from './components/chain/search-addresses/search-addresses.component';
-
+import { PlacesContainerComponent } from './components/layout/landing/places-container/places-container.component';
 import { PipeUppercase } from './utility/pipe-uppercase.pipe';
 import { SafeHtmlPipe } from './utility/safe-html.pipe';
 import { UpperCasePipe } from '@angular/common';
@@ -46,14 +45,56 @@ import { provideDatabase,getDatabase } from '@angular/fire/database';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { provideFunctions,getFunctions } from '@angular/fire/functions';
 import { NftCardListComponent } from './components/nft/nft-card-list/nft-card-list.component';
-import { NftDialogComponent } from './components/nft/nft-dialog/nft-dialog.component';
-import { NftRefComponent } from './components/nft/nft-ref/nft-ref.component';
-import { NftRefResolver } from './components/nft/nft-ref-resolver';
-import { UserGuardService } from './services/auth/user-guard.service';
+import { NftDialogComponent } from './components/nft/nft-dialog/nft-dialog.component'; 
+import { AddressResolver } from './components/nft/address-resolver';
+import { UserGuardService } from '../../cryptomaven-ui/src/app/services/auth/user-guard.service';
+import { ErrorService } from './shared/error.service';
 import { AdminuserComponent } from './components/users/adminuser.component';
+import { AvailableChainsComponent } from './components/layout/landing/available-chains/available-chains.component';
+import { UserCoinsComponent } from './components/layout/landing/user-coins/user-coins.component';
+ import {ErrorModalComponent} from './shared/modal/error-modal/error-modal.component';
+ import {NewProtoCoinComponent} from './components/dashboard/proto-coins/new-proto-coin/new-proto-coin.component';
+
+import { ModalComponent } from './shared/modal/modal.component';
+import { ControlComponent } from './shared/control/control.component';
+import { ButtonComponent } from './shared/button/button.component';
+ 
+ 
 @NgModule({
-  declarations: [
+  declarations: [ 
+    ModalComponent, 
+    ControlComponent , 
+    ButtonComponent,
+    AvailableChainsComponent,
+    UserCoinsComponent,
+    NewProtoCoinComponent,
+    UsersComponent, 
     AppComponent,  
+    LoginComponent,
+    RegisterComponent,   
+    SidenavListComponent,
+    MenuComponent,
+    ContactusComponent, 
+    FooterComponent,  
+    AlertComponent, 
+    ChainComponent, 
+    NftsComponent,
+    NftComponent,
+    NftAddComponent,
+    ChaindataComponent,
+    LoaderComponent,
+    HomeComponent,
+    ChainsCardListComponent,
+    ChainDialogComponent,
+    AddressComponent,
+    SearchAddressesComponent,
+    PipeUppercase, 
+    NftCardListComponent,
+    NftDialogComponent,
+    AdminuserComponent, 
+    SafeHtmlPipe,
+    UsersComponent, 
+    AppComponent,   
     LoginComponent,
     RegisterComponent,   
     SidenavListComponent,
@@ -76,7 +117,7 @@ import { AdminuserComponent } from './components/users/adminuser.component';
     PipeUppercase, 
     NftCardListComponent,
     NftDialogComponent,
-    NftRefComponent,
+    AddressComponent,
     AdminuserComponent, 
     SafeHtmlPipe,
   ],
@@ -85,15 +126,26 @@ import { AdminuserComponent } from './components/users/adminuser.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule, 
-    BrowserAnimationsModule, provideFirebaseApp(() => initializeApp(environment.firebase)), provideAuth(() => getAuth()), provideDatabase(() => getDatabase()), provideFirestore(() => getFirestore()), provideFunctions(() => getFunctions()),
-    // StoreModule.forRoot( reducers ),
+    AvailableChainsComponent, UserCoinsComponent, ErrorModalComponent,
+    BrowserAnimationsModule, 
+    provideFirebaseApp(() => initializeApp(environment.firebase)), 
+    provideAuth(() => getAuth()), 
+    provideDatabase(() => getDatabase()), 
+    provideFirestore(() => getFirestore()), 
+    provideFunctions(() => getFunctions()),
+    // StoreModule.forRoot( reducers ),    
   ],
   providers: [  
+    // ChainService, 
+    //   ChainStore,
+    //    AddressService,
     LoaderService,
     UpperCasePipe,
-    NftRefResolver,
+    AddressResolver,
     UserGuardService,
     SafeHtmlPipe,
+    LoaderService, 
+    ErrorService
   ],
   bootstrap: [AppComponent],
   entryComponents: [ MatDialogModule]

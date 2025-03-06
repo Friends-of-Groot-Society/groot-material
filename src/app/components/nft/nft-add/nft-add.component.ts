@@ -1,12 +1,12 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { MatMenuTrigger } from '@angular/material/menu';
+ 
  
 import { Observable, Subject, Subscription , of} from 'rxjs';
 import { NftsService } from '../nfts.service';
-import { Store } from '@ngrx/store';
-import { AuthStore } from 'src/app/services/auth/auth-store.service';
-import { AdminAuthenticationService } from 'src/app/services/auth/admin-authentication.service';
-import { DataStorageService } from 'src/app/services/data-storage.service'; 
+ 
+import { AuthStore } from 'cryptomaven-ui/src/app/services/auth/auth-aws-store.service';
+import { AuthFirebaseStoreService } from 'cryptomaven-ui/src/app/services/auth/auth-firebase-store.service';
+import { DataStorageService } from 'cryptomaven-ui/src/app/services/data-storage.service'; 
 import { Constant } from '../../../models/Constant';
 import { Chain } from '../../../models/Chain';
 import * as fromChains from '../../../reducers/chain.reducer';
@@ -46,7 +46,7 @@ export class NftAddComponent implements OnInit {
     private nftsService: NftsService,
     public authStore: AuthStore,
     // private store: Store<fromChains.State>
-    public adminAuthenticationService: AdminAuthenticationService,
+    public adminAuthenticationService: AuthFirebaseStoreService,
     private dataStore: DataStorageService,
   ) {   
     this.chains$ = of(Constant.MORALIS_CHAINS)
@@ -56,20 +56,20 @@ export class NftAddComponent implements OnInit {
       // this.chains$ = this.store.select(fromChains.getAvailableChains)
     
     }
- 
    
    saveForm(form: { valid: any; value: { chain: string, address: string; }; }) { 
     console.log("saveForm")
-    console.log( this.nftsService.getNftData())  
+    console.log( this.nftsService.getNftCoin())  
     if(form.valid) {
       this.nftData =  this.dataStore.savePersistedNfts(form.value.chain, form.value.address)  
+      console.log(this.nftData);
        } 
     } 
     
     chainCheckNft(form: { valid: any; value: { chain: string, address: string}; }) { 
-      console.log(form.value.chain, form.value.address);
       if(form.valid) {
-     this.nftData =  this.nftsService.chainNftData(form.value.chain, form.value.address )  
+     this.nftData =  this.nftsService.chainNftData(form.value.chain, form.value.address );
+     console.log(form.value.chain, form.value.address);
       } 
     } 
   // onAddNft(form: { valid: any; value: { nftAddress: string; }; }) {
