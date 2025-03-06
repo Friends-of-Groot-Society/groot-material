@@ -1,13 +1,14 @@
  
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { map, Observable, Subject, Subscription, tap } from 'rxjs';
-import { Nft } from 'src/app/models/Nft';
+ 
 import { NftsService } from './nfts.service';
-import { LoaderService } from '../../components/layout/loader/loader.service';
+import { LoaderService } from '../layout/loader/loader.service';
 
 // import { Chain } from '../../models/Chain';
-import { ChainStore } from 'src/app/services/chain-store.service';
-import { NftRef } from 'src/app/models/NftRef';
+import { ChainStore } from 'cryptomaven-ui/src/app/services/chain-store.service';
+import { Address } from 'src/app/models/Address';
+
 @Component({
   selector: 'app-nfts',
   templateUrl: './nfts.component.html',
@@ -20,35 +21,35 @@ import { NftRef } from 'src/app/models/NftRef';
   ],
   providers: [LoaderService]
   
-})
-
+}) 
 export class NftsComponent implements OnInit, OnDestroy { 
-  
+   
   chain: string = 'ethereum'; // default chain
   // chains$!: Observable<Chain[]>;
 
   nfts: any;
   nftData: any;
   tokens: any = [];
-  nftRefs:any;
-  nftRefArrs: any = [];
+  addresses:any;
+  addressArrs: any = [];
 
   // chainDataUpdated = new Subject<any[]>();
   private nftDataSubscription: Subscription = new Subscription;
 
   nftsUpdated = new Subject<any[]>();
-  nftRefsUpdated = new Subject<NftRef>();
+  addressesUpdated = new Subject<Address>();
   private nftSubscription: Subscription = new Subscription;
-  private nftRefSubscription: Subscription = new Subscription;
+  private addressSubscription: Subscription = new Subscription;
 
   constructor(
     private nftsService: NftsService,
     private store: ChainStore
   ) {
+    // this.nftData = this.showChainData();
+    // this.nfts = this.loadNftsFromChain();
+    // this.addresses = this.loadNftRefs();
 
-    this.nfts = this.loadNfts();
-    this.nftRefs = this.loadNftRefs();
-    this.nftData = this.showChainData();
+    
   }
 
   ngOnInit(): void { 
@@ -56,16 +57,17 @@ export class NftsComponent implements OnInit, OnDestroy {
     //  console.log("init",this.chains$)
  
     this.nftDataSubscription = this.nftsService.nftDataUpdated.subscribe(() => {
-      this.nftData = this.nftsService.getNftData();
+      this.nftData = this.nftsService.collectNftsFromChain();
      }
      );
  
      this.nftSubscription = this.nftsService.nftsUpdated.subscribe(() => {
-       this.nfts = this.nftsService.collectNfts();
+       this.nfts = this.nftsService.collectNftsFromChain();
      });
  
-     this.nftRefSubscription = this.nftsService.nftRefsUpdated.subscribe(() => {
-      this.nftRefs = this.nftsService.collectNftRefs();
+     this.addressSubscription = this.nftsService.addressUpdated.subscribe(() => {
+      this.addresses = this.nftsService.collectAddresses();
+   
     });
   }
   showChainData() {
@@ -78,35 +80,35 @@ export class NftsComponent implements OnInit, OnDestroy {
   //   return this.chains$
   // }
   loadNftRefs() {
- this.nftsService.collectNftRefs() 
+ this.nftsService.collectAddresses() 
     .pipe( 
       map(res => { 
         console.log("res")
         console.log(res)
         for(let i in res) {
-          this.nftRefArrs.push({ ...res[i] });
+          this.addressArrs.push({ ...res[i] });
         }
         // for (const key in res) {
         //   if (res.hasOwnProperty(key)) {
-            // this.nftRefArrs.push({ ...res[key], name: key });
+            // this.addressArrs.push({ ...res[key], name: key });
         //   }
         // }
-        return this.nftRefArrs;          
+        return this.addressArrs;          
       }),
       tap(
         (dataArray: any) => {
           if (dataArray != undefined) { 
-            this.nftRefs = dataArray; 
-            console.log("this.nftRefs")
-            console.log(this.nftRefs); 
+            this.addresses = dataArray; 
+            console.log("this.addresses")
+            console.log(this.addresses); 
           }
         }
       ),
     ).subscribe();
   };
 
-  loadNfts() {
-    this.nfts = this.nftsService.collectNfts()
+  loadNftsFromChain() {
+    this.nfts = this.nftsService.collectNftsFromChain()
       .subscribe((data: any) => {
         if (data != undefined) {
           this.nftData = data;
@@ -126,7 +128,7 @@ export class NftsComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.nftSubscription.unsubscribe();
     this.nftDataSubscription.unsubscribe();
-    this.nftRefSubscription.unsubscribe();
+    this.addressSubscription.unsubscribe();
   }
 
 }

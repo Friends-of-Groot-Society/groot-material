@@ -1,16 +1,15 @@
 import { Injectable } from '@angular/core';
-import { KeyService } from '../../services/auth/key.service';
+import { KeyService } from '../../../../cryptomaven-ui/src/app/services/auth/key.service';
 import { HttpHeaders, HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { environment  as env  }from "src/environments/environment";
-import { catchError, Observable, throwError } from "rxjs";
+import { catchError, Observable, throwError, tap } from "rxjs";
 // import Moralis from 'moralis'.default();
 // import { EvmChain } from '@moralisweb3/evm-utils'
-import { AuthStore } from 'src/app/services/auth/auth-store.service';
+import { AuthStore } from 'cryptomaven-ui/src/app/services/auth/auth-aws-store.service';
 import { Subject } from 'rxjs';
 import { LoaderService } from '../layout/loader/loader.service';
-import { Nft } from 'src/app/models/Nft';
-import { User } from 'src/app/models/User';
-import { NftRef } from 'src/app/models/NftRef';
+import { Coin } from 'src/app/models/Coin';
+import { User } from 'src/app/models/User'; 
 import { Address } from 'src/app/models/Address';
 
 @Injectable({
@@ -21,15 +20,15 @@ export class NftsService {
 
   currUser : User;
   key: string = '';
-  chain: string = 'ethereum';
-  nftData: Nft; 
-  nfts: Nft[] = [];
+  chainStr: string = 'ethereum';
+  addressStr: string =   '0x900bE021E38B8d08435A03c05657C8cFA837cAeF';
+  coin: Coin; 
+  nftCoins: Coin[] = [];
 
   nftsUpdated = new Subject<any[]>();
-  nftDataUpdated = new Subject<any>();
-  nftRefsUpdated = new Subject<Address>();
+  nftDataUpdated = new Subject<Coin>();
+  addressUpdated = new Subject<Address>();
  
-
   constructor(
     private http: HttpClient,
     private keyService: KeyService,
@@ -40,16 +39,30 @@ export class NftsService {
 
   }
 /////////////////////// NFT REF  
-  findNftRefById(id:string): Observable<Address> {
-    return this.http.get<Address>(`${env.nft_url}/addresses/${id}`)
-    // return this.http.get<NftRef>(`${env.nftsURL}/api/nft-refs/${name}${env.test_env}`)
+ ngOnInit() {
+   this.findAddressById("1").subscribe({
+    next: (address: Address) => { 
+      this.addressUpdated.next(address);
+    }
+  });
+  const nftRefs = this.nftRefsUpdated().subscribe({ 
+    next: (nftRefs: Address) => {
+      this.addressUpdated.next(nftRefs);
+    }
+  });
+  this.loaderService.showLoaderUntilCompleted(new Observable<unknown>()); 
+  // this.currUser = this.authStore.currentUserValue;
+  
+  this.currUser = this.authStore.currentUserValue;
   }
 
-  findNftRefByName(name:string): Observable<Address> {
-    return this.http.get<Address>(`${env.nft_url}/addresses/${name}`)
+
+  findAddressById(id:string): Observable<Address> {
+    return this.http.get<Address>(`${env.nft_url}/addresses/${id}`) 
     // return this.http.get<NftRef>(`${env.nftsURL}/api/nft-refs/${name}${env.test_env}`)
   }
-  collectNftRefs(): Observable<any> {
+  
+  nftRefsUpdated(): Observable<any> {
     return this.http.get(`${env.nft_url}/addresses`)
     // return this.http.get(`${env.nftsURL}/api/nft-refs${env.test_env}`)
     .pipe(
@@ -59,34 +72,58 @@ export class NftsService {
      
   }
   
-  getNftData() { 
-    return this.nftData;
+  nftMockUpdated(): Observable<any> {  
+    
+    return this.http.post(`${env.nft_url}/nfts`, { chain: this.chainStr, address: this.addressStr })
+    // return this.http.get(`${env.nftsURL}/api/nft-refs${env.test_env}`)
+    .pipe(
+      catchError(err => {
+        throw 'error in source. Details: ' + err;
+      }))
+     
+  }
+  getNftCoin() { 
+    return this.coin;
+  }
+
+
+  collectAddresses() {
+    return this.http.get(`${env.nft_url}/addresses${env.test_env}`)
+    .pipe(
+      catchError(err => {
+        throw 'error in source. Details: ' + err;
+      })) 
   }
   getAllNfts() {
-    return [...this.nfts];
+    return this.http.get(`${env.nft_url}/nfts${env.test_env}`)
+    .pipe(
+      catchError(err => {
+        throw 'error in source. Details: ' + err;
+      })) 
+    // return [...this.nfts];
   }
  
-  deleteNft(nftNamed: string) {
-    this.nfts = this.nfts.filter((nft: Nft) => {
-      return nft !== nftNamed;
+  deleteNft(id: number) {
+    this.nftCoins = this.nftCoins.filter((nft: Coin) => {
+      return nft.id !== id;
     });
-    this.nftsUpdated.next(this.nfts);
+    this.nftsUpdated.next(this.nftCoins);
   } 
 
  ///// nftFromChain //////////
-  collectNfts(): Observable<any> {
-    return this.http.get(`${env.nftFromChain}/api/nft${env.test_env}`)
+  collectNftsFromChain(): Observable<any> {
+    return this.http.get(`${env.nftFromChain}/nft${env.test_env}`)
     .pipe(
       catchError(err => {
         throw 'error in source. Details: ' + err;
       })) 
   } 
 
-  chainNftData(chain: string, address: string) {
-    if (!chain) {
-      chain = this.chain;
-    }
-    this.http.post<Nft>(`${env.nftFromChain}/api/nft${env.test_env}`, { chain: chain, address: address },
+  chainNftData(chain: string, address: string): Observable<any> {
+    if (!chain) {      chain = this.chainStr;   }
+    if (!address) {      address = this.chainStr;   }
+
+  return  this.http.post<Coin>(`${env.nftFromChain}/nft${env.test_env}`, { chain: chain, address: address },
       {
         headers: new HttpHeaders({
           Accept: 'application/json'
@@ -95,15 +132,19 @@ export class NftsService {
       .pipe(
         catchError(err => {
           throw 'error in source. Details: ' + err;
-        }))
-      .subscribe((data: any) => {
-        this.nftData = data;
-        console.log(this.nftData);
-        this.nftDataUpdated.next(this.nftData); 
-        
-        this.nfts.push(this.nftData);
-        this.nftsUpdated.next([...this.nfts]);
-      }) 
+        }),
+        tap((data: any) => {
+          this.coin = data;
+          console.log(this.coin);
+          this.nftDataUpdated.next(this.coin); 
+          
+          this.nftCoins.push(this.coin);
+          this.nftsUpdated.next([...this.nftCoins]);
+        })
+      ) 
   }
  
+
+
+  
 }

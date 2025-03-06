@@ -2,8 +2,8 @@ import { Component, OnInit, EventEmitter, Output, OnDestroy} from '@angular/core
 import { Observable, Subscription } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { AuthStore } from 'src/app/services/auth/auth-store.service';
-import { AdminAuthenticationService } from 'src/app/services/auth/admin-authentication.service';
+import { AuthStore } from 'cryptomaven-ui/src/app/services/auth/auth-aws-store.service';
+import { AuthFirebaseStoreService } from 'cryptomaven-ui/src/app/services/auth/auth-firebase-store.service';
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
@@ -17,7 +17,7 @@ export class MenuComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     public authStore: AuthStore, 
-    public adminAuth: AdminAuthenticationService
+    public adminAuth: AuthFirebaseStoreService
   ) { }
 
   ngOnInit() {
